@@ -10,17 +10,21 @@ přispívá k zachování biodiverzity a podpoře ekosystémových služeb v
 chráněných územích soustavy Natura 2000.
 
 
-<div class="figure" style="text-align: center">
+<p align="center">
 
 <img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/LOGO.jpg" alt="Integrace přístupu adaptivního managementu a dostupných poznatků - převzato z Gilson et al. (2019)" width="50%" height="50%" />
 
-</div>
+</p>
 
 ## Adaptivní management a managment podložený výzkumem
 
 <div class="figure" style="text-align: center">
-
+  
+<p align="center">  
+  
 <img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/cyklus.jpg" alt="Integrace přístupu adaptivního managementu a dostupných poznatků - převzato z Gilson et al. (2019)" width="50%" height="50%" />
+
+</p>
 
 <p class="caption">
 
@@ -32,8 +36,18 @@ převzato z Gilson et al. (2019)
 </div>
 
 ## Metodika sběru a vyhodnocení dat
+
+<p align="center">  
+  
 <img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/flow_main.png" width="75%" height="75%" style="display: block; margin: auto;" />
+
+</p>
+
+<p align="center">  
+  
 <img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/flow_analysis.png" width="75%" height="75%" style="display: block; margin: auto;" />
+
+</p>
 
 ## Architektura aplikace
 
