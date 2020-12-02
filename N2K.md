@@ -50,6 +50,18 @@ převzato z Gilson et al. (2019)
 
 #### Ostatní bezobratlí
 
+##### Rak kamenáč
+
+##### Perlorodka říční
+
+##### Velevrub tupý
+
+##### Svinutec štíhlý
+
+##### Vrkoči
+
+##### Štírek Stella
+
 #### Ryby a mihule
 
 #### Obojživelníci
