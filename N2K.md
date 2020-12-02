@@ -28,7 +28,7 @@ převzato z Gilson et al. (2019)
 
 ## Metodika sběru a vyhodnocení dat
 
-<img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/flowchart.png" width="100%" height="100%" style="display: block; margin: auto;" />
+<img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/flowchart.png" width="75%" height="75%" style="display: block; margin: auto;" />
 
 ## Architektura aplikace
 
