@@ -58,4 +58,10 @@ převzato z Gilson et al. (2019)
 
 ##### Letouni
 
-##### Šelmy
+##### Sysel
+
+##### Bobr
+
+##### Vydra
+
+##### Velké šelmy
