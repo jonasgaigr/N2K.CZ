@@ -9,13 +9,13 @@ Webová aplikace na hodnocení stavu předmětů ochrany
 přispívá k zachování biodiverzity a podpoře ekosystémových služeb v
 chráněných územích soustavy Natura 2000.
 
-<img src="LOGO.jpg" width="50%" height="50%" style="display: block; margin: auto;" />
+<img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/LOGO.jpg" width="50%" height="50%" style="display: block; margin: auto;" />
 
 ## Adaptivní management a managment podložený výzkumem
 
 <div class="figure" style="text-align: center">
 
-<img src="cyklus.jpg" alt="Integrace přístupu adaptivního managementu a dostupných poznatků - převzato z Gilson et al. (2019)" width="50%" height="50%" />
+<img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/cyklus.jpg" alt="Integrace přístupu adaptivního managementu a dostupných poznatků - převzato z Gilson et al. (2019)" width="50%" height="50%" />
 
 <p class="caption">
 
@@ -28,7 +28,7 @@ převzato z Gilson et al. (2019)
 
 ## Metodika sběru a vyhodnocení dat
 
-<img src="flowchart.png" width="100%" height="100%" style="display: block; margin: auto;" />
+<img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/flowchart.png" width="100%" height="100%" style="display: block; margin: auto;" />
 
 ## Architektura aplikace
 
