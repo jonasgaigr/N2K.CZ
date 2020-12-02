@@ -18,7 +18,7 @@ chráněných územích soustavy Natura 2000.
 
 ## Adaptivní management a managment podložený výzkumem
 
-<div class="figure" style="text-align: center">
+<div class="figure" style="text-align: center" align="center">
   
 <p align="center">  
   
