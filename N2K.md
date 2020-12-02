@@ -13,7 +13,7 @@ chráněných územích soustavy Natura 2000.
 
 ## Adaptivní management a managment podložený výzkumem
 
-<div class="figure" style="text-align: center">
+<div class="figure" style="text-align: centre">
 
 <img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/cyklus.jpg" alt="Integrace přístupu adaptivního managementu a dostupných poznatků - převzato z Gilson et al. (2019)" width="50%" height="50%" />
 
