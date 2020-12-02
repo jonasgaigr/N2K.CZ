@@ -26,7 +26,7 @@ chráněných územích soustavy Natura 2000.
 
 </p>
 
-<p class="caption">
+<p align="center" class="caption">
 
 Integrace přístupu adaptivního managementu a dostupných poznatků -
 převzato z Gilson et al. (2019)
