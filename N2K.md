@@ -3,11 +3,7 @@ N2K.CZ
 
 ## Jedna příroda
 
-Webová aplikace na hodnocení stavu předmětů ochrany
-(<strong>HOST.N2K</strong>) je vyvíjena v rámci projektu Jedna příroda
-(LIFE-IP:N2K: Revisited, LIFE17/IPE/CZ/000005). Projekt Jedna příroda
-přispívá k zachování biodiverzity a podpoře ekosystémových služeb v
-chráněných územích soustavy Natura 2000.
+Webová aplikace na hodnocení stavu předmětů ochrany (<strong>HOST.N2K</strong>) je vyvíjena v rámci projektu Jedna příroda (LIFE-IP:N2K: Revisited, LIFE17/IPE/CZ/000005). Projekt Jedna příroda přispívá k zachování biodiverzity a podpoře ekosystémových služeb v chráněných územích soustavy Natura 2000.
 
 <img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/LOGO.jpg" width="50%" height="50%" style="display: block; margin: auto;" />
 
