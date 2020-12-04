@@ -23,8 +23,6 @@ chráněných územích soustavy Natura 2000.
 Adaptivní management představuje přístup v ochraně přírody . V adaptivním managementovém cyklu je v reakci na existující problém naplánován management, který je následně implementován, předměty ochrany jsou monitorovány, na základě monitingu je dopad managementových opatření vyhodnocen
 
 </p>
-
-<div class="figure" style="text-align: center" align="center">
   
 <p align="center">  
   
@@ -39,13 +37,11 @@ převzato z Gilson et al. (2019)
 
 </p>
 
-</div>
-
 ## Metodika sběru a vyhodnocení dat
 
 <p align="center">  
   
-<img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/flow_main.png" width="75%" height="75%" style="display: block; margin: auto;" />
+<img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/flow_main.png" width="90%" height="90%" style="display: block; margin: auto;" />
 
 </p>
 
