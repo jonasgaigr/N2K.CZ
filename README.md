@@ -52,7 +52,7 @@ převzato z Gilson et al. (2019)</p>
 
 ##### Velevrub tupý
 
-##### Svinutec štíhlý
+##### Svinutec tenký
 
 ##### Vrkoči
 
