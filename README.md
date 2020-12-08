@@ -34,6 +34,10 @@ převzato z Gilson et al. (2019)</p>
 
 ### Rostliny
 
+#### Cévnaté rostliny
+
+#### Mechorosty
+
 ### Živočichové
 
 #### Hmyz
