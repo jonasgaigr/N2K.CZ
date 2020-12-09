@@ -3,7 +3,7 @@ N2K.CZ
 
 ## Jedna příroda
 
-<p align="justify">Webová aplikace na hodnocení stavu předmětů ochrany <strong>HOST.N2K</strong> je vyvíjena v rámci projektu Jedna příroda (LIFE-IP:N2K: Revisited, LIFE17/IPE/CZ/000005). Projekt Jedna příroda přispívá k zachování biodiverzity a podpoře ekosystémových služeb v chráněných územích soustavy Natura 2000. Jedním ze způsobů, kterými bude tohoto cíle dosaženo je zlepšení péče o předměty ochrany (druhy a stanoviště) na území evropsky významných lokalit a ptačích oblastí.</p> 
+<p align="justify">Webová aplikace na hodnocení stavu předmětů ochrany <strong>HOST.N2K</strong> je vyvíjena v rámci projektu [Jedna příroda](https://jednapriroda.cz) (LIFE-IP:N2K: Revisited, LIFE17/IPE/CZ/000005). Projekt Jedna příroda přispívá k zachování biodiverzity a podpoře ekosystémových služeb v chráněných územích soustavy Natura 2000. Jedním ze způsobů, kterými bude tohoto cíle dosaženo je zlepšení péče o předměty ochrany (druhy a stanoviště) na území evropsky významných lokalit a ptačích oblastí.</p> 
 
 <p align="center"> <img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/LOGO.jpg" alt="Integrace přístupu adaptivního managementu a dostupných poznatků - převzato z Gilson et al. (2019)" width="50%" height="50%" /></p>
 
@@ -27,6 +27,9 @@ převzato z Gilson et al. (2019)</p>
 <p align="center"><img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/flow_analysis.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 
 ## Architektura aplikace
+
+* Uživateské rozhraní bylo vybudováno pomocí [R Shiny](https://github.com/rstudio/shiny)
+* Mapy evropsky významných lokalit a ptačích oblastí byly vytvořeny pomocí [leaflet](https://rstudio.github.io/leaflet/) package
 
 ## Hodnocení předmětů ochrany
 
