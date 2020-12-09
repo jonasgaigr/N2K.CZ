@@ -32,6 +32,22 @@ převzato z Gilson et al. (2019)</p>
 
 ### Habitaty
 
+#### Vodní toky a nádrže
+
+#### Mokřady
+
+#### Rašeliniště
+
+#### Skály, sutě a jeskyně
+
+#### Alpínské bezlesí
+
+#### Sekundární trávníky a vřesoviště
+
+#### Křoviny
+
+#### Lesy
+
 ### Rostliny
 
 #### Cévnaté rostliny
