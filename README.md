@@ -11,20 +11,17 @@ N2K.CZ
 
 <p align="justify"> Adaptivní management představuje iterativní přístup v ochraně přírody umožnující postupné zpřesňování prováděných opatření na základě monitoringu cílových populací a habitatů. V adaptivním managementovém cyklu je v reakci na stav předmětu ochrany naplánován management, který je následně implementován. Předmět ochrany je monitorován a na základě získaných dat o jeho stavu je vyhodnocen dopad managementových opatření. Podle výsledku hodnocení jsou opatření na podporu předmětu ochrany upravena nebo prováděna v nezměněné podobě. </p>
   
-<p align="center">  
-  
-<img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/cyklus.jpg" alt="Integrace přístupu adaptivního managementu a dostupných poznatků - převzato z Gilson et al. (2019)" width="50%" height="50%" />
-
-</p>
+<p align="center"><img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/cyklus.jpg" alt="Integrace přístupu adaptivního managementu a dostupných poznatků - převzato z Gilson et al. (2019)" width="50%" height="50%" /></p>
 
 <p align="center" class="caption">Integrace přístupu adaptivního managementu a dostupných poznatků -
 převzato z Gilson et al. (2019)</p>
 
 ## Metodika sběru a vyhodnocení dat
 
+<p align="center"><img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/flow_analysis.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+
 <p align="center"><img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/flow_main.png" width="90%" height="90%" style="display: block; margin: auto;" /></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/flow_analysis.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 
 ## Architektura aplikace
 
@@ -95,7 +92,7 @@ převzato z Gilson et al. (2019)</p>
 
 ##### Vydra
 
-##### Velké šelmy
+##### Vlk, rys a medvěd
 
 ## Zdroje
 
