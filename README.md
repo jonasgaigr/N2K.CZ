@@ -25,7 +25,7 @@ převzato z Gilson et al. (2019)</p>
 
 ## Architektura aplikace
 
-* Uživateské rozhraní bylo vybudováno pomocí [R Shiny](https://github.com/rstudio/shiny)
+* Uživateské rozhraní bylo vybudováno s využitím [R Shiny](https://github.com/rstudio/shiny)
 * Mapy evropsky významných lokalit a ptačích oblastí byly vytvořeny pomocí [leaflet](https://rstudio.github.io/leaflet/) package
 
 ## Hodnocení předmětů ochrany
