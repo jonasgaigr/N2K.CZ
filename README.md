@@ -22,6 +22,13 @@ převzato z Gilson et al. (2019)</p>
 
 <p align="center"><img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/flow_main.png" width="90%" height="90%" style="display: block; margin: auto;" /></p>
 
+### Data o populacích živočichů a rostlin
+
+### Data o stavu habitatů
+
+### Fyzikálně-chemická data
+
+### Remote-sensing data
 
 ## Architektura aplikace
 
