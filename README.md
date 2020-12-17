@@ -24,9 +24,15 @@ převzato z Gilson et al. (2019)</p>
 
 ### Data o populacích živočichů a rostlin
 
+<p align="justify"><a href="https://portal.nature.cz/nd/">Nálezová databáze ochrany přírody</a></p>
+
 ### Data o stavu habitatů
 
 ### Fyzikálně-chemická data
+
+<p align="justify"><a href="https://www.mzp.cz/C1257458002F0DC7/cz/metodiky_chranenych_uzemi/$FILE/OOV_Metodika_monitoring_EVL_20201021.pdf">Metodika monitoringu chráněných území vymezených pro ochranu stanovišť a druhů s vazbou na vody</a></p>
+
+<p align="justify"><a href="https://www.mzp.cz/C1257458002F0DC7/cz/metodiky_chranenych_uzemi/$FILE/OOV_Metodika_hodnocen%C3%AD_stavu_EVL_20201020.pdf">Metodika hodnocení stavu chráněných území vymezených pro ochranu stanovišť a druhů s vazbou na vody</a></p>
 
 ### Remote-sensing data
 
