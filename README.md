@@ -26,15 +26,15 @@ převzato z Gilson et al. (2019)</p>
 
 <p align="justify"><a href="https://portal.nature.cz/nd/">Nálezová databáze ochrany přírody</a></p>
 
+### Data o prostředí živočichů a rostlin
+
+#### Fyzikálně-chemická data
+
+<p align="justify">Data o stavu habitatu předmětů ochrany s vazbou na vodní prostředí jsou získávána a vyhodnocována v souladu platnou <a href="https://www.mzp.cz/C1257458002F0DC7/cz/metodiky_chranenych_uzemi/$FILE/OOV_Metodika_monitoring_EVL_20201021.pdf">metodikou monitoringu</a> chráněných území vymezených pro ochranu stanovišť a druhů s vazbou na vody, respektive <a href="https://www.mzp.cz/C1257458002F0DC7/cz/metodiky_chranenych_uzemi/$FILE/OOV_Metodika_hodnocen%C3%AD_stavu_EVL_20201020.pdf">metodikou jejich hodnocení</a>. Tato data jsou průběžně aktualizována sledováním vybraných profilů vztažených k jednotlivým evropsky významným lokalitám.</p>
+
+#### Remote-sensing data
+
 ### Data o stavu habitatů
-
-### Fyzikálně-chemická data
-
-<p align="justify"><a href="https://www.mzp.cz/C1257458002F0DC7/cz/metodiky_chranenych_uzemi/$FILE/OOV_Metodika_monitoring_EVL_20201021.pdf">Metodika monitoringu chráněných území vymezených pro ochranu stanovišť a druhů s vazbou na vody</a></p>
-
-<p align="justify"><a href="https://www.mzp.cz/C1257458002F0DC7/cz/metodiky_chranenych_uzemi/$FILE/OOV_Metodika_hodnocen%C3%AD_stavu_EVL_20201020.pdf">Metodika hodnocení stavu chráněných území vymezených pro ochranu stanovišť a druhů s vazbou na vody</a></p>
-
-### Remote-sensing data
 
 ## Architektura aplikace
 
