@@ -600,7 +600,16 @@ server <- function(input, output, session) {
                                  grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE ~ 0,
                                DRUH == "Euplagia quadripunctiria" &
                                  grepl(paste(c("sadc", "sadec", "hlaváč", "bodlák", "bodlak"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
-                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1)) 
+                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
+                               DRUH == "Euplagia quadripunctiria" &
+                                 grepl(paste(c("sadc", "sadec", "hlaváč", "bodlák", "bodlak"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0,
+                               DRUH == "Euphydryas aurinia" &
+                                 grepl(paste(c("succisa, čert, certk"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
+                               DRUH == "Euphydryas aurinia" &
+                                 grepl(paste(c("succisa, čert, certk"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0)) 
         species <- species %>%
           filter(YEAR >= (current_year - 6))
         return(species)
@@ -760,8 +769,8 @@ server <- function(input, output, session) {
                       background = styleEqual(c("DOSTATEČNÝ", "NEDOSTATEČNÝ", "CHYBÍ DATA"), 
                                               c("green", "red", "grey")))
       }
-    
-       Lep_3_clear <- function(species) {
+      
+      Lep_3_clear <- function(species) {
         species <- species %>%
           mutate(
             DRUH = as.factor(DRUH),
@@ -835,7 +844,7 @@ server <- function(input, output, session) {
                       background = styleEqual(c("POSITIVNÍ", "NEGATIVNÍ", "CHYBÍ DATA"), 
                                               c("green", "red", "grey")))
       }
-    
+      
       # Brouci -----
       # Carabidae ----
       # Carabus hungaricus
@@ -2528,6 +2537,66 @@ server <- function(input, output, session) {
       hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
       return(hab_evl)
     }
+    
+    Lep_3_clear <- function(species) {
+      species <- species %>%
+        mutate(
+          DRUH = as.factor(DRUH),
+          DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+          YEAR = substring(DATE, 1, 4),
+          SITECODE = substr(EVL, 1, 9),
+          NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+          PRESENT = case_when(is.na(POCET) == TRUE | is.na(POCITANO) == TRUE ~ 0,
+                              (is.na(POCET) == FALSE & POCET > 0) | 
+                                (is.na(POCITANO) == FALSE & POCET > 0) ~ 1),
+          POCET_CAT = case_when((POCET > 0 & POCET <= 10) | REL_POC == "1-10" | 
+                                  REL_POC == "ojediněle" & 
+                                  (POCITANO == "imaga" | POCITANO == "jedinci") ~ 1,
+                                (POCET > 10 & POCET <= 35) | REL_POC == "11-100" | 
+                                  REL_POC == "vzácně" & 
+                                  (POCITANO == "imaga" | POCITANO == "jedinci") ~ 2,
+                                (POCET > 35 & POCET < 10) | REL_POC == "11-100" | 
+                                  REL_POC == "roztroušeně" & 
+                                  (POCITANO == "imaga" | POCITANO == "jedinci") ~ 3,
+                                (POCET > 100) | REL_POC == "hojně" & 
+                                  (POCITANO == "imaga" | POCITANO == "jedinci") ~ 4),
+          POCETNOST = case_when(DRUH == "Eriogaster catax" & POCET_CAT > 1 ~ 1,
+                                DRUH == "Eriogaster catax" & POCET_CAT <= 1 ~ 0)) 
+      species <- species %>%
+        filter(YEAR >= (current_year - 6))
+      return(species)
+    }
+    
+    Lep_3_site <- function(species) {
+      species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                          as.vector(find_evl_NAZEV(input_species))))
+      colnames(species_site) <- c("SITECODE", "NAZEV")
+      hab_evl <- Lep_3_clear(species) %>%
+        bind_rows(species_site) %>%
+        group_by(SITECODE) %>%
+        summarise(SITECODE = SITECODE,
+                  NAZEV = NAZEV,
+                  PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                       max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                       max(na.omit(PRESENT)) == 0 ~ "NE"),
+                  POCETNOST = case_when(max(na.omit(POCETNOST)) == -Inf ~ "CHYBÍ DATA",
+                                        max(na.omit(POCETNOST)) == 1 ~ "DOSTATEČNÁ",
+                                        max(na.omit(POCETNOST)) == 0 ~ "NEDOSTATEČNÁ"),
+                  VITALITA = NA,
+                  HABITAT = NA,
+                  LIKVIDACE = NA,
+                  NEGATIV = NA,
+                  MANAGEMENT = NA,
+                  MONITOR = NA,
+                  COLOUR = case_when(max(na.omit(PRESENT)) == 1 ~ "green",
+                                     max(na.omit(PRESENT)) == -Inf ~ "grey",
+                                     max(na.omit(PRESENT)) == 0 ~ "red"),
+                  OVERALL = NA)
+      hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+      hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+      return(hab_evl)
+    }
+    
     # Brouci ----
     # Carabidae ----
     # Carabus hungaricus
@@ -2821,6 +2890,9 @@ server <- function(input, output, session) {
     } 
     if (input$species == "Euphydryas maturna") {
       result_evl <- Lep_1_site(species)
+    } 
+    if (input$species == "Eriogaster catax") {
+      result_evl <- Lep_3_site(species)
     } 
     # Brouke
     if (input$species == "Carabus hungaricus") {
