@@ -1,0 +1,3171 @@
+# Packages ----
+library(tidyverse)
+library(shiny)
+library(shinycssloaders)
+library(DT)
+library(zoo)
+library(lubridate)
+library(condformat)
+library(ggplot2)
+library(rgdal)
+library(raster)
+library(ggsn)
+library(proj4)
+library(sp)
+library(leaflet)
+options(shiny.sanitize.errors = FALSE)
+
+# SEZNAM TAXONŮ ----
+
+sites_subjects <- read.csv("sites_subjects.csv")
+sites_subjects$SUBJECT <- gsub("Maculinea", "Phengaris", sites_subjects$SUBJECT)
+sites_subjects$SUBJECT <- gsub("Thersamonolycaena", "Lycaena", sites_subjects$SUBJECT)
+sites_subjects$SUBJECT <- gsub("Callimorpha quadripunctaria", "Euplagia quadripunctaria", sites_subjects$SUBJECT)
+sites_subjects$SUBJECT <- gsub("Osmoderma eremita", "Osmoderma barnabita", sites_subjects$SUBJECT)
+sites_subjects$SUBJECT <- gsub("Triturus montandoni", "Lissotriton montandoni", sites_subjects$SUBJECT)
+sites_subjects$SUBJECT <- gsub("Aspius aspius", "Leuciscus aspius", sites_subjects$SUBJECT)
+sites_subjects$SUBJECT <- gsub("Cobitis elongatoides", "Cobitis taneia", sites_subjects$SUBJECT)
+
+evl <- readOGR(dsn = ".", layer = "Evropsky_v%C3%BDznamn%C3%A9_lokality")
+evl <- spTransform(evl, CRS("+init=epsg:4326"))
+mammal_evl <- readOGR(dsn = ".", layer = "Biotop_zvl%C3%A1%C5%A1t%C4%9B_chr%C3%A1n%C4%9Bn%C3%BDch_druh%C5%AF_velk%C3%BDch_savc%C5%AF")
+mammal_evl <- spTransform(mammal_evl, CRS("+init=epsg:4326"))
+czechia <- readOGR(dsn = ".", layer = "HraniceCR", encoding = "UTF-8")
+czechia <- spTransform(czechia, CRS("+init=epsg:4326"))
+bioregs <- readOGR(dsn = ".", layer = "BiogeoRegions_CR", encoding = "UTF-8")
+bioregs <- spTransform(bioregs, CRS("+init=epsg:4326"))
+
+taxa = read.table(
+  text = "Group Species Species_CZ
+''  ''  ''
+Motýli  '' ''
+Brouci  '' ''
+Vážky   '' ''
+Rovnokřídlí '' ''
+Plži  '' ''
+Mlži '' ''
+Korýši '' ''
+Štírci '' ''
+Ryby '' ''
+Mihule '' ''
+Obojživelníci '' ''
+Savci '' ''
+Motýli	'Phengaris nausithous' 'modrásek bahenní'
+Motýli	'Phengaris teleius' 'modrásek očkovaný'
+Brouci	'Bolbelasmus unicornis' 'chrobák jednorohý'
+Motýli	'Euplagia quadripunctaria' 'přástevník kostivalový'
+Brouci	'Carabus hungaricus' ''
+Brouci	'Carabus menetriesi pacholei' ''
+Brouci	'Carabus variolosus' ''
+Brouci	'Cerambyx cerdo' 'tesařík velký'
+Motýli	'Colias myrmidone' 'žluťásek barvoměnný'
+Brouci	'Cucujus cinnaberinus' 'lesák rumělkový'
+Motýli	'Euphydryas aurinia' ''
+Motýli	'Euphydryas maturna' ''
+Brouci	'Graphoderus bilineatus' 'potápník dvoučárý'
+Brouci	'Limoniscus violaceus' ''
+Brouci	'Lucanus cervus' 'roháč obecný'
+Motýli	'Lycaena dispar' 'ohniváček černočárný'
+Brouci	'Osmoderma barnabita' 'páchník hnědý'
+Brouci	'Rhysodes sulcatus' 'rýhovec pralesní'
+Brouci	'Rosalia alpina' 'tesařík alpský'
+Rovnokřídlí	'Stenobothrus eurasius' ''
+Motýli	'Eriogaster catax' ''
+Vážky	'Coenagrion ornatum' ''
+Vážky	'Leucorrhinia pectoralis' ''
+Vážky	'Ophiogomphus cecilia' ''
+Vážky	'Cordulegaster heros' ''
+Plži	'Anisus vorticulus' ''
+Korýši	'Austropotamobius torrentium' ''
+Mlži	'Margaritifera margaritifera' 'perlorodka říční'
+Mlži	'Unio crassus' 'velevrub tupý'
+Plži	'Vertigo angustior' ''
+Plži	'Vertigo geyeri' ''
+Plži	'Vertigo moulinsiana' ''
+Štírci	'Anthrenochernes stellae' 'štírek Stella'
+Ryby	'Leuciscus aspius' 'bolen dravý'
+Ryby	'Cobitis taneia' ''
+Ryby	'Cottus gobio' ''
+Ryby	'Gobio albipinnatus' ''
+Ryby	'Gobio kesslerii' ''
+Ryby	'Gymnocephalus baloni' ''
+Ryby	'Gymnocephalus schraetser' ''
+Ryby	'Misgurmus fossilis' ''
+Ryby	'Pelecus cultratus' ''
+Ryby	'Rhodeus amarus' 'hořavka duhová'
+Ryby	'Sabanejewia aurata' ''
+Ryby	'Salmo salar' 'losos obecný'
+Ryby	'Zingel streber' ''
+Ryby	'Zingel zingel' ''
+Mihule	'Eudontomyzon mariae' 'mihule ukrajinská'
+Mihule	'Lampetra planerii' 'mihule říční'
+Obojživelníci	'Triturus carnifex' ''
+Obojživelníci	'Triturus cristatus' ''
+Obojživelníci	'Triturus dobrogicus' ''
+Obojživelníci	'Lissotriton montandoni' 'čolek karpatský'
+Obojživelníci	'Bombina bombina' 'kuňka ohnivá'
+Obojživelníci	'Bombina variegata' 'kuňka žlutobřichá'
+Savci	'Rhinolophus hipposideros' ''
+Savci	'Barbastella barbastellus' ''
+Savci	'Myotis bechsteini' ''
+Savci	'Myotis blythii' ''
+Savci	'Myotis dasycneme' ''
+Savci	'Myotis emarginatus' ''
+Savci	'Myotis myotis' ''
+Savci	'Spermophilus citellus' 'sysel obecný'
+Savci	'Castor fiber' 'bobr evropský'
+Savci	'Canis lupus' 'vlk obecný'
+Savci	'Ursus arctos' 'medvěd hnědý'
+Savci	'Lutra lutra' 'vydra říční'
+Savci	'Lynx lynx' 'rys ostrovid'", 
+  header = TRUE,
+  stringsAsFactors = FALSE,
+  encoding = "UTF-8"
+)
+
+# Texty----
+text_phenau <-
+  paste(
+    HTML(
+      '<h5><b>Ekologie druhu</b></h5>
+      <p style="text-align: justify">Modrásek bahenní má podobné ekologické nároky jako 
+      modrásek očkovaný, ale je schopen osídlovat širší škálu stanovišť. Preferuje především 
+      vlhké, nehnojené, extenzivně kosené krvavcové louky, ale dokáže žít např. i ve vlhkých 
+      příkopech podél silnic, na podmáčených ruderálních stanovištích a na poddolovaných územích. 
+      Není však schopen přežívat na loukách, na kterých probíhá druhá seč v době od začátku 
+      července do začátku září, tj. v období letu dospělců, kladení vajíček a časného vývoje 
+      housenek. Dospělci se vyskytují od začátku července do začátku srpna s vrcholem obvykle 
+      kolem 20. – 25. července. Sají nektar na krvavci totenu. Vývojový cyklus je obdobný jako
+      u modráska očkovaného. Hostitelskou rostlinou housenek je krvavec toten (<i>Sanguisorba 
+      officinalis</i>). Samice kladou vajíčka po několika do rozvinutých květních hlávek krvavce. 
+      První tři instary housenek se vyvíjejí v semenících. Ve čtvrtém instaru padají housenky na 
+      zem, kde jsou vyhledány dělnicemi hostitelských mravenců (druhu Myrmica scabrinodis, méně 
+      často Myrmica ruginodis), které je odnášejí do svých mravenišť. Pokud hostitelské mraveniště
+      prosperuje, housenky se nechávají od mravenců krmit. Pokud je mravenčí kolonie slabá, živí 
+      se housenky larvami a kuklami mravenců. Po přezimování se v hnízdech mravenců i kuklí.</p>')
+  )
+text_phetel <-
+  paste(
+    HTML(
+      '<h5><b>Ekologie druhu</b></h5>
+      <p style="text-align: justify">Druh vlhkých nehnojených, extenzivně kosených, krvavcových luk. 
+      V rámci komplexů vlhkých luk však preferují sušší výslunná místa chráněná před větrem. Dospělci 
+      se vyskytují od začátku července do druhé poloviny srpna. Sají nektar na krvavci totenu 
+      a bobovitých rostlinách. Vývojový cyklus je obdobný jako u modráska bahenního. Hostitelskou 
+      rostlinou housenek je krvavec toten (Sanguisorba officinalis). Samice kladou vajíčka 
+      jednotlivě na nerozvité květní hlávky krvavce. První tři instary housenek se vyvíjejí v 
+      semenících. Tato fáze vývoje trvá 2-3 týdny. Ve čtvrtém instaru padají housenky na zem, 
+      kde jsou vyhledány dělnicemi hostitelských mravenců (druhu Myrmica rubra, méně často Myrmica 
+      scabrinodis), které je odnášejí do svých mravenišť. Tam se živí larvami a kuklami mravenců, 
+      zhruba po dobu 10 měsíců. Po přezimování se v hnízdech mravenců i kuklí. Modrásek očkovaný 
+      je ekologicky velmi podobný příbuznému modrásku bahennímu (Maculinea nausithous), se kterým 
+      se na řadě lokalit vyskytuje společně. Modrásek očkovaný má však vyhraněnější nároky na 
+      stanoviště a je tedy vzácnější.</p>'
+    )
+  )
+text_colmyr <-
+  paste(
+    HTML(
+      '<h5><b>Ekologie druhu</b></h5>
+      <p style="text-align: justify">Žluťásek barvoměný, původně lesostepní druh, osídlil v 
+      našich podmínkách "starou" zemědělskou krajinu s mozaikou výslunných pasených či kosených 
+      pastvin a luk, hájků, solitérních dřevin. Na svých biotopech vyžaduje velmi osluněná i 
+      stinná místa, nabídku nektaru i živné rostliny, jimiž jsou čilimníky, ve velkých abundancích.
+      Během roku vytváří dvě generace, první v květnu až červnu, druhou v červenci a srpnu. 
+      Je relativně dobrý letec, ale v disperzi jej pravděpodobně mohou omezit rozsáhlé zapojené 
+      lesní porosty. Má dvě generace do roka, dospělce je možno zastihnout v květnu a červnu a v 
+      srpnu a září, přezimuje housenka.</p>
+      <h5><b>Péče o druh</b></h5>
+      <p style="text-align: justify">Na populace druhu se jednoznačně negativně podepisuje plošné 
+      sečení obývaných lokalit bez ponechaných neposečených enkláv, dvojí či vícenásobná seč za 
+      sezónu nebo seč v nevhodný termín. Nevhodná je i intenzivní pastva kombinovaná se sečením 
+      nedopasků, ale také absence managementu, kdy dochází samovolnému zarůstání lokalit dřevinami. 
+      Změny ve využívání biotopu (zalesnění, změna na polní kultury), likvidace nebo zarůstání 
+      širokých lesních lemů, používání biocidů a hnojiv při obhospodařování travnatých biotopů a 
+      jejich okolí druhu rovněž neprospívají. Pozitivně naopak působí management zachovávající 
+      stepní nebo lesostepní charakter lokalit, především udržování členitých širokých závětrných 
+      lemů, širokých světlých lemů podél cest a trvalých lesních průseků (pod elektrickým vedením 
+      apod.), které by zprostupnily krajinu pro migraci motýla.</p>'
+    )
+  )
+text_lycdis <-
+  paste(
+    HTML(
+      '<h5><b>Ekologie druhu</b></h5>
+      <p style="text-align: justify">Dospělci se vyskytují ve dvou až třech generacích od dubna 
+      do září. Létají za teplého počasí a sají nektar, mají poměrně velkou disperzní schopnost. 
+      Hostitelskými rostlinami housenek jsou šťovíky, rdesno hadí kořen, aj. Vývoj trvá až jeden 
+      rok. Populace žijící na jižní Moravě je spíše eurytopní, často jej lze zastihnout i mimo jeho 
+      preferovaná stanoviště, tedy i na ruderálech, v intravilánech obcí, okrajích polí, apod.</p>
+      <h5><b>Péče o druh</b></h5>
+      <p style="text-align: justify">Na konkrétních lokalitách působí negativně na populaci druhu 
+      především intenzivní pastva s plošným sečením nedopasků, plošné sečení luk, vícenásobná nebo 
+      nevhodně načasovaná seč a změny vodního režimu (meliorace lokality). Naopak extenzivní způsob 
+      hospodaření (mozaikovitá seč či pastva), management vedoucí k zachování vhodného vodního 
+      režimu je pro zachování biotopu druhu a přežívání populací vhodný. Absence managementu vede 
+      k přirozeným změnám stanoviště (zarůstání), které se stávají zvláště problematické stejně 
+      jako další negativní vlivy v případě, že v okolí nenachází další vhodný habitat, který by 
+      zajistil přežití dané populace. Zalesňování lokalit má stejný dopad jako zarůstání v případě 
+      absence managementu a je proto hodnoceno také negativně spolu s plošným používání biocidů a 
+      hnojením konkrétních lokalit a jejich nejbližšího okolí.</p>'
+    )
+  )
+text_Lep_1 <- 
+  paste(
+    HTML(
+      '<h5><b>Metodika hodnocení stavu druhu<h5>
+      <p style="text-align: justify">Frekvence monitoringu: </b>Minimálně 1 návštěva během 6 let</p>'
+    )
+  )
+text_Lep_2 <- 
+  paste(
+    HTML(
+      '<h5><b>Metodika hodnocení stavu druhu<h5>
+      <p style="text-align: justify">Frekvence monitoringu: </b>Minimálně 1 návštěva během 6 let</p>'
+    )
+  )
+text_SapOpen <-
+  paste(
+    HTML(
+      '<h5><b>Metodika hodnocení stavu druhu<h5>
+      <p style="text-align: justify">Frekvence monitoringu: </b>Minimálně 1 návštěva během 6 let</p>
+      <p style="text-align: justify"><b>Doložení výskytu druhu:</b> Dospělci, jejich fragmenty a 
+      všechna larvální stádia</p>
+      <p style="text-align: justify"><b>Pokryvnost preferovaných habitatů: </b>Minimálně stabilní 
+      pokryvnost (věkově strukturované světlé a rozvolněné listnaté (zejména dubové) lesní porosty s 
+      převahou starších (100 a více let) stromů a parky, s dostatkem mrtvého dřeva a jejich 
+      přechodovými formami spojenými s šetrnou obnovou těchto porostů (holiny po mýcení lesného 
+      porostu osázené listnatými stromy až mladší listnaté lesy s ponecháním dostatečného množství 
+      pařezů, starších výstavků.</p>
+      <p style="text-align: justify"><b>Stav preferovaných habitatů:</b> Dostatečná přítomnost 
+      mrtvého dřeva a zabezpečená kontinuita nabídky mrtvého dřeva</p> 
+      <p style="text-align: justify"><b>Přímá likvidace preferovaného habitatu:</b> 
+      Nevyskytuje se</p>
+      <p style="text-align: justify"><b>Negativní vlivy:</b> Žádné</p>'
+  )
+)
+text_SapFor <-
+  paste(
+    HTML(
+      '<h5><b>Metodika hodnocení stavu druhu<h5>
+      <p style="text-align: justify"><b>Frekvence monitoringu: </b>Minimálně 1 návštěva během 6 let</p>
+      <p style="text-align: justify"><b>Doložení výskytu druhu:</b> Dospělci, jejich fragmenty a 
+      všechna larvální stádia</p>
+      <p style="text-align: justify"><b>Hustota populace:</b> 
+      <p style="text-align: justify"><b>Pokryvnost preferovaných habitatů: </b>Minimálně stabilní 
+      pokryvnost (věkově strukturované světlé a rozvolněné listnaté (zejména dubové) lesní porosty s 
+      převahou starších (100 a více let) stromů a parky, s dostatkem mrtvého dřeva a jejich 
+      přechodovými formami spojenými s šetrnou obnovou těchto porostů (holiny po mýcení lesného 
+      porostu osázené listnatými stromy až mladší listnaté lesy s ponecháním dostatečného množství 
+      pařezů, starších výstavků.</p>
+      <p style="text-align: justify"><b>Stav preferovaných habitatů:</b> Dostatečná přítomnost 
+      mrtvého dřeva a zabezpečená kontinuita nabídky mrtvého dřeva</p> 
+      <p style="text-align: justify"><b>Přímá likvidace preferovaného habitatu:</b> 
+      Nevyskytuje se (např. převod jakékoliv části porostů na jehličnaté monokultury)</p>
+      <p style="text-align: justify"><b>Negativní vlivy:</b> Žádné</p>'
+  )
+)
+text_luccer <-
+  paste(
+    HTML(
+      '<h5><b>Ekologie druhu</b></h5>
+      <p style="text-align: justify">Roháč obecný, největší
+      evropský brouk, je obyvatelem doubrav a
+      smíšených lesů, který proniká i do vhodných městských parků.
+      Dává přednost teplým nížinným lesům, ale místy vystupuje i do
+      vyšších poloh.Samice kladou vajíčka do trouchnivějících kmenů,
+      klád a pařezů, <b>vývoj je v našich podmínkách víceletý (3-5 let)</b>,
+      larvy se živí trouchnivějícím dřevem. Dospělí brouci se obvykle
+      líhnou již na podzim a přezimují v kukelních komůrkách , v přírodě
+      se objevují od května (výjimečně v teplých letech již od konce dubna)
+      do srpna, maximum výskytu spadá do června a července. Přes den je
+      brouky možné nalézat na kmenech a v korunách stromů, pozdě odpoledne
+      a večer (při teplém počasí) létají v korunách stromů. Imaga se živí
+      listím dubů, samce láká ronící míza.</p>'
+      )
+    #br(),
+    #div(img(src = "luccer1.jpg", width = "100%", alt = "Jeninec sražený automobilem"),
+    #    style = "text-align: center;"),
+    #br(),
+    #div(img(src = "luccer2.jpg", width = "100%", alt = "Samec"), 
+    #    style = "text-align: center;")
+  )
+text_cercer <-
+  paste(
+    HTML(
+      '<h5><b>Ekologie druhu</b></h5>
+      <p style="text-align: justify">Tesařík obrovský se vyvíjí především v dubu, pouze vzácně v 
+      jilmu a ořešáku, uváděn je i jasan a vrba, na jihu Evropy též jírovec maďal. Vyhledává 
+      zejména osluněné stromy na okrajích lesů, v alejích, prosvětlených porostech na svazích a 
+      solitérní stromy na loukách, pastvinách či parcích. Napadá hlavně starší živé stromy, vývoj 
+      probíhá pod kůrou v živém lýku a později ve dřevě kmenů i silných větví v korunách. Délka 
+      vývoje v ČR je <b>cca 3-5 let</b>. V přírodě se dospělý brouk vyskytuje od května do srpna, 
+      maximum výskytu je od poloviny června do poloviny července. Brouci mají večerní a noční 
+      aktivitu, přes den se často ukrývají ve výletových otvorech či v korunách stromů.</p>'
+    )
+  )
+text_carvar <-
+  paste(
+    HTML('<h5><b>Ekologie a biologie</b></h5>
+         <p style="text-align: justify">Střevlík hrbolatý žije především v předhůří a horách. Obývá 
+         zejména listnaté (dubohabřiny až bučiny) a smíšené, ale i jehličnaté lesy, výjimečně se 
+         vyskytuje i na otevřených biotopech které k lesům přiléhají. Druh byl opakovaně zjištěn i v 
+         druhotných, mladších smrkových lesích (Oderské vrchy, Jeseníky), jeho vazba na původní 
+         lesy není tedy jednoznačná. Jedná se o <b>velmi vlhkomilný druh</b> žijící na březích vodních 
+         toků, prameništích, močálech a rašeliništích, vícekrát byl pozorován lovící přímo ve vodě.
+         Je aktivní především v noci, méně častá je denní aktivita. Přes den se zpravidla ukrývá ve 
+         vlhkém listí, mechu, podmáčené půdě a pod ležícími předměty (kmeny, kameny). Přezimuje 
+         jako imago, v přírodě je aktivní od dubna.</p>
+         <h5><b>Metodika hodnocení stavu druhu<h5>
+         <p style="text-align: justify"><b>Početnost populace:</b> počet jedinců (dospělců) 
+         odchycených na lokalitě do stanoveného počtu předem určeného typu zemních pastí.</p>
+         <p style="text-align: justify"><b>Pokryvnost preferovaných habitatů:</b> procento výměry 
+         lokality s výskytem souvislých celků preferovaných habitatů (listnaté (zejména dubohabřiny a 
+         bučiny se zápojem korunového patra 50-80%), případně smíšené lesy (hlavně jedlobučiny, pak 
+         smíšené smrčiny se zápojem 20-50%) s výskytem pramenišť, bažin, mokřin, lesních potůčků nebo 
+         stojaté vody).</p>
+         <p style="text-align: justify"><b>Přítomnost mrtvého dřeva:</b> zastoupení ležícího mrtvého 
+         dřeva o tloušťce > 20 cm, jež zasahuje i do vodních ploch, do dvou metrů od obývaného 
+         (semi)akvatického habitatu.</p>
+         <p style="text-align: justify"><b>Vodní režim:</b> sleduje rozloha (délka v případě toků) 
+         (semi)akvatických habitatů na lokalitě.</p>
+         <p style="text-align: justify"><b>Přímá likvidace preferovaného habitatu:</b> nevyskytuje se
+         velkoplošná těžba lesních porostů nebo změna porostního typu – převod jakékoliv části 
+         porostů na velkoplošné jehličnaté monokultury.</p>
+         <p style="text-align: justify"><b>Vliv managementu:</b> na lokalitách, kde je aktuálně cíleně 
+         pro daný druh prováděn ochranářský i jiný management, je proveden odhad významu 
+         konkrétního typu (či více typů) managementu s ohledem na doporučení popsaná v Souboru 
+         doporučených opatření péče o danou EVL na početnost a vitalitu populace v současnosti.</p>
+         <p style="text-align: justify"><b>Jiný negativní vliv:</b> jakýkoli jiný faktor se závažným 
+         nepříznivým vlivem na stav lokality či potenciální lokality v současnosti či blízké 
+         budoucnosti (cílená lesnická výsadba, výstavba apod.).</p>')
+  )
+text_grabil <-
+  paste(
+    HTML(
+      '<h5><b>Ekologie a biologie</b></h5> 
+      <p style="text-align: justify">Hlavním stanovištěm tohoto potápníka jsou zejména 
+      hluboké nádrže a různá jezera s hustou vodní vegetací. V jižních oblastech svého 
+      výskytu osidluje nejčastěji <b>prosluněné čisté až dystrofní vody</b>, v našich podmínkách 
+      obýval pravděpodobně především neobhospodařované menší rybníky a nádrže. Dospělí potápníci
+      zimují pravděpodobně ve vodě. Životní cyklus tohoto druhu je univoltinní, vajíčka jsou 
+      kladena na jaře, larvy se vyvíjejí přes léto.</p>'
+    )
+  )
+text_cuccin <-
+  paste(
+    HTML(
+      '<h5><b>Ekologie a biologie</b></h5>
+      <p style="text-align: justify">Larvy se vyvíjejí v hnijícím vlhkém, černohnědě zabarveném lýku 
+      pod uvolněnou borkou padlých či zlomených listnatých stromů nebo ulomených silných větvích. 
+      Hlavní hostitelské rostliny jsou buk, osika a další topoly, duby i jiné listnáče. 
+      Larvy i imaga se živí hnijícím lýkem, larvy jsou příležitostně dravé. Vývoj trvá 
+      minimálně dva roky, dospělci brouci se líhnou na konci léta či na podzim, 
+      přezimují a na jaře se páří a kladou vajíčka. Nejčastěji jsou nalézáni na 
+      podzim a v časném jaře. Dospělce je možno najít v kmenech v časnějším stadiu 
+      rozpadu, nezřídka i v čerstvě padlých kmenech. To pravděpodobně souvisí s 
+      dynamikou druhu a rozpadu dřeva. Dospělci vyhledávají čerstvější kmeny, zatímco 
+      larvy na daných kmenech zůstávají, aby dokončily svůj vývoj.</p>'
+    )
+  )
+text_limvio <-
+  paste(
+    HTML(
+      '<h5><b>Ekologie a biologie</b></h5>
+      <p style="text-align: justify">Kovařík fialový je striktně vázán na původní lesní 
+      listnaté porosty, často pralesního charakteru, chybí však na lokalitách periodicky 
+      zaplavovaných, písčinách, skalních svazích a v lesích s přerušeným kontinuem. Většina 
+      lokalit na našem území je v nadmořské výšce od 400-500 m n.m.Larva se vyvíjí v dutinách 
+      listnatých stromů, preferuje staré stromy, v nich pak dutiny větších rozměrů ve spodní 
+      části kmene, chráněné proti dešti, avšak zároveň v kontaktu se zemní vlhkostí. Larva je 
+      nekrofágní, případně i aktivně loví. Její vývoj trvá déle než rok. Imago opouští dutinu 
+      velmi zřídka.</p>'
+    )
+  )
+text_Carniv <-
+  paste(
+    HTML(
+      '<h5><b>Metodika hodnocení druhu</b></h5>
+      <p style="text-align: justify"><b>Přítomnost druhu:</b> Alespoň jeden věrohodný (C1) záznam 
+      přítomnosti druhu na území EVL</p>'
+    )
+  )
+text_canlup <-
+  paste(
+    HTML(
+      '<h5><b>Ekologie a biologie</b></h5>
+      <p style="text-align: justify">Původní prostředí vlka tvořila široká škála biotopů od 
+      arktické tundry, přes lesy všeho druhu, po stepi a lesostepi v jižní Evropě. Sociální jednotka 
+      je tvořena párem nebo smečkou, vlci však často žijí i samotářsky. Kořistí jsou větší druhy 
+      kopytníků a drobná zvířata, významnou součástí potravy je i rostlinná strava a mršiny. V
+      Evropě převažuje u vlka noční aktivita, přičemž ve dne smečka nebo jedinec odpočívá v úkrytu. 
+      Velikost teritoria je závislá na dostupnosti potravy, takže obecně platí, že v létě je 
+      výrazně menší než v zimě, na jihu dosahuje teritorium menší rozlohy než v severních oblastech. 
+      Jedinci i menší skupiny se někdy potulují mimo rámec vlastní smečky. Při těchto potulkách 
+      jsou schopni uběhnout 18 – 28 km za den, při pronásledování kořisti byla zaznamenána 
+      vzdálenost až 200 km za 24 hodin.</p>
+      <p style="text-align: justify">Více informací o návratu vlků do české krajiny a jeho 
+      vztahu s lidmi nabízí webové stránky <a href="https://www.navratvlku.cz/" target="_blank">
+      Programu péče o vlka</a> AOPK ČR.</p>'
+    )
+  )
+text_lynlyn <-
+  paste(
+    HTML(
+      '<h5><b>Ekologie a biologie</b></h5> 
+      <p style="text-align: justify">Za primární prostředí rysa v Evropě a na Sibiři se považují 
+      lesy všeho druhu, obývá však i tundru v severních oblastech, středoasijské stepi a polopouště.
+      Je to samotářské teritoriální zvíře, okrsky jedinců stejného pohlaví se mohou z malé části 
+      překrývat. Teritorium samce bývá větší a obsahuje i více teritorií samic. Rys je aktivní 
+      hlavně v noci. Jeho potrava je dosti rozmanitá, nejdůležitější složku tvoří menší kopytníci. 
+      V našich podmínkách je zcela dominantní srnec. V oblastech, kde zvěř nebyla na přítomnost
+      rysa zvyklá dosahuje zastoupení srnce v potravě vyšší podíl, než v místech s tradičním výskytem 
+      rysa.</p>'
+    )
+  )
+
+# UI ----
+ui <- fluidPage(
+  theme = "bootstrap.css",
+  
+  tags$head(tags$link(rel = "shortcut icon", href = "favicon.ico")),
+  
+  titlePanel(div(HTML("<h1>Hodnocení stavu evropsky významných druhů")
+  ),
+  windowTitle = "Hodnocení stavu evropsky významných druhů"),
+  
+  br(),
+  
+  fluidRow(
+    column(
+    2,
+    fileInput(
+      "file1",
+      "Vyberte soubor (.csv)",
+      multiple = TRUE,
+      accept = c("text/csv",
+                 "text/comma-separated-values,text/plain",
+                 ".csv")
+      )
+    ),
+    column(1,
+           radioButtons(
+             "sep",
+             "Oddělovač",
+             choices = c(
+               Čárka = ",",
+                Středník = ";",
+                Tabulátor = "\t"
+             ),
+             selected = ","
+           )),
+    
+    column(2,
+           htmlOutput("group_selector"),
+           htmlOutput("species_selector")),
+    
+    column(2,
+           htmlOutput("evl_selector"),
+           numericInput("curryear", "Rok hodnocení", 2019))
+  ),
+  
+  hr(),
+  
+  fluidRow(
+    uiOutput("default")
+    ),
+  
+  fluidRow(
+    column(7, 
+           leafletOutput(outputId = "mapa_evl", height = "600px", width = "100%") %>%
+             withSpinner(color = "green")
+           ),
+    column(5, 
+           htmlOutput("metodika"))
+    ),
+  
+  br(),
+  br(),
+  
+  fluidRow(dataTableOutput("mytable") %>%
+             withSpinner(color = "green")),
+    
+  hr(),
+  
+  #fluidRow(htmlOutput("lokality")),
+  
+  #hr(),
+  
+  fluidRow(div(img(
+    src = "LOGO.jpg", height = 70), style = "text-align: center;")),
+  
+  br(),
+  
+  fluidRow(HTML('<center><b>© 2020 <a href="http://www.nature.cz" target="_blank">AOPK ČR</a></b></center>')),
+           br()
+)
+
+
+server <- function(input, output, session) {
+  
+  options(shiny.maxRequestSize=50*1024^2)
+  
+  find_evl_SITECODE <- function(species){
+    return(sites_subjects$SITECODE[which(grepl(species, sites_subjects$SUBJECT))])
+  }
+  find_evl_NAZEV <- function(species){
+    return(sites_subjects$NAZEV[which(grepl(species, sites_subjects$SUBJECT))])
+  }
+  
+  # HODNOCENÍ EVL ----
+  output$mytable <- renderDataTable({
+
+    req(input$file1)
+    req(input$species)
+    
+    find_evl_SITECODE <- function(species){
+      return(sites_subjects$SITECODE[which(grepl(species, sites_subjects$SUBJECT))])
+    }
+    find_evl_NAZEV <- function(species){
+      return(sites_subjects$NAZEV[which(grepl(species, sites_subjects$SUBJECT))])
+    }
+    
+    species <- read.csv(input$file1$datapath,
+                        sep = input$sep,
+                        stringsAsFactors = FALSE)
+    
+    species$DRUH <- gsub("Maculinea", "Phengaris", species$DRUH)
+    species$DRUH <- gsub("Callimorpha quadripunctaria", "Euplagia quadripunctaria", species$DRUH)
+    species$DRUH <- gsub("Triturus montandoni", "Lissotriton montandoni", species$DRUH)
+    species$DRUH <- gsub("Aspius aspius", "Leuciscus aspius", species$DRUH)
+    species$DRUH <- gsub("Cobitis elongatoides", "Cobitis taneia", species$DRUH)
+    
+    species <- filter(species, DRUH == input$species)
+    input_species <- input$species
+    
+    current_year <- input$curryear
+    
+      # Motýle ----
+      Lep_1_clear <- function(species) {
+        species <- species %>%
+          mutate(
+            DRUH = as.factor(DRUH),
+            DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+            YEAR = substring(DATE, 1, 4),
+            SITECODE = substr(EVL, 1, 9),
+            NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+            PRESENT = case_when(is.na(POCET) == TRUE | is.na(POCITANO) == TRUE ~ 0,
+                                (is.na(POCET) == FALSE & POCET > 0) | 
+                                  (is.na(POCITANO) == FALSE & POCET > 0) ~ 1),
+            POCET_CAT = case_when((POCET > 0 & POCET <= 10) | REL_POC == "1-10" | 
+                                    REL_POC == "ojediněle" & 
+                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 1,
+                                  (POCET > 10 & POCET <= 35) | REL_POC == "11-100" | 
+                                    REL_POC == "vzácně" & 
+                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 2,
+                                  (POCET > 35 & POCET < 10) | REL_POC == "11-100" | 
+                                    REL_POC == "roztroušeně" & 
+                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 3,
+                                  (POCET > 100) | REL_POC == "hojně" & 
+                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 4),
+            POCETNOST = case_when(DRUH == "Euplagia quadripunctaria" & POCET_CAT > 1 ~ 1,
+                                  DRUH == "Euplagia quadripunctaria" & POCET_CAT <= 1 ~ 0,
+                                  DRUH == "Phengaris nausithous" & POCET_CAT > 1 ~ 1,
+                                  DRUH == "Phengaris nausithous" & POCET_CAT <= 1 ~ 0,
+                                  DRUH == "Phengaris teleius" & POCET_CAT > 1 ~ 1,
+                                  DRUH == "Phengaris teleius" & POCET_CAT <= 1 ~ 0),
+            PLANTS = case_when(DRUH == "Phengaris nausithous" & 
+                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
+                               DRUH == "Phengaris nausithous" & 
+                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
+                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == FALSE ~ 1,
+                               DRUH == "Phengaris nausithous" & 
+                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0,
+                               DRUH == "Phengaris nausithous" & 
+                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
+                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE ~ 0,
+                               DRUH == "Phengaris teleius" & 
+                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
+                               DRUH == "Phengaris teleius" & 
+                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
+                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == FALSE ~ 1,
+                               DRUH == "Phengaris teleius" & 
+                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0,
+                               DRUH == "Phengaris teleius" & 
+                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
+                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE ~ 0,
+                               DRUH == "Euplagia quadripunctiria" &
+                                 grepl(paste(c("sadc", "sadec", "hlaváč", "bodlák", "bodlak"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
+                               DRUH == "Euplagia quadripunctiria" &
+                                 grepl(paste(c("sadc", "sadec", "hlaváč", "bodlák", "bodlak"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0,
+                               DRUH == "Euphydryas aurinia" &
+                                 grepl(paste(c("succisa, čert, certk"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
+                               DRUH == "Euphydryas aurinia" &
+                                 grepl(paste(c("succisa, čert, certk"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0)) 
+        species <- species %>%
+          filter(YEAR >= (current_year - 6))
+        return(species)
+      }
+      
+      Lep_1_site <- function(species) {
+        species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                            as.vector(find_evl_NAZEV(input_species))))
+        colnames(species_site) <- c("SITECODE", "NAZEV")
+        hab_evl <- Lep_1_clear(species) %>%
+          bind_rows(species_site) %>%
+          group_by(SITECODE) %>%
+          summarise(SITECODE = SITECODE,
+                    NAZEV = NAZEV,
+                    PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                         max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                         max(na.omit(PRESENT)) == 0 ~ "NE"),
+                    POCETNOST = case_when(max(na.omit(POCETNOST)) == -Inf ~ "CHYBÍ DATA",
+                                          max(na.omit(POCETNOST)) == 1 ~ "DOSTATEČNÁ",
+                                          max(na.omit(POCETNOST)) == 0 ~ "NEDOSTATEČNÁ"),
+                    VITALITA = case_when((max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
+                                                       max(na.omit(POCET[YEAR == (current_year - 1)])),
+                                                       max(na.omit(POCET[YEAR == (current_year - 2)])))))/
+                                            mean(na.omit(c(max(na.omit(POCET[YEAR == (current_year - 3)])),
+                                                   max(na.omit(POCET[YEAR == (current_year - 4)])),
+                                                   max(na.omit(POCET[YEAR == (current_year - 5)])),
+                                                   max(na.omit(POCET[YEAR == (current_year - 6)]))))))
+                                         >= 0.85 ~ "POSITIVNÍ",
+                                         (max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
+                                                        max(na.omit(POCET[YEAR == (current_year - 1)])),
+                                                        max(na.omit(POCET[YEAR == (current_year - 2)])))))/
+                                            mean(na.omit(c(max(na.omit(POCET[YEAR == (current_year - 3)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 4)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 5)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 6)]))))))
+                                         < 0.85 ~ "NEGATIVNÍ",
+                                         max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
+                                                       max(na.omit(POCET[YEAR == (current_year - 1)])),
+                                                       max(na.omit(POCET[YEAR == (current_year - 2)])))))
+                                         == -Inf ~ "CHYBÍ DATA",
+                                         PRESENCE == "CHYBÍ DATA" ~ "CHYBÍ DATA"),
+                    HABITAT = NA,
+                    ROSTLINY = case_when(max(na.omit(PLANTS)) == 1 ~ "DOSTATEČNÝ",
+                                         max(na.omit(PLANTS)) == 0 ~ "NEDOSTATEČNÝ",
+                                         max(na.omit(PLANTS)) == -Inf ~ "CHYBÍ DATA"),
+                    LIKVIDACE = NA,
+                    NEGATIV = NA,
+                    MANAGEMENT = NA,
+                    MONITOR = NA,
+                    OVERALL = NA)
+        hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+        hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+        return(hab_evl)
+      }
+      
+      Lep_1_semafor <-  function(species) {
+        datatable(species, 
+                  rownames = FALSE,
+                  filter = "top",
+                  colnames = c("KÓD EVL", "NÁZEV EVL", "PŘÍTOMNOST DRUHU", 
+                               "POČETNOST POPULACE", "VITALITA POPULACE", "STAV HABITATU", 
+                               "DOSTATEČNÝ VÝSKYT ŽIVNÝCH ROSTLIN", "PŘÍMÁ LIKVIDACE HABITATU", 
+                               "VLIV MANAGEMENTU", "NEGATIVNÍ VLIVY",
+                               "POSLEDNÍ MONITORING", "CELKOVÉ HODNOCENÍ")) %>%
+          formatStyle(columns = "PRESENCE",
+                      background = styleEqual(c("ANO", "NE", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey"))) %>%
+          formatStyle(columns = "POCETNOST",
+                      background = styleEqual(c("DOSTATEČNÁ", "NEDOSTATEČNÁ", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey"))) %>%
+          formatStyle(columns = "VITALITA",
+                      background = styleEqual(c("POSITIVNÍ", "NEGATIVNÍ", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey"))) %>%
+          formatStyle(columns = "ROSTLINY",
+                      background = styleEqual(c("DOSTATEČNÝ", "NEDOSTATEČNÝ", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey")))
+      }
+      
+      Lep_2_clear <- function(species) {
+        species <- species %>%
+          mutate(
+            DRUH = as.factor(DRUH),
+            DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+            YEAR = substring(DATE, 1, 4),
+            SITECODE = substr(EVL, 1, 9),
+            NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+            PRESENT = case_when(is.na(POCET) == TRUE | is.na(POCITANO) == TRUE ~ 0,
+                                (is.na(POCET) == FALSE & POCET > 0) | 
+                                  (is.na(POCITANO) == FALSE & POCET > 0) ~ 1),
+            PLANTS = case_when(DRUH == "Phengaris nausithous" & 
+                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                                    grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
+                               DRUH == "Phengaris nausithous" & 
+                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
+                                    grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == FALSE ~ 1,
+                               DRUH == "Phengaris nausithous" & 
+                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                                    grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0,
+                               DRUH == "Phengaris nausithous" & 
+                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
+                                    grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE ~ 0,
+                               DRUH == "Phengaris teleius" & 
+                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                                    grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
+                               DRUH == "Phengaris teleius" & 
+                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
+                                    grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == FALSE ~ 1,
+                               DRUH == "Phengaris teleius" & 
+                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                                    grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0,
+                               DRUH == "Phengaris teleius" & 
+                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
+                                    grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE ~ 0)) 
+        species <- species %>%
+          filter(YEAR >= (current_year - 6))
+        return(species)
+      }
+      
+      Lep_2_site <- function(species) {
+        species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                            as.vector(find_evl_NAZEV(input_species))))
+        colnames(species_site) <- c("SITECODE", "NAZEV")
+        hab_evl <- Lep_2_clear(species) %>%
+          bind_rows(species_site) %>%
+          group_by(SITECODE) %>%
+          summarise(SITECODE = SITECODE,
+                    NAZEV = NAZEV,
+                    PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                         max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                         max(na.omit(PRESENT)) == 0 ~ "NE"),
+                    HABITAT = NA,
+                    ROSTLINY = case_when(max(na.omit(PLANTS)) == 1 ~ "DOSTATEČNÝ",
+                                         max(na.omit(PLANTS)) == 0 ~ "NEDOSTATEČNÝ",
+                                         max(na.omit(PLANTS)) == -Inf ~ "CHYBÍ DATA"),
+                    LIKVIDACE = NA,
+                    NEGATIV = NA,
+                    MANAGEMENT = NA,
+                    MONITOR = NA,
+                    OVERALL = NA)
+        hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+        hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+        return(hab_evl)
+      }
+      
+      Lep_2_semafor <-  function(species) {
+        datatable(species, 
+                  rownames = FALSE,
+                  filter = "top",
+                  colnames = c("KÓD EVL", "NÁZEV EVL", "PŘÍTOMNOST DRUHU", 
+                               "STAV HABITATU", "DOSTATEČNÝ VÝSKYT ŽIVNÝCH ROSTLIN", 
+                               "PŘÍMÁ LIKVIDACE HABITATU", "VLIV MANAGEMENTU", "NEGATIVNÍ VLIVY",
+                               "POSLEDNÍ MONITORING", "CELKOVÉ HODNOCENÍ")) %>%
+          formatStyle(columns = "PRESENCE",
+                      background = styleEqual(c("ANO", "NE", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey"))) %>%
+          formatStyle(columns = "ROSTLINY",
+                      background = styleEqual(c("DOSTATEČNÝ", "NEDOSTATEČNÝ", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey")))
+      }
+      
+      Lep_3_clear <- function(species) {
+        species <- species %>%
+          mutate(
+            DRUH = as.factor(DRUH),
+            DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+            YEAR = substring(DATE, 1, 4),
+            SITECODE = substr(EVL, 1, 9),
+            NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+            PRESENT = case_when(is.na(POCET) == TRUE | is.na(POCITANO) == TRUE ~ 0,
+                                (is.na(POCET) == FALSE & POCET > 0) | 
+                                  (is.na(POCITANO) == FALSE & POCET > 0) ~ 1),
+            POCET_CAT = case_when((POCET > 0 & POCET <= 10) | REL_POC == "1-10" | 
+                                    REL_POC == "ojediněle" & 
+                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 1,
+                                  (POCET > 10 & POCET <= 35) | REL_POC == "11-100" | 
+                                    REL_POC == "vzácně" & 
+                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 2,
+                                  (POCET > 35 & POCET < 10) | REL_POC == "11-100" | 
+                                    REL_POC == "roztroušeně" & 
+                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 3,
+                                  (POCET > 100) | REL_POC == "hojně" & 
+                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 4),
+            POCETNOST = case_when(DRUH == "Eriogaster catax" & POCET_CAT > 1 ~ 1,
+                                  DRUH == "Eriogaster catax" & POCET_CAT <= 1 ~ 0)) 
+        species <- species %>%
+          filter(YEAR >= (current_year - 6))
+        return(species)
+      }
+      
+      Lep_3_site <- function(species) {
+        species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                            as.vector(find_evl_NAZEV(input_species))))
+        colnames(species_site) <- c("SITECODE", "NAZEV")
+        hab_evl <- Lep_3_clear(species) %>%
+          bind_rows(species_site) %>%
+          group_by(SITECODE) %>%
+          summarise(SITECODE = SITECODE,
+                    NAZEV = NAZEV,
+                    PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                         max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                         max(na.omit(PRESENT)) == 0 ~ "NE"),
+                    POCETNOST = case_when(max(na.omit(POCETNOST)) == -Inf ~ "CHYBÍ DATA",
+                                          max(na.omit(POCETNOST)) == 1 ~ "DOSTATEČNÁ",
+                                          max(na.omit(POCETNOST)) == 0 ~ "NEDOSTATEČNÁ"),
+                    VITALITA = NA,
+                    HABITAT = NA,
+                    LIKVIDACE = NA,
+                    NEGATIV = NA,
+                    MANAGEMENT = NA,
+                    MONITOR = NA,
+                    OVERALL = NA)
+        hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+        hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+        return(hab_evl)
+      }
+      
+      Lep_3_semafor <-  function(species) {
+        datatable(species, 
+                  rownames = FALSE,
+                  filter = "top",
+                  colnames = c("KÓD EVL", "NÁZEV EVL", "PŘÍTOMNOST DRUHU", 
+                               "POČETNOST POPULACE", "VITALITA POPULACE", "STAV HABITATU",
+                               "PŘÍMÁ LIKVIDACE HABITATU", "VLIV MANAGEMENTU", "NEGATIVNÍ VLIVY",
+                               "POSLEDNÍ MONITORING", "CELKOVÉ HODNOCENÍ")) %>%
+          formatStyle(columns = "PRESENCE",
+                      background = styleEqual(c("ANO", "NE", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey"))) %>%
+          formatStyle(columns = "POCETNOST",
+                      background = styleEqual(c("DOSTATEČNÁ", "NEDOSTATEČNÁ", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey"))) %>%
+          formatStyle(columns = "VITALITA",
+                      background = styleEqual(c("POSITIVNÍ", "NEGATIVNÍ", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey")))
+      }
+      
+      # Brouci -----
+      # Carabidae ----
+      # Carabus hungaricus
+      CarOpen_clear <- function(species) {
+        species <- species %>%
+          mutate(
+            DRUH = as.factor(DRUH),
+            DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+            YEAR = substring(DATE, 1, 4),
+            SITECODE = substr(as.character(EVL), 1, 9),
+            NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+            PRESENT = case_when(is.na(POCET) == FALSE & POCET > 0 & is.na(POCITANO) == TRUE ~ 0,
+                                is.na(POCET) == FALSE | POCET > 0 | is.na(POCITANO) == FALSE ~ 1),
+            POCET_CAT = case_when((POCET > 0 & POCET <= 10) | REL_POC == "1-10" | 
+                                    REL_POC == "ojediněle" & 
+                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 1,
+                                  (POCET > 10 & POCET <= 35) | REL_POC == "11-100" | 
+                                    REL_POC == "vzácně" & 
+                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 2,
+                                  (POCET > 35 & POCET < 10) | REL_POC == "11-100" | 
+                                    REL_POC == "roztroušeně" & 
+                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 3,
+                                  (POCET > 100) | REL_POC == "hojně" & 
+                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 4),
+            POCETNOST = case_when(POCET_CAT > 1 ~ 1,
+                                  POCET_CAT <= 1 ~ 0))
+        species <- species %>%
+          filter(YEAR >= (current_year - 6))
+        return(species)
+      }
+      
+      CarOpen_site <- function(species) {
+        species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                            as.vector(find_evl_NAZEV(input_species))))
+        colnames(species_site) <- c("SITECODE", "NAZEV")
+        hab_evl <- CarOpen_clear(species) %>%
+          bind_rows(species_site) %>%
+          group_by(SITECODE) %>%
+          summarise(SITECODE = SITECODE,
+                    NAZEV = NAZEV,
+                    PRESENCE = case_when(max(na.omit(PRESENT[YEAR >= (current_year - 2)])) == -Inf ~ "CHYBÍ DATA",
+                                         max(na.omit(PRESENT[YEAR >= (current_year - 2)])) >= 1 ~ "ANO",
+                                         max(na.omit(PRESENT[YEAR >= (current_year - 2)])) == 0 ~ "NE"),
+                    POCETNOST = case_when(max(na.omit(POCETNOST[YEAR >= (current_year - 2)])) == -Inf ~ "CHYBÍ DATA",
+                                          max(na.omit(POCETNOST[YEAR >= (current_year - 2)])) == 1 ~ "DOSTATEČNÁ",
+                                          max(na.omit(POCETNOST[YEAR >= (current_year - 2)])) == 0 ~ "NEDOSTATEČNÁ"),
+                    VITALITA = case_when((max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
+                                                        max(na.omit(POCET[YEAR == (current_year - 1)])),
+                                                        max(na.omit(POCET[YEAR == (current_year - 2)])))))/
+                                            mean(na.omit(c(max(na.omit(POCET[YEAR == (current_year - 3)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 4)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 5)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 6)]))))))
+                                         >= 0.85 ~ "POSITIVNÍ",
+                                         (max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
+                                                        max(na.omit(POCET[YEAR == (current_year - 1)])),
+                                                        max(na.omit(POCET[YEAR == (current_year - 2)])))))/
+                                            mean(na.omit(c(max(na.omit(POCET[YEAR == (current_year - 3)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 4)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 5)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 6)]))))))
+                                         < 0.85 ~ "NEGATIVNÍ",
+                                         max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
+                                                       max(na.omit(POCET[YEAR == (current_year - 1)])),
+                                                       max(na.omit(POCET[YEAR == (current_year - 2)])))))
+                                         == -Inf ~ "CHYBÍ DATA",
+                                         PRESENCE == "CHYBÍ DATA" ~ "CHYBÍ DATA"),
+                    HABITAT = NA,
+                    LIKVIDACE = NA,
+                    NEGATIV = NA,
+                    MONITOR = NA,
+                    OVERALL = NA)
+        hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+        hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+        return(hab_evl)
+      }
+      
+      CarOpen_semafor <-  function(species) {
+        datatable(species, 
+                  rownames = FALSE,
+                  filter = "top",
+                  colnames = c("KÓD EVL", "NÁZEV EVL", "PŘÍTOMNOST DRUHU", 
+                               "POČETNOST POPULACE", "VITALITA POPULACE", "STAV HABITATU", 
+                               "PŘÍMÁ LIKVIDACE HABITATU", "NEGATIVNÍ VLIVY", "POSLEDNÍ MONITORING",
+                               "CELKOVÉ HODNOCENÍ")) %>%
+          formatStyle(columns = "PRESENCE",
+                      background = styleEqual(c("ANO", "CHYBÍ DATA"), c("green", "grey"))) %>%
+          formatStyle(columns = "POCETNOST",
+                      background = styleEqual(c("DOSTATEČNÁ", "NEDOSTATEČNÁ", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey"))) %>%
+          formatStyle(columns = "VITALITA",
+                      background = styleEqual(c("POSITIVNÍ", "NEGATIVNÍ", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey")))
+      }
+      
+      
+      CarAqua_clear <- function(species) {
+        species <- species %>%
+          mutate(
+            DRUH = as.factor(DRUH),
+            DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+            YEAR = substring(DATE, 1, 4),
+            SITECODE = substr(as.character(EVL), 1, 9),
+            NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+            PRESENT = case_when(is.na(POCET) == FALSE & POCET > 0 & is.na(POCITANO) == TRUE ~ 0,
+                                is.na(POCET) == FALSE | POCET > 0 | is.na(POCITANO) == FALSE ~ 1),
+            POCET_CAT = case_when((POCET > 0 & POCET <= 10) | REL_POC == "1-10" | 
+                                    REL_POC == "ojediněle" & 
+                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 1,
+                                  (POCET > 10 & POCET <= 35) | REL_POC == "11-100" | 
+                                    REL_POC == "vzácně" & 
+                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 2,
+                                  (POCET > 35 & POCET < 10) | REL_POC == "11-100" | 
+                                    REL_POC == "roztroušeně" & 
+                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 3,
+                                  (POCET > 100) | REL_POC == "hojně" & 
+                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 4),
+            POCETNOST = case_when(POCET_CAT > 1 ~ 1,
+                                  POCET_CAT <= 1 ~ 0))
+        species <- species %>%
+          filter(YEAR >= (current_year - 6))
+        return(species)
+      }
+      
+      CarAqua_site <- function(species) {
+        species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                            as.vector(find_evl_NAZEV(input_species))))
+        colnames(species_site) <- c("SITECODE", "NAZEV")
+        hab_evl <- CarAqua_clear(species) %>%
+          bind_rows(species_site) %>%
+          group_by(SITECODE) %>%
+          summarise(SITECODE = SITECODE,
+                    NAZEV = NAZEV,
+                    PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                         max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                         max(na.omit(PRESENT)) == 0 ~ "NE"),
+                    POCETNOST = case_when(max(na.omit(POCETNOST)) == -Inf ~ "CHYBÍ DATA",
+                                          max(na.omit(POCETNOST)) == 1 ~ "DOSTATEČNÁ",
+                                          max(na.omit(POCETNOST)) == 0 ~ "NEDOSTATEČNÁ"),
+                    VITALITA = case_when((max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
+                                                        max(na.omit(POCET[YEAR == (current_year - 1)])),
+                                                        max(na.omit(POCET[YEAR == (current_year - 2)])))))/
+                                            mean(na.omit(c(max(na.omit(POCET[YEAR == (current_year - 3)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 4)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 5)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 6)]))))))
+                                         >= 0.85 ~ "POSITIVNÍ",
+                                         (max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
+                                                        max(na.omit(POCET[YEAR == (current_year - 1)])),
+                                                        max(na.omit(POCET[YEAR == (current_year - 2)])))))/
+                                            mean(na.omit(c(max(na.omit(POCET[YEAR == (current_year - 3)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 4)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 5)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 6)]))))))
+                                         < 0.85 ~ "NEGATIVNÍ",
+                                         max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
+                                                       max(na.omit(POCET[YEAR == (current_year - 1)])),
+                                                       max(na.omit(POCET[YEAR == (current_year - 2)])))))
+                                         == -Inf ~ "CHYBÍ DATA",
+                                         PRESENCE == "CHYBÍ DATA" ~ "CHYBÍ DATA"),
+                    HABITAT = NA,
+                    VODA = NA,
+                    LIKVIDACE = NA,
+                    MANAGEMENT = NA,
+                    NEGATIV = NA,
+                    MONITOR = NA,
+                    OVERALL = NA)
+        hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+        hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+        return(hab_evl)
+      }
+      
+      CarAqua_semafor <-  function(species) {
+        datatable(species, 
+                  rownames = FALSE,
+                  filter = "top",
+                  colnames = c("KÓD EVL", "NÁZEV EVL", "PŘÍTOMNOST DRUHU", 
+                               "POČETNOST POPULACE", "VITALITA POPULACE", "STAV HABITATU", "VODNÍ REŽIM", 
+                               "PŘÍMÁ LIKVIDACE HABITATU", "VLIV MANAGEMENTU", "NEGATIVNÍ VLIVY",
+                               "POSLEDNÍ MONITORING", "CELKOVÉ HODNOCENÍ")) %>%
+          formatStyle(columns = "PRESENCE",
+                      background = styleEqual(c("ANO", "CHYBÍ DATA"), c("green", "grey"))) %>%
+          formatStyle(columns = "POCETNOST",
+                      background = styleEqual(c("DOSTATEČNÁ", "NEDOSTATEČNÁ", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey"))) %>%
+          formatStyle(columns = "VITALITA",
+                      background = styleEqual(c("POSITIVNÍ", "NEGATIVNÍ", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey")))
+      }
+      
+      # Saproxylický ----
+      SapOpen_clear <- function(species) {
+        species <- species %>%
+          mutate(
+            DRUH = as.factor(DRUH),
+            DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+            YEAR = substring(DATE, 1, 4),
+            SITECODE = substr(as.character(EVL), 1, 9),
+            NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+            PRESENT = case_when(is.na(POCET) == FALSE & POCET > 0 & is.na(POCITANO) == TRUE ~ 0,
+                                is.na(POCET) == FALSE | POCET > 0 | is.na(POCITANO) == FALSE ~ 1))
+        species <- species %>%
+          filter(YEAR >= (current_year - 6))
+        return(species)
+      }
+  
+      SapOpen_site <- function(species) {
+        species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                            as.vector(find_evl_NAZEV(input_species))))
+        colnames(species_site) <- c("SITECODE", "NAZEV")
+        hab_evl <- SapOpen_clear(species) %>%
+          bind_rows(species_site) %>%
+          group_by(SITECODE) %>%
+          summarise(SITECODE = SITECODE,
+                    NAZEV = NAZEV,
+                    PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                         max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                         max(na.omit(PRESENT)) == 0 ~ "NE"),
+                    HABITAT = NA,
+                    LIKVIDACE = NA,
+                    MANAGEMENT = NA,
+                    NEGATIV = NA,
+                    MONITOR = NA,
+                    OVERALL = NA)
+        hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+        hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+        return(hab_evl)
+      }
+      
+      SapOpen_semafor <-  function(species) {
+        datatable(species, 
+                  rownames = FALSE,
+                  filter = "top",
+                  colnames = c("KÓD EVL", "NÁZEV EVL", "PŘÍTOMNOST DRUHU", "STAV HABITATU", 
+                               "PŘÍMÁ LIKVIDACE HABITATU", "VLIV MANAGEMENTU", "NEGATIVNÍ VLIVY",
+                               "POSLEDNÍ MONITORING", "CELKOVÉ HODNOCENÍ")) %>%
+          formatStyle(columns = "PRESENCE",
+                      background = styleEqual(c("ANO", "CHYBÍ DATA"), c("green", "grey")))
+      }
+      
+      SapFor_clear <- function(species) {
+        species <- species %>%
+          mutate(
+            DRUH = as.factor(DRUH),
+            DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+            YEAR = substring(DATE, 1, 4),
+            SITECODE = substr(EVL, 1, 9),
+            NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+            PRESENT = case_when(is.na(POCET) == FALSE & POCET > 0 & is.na(POCITANO) == TRUE ~ 0,
+                                is.na(POCET) == FALSE | POCET > 0 | is.na(POCITANO) == FALSE ~ 1),
+            POCETNOST = case_when(DRUH == "Rosalia alpina" & POCET >= 100 & SITECODE == "CZ0514243" ~ 1,
+                              DRUH == "Rosalia alpina" & POCET < 100 & SITECODE == "CZ0514243" ~ 0,
+                              DRUH == "Rosalia alpina" & POCET >= 10 & SITECODE != "CZ0514243" ~ 1,
+                              DRUH == "Rosalia alpina" & POCET < 10 & SITECODE != "CZ0514243" ~ 0,
+                              DRUH == "Rhysodes sulcatus" & POCET >= 10 ~ 1,
+                              DRUH == "Rhysodes sulcatus" & POCET < 10 ~ 0)
+          ) 
+        species <- species %>%
+          filter(YEAR >= (current_year - 6))
+        return(species)
+      }
+      
+      SapFor_site <- function(species) {
+        species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                            as.vector(find_evl_NAZEV(input_species))))
+        colnames(species_site) <- c("SITECODE", "NAZEV")
+        hab_evl <- SapFor_clear(species) %>%
+          bind_rows(species_site) %>%
+          group_by(SITECODE) %>%
+          summarise(SITECODE = SITECODE,
+                    NAZEV = NAZEV,
+                    PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                         max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                         max(na.omit(PRESENT)) == 0 ~ "NE"),
+                    POCETNOST = case_when(max(na.omit(POCETNOST)) == -Inf ~ "CHYBÍ DATA",
+                                          max(na.omit(POCETNOST)) == 1 ~ "DOSTATEČNÁ"),
+                    VITALITA = NA,
+                    HABITAT = NA,
+                    DREVO = NA,
+                    LIKVIDACE = NA,
+                    MANAGEMENT = NA,
+                    NEGATIV = NA,
+                    MONITOR = NA,
+                    OVERALL = NA)
+        hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+        hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+        return(hab_evl)
+      }
+      
+      SapFor_semafor <-  function(species) {
+        datatable(species, 
+                  rownames = FALSE,
+                  filter = "top",
+                  colnames = c("KÓD EVL", "NÁZEV EVL", "PŘÍTOMNOST DRUHU", 
+                  "POČETNOST POPULACE", "VITALITA POPULACE", "STAV HABITATU", "PŘÍTOMNOST MRVTÉHO DŘEVA", 
+                  "PŘÍMÁ LIKVIDACE HABITATU", "VLIV MANAGEMENTU", "NEGATIVNÍ VLIVY", 
+                  "POSLEDNÍ MONITORING", "CELKOVÉ HODNOCENÍ")) %>%
+          formatStyle(columns = "PRESENCE",
+                      background = styleEqual(c("ANO", "CHYBÍ DATA"), c("green", "grey"))) %>%
+          formatStyle(columns = "POCETNOST",
+                      background = styleEqual(c("DOSTATEČNÁ", "NEDOSTATEČNÁ", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey")))
+      }
+      
+      
+      # Graphoderus ----
+      
+      ColAqua_clear <- function(species) {
+        species <- species %>%
+          mutate(
+            DRUH = as.factor(DRUH),
+            DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+            YEAR = substring(DATE, 1, 4),
+            SITECODE = substr(as.character(EVL), 1, 9),
+            NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+            PRESENT = case_when(is.na(POCET) == FALSE & POCET > 0 & is.na(POCITANO) == TRUE ~ 0,
+                                is.na(POCET) == FALSE | POCET > 0 | is.na(POCITANO) == FALSE ~ 1),
+            POCETNOST = case_when(POCET > 10 ~ 1,
+                                  POCET <= 10 ~ 0))
+        species <- species %>%
+          filter(YEAR >= (current_year - 6))
+        return(species)
+      }
+      
+      ColAqua_site <- function(species) {
+        species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                            as.vector(find_evl_NAZEV(input_species))))
+        colnames(species_site) <- c("SITECODE", "NAZEV")
+        hab_evl <- ColAqua_clear(species) %>%
+          bind_rows(species_site) %>%
+          group_by(SITECODE) %>%
+          summarise(SITECODE = SITECODE,
+                    NAZEV = NAZEV,
+                    PRESENCE = case_when(max(na.omit(PRESENT[YEAR >= current_year - 2])) == -Inf ~ "CHYBÍ DATA",
+                                         max(na.omit(PRESENT[YEAR >= current_year - 2])) >= 1 ~ "ANO",
+                                         max(na.omit(PRESENT[YEAR >= current_year - 2])) == 0 ~ "NE"),
+                    POCETNOST = case_when(max(na.omit(POCETNOST[YEAR >= current_year - 2])) == -Inf ~ "CHYBÍ DATA",
+                                          max(na.omit(POCETNOST[YEAR >= current_year - 2])) == 1 ~ "DOSTATEČNÁ"),
+                    VITALITA = case_when((max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
+                                                        max(na.omit(POCET[YEAR == (current_year - 1)])),
+                                                        max(na.omit(POCET[YEAR == (current_year - 2)])))))/
+                                            mean(na.omit(c(max(na.omit(POCET[YEAR == (current_year - 3)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 4)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 5)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 6)]))))))
+                                         >= 0.85 ~ "POSITIVNÍ",
+                                         (max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
+                                                        max(na.omit(POCET[YEAR == (current_year - 1)])),
+                                                        max(na.omit(POCET[YEAR == (current_year - 2)])))))/
+                                            mean(na.omit(c(max(na.omit(POCET[YEAR == (current_year - 3)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 4)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 5)])),
+                                                           max(na.omit(POCET[YEAR == (current_year - 6)]))))))
+                                         < 0.85 ~ "NEGATIVNÍ",
+                                         max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
+                                                       max(na.omit(POCET[YEAR == (current_year - 1)])),
+                                                       max(na.omit(POCET[YEAR == (current_year - 2)])))))
+                                         == -Inf ~ "CHYBÍ DATA",
+                                         PRESENCE == "CHYBÍ DATA" ~ "CHYBÍ DATA"),
+                    HABITAT = NA,
+                    PRUHLEDNOST = NA,
+                    ZOOPLANKTON = NA,
+                    LIKVIDACE = NA,
+                    MANAGEMENT = NA,
+                    NEGATIV = NA,
+                    MONITOR = NA,
+                    OVERALL = NA)
+        hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+        hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+        return(hab_evl)
+      }
+      
+      ColAqua_semafor <-  function(species) {
+        datatable(species, 
+                  rownames = FALSE,
+                  filter = "top",
+                  colnames = c("KÓD EVL", "NÁZEV EVL", "PŘÍTOMNOST DRUHU", "VITALITA POPULACE",
+                               "STAV HABITATU", "PŘÍTOMNOST ZOOPLANKTONU", "PRŮHLEDNOST VODY",
+                               "PŘÍMÁ LIKVIDACE HABITATU", "VLIV MANAGEMENTU", "NEGATIVNÍ VLIVY",
+                               "POSLEDNÍ MONITORING", "CELKOVÉ HODNOCENÍ")) %>%
+          formatStyle(columns = "PRESENCE",
+                      background = styleEqual(c("ANO", "CHYBÍ DATA"), c("green", "grey"))) %>%
+          formatStyle(columns = "POCETNOST",
+                      background = styleEqual(c("DOSTATEČNÁ", "NEDOSTATEČNÁ", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey"))) %>%
+          formatStyle(columns = "VITALITA",
+                      background = styleEqual(c("POSITIVNÍ", "NEGATIVNÍ", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey")))
+      }
+      
+      # Other Invertebrates ----
+      
+      # Fish ----
+      
+      # Amphibia ----
+      amp_clear <- function(species) {
+        #PREVOD DATA NA POUŽITELNÝ FORMÁT
+        species$DATE <- c(species$DATUM_MONIT)
+        species$DATE <-
+          format(as.Date(species$DATE, format = '%d.%m.%Y %H:%M', origin = "01-01-1990"))
+        # PRÁZDNÉ SLOUPCE PRO VYČIŠTĚNÁ DATA
+        species$POP_PRESENT <- NA
+        species$POP_RELCATEGORY <- NA
+        species$REPRO <- NA
+        species[species == ""] <- NA
+        # "ŽÁDNÝ" A "ŽÁDNÉ" NAHRAZENY "NA" PRO JEDNODUŠŠÍ ČIŠTĚNÍ DAT
+        species[species == "žádný"] <- NA
+        species[species == "žádný"] <- NA
+        species[species == "na"] <- NA
+        # SPECIES PRESENCE (P1) AND RELATIVE ABUNDANCE (P3)
+        species <-
+          within(species, POP_PRESENT[POP_VYSKYTDRUH == "ne"] <- 0)
+        # POSTUPNĚ PROJEDE VŠECHNY ADULTNÍ KATEGORIE OD NEJNIŽŠÍCH VÝSKYTŮ PO NEVVYŠŠÍ
+        # DO 10 JEDINCŮ
+        species <-
+          within(species, POP_RELCATEGORY[POP_POCETPOHLNEURCENYADULTREL == "do 10" |
+                                            POP_POCETSAMICEREL == "do 10" |
+                                            POP_POCETSAMECREL == "do 10" |
+                                            POP_CELKPOCETVSEADULTREL == "do 10" |
+                                            POP_CELKPOCETVSEEXEMPLARREL == "do 10"] <-
+                   1)
+        # NIŽŠÍ DESÍTKY
+        species <-
+          within(species, POP_RELCATEGORY[POP_POCETPOHLNEURCENYADULTREL == "řádově nižší desítky" |
+                                            POP_POCETSAMICEREL == "řádově nižší desítky" |
+                                            POP_POCETSAMECREL == "řádově nižší desítky" |
+                                            POP_CELKPOCETVSEADULTREL == "řádově nižší desítky" |
+                                            POP_CELKPOCETVSEEXEMPLARREL == "řádově nižší desítky"] <-
+                   2)
+        # VYŠŠÍ DESÍTKY
+        species <-
+          within(species, POP_RELCATEGORY[POP_POCETPOHLNEURCENYADULTREL == "řádově vyšší desítky" |
+                                            POP_POCETSAMICEREL == "řádově vyšší desítky" |
+                                            POP_POCETSAMECREL == "řádově vyšší desítky" |
+                                            POP_CELKPOCETVSEADULTREL == "řádově vyšší desítky" |
+                                            POP_CELKPOCETVSEEXEMPLARREL == "řádově vyšší desítky"] <-
+                   3)
+        # KOLEM 100
+        species <-
+          within(species, POP_RELCATEGORY[POP_POCETPOHLNEURCENYADULTREL == "cca 100" |
+                                            POP_POCETSAMICEREL == "cca 100" |
+                                            POP_POCETSAMECREL == "cca 100" |
+                                            POP_CELKPOCETVSEADULTREL == "cca 100" |
+                                            POP_CELKPOCETVSEEXEMPLARREL == "cca 100"] <-
+                   4)
+        # STOVKY JEDINCŮ
+        species <-
+          within(species, POP_RELCATEGORY[POP_POCETPOHLNEURCENYADULTREL == "řádově stovky" |
+                                            POP_POCETSAMICEREL == "řádově stovky" |
+                                            POP_POCETSAMECREL == "řádově stovky" |
+                                            POP_CELKPOCETVSEADULTREL == "řádově stovky" |
+                                            POP_CELKPOCETVSEEXEMPLARREL == "řádově stovky"] <-
+                   5)
+        ## RELATIVNÍ POČETNOSTI SE PŘEPÍŠOU DATY Z ABSOLUTNÍCH ##
+        # DO 10 JEDINCŮ
+        species <-
+          within(species, POP_RELCATEGORY[(POP_POCETPOHLNEURCENYADULT > 0 &
+                                             POP_POCETPOHLNEURCENYADULT < 10) |
+                                            (POP_POCETSAMICE > 0 &
+                                               POP_POCETSAMICE < 10) |
+                                            (POP_POCETSAMEC > 0 &
+                                               POP_POCETSAMEC < 10) |
+                                            (POP_CELKPOCETVSEADULT > 0 &
+                                               POP_CELKPOCETVSEADULT < 10) |
+                                            (POP_CELKPOCETVSEEXEMPLAR > 0 &
+                                               POP_CELKPOCETVSEEXEMPLAR < 10)] <- 1)
+        # NIŽSÍ DESÍTKY
+        species <-
+          within(species, POP_RELCATEGORY[(POP_POCETPOHLNEURCENYADULT >= 10 &
+                                             POP_POCETPOHLNEURCENYADULT < 50) |
+                                            (POP_POCETSAMICE >= 10 &
+                                               POP_POCETSAMICE < 50) |
+                                            (POP_POCETSAMEC >= 10 &
+                                               POP_POCETSAMEC < 50) |
+                                            (POP_CELKPOCETVSEADULT >= 10 &
+                                               POP_CELKPOCETVSEADULT < 50) |
+                                            (POP_CELKPOCETVSEEXEMPLAR >= 10 &
+                                               POP_CELKPOCETVSEEXEMPLAR < 50)] <- 2)
+        # VYŠŠÍ DESÍTKY
+        species <-
+          within(species, POP_RELCATEGORY[(POP_POCETPOHLNEURCENYADULT >= 50 &
+                                             POP_POCETPOHLNEURCENYADULT <= 95) |
+                                            (POP_POCETSAMICE >= 50 &
+                                               POP_POCETSAMICE <= 95) |
+                                            (POP_POCETSAMEC >= 50 &
+                                               POP_POCETSAMEC <= 95) |
+                                            (POP_CELKPOCETVSEADULT >= 50 &
+                                               POP_CELKPOCETVSEADULT <= 95) |
+                                            (POP_CELKPOCETVSEEXEMPLAR >= 50 &
+                                               POP_CELKPOCETVSEEXEMPLAR <= 95)] <- 3)
+        # KOLEM 100
+        species <-
+          within(species, POP_RELCATEGORY[(POP_POCETPOHLNEURCENYADULT > 95 &
+                                             POP_POCETPOHLNEURCENYADULT < 150) |
+                                            (POP_POCETSAMICE > 95 &
+                                               POP_POCETSAMICE < 150) |
+                                            (POP_POCETSAMEC > 95 &
+                                               POP_POCETSAMEC < 150) |
+                                            (POP_CELKPOCETVSEADULT > 95 &
+                                               POP_CELKPOCETVSEADULT < 150) |
+                                            (POP_CELKPOCETVSEEXEMPLAR > 95 &
+                                               POP_CELKPOCETVSEEXEMPLAR < 150)] <- 4)
+        # STOVKY JEDINCŮ
+        species <-
+          within(species, POP_RELCATEGORY[(POP_POCETPOHLNEURCENYADULT >= 150) |
+                                            (POP_POCETSAMICE >= 150) |
+                                            (POP_POCETSAMEC >= 150) |
+                                            (POP_CELKPOCETVSEADULT >= 150) |
+                                            (POP_CELKPOCETVSEEXEMPLAR >= 150)] <-
+                   5)
+        # ŽÁDNÍ JEDINCI
+        species <-
+          within(species, POP_RELCATEGORY[POP_CELKPOCETVSEEXEMPLAR == 0] <-
+                   0)
+        # KONTROLA PŘÍTOMNOSTI SNŮŠEK A LARVÁLNÍCH STÁDIÍ
+        species <-
+          within(species, REPRO[POP_CELKPOCETVSESUBADULT > 0 |
+                                  is.na(POP_CELKPOCETVSESUBADULTREL) == FALSE |
+                                  POP_POCETJUVENIL > 0 |
+                                  is.na(POP_POCETJUVENILREL) == FALSE |
+                                  POP_POCETLARVA > 0 |
+                                  is.na(POP_POCETLARVAREL) == FALSE |
+                                  POP_POCETMETAMORF > 0 |
+                                  is.na(POP_POCETMETAMORFREL) == FALSE |
+                                  POP_CELKPOCETVSESNUSKA > 0 |
+                                  is.na(POP_CELKPOCETVSESNUSKAREL) == FALSE] <-
+                   1)
+        species$REPRO[is.na(species$REPRO)] <- 0
+        # DOČIŠTĚNÍ VÝSKYTU
+        species$POP_RELCATEGORY[is.na(species$POP_RELCATEGORY)] <- 0
+        species <-
+          within(species, POP_PRESENT[POP_RELCATEGORY > 0 | REPRO > 0] <- 1)
+        species <-
+          within(species, POP_PRESENT[POP_RELCATEGORY == 0 &
+                                        REPRO == 0] <- 0)
+        species <-
+          within(species, POP_PRESENT[POP_VYSKYTDRUH == "ano"] <- 1)
+        # DESTRUKCE HABITATU
+        species$HAB_LOS <- NA
+        species <-
+          within(species, HAB_LOS[STA_STAVVODAPERIODTUN < 10 |
+                                    STA_STAVVODALITORAL < 10 |
+                                    grepl("vysychání mokřadního ekosystému)",
+                                          species$VLV_CINNOSTDOPAD)] <-
+                   1)
+        species$HAB_LOS[is.na(species$HAB_LOS)] <- 0
+        # PRŮHLEDNOST VODY
+        species$TRANSP <- NA
+        species <-
+          within(species, TRANSP[STA_PRUHLEDNOSTVODA < 90 |
+                                   STA_ZABARVENIZAKAL == "hnědý" |
+                                   STA_ZABARVENIZAKAL == "zelený"] <-
+                   1)
+        species <-
+          within(species, TRANSP[grepl("dno", species$STA_PRUHLEDNOSTVODAPOZN)] <-
+                   0)
+        species <- within(species, TRANSP[STA_PRUHLEDNOSTVODA >= 90 |
+                                            STA_ZABARVENIZAKAL == "bez zákalu"] <-
+                            0)
+        species$TRANSP[is.na(species$TRANSP)] <- 0
+        # PŘÍTOMNOST RYBÍ OSÁDKY A POLODIVOKÝCH KACHEN
+        species$PRED <- NA
+        species <-
+          within(species, PRED[grepl("chov ryb intensita", species$VLV_CINNOSTDOPAD) |
+                                 grepl("predace", species$VLV_CINNOSTDOPAD)] <-
+                   1)
+        species$PRED[is.na(species$PRED)] <- 0
+        # VYSYCHÁNÍ
+        species$VYSYCH <- NA
+        species <-
+          within(species, VYSYCH[grepl("vysychání", species$VLV_CINNOSTDOPAD)] <-
+                   1)
+        # POKRYVNOST VODNÍ VEGETACE
+        species$POKRYV <- NA
+        species <-
+          within(species, POKRYV[DRUH == "Bombina bombina" &
+                                   STA_POKRVEGETACE <= 80 &
+                                   STA_POKRVEGETACE > 0] <- 1)
+        species <-
+          within(species, POKRYV[DRUH == "Bombina bombina" &
+                                   STA_POKRVEGETACE == 0] <- 0)
+        species <-
+          within(species, POKRYV[DRUH == "Lissotriton montandoni" &
+                                   STA_POKRVEGETACE <= 80 &
+                                   STA_POKRVEGETACE > 0] <- 1)
+        species <-
+          within(species, POKRYV[grepl("Triturus", species$DRUH) &
+                                   STA_POKRVEGETACE <= 80 &
+                                   STA_POKRVEGETACE > 0] <- 1)
+        species <-
+          within(species, POKRYV[grepl("zarust", species$STA_POZNAMKA)] <-
+                   0)
+      }
+      
+      ampsite <- function(species) {
+        temp_species <- species %>%
+          group_by(KOD_LOKAL, DRUH) %>%
+          summarise(
+            curr_year = max(POP_RELCATEGORY[ROK == current_year]),
+            prev_year = max(POP_RELCATEGORY[ROK == (current_year - 1)]),
+            prevprev_year = max(POP_RELCATEGORY[ROK == (current_year - 2)]),
+            STAV = ifelse(
+              curr_year == -Inf | prev_year == -Inf,
+              ifelse(
+                curr_year == -Inf | prevprev_year == -Inf,
+                ifelse(
+                  prev_year == -Inf | prevprev_year == -Inf,
+                  NA,
+                  prev_year >= prevprev_year
+                ),
+                curr_year >= prevprev_year
+              ),
+              curr_year >= prev_year
+            ),
+            curr_hab = max(HAB_LOS[ROK == current_year]),
+            prev_hab = max(HAB_LOS[ROK == current_year - 1]),
+            prevprev_hab = max(HAB_LOS[ROK == current_year - 2]),
+            HAB = ifelse(
+              curr_hab == -Inf,
+              ifelse(
+                prev_hab == -Inf,
+                ifelse(prevprev_hab == -Inf, NA,
+                       prevprev_hab),
+                prev_hab
+              ),
+              curr_hab
+            ),
+            curr_pred = max(PRED[ROK == current_year]),
+            prev_pred = max(PRED[ROK == current_year - 1]),
+            prevprev_pred = max(PRED[ROK == current_year - 2]),
+            PREDACE = ifelse(
+              curr_pred == -Inf,
+              ifelse(
+                prev_pred == -Inf,
+                ifelse(prevprev_pred == -Inf, NA,
+                       prevprev_pred),
+                prev_pred
+              ),
+              curr_pred
+            ),
+            curr_transp = min(TRANSP[ROK == current_year]),
+            prev_transp = min(TRANSP[ROK == current_year - 1]),
+            prevprev_transp = min(TRANSP[ROK == current_year - 2]),
+            TRANSPAR = ifelse(
+              curr_transp == Inf,
+              ifelse(
+                prev_transp == Inf,
+                ifelse(prevprev_transp == Inf, NA,
+                       prevprev_transp),
+                prev_transp
+              ),
+              curr_transp
+            ),
+            curr_repro = max(REPRO[ROK == current_year]),
+            prev_repro = max(REPRO[ROK == current_year - 1]),
+            prevprev_repro = max(REPRO[ROK == current_year - 2]),
+            REPRODUKCE = ifelse(
+              curr_repro == -Inf,
+              ifelse(
+                prev_repro == -Inf,
+                ifelse(prevprev_repro == -Inf, 0, prevprev_repro),
+                prev_repro
+              ),
+              curr_repro
+            ),
+            curr_present = max(na.omit(POP_PRESENT[ROK == current_year])),
+            prev_present = max(na.omit(POP_PRESENT[ROK == current_year - 1])),
+            prevprev_present = max(na.omit(POP_PRESENT[ROK == current_year - 2])),
+            PRESENT = ifelse(
+              curr_present == -Inf | 0,
+              ifelse(
+                prev_present == -Inf | 0,
+                ifelse(prevprev_present == -Inf |
+                         0, NA,
+                       prevprev_present),
+                prev_present
+              ),
+              curr_present
+            ),
+            curr_vege = min(na.omit(POKRYV[ROK == current_year])),
+            prev_vege = min(na.omit(POKRYV[ROK == current_year - 1])),
+            prevprev_vege = min(POKRYV[ROK == current_year - 2]),
+            VEGE = ifelse(
+              curr_vege == Inf,
+              ifelse(
+                prev_vege == Inf,
+                ifelse(prevprev_vege == Inf, NA, prevprev_vege),
+                prev_vege
+              ),
+              curr_vege
+            ),
+            OVERALL = ifelse((
+              PRESENT == 0 | HAB == 1 | VEGE == 0 | REPRODUKCE == 0 |
+                PREDACE == 1 |
+                STAV == 0 | TRANSPAR == 1
+            ),
+            "NEPŘÍZNIVÉ",
+            ifelse((
+              PRESENT == 1 & HAB == 0 & VEGE == 1 & REPRODUKCE == 1 &
+                PREDACE == 0 &
+                STAV == 1 & TRANSPAR == 0
+            ),
+            "PŘÍZNIVÉ",
+            "CHYBÍ DATA"
+            )
+            ),
+            OVERALL = ifelse((
+              PRESENT == 0 | HAB == 1 | VEGE == 0 | REPRODUKCE == 0 |
+                PREDACE == 1 |
+                STAV == 0 | TRANSPAR == 1
+            ),
+            0,
+            ifelse((
+              is.na(PRESENT) == TRUE | is.na(HAB) == TRUE |
+                is.na(VEGE) == TRUE |
+                is.na(REPRODUKCE) == TRUE |
+                is.na(PREDACE) == TRUE |
+                is.na(STAV) == TRUE |
+                is.na(TRANSPAR) == TRUE |
+                PRESENT == -Inf | HAB == -Inf |
+                VEGE == Inf |
+                REPRODUKCE == Inf | PREDACE == Inf |
+                STAV == Inf |
+                TRANSPAR == Inf
+            ),
+            "CHYBÍ DATA",
+            1
+            )
+            ),
+            NAZEV_LOKAL = unique(NAZ_LOKAL)[1]
+          )
+        site <- data.frame(LOKALDRUH = unique(temp_species[c("KOD_LOKAL", "DRUH")]))
+        site$PRESENT_P1 <- temp_species$PRESENT
+        site$PRESENT_P1[site$PRESENT_P1 == 1] <- "ANO"
+        site$PRESENT_P1[site$PRESENT_P1 == 0] <- "NE"
+        site$REPRODUKCE_P2 <- temp_species$REPRODUKCE
+        site$REPRODUKCE_P2[site$REPRODUKCE_P2 == 1] <- "ANO"
+        site$REPRODUKCE_P2[site$REPRODUKCE_P2 == 0] <- "NE"
+        site$REPRODUKCE_P2[is.na(site$REPRODUKCE_P2) == TRUE |
+                             site$REPRODUKCE_P2 == -Inf] <- "CHYBÍ DATA"
+        site$TREND <- temp_species$STAV
+        site$TREND[site$TREND == TRUE] <- "POSITIVNÍ"
+        site$TREND[site$TREND == FALSE] <- "NEGATIVNÍ"
+        site$TREND[site$PRESENT_P1 == "NE"] <- "BEZ VÝSKYTU"
+        site$TREND[is.na(site$TREND) == TRUE] <- "CHYBÍ DATA"
+        site$HAB_P3 <- temp_species$HAB
+        site$HAB_P3[site$HAB_P3 == 1] <- "DESTRUKCE HABITATU"
+        site$HAB_P3[site$HAB_P3 == 0] <- "HABITAT ZACHOVÁN"
+        site$HAB_P3[site$HAB_P3 == -Inf] <- NA
+        site$PREDACE <- temp_species$PREDACE
+        site$PREDACE[site$PREDACE == 1] <- "ANO"
+        site$PREDACE[site$PREDACE == 0] <- "NE"
+        site$TRANSP <- temp_species$TRANSPAR
+        site$TRANSP[site$TRANSP == 1] <- "ANO"
+        site$TRANSP[site$TRANSP == 0] <- "NE"
+        site$POKRYV <- temp_species$VEGE
+        site$POKRYV[site$POKRYV == 1] <- "VYHOVUJÍCÍ"
+        site$POKRYV[site$POKRYV == 0] <- "NEVYHOVUJÍCÍ"
+        site$POKRYV[site$POKRYV == Inf |
+                      is.na(site$POKRYV) == TRUE] <- "CHYBÍ DATA"
+        site$OVERALL <- temp_species$OVERALL
+        site$OVERALL[is.na(site$OVERALL) == TRUE] <- "CHYBÍ DATA"
+        site$NAZ_LOKAL <- temp_species$NAZEV_LOKAL
+        return(site)
+      }
+      
+      semafor <- function(species) {
+        datatable(
+          species,
+          filter = "top",
+          colnames = c(
+            "KÓD LOKALITY",
+            "DRUH",
+            "PŘÍTOMNOST DRUHU",
+            "REPRODUKCE",
+            "TREND POČETNOSTI",
+            "STAV HABITATU",
+            "PREDACE",
+            "ZÁKAL",
+            "POKRYVNOST VEGETACE",
+            "CELKOVÉ HODNOCENÍ",
+            "NÁZEV LOKALITY"
+          ),
+          rownames = FALSE
+        ) %>%
+          formatStyle(columns = "OVERALL",
+                      background = styleEqual(c(0, "CHYBÍ DATA", 1),
+                                              c("red", "grey", "green"))) %>%
+          formatStyle(columns = "PRESENT_P1",
+                      background = styleEqual(c("ANO", "NE"), c("green", "red"))) %>%
+          formatStyle(columns = "TREND",
+                      background = styleEqual(
+                        c("POSITIVNÍ", "NEGATIVNÍ", "BEZ VÝSKYTU", "CHYBÍ DATA"),
+                        c("green", "red", "red", "grey")
+                      )) %>%
+          formatStyle(columns = "REPRODUKCE_P2",
+                      background = styleEqual(c("ANO", "NE", "CHYBÍ DATA"), c("green", "red", "grey"))) %>%
+          formatStyle(columns = "HAB_P3",
+                      background = styleEqual(
+                        c("HABITAT ZACHOVÁN", "DESTRUKCE HABITATU"),
+                        c("green", "red")
+                      )) %>%
+          formatStyle(columns = "PREDACE",
+                      background = styleEqual(c("NE", "ANO"),
+                                              c("green", "red"))) %>%
+          formatStyle(columns = "TRANSP",
+                      background = styleEqual(c("NE", "ANO"),
+                                              c("green", "red"))) %>%
+          formatStyle(columns = "POKRYV",
+                      background = styleEqual(
+                        c("VYHOVUJÍCÍ", "NEVYHOVUJÍCÍ", "CHYBÍ DATA"),
+                        c("green", "red", "grey")
+                      ))
+      }
+      
+      amp_evl <- function(site) {
+        temp_site <- site %>%
+          mutate(ID = gsub("[^0-9.-]", "", LOKALDRUH.KOD_LOKAL)) %>%
+          group_by(ID) %>%
+          summarise(VÝSTUP = ifelse(mean(na.omit(OVERALL >= 0.5)), 1, 0),
+                    LOKALITA = unique(NAZ_LOKAL)[1])
+        return(temp_site)
+      }
+      
+      semafor_evl <- function(species) {
+        datatable(species,
+                  filter = "top",
+                  rownames = FALSE) %>%
+          formatStyle(columns = "VÝSTUP",
+                      background = styleEqual(c(1, 0),
+                                              c("green", "red")))
+      }
+    
+      # Ssawci ----
+      Carniv_clear <- function(species) {
+        species <- species %>%
+          mutate(
+            DRUH = as.factor(DRUH),
+            DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+            YEAR = substring(DATE, 1, 4),
+            SITECODE = substr(EVL, 1, 9),
+            NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+            PRESENT = case_when(grepl("DNA", POZNAMKA) == TRUE |
+                                grepl("C1", STRUKT_POZN) == TRUE |
+                                grepl("C2", STRUKT_POZN) == TRUE ~ 1),
+            REPRO = case_when(DRUH == "Canis lupus" & grepl("vlča", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Canis lupus" & grepl("vlče", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Canis lupus" & grepl("mládě", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Canis lupus" & grepl("mláď", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Canis lupus" & grepl("juvenil", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Ursus arctos" & grepl("mládě", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Ursus arctos" & grepl("mláď", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Ursus arctos" & grepl("medví", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Ursus arctos" & grepl("juvenil", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Lynx lynx" & grepl("mláď", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Lynx lynx" & grepl("mládě", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Lynx lynx" & grepl("juv.", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Lynx lynx" & grepl("juvenil", POZNAMKA) == TRUE ~ 1),
+            POKRYV = case_when(SITECODE == "CZ0724089" &
+                                  subset(mammal_evl, mammal_evl$KOD_BVS == "24")$SHAPEAREA/subset(evl, SITECODE == "CZ0724089")$SHAPEAREA >= 0.75 ~ 1,
+                               SITECODE == "CZ0724089" &
+                                 subset(mammal_evl, mammal_evl$KOD_BVS == "24")$SHAPEAREA/subset(evl, SITECODE == "CZ0724089")$SHAPEAREA < 0.75 ~ 0,
+                               SITECODE == "CZ0314024" &
+                                 subset(mammal_evl, mammal_evl$KOD_BVS == "58")$SHAPEAREA/subset(evl, SITECODE == "CZ0314024")$SHAPEAREA >= 0.75 ~ 1,
+                               SITECODE == "CZ0314024" &
+                                 subset(mammal_evl, mammal_evl$KOD_BVS == "58")$SHAPEAREA/subset(evl, SITECODE == "CZ0314024")$SHAPEAREA < 0.75 ~ 0,
+                               SITECODE == "CZ0314124" &
+                                 subset(mammal_evl, mammal_evl$KOD_BVS == "26" | mammal_evl$KOD_BVS == "3")$SHAPEAREA/subset(evl, SITECODE == "CZ0314124")$SHAPEAREA >= 0.75 ~ 1,
+                               SITECODE == "CZ0314124" &
+                                 subset(mammal_evl, mammal_evl$KOD_BVS == "26" | mammal_evl$KOD_BVS == "3")$SHAPEAREA/subset(evl, SITECODE == "CZ0314124")$SHAPEAREA < 0.75 ~ 0),
+            FRAG = NA,
+            POACH = 0,
+            POACH = case_when(grepl("pytl", POZNAMKA) == TRUE ~ 1)) 
+        species <- species %>%
+          filter(YEAR >= (current_year - 1))
+        return(species)
+      }
+      
+      Carniv_site <- function(species) {
+        species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                            as.vector(find_evl_NAZEV(input_species))))
+        colnames(species_site) <- c("SITECODE", "NAZEV")
+        hab_evl <- Carniv_clear(species) %>%
+          bind_rows(species_site) %>%
+          group_by(SITECODE) %>%
+          summarise(SITECODE = SITECODE,
+                    NAZEV = NAZEV,
+                    PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                         max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                         max(na.omit(PRESENT)) == 0 ~ "NE"),
+                    REPRODUKCE = case_when(max(na.omit(REPRO)) == -Inf ~ "CHYBÍ DATA",
+                                           max(na.omit(REPRO)) == 1 ~ "ANO",
+                                           max(na.omit(REPRO)) == 0 ~ "NE"),
+                    HABITAT = case_when(max(na.omit(POKRYV)) == 1 ~ "DOSTAČUJÍCÍ",
+                                        max(na.omit(POKRYV)) == 0 ~ "NEDOSTAČUJÍCÍ",
+                                        max(na.omit(POKRYV)) == -Inf ~ "CHYBÍ DATA"),
+                    FRAGMENTACE = NA,
+                    PYTLACTVI = case_when(max(na.omit(POACH)) == -Inf ~ "NE",
+                                                      max(na.omit(POACH)) == 1 ~ "ANO"),
+                    NEGATIV = NA,
+                    OVERALL = case_when(PRESENCE == "ANO" & REPRODUKCE == "ANO" &
+                                          PYTLACTVI == "NE" ~ "POSITIVNÍ",
+                                        PRESENCE == "CHYBÍ DATA" | REPRODUKCE == "CHYBÍ DATA" |
+                                          PYTLACTVI == "CHYBÍ DATA" ~ "CHYBÍ DATA",
+                                        PRESENCE == "NE" | REPRODUKCE == "NE" |
+                                          PYTLACTVI == "ANO" ~ "NEGATIVNÍ"))
+        hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+        hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+        return(hab_evl)
+      }
+      
+      Carniv_semafor <- function(species) {
+        datatable(species, 
+                  rownames = FALSE,
+                  filter = "top",
+                  colnames = c("KÓD EVL", "NÁZEV EVL", "PŘÍTOMNOST DRUHU", 
+                               "ZAZNAMENÁNÍ REPRODUKCE", "POKRYVNOST LESŮ", 
+                               "ÚBYTEK FRAGMENTACE", "PYTLÁCTVÍ", 
+                               "NOVÉ DÁLNICE A SILNICE 1. TŘÍDY", "CELKOVÉ HODNOCENÍ")) %>%
+          formatStyle(columns = "PRESENCE",
+                      background = styleEqual(c("ANO", "CHYBÍ DATA"), c("green", "grey"))) %>%
+          formatStyle(columns = "REPRODUKCE",
+                      background = styleEqual(c("ANO", "NE", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey"))) %>%
+          formatStyle(columns = "PYTLACTVI",
+                      background = styleEqual(c("ANO", "NE", "CHYBÍ DATA"), 
+                                              c("red", "green", "grey"))) %>%
+          formatStyle(columns = "OVERALL",
+                      background = styleEqual(c("POSITIVNÍ", "NEGATIVNÍ", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey"))) %>%
+          formatStyle(columns = "HABITAT",
+                      background = styleEqual(c("DOSTAČUJÍCÍ", "NEDOSTAČUJÍCÍ", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey")))
+      }
+      
+    # RESULT ----
+    # Motýle 
+    if (input$species == "Phengaris nausithous") {
+      result <- Lep_1_semafor(Lep_1_site(species))
+    } 
+    if (input$species == "Phengaris teleius") {
+      result <- Lep_1_semafor(Lep_1_site(species))
+    } 
+    if (input$species == "Euplagia quadripunctaria") {
+      result <- Lep_1_semafor(Lep_1_site(species))
+    } 
+    if (input$species == "Colias myrmidone") {
+      result <- Lep_2_semafor(Lep_2_site(species))
+    } 
+    if (input$species == "Euphydryas aurinia") {
+      result <- Lep_1_semafor(Lep_1_site(species))
+    }   
+    if (input$species == "Euphydryas maturna") {
+      result <- Lep_1_semafor(Lep_1_site(species))
+    }
+    if (input$species == "Lycaena dispar") {
+      result <- Lep_2_semafor(Lep_2_site(species))
+    }  
+    if (input$species == "Eriogaster catax") {
+      result <- Lep_3_semafor(Lep_3_site(species))
+    } 
+    # Brouke
+    if (input$species == "Carabus hungaricus") {
+      result <- CarOpen_semafor(CarOpen_site(species))
+    } 
+    if (input$species == "Carabus menetriesi pacholei") {
+      result <- CarAqua_semafor(CarAqua_site(species))
+    } 
+    if (input$species == "Carabus variolosus") {
+      result <- CarAqua_semafor(CarAqua_site(species))
+    } 
+    if (input$species == "Bolbelasmus unicornis") {
+      result <- SapOpen_semafor(SapOpen_site(species))
+    } 
+    if (input$species == "Lucanus cervus") {
+      result <- SapOpen_semafor(SapOpen_site(species))
+    } 
+    if (input$species == "Cerambyx cerdo") {
+      result <- SapOpen_semafor(SapOpen_site(species))
+    } 
+    if (input$species == "Osmoderma barnabita") {
+      result <- SapOpen_semafor(SapOpen_site(species))
+    }
+    if (input$species == "Cucujus cinnaberinus") {
+      result <- SapFor_semafor(SapFor_site(species))
+    }
+    if (input$species == "Rhysodes sulcatus") {
+      result <- SapFor_semafor(SapFor_site(species))
+    }
+    if (input$species == "Limoniscus violaceus") {
+      result <- SapFor_semafor(SapFor_site(species))
+    }
+    if (input$species == "Rosalia alpina") {
+      result <- SapFor_semafor(SapFor_site(species))
+    }
+    if (input$species == "Graphoderus bilineatus") {
+      result <- ColAqua_semafor(ColAqua_site(species))
+    }
+    #Ryby
+    if (input$species == "Cottus gobio") {
+      result <- icht_semafor(icht_site(icht_clear(species)))
+    }
+    if (input$species == "Bombina bombina" |
+        input$species == "Bombina variegata" |
+        input$species == "Triturus cristatus" |
+        input$species == "Triturus carnifex" |
+        input$species == "Triturus dobrogicus" |
+        input$species == "Lissotriton montandoni") {
+      result <- semafor(ampsite(amp_clear(species)))
+    }
+    if (input$species == "Rhinolophus hipposideros" |
+        input$species == "Barbastella barbastellus" |
+        input$species == "Myotis bechsteini" |
+        input$species == "Myotis blythii" |
+        input$species == "Myotis dasycneme" |
+        input$species == "Myotis emarginatus" |
+        input$species == "Myotis myotis") {
+      result <- chir_semafor(chirsite(clear_chir(species)))
+    }
+    #SSAWCI
+    if (input$species == "Canis lupus") {
+      result <- Carniv_semafor(Carniv_site(species))
+    }
+    if (input$species == "Ursus arctos") {
+      result <- Carniv_semafor(Carniv_site(species))
+    }
+    if (input$species == "Lynx lynx") {
+      result <- Carniv_semafor(Carniv_site(species))
+    }
+    
+    result
+    
+  })
+  
+  
+  # HODNOCENÍ LOKALIT ----
+  output$mytable1 <- renderDataTable({
+    req(input$file1)
+    
+    species <- read.csv(input$file1$datapath,
+                        sep = input$sep)
+    
+    species <- filter(species, DRUH == input$species)
+    
+    amp_clear <- function(species) {
+      #PREVOD DATA NA POUŽITELNÝ FORMÁT
+      species$DATE <- c(species$DATUM_MONIT)
+      species$DATE <-
+        format(as.Date(species$DATE, format = '%d.%m.%Y %H:%M', origin = "01-01-1990"))
+      # PRÁZDNÉ SLOUPCE PRO VYČIŠTĚNÁ DATA
+      species$POP_PRESENT <- NA
+      species$POP_RELCATEGORY <- NA
+      species$REPRO <- NA
+      species[species == ""] <- NA
+      # "ŽÁDNÝ" A "ŽÁDNÉ" NAHRAZENY "NA" PRO JEDNODUŠŠÍ ČIŠTĚNÍ DAT
+      species[species == "žádný"] <- NA
+      species[species == "žádný"] <- NA
+      species[species == "na"] <- NA
+      # SPECIES PRESENCE (P1) AND RELATIVE ABUNDANCE (P3)
+      species <-
+        within(species, POP_PRESENT[POP_VYSKYTDRUH == "ne"] <- 0)
+      # POSTUPNĚ PROJEDE VŠECHNY ADULTNÍ KATEGORIE OD NEJNIŽŠÍCH VÝSKYTŮ PO NEVVYŠŠÍ
+      # DO 10 JEDINCŮ
+      species <-
+        within(species, POP_RELCATEGORY[POP_POCETPOHLNEURCENYADULTREL == "do 10" |
+                                          POP_POCETSAMICEREL == "do 10" |
+                                          POP_POCETSAMECREL == "do 10" |
+                                          POP_CELKPOCETVSEADULTREL == "do 10" |
+                                          POP_CELKPOCETVSEEXEMPLARREL == "do 10"] <-
+                 1)
+      # NIŽŠÍ DESÍTKY
+      species <-
+        within(species, POP_RELCATEGORY[POP_POCETPOHLNEURCENYADULTREL == "řádově nižší desítky" |
+                                          POP_POCETSAMICEREL == "řádově nižší desítky" |
+                                          POP_POCETSAMECREL == "řádově nižší desítky" |
+                                          POP_CELKPOCETVSEADULTREL == "řádově nižší desítky" |
+                                          POP_CELKPOCETVSEEXEMPLARREL == "řádově nižší desítky"] <-
+                 2)
+      # VYŠŠÍ DESÍTKY
+      species <-
+        within(species, POP_RELCATEGORY[POP_POCETPOHLNEURCENYADULTREL == "řádově vyšší desítky" |
+                                          POP_POCETSAMICEREL == "řádově vyšší desítky" |
+                                          POP_POCETSAMECREL == "řádově vyšší desítky" |
+                                          POP_CELKPOCETVSEADULTREL == "řádově vyšší desítky" |
+                                          POP_CELKPOCETVSEEXEMPLARREL == "řádově vyšší desítky"] <-
+                 3)
+      # KOLEM 100
+      species <-
+        within(species, POP_RELCATEGORY[POP_POCETPOHLNEURCENYADULTREL == "cca 100" |
+                                          POP_POCETSAMICEREL == "cca 100" |
+                                          POP_POCETSAMECREL == "cca 100" |
+                                          POP_CELKPOCETVSEADULTREL == "cca 100" |
+                                          POP_CELKPOCETVSEEXEMPLARREL == "cca 100"] <-
+                 4)
+      # STOVKY JEDINCŮ
+      species <-
+        within(species, POP_RELCATEGORY[POP_POCETPOHLNEURCENYADULTREL == "řádově stovky" |
+                                          POP_POCETSAMICEREL == "řádově stovky" |
+                                          POP_POCETSAMECREL == "řádově stovky" |
+                                          POP_CELKPOCETVSEADULTREL == "řádově stovky" |
+                                          POP_CELKPOCETVSEEXEMPLARREL == "řádově stovky"] <-
+                 5)
+      ## RELATIVNÍ POČETNOSTI SE PŘEPÍŠOU DATY Z ABSOLUTNÍCH ##
+      # DO 10 JEDINCŮ
+      species <-
+        within(species, POP_RELCATEGORY[(POP_POCETPOHLNEURCENYADULT > 0 &
+                                           POP_POCETPOHLNEURCENYADULT < 10) |
+                                          (POP_POCETSAMICE > 0 &
+                                             POP_POCETSAMICE < 10) |
+                                          (POP_POCETSAMEC > 0 &
+                                             POP_POCETSAMEC < 10) |
+                                          (POP_CELKPOCETVSEADULT > 0 &
+                                             POP_CELKPOCETVSEADULT < 10) |
+                                          (POP_CELKPOCETVSEEXEMPLAR > 0 &
+                                             POP_CELKPOCETVSEEXEMPLAR < 10)] <- 1)
+      # NIŽSÍ DESÍTKY
+      species <-
+        within(species, POP_RELCATEGORY[(POP_POCETPOHLNEURCENYADULT >= 10 &
+                                           POP_POCETPOHLNEURCENYADULT < 50) |
+                                          (POP_POCETSAMICE >= 10 &
+                                             POP_POCETSAMICE < 50) |
+                                          (POP_POCETSAMEC >= 10 &
+                                             POP_POCETSAMEC < 50) |
+                                          (POP_CELKPOCETVSEADULT >= 10 &
+                                             POP_CELKPOCETVSEADULT < 50) |
+                                          (POP_CELKPOCETVSEEXEMPLAR >= 10 &
+                                             POP_CELKPOCETVSEEXEMPLAR < 50)] <- 2)
+      # VYŠŠÍ DESÍTKY
+      species <-
+        within(species, POP_RELCATEGORY[(POP_POCETPOHLNEURCENYADULT >= 50 &
+                                           POP_POCETPOHLNEURCENYADULT <= 95) |
+                                          (POP_POCETSAMICE >= 50 &
+                                             POP_POCETSAMICE <= 95) |
+                                          (POP_POCETSAMEC >= 50 &
+                                             POP_POCETSAMEC <= 95) |
+                                          (POP_CELKPOCETVSEADULT >= 50 &
+                                             POP_CELKPOCETVSEADULT <= 95) |
+                                          (POP_CELKPOCETVSEEXEMPLAR >= 50 &
+                                             POP_CELKPOCETVSEEXEMPLAR <= 95)] <- 3)
+      # KOLEM 100
+      species <-
+        within(species, POP_RELCATEGORY[(POP_POCETPOHLNEURCENYADULT > 95 &
+                                           POP_POCETPOHLNEURCENYADULT < 150) |
+                                          (POP_POCETSAMICE > 95 &
+                                             POP_POCETSAMICE < 150) |
+                                          (POP_POCETSAMEC > 95 &
+                                             POP_POCETSAMEC < 150) |
+                                          (POP_CELKPOCETVSEADULT > 95 &
+                                             POP_CELKPOCETVSEADULT < 150) |
+                                          (POP_CELKPOCETVSEEXEMPLAR > 95 &
+                                             POP_CELKPOCETVSEEXEMPLAR < 150)] <- 4)
+      # STOVKY JEDINCŮ
+      species <-
+        within(species, POP_RELCATEGORY[(POP_POCETPOHLNEURCENYADULT >= 150) |
+                                          (POP_POCETSAMICE >= 150) |
+                                          (POP_POCETSAMEC >= 150) |
+                                          (POP_CELKPOCETVSEADULT >= 150) |
+                                          (POP_CELKPOCETVSEEXEMPLAR >= 150)] <-
+                 5)
+      # ŽÁDNÍ JEDINCI
+      species <-
+        within(species, POP_RELCATEGORY[POP_CELKPOCETVSEEXEMPLAR == 0] <-
+                 0)
+      # KONTROLA PŘÍTOMNOSTI SNŮŠEK A LARVÁLNÍCH STÁDIÍ
+      species <-
+        within(species, REPRO[POP_CELKPOCETVSESUBADULT > 0 |
+                                is.na(POP_CELKPOCETVSESUBADULTREL) == FALSE |
+                                POP_POCETJUVENIL > 0 |
+                                is.na(POP_POCETJUVENILREL) == FALSE |
+                                POP_POCETLARVA > 0 |
+                                is.na(POP_POCETLARVAREL) == FALSE |
+                                POP_POCETMETAMORF > 0 |
+                                is.na(POP_POCETMETAMORFREL) == FALSE |
+                                POP_CELKPOCETVSESNUSKA > 0 |
+                                is.na(POP_CELKPOCETVSESNUSKAREL) == FALSE] <-
+                 1)
+      species$REPRO[is.na(species$REPRO)] <- 0
+      # DOČIŠTĚNÍ VÝSKYTU
+      species$POP_RELCATEGORY[is.na(species$POP_RELCATEGORY)] <- 0
+      species <-
+        within(species, POP_PRESENT[POP_RELCATEGORY > 0 | REPRO > 0] <- 1)
+      species <-
+        within(species, POP_PRESENT[POP_RELCATEGORY == 0 &
+                                      REPRO == 0] <- 0)
+      species <-
+        within(species, POP_PRESENT[POP_VYSKYTDRUH == "ano"] <- 1)
+      # DESTRUKCE HABITATU
+      species$HAB_LOS <- NA
+      species <-
+        within(species, HAB_LOS[STA_STAVVODAPERIODTUN < 10 |
+                                  STA_STAVVODALITORAL < 10 |
+                                  grepl("vysychání mokřadního ekosystému)",
+                                        species$VLV_CINNOSTDOPAD)] <-
+                 1)
+      species$HAB_LOS[is.na(species$HAB_LOS)] <- 0
+      # PRŮHLEDNOST VODY
+      species$TRANSP <- NA
+      species <-
+        within(species, TRANSP[STA_PRUHLEDNOSTVODA < 90 |
+                                 STA_ZABARVENIZAKAL == "hnědý" |
+                                 STA_ZABARVENIZAKAL == "zelený"] <-
+                 1)
+      species <-
+        within(species, TRANSP[grepl("dno", species$STA_PRUHLEDNOSTVODAPOZN)] <-
+                 0)
+      species <- within(species, TRANSP[STA_PRUHLEDNOSTVODA >= 90 |
+                                          STA_ZABARVENIZAKAL == "bez zákalu"] <-
+                          0)
+      species$TRANSP[is.na(species$TRANSP)] <- 0
+      # PŘÍTOMNOST RYBÍ OSÁDKY A POLODIVOKÝCH KACHEN
+      species$PRED <- NA
+      species <-
+        within(species, PRED[grepl("chov ryb intensita", species$VLV_CINNOSTDOPAD) |
+                               grepl("predace", species$VLV_CINNOSTDOPAD)] <-
+                 1)
+      species$PRED[is.na(species$PRED)] <- 0
+      # VYSYCHÁNÍ
+      species$VYSYCH <- NA
+      species <-
+        within(species, VYSYCH[grepl("vysychání", species$VLV_CINNOSTDOPAD)] <-
+                 1)
+      # POKRYVNOST VODNÍ VEGETACE
+      species$POKRYV <- NA
+      species <-
+        within(species, POKRYV[DRUH == "Bombina bombina" &
+                                 STA_POKRVEGETACE <= 80 &
+                                 STA_POKRVEGETACE > 0] <- 1)
+      species <-
+        within(species, POKRYV[DRUH == "Bombina bombina" &
+                                 STA_POKRVEGETACE == 0] <- 0)
+      species <-
+        within(species, POKRYV[DRUH == "Lissotriton montandoni" &
+                                 STA_POKRVEGETACE <= 80 &
+                                 STA_POKRVEGETACE > 0] <- 1)
+      species <-
+        within(species, POKRYV[grepl("Triturus", species$DRUH) &
+                                 STA_POKRVEGETACE <= 80 &
+                                 STA_POKRVEGETACE > 0] <- 1)
+      species <-
+        within(species, POKRYV[grepl("zarust", species$STA_POZNAMKA)] <-
+                 0)
+    }
+    
+    current_year <- input$curryear
+    ampsite <- function(species) {
+      temp_species <- species %>%
+        group_by(KOD_LOKAL, DRUH) %>%
+        summarise(
+          curr_year = max(POP_RELCATEGORY[ROK == current_year]),
+          prev_year = max(POP_RELCATEGORY[ROK == (current_year - 1)]),
+          prevprev_year = max(POP_RELCATEGORY[ROK == (current_year - 2)]),
+          STAV = ifelse(
+            curr_year == -Inf | prev_year == -Inf,
+            ifelse(
+              curr_year == -Inf | prevprev_year == -Inf,
+              ifelse(
+                prev_year == -Inf | prevprev_year == -Inf,
+                NA,
+                prev_year >= prevprev_year
+              ),
+              curr_year >= prevprev_year
+            ),
+            curr_year >= prev_year
+          ),
+          curr_hab = max(HAB_LOS[ROK == current_year]),
+          prev_hab = max(HAB_LOS[ROK == current_year - 1]),
+          prevprev_hab = max(HAB_LOS[ROK == current_year - 2]),
+          HAB = ifelse(
+            curr_hab == -Inf,
+            ifelse(
+              prev_hab == -Inf,
+              ifelse(prevprev_hab == -Inf, NA,
+                     prevprev_hab),
+              prev_hab
+            ),
+            curr_hab
+          ),
+          curr_pred = max(PRED[ROK == current_year]),
+          prev_pred = max(PRED[ROK == current_year - 1]),
+          prevprev_pred = max(PRED[ROK == current_year - 2]),
+          PREDACE = ifelse(
+            curr_pred == -Inf,
+            ifelse(
+              prev_pred == -Inf,
+              ifelse(prevprev_pred == -Inf, NA,
+                     prevprev_pred),
+              prev_pred
+            ),
+            curr_pred
+          ),
+          curr_transp = min(TRANSP[ROK == current_year]),
+          prev_transp = min(TRANSP[ROK == current_year - 1]),
+          prevprev_transp = min(TRANSP[ROK == current_year - 2]),
+          TRANSPAR = ifelse(
+            curr_transp == Inf,
+            ifelse(
+              prev_transp == Inf,
+              ifelse(prevprev_transp == Inf, NA,
+                     prevprev_transp),
+              prev_transp
+            ),
+            curr_transp
+          ),
+          curr_repro = max(REPRO[ROK == current_year]),
+          prev_repro = max(REPRO[ROK == current_year - 1]),
+          prevprev_repro = max(REPRO[ROK == current_year - 2]),
+          REPRODUKCE = ifelse(
+            curr_repro == -Inf,
+            ifelse(
+              prev_repro == -Inf,
+              ifelse(prevprev_repro == -Inf, 0, prevprev_repro),
+              prev_repro
+            ),
+            curr_repro
+          ),
+          curr_present = max(na.omit(POP_PRESENT[ROK == current_year])),
+          prev_present = max(na.omit(POP_PRESENT[ROK == current_year - 1])),
+          prevprev_present = max(na.omit(POP_PRESENT[ROK == current_year - 2])),
+          PRESENT = ifelse(
+            curr_present == -Inf | 0,
+            ifelse(
+              prev_present == -Inf | 0,
+              ifelse(prevprev_present == -Inf |
+                       0, NA,
+                     prevprev_present),
+              prev_present
+            ),
+            curr_present
+          ),
+          curr_vege = min(na.omit(POKRYV[ROK == current_year])),
+          prev_vege = min(na.omit(POKRYV[ROK == current_year - 1])),
+          prevprev_vege = min(POKRYV[ROK == current_year - 2]),
+          VEGE = ifelse(
+            curr_vege == Inf,
+            ifelse(
+              prev_vege == Inf,
+              ifelse(prevprev_vege == Inf, NA, prevprev_vege),
+              prev_vege
+            ),
+            curr_vege
+          ),
+          OVERALL = ifelse((
+            PRESENT == 0 | HAB == 1 | VEGE == 0 | REPRODUKCE == 0 |
+              PREDACE == 1 |
+              STAV == 0 | TRANSPAR == 1
+          ),
+          "NEPŘÍZNIVÉ",
+          ifelse((
+            PRESENT == 1 & HAB == 0 & VEGE == 1 & REPRODUKCE == 1 &
+              PREDACE == 0 &
+              STAV == 1 & TRANSPAR == 0
+          ),
+          "PŘÍZNIVÉ",
+          "CHYBÍ DATA"
+          )
+          ),
+          OVERALL = ifelse((
+            PRESENT == 0 | HAB == 1 | VEGE == 0 | REPRODUKCE == 0 |
+              PREDACE == 1 |
+              STAV == 0 | TRANSPAR == 1
+          ),
+          0,
+          ifelse((
+            is.na(PRESENT) == TRUE | is.na(HAB) == TRUE |
+              is.na(VEGE) == TRUE |
+              is.na(REPRODUKCE) == TRUE |
+              is.na(PREDACE) == TRUE |
+              is.na(STAV) == TRUE |
+              is.na(TRANSPAR) == TRUE |
+              PRESENT == -Inf | HAB == -Inf |
+              VEGE == Inf |
+              REPRODUKCE == Inf | PREDACE == Inf |
+              STAV == Inf |
+              TRANSPAR == Inf
+          ),
+          "CHYBÍ DATA",
+          1
+          )
+          ),
+          NAZEV_LOKAL = unique(NAZ_LOKAL)[1]
+        )
+      site <- data.frame(LOKALDRUH = unique(temp_species[c("KOD_LOKAL", "DRUH")]))
+      site$PRESENT_P1 <- temp_species$PRESENT
+      site$PRESENT_P1[site$PRESENT_P1 == 1] <- "ANO"
+      site$PRESENT_P1[site$PRESENT_P1 == 0] <- "NE"
+      site$REPRODUKCE_P2 <- temp_species$REPRODUKCE
+      site$REPRODUKCE_P2[site$REPRODUKCE_P2 == 1] <- "ANO"
+      site$REPRODUKCE_P2[site$REPRODUKCE_P2 == 0] <- "NE"
+      site$REPRODUKCE_P2[is.na(site$REPRODUKCE_P2) == TRUE |
+                           site$REPRODUKCE_P2 == -Inf] <- "CHYBÍ DATA"
+      site$TREND <- temp_species$STAV
+      site$TREND[site$TREND == TRUE] <- "POSITIVNÍ"
+      site$TREND[site$TREND == FALSE] <- "NEGATIVNÍ"
+      site$TREND[site$PRESENT_P1 == "NE"] <- "BEZ VÝSKYTU"
+      site$TREND[is.na(site$TREND) == TRUE] <- "CHYBÍ DATA"
+      site$HAB_P3 <- temp_species$HAB
+      site$HAB_P3[site$HAB_P3 == 1] <- "DESTRUKCE HABITATU"
+      site$HAB_P3[site$HAB_P3 == 0] <- "HABITAT ZACHOVÁN"
+      site$HAB_P3[site$HAB_P3 == -Inf] <- NA
+      site$PREDACE <- temp_species$PREDACE
+      site$PREDACE[site$PREDACE == 1] <- "ANO"
+      site$PREDACE[site$PREDACE == 0] <- "NE"
+      site$TRANSP <- temp_species$TRANSPAR
+      site$TRANSP[site$TRANSP == 1] <- "ANO"
+      site$TRANSP[site$TRANSP == 0] <- "NE"
+      site$POKRYV <- temp_species$VEGE
+      site$POKRYV[site$POKRYV == 1] <- "VYHOVUJÍCÍ"
+      site$POKRYV[site$POKRYV == 0] <- "NEVYHOVUJÍCÍ"
+      site$POKRYV[site$POKRYV == Inf |
+                    is.na(site$POKRYV) == TRUE] <- "CHYBÍ DATA"
+      site$OVERALL <- temp_species$OVERALL
+      site$OVERALL[is.na(site$OVERALL) == TRUE] <- "CHYBÍ DATA"
+      site$NAZ_LOKAL <- temp_species$NAZEV_LOKAL
+      return(site)
+    }
+    
+    semafor <- function(species) {
+      datatable(
+        species,
+        filter = "top",
+        colnames = c(
+          "KÓD LOKALITY",
+          "DRUH",
+          "PŘÍTOMNOST DRUHU",
+          "REPRODUKCE",
+          "TREND POČETNOSTI",
+          "STAV HABITATU",
+          "PREDACE",
+          "ZÁKAL",
+          "POKRYVNOST VEGETACE",
+          "CELKOVÉ HODNOCENÍ",
+          "NÁZEV LOKALITY"
+        ),
+        rownames = FALSE
+      ) %>%
+        formatStyle(columns = "OVERALL",
+                    background = styleEqual(c(0, "CHYBÍ DATA", 1),
+                                            c("red", "grey", "green"))) %>%
+        formatStyle(columns = "PRESENT_P1",
+                    background = styleEqual(c("ANO", "NE"), c("green", "red"))) %>%
+        formatStyle(columns = "TREND",
+                    background = styleEqual(
+                      c("POSITIVNÍ", "NEGATIVNÍ", "BEZ VÝSKYTU", "CHYBÍ DATA"),
+                      c("green", "red", "red", "grey")
+                    )) %>%
+        formatStyle(columns = "REPRODUKCE_P2",
+                    background = styleEqual(c("ANO", "NE", "CHYBÍ DATA"), c("green", "red", "grey"))) %>%
+        formatStyle(columns = "HAB_P3",
+                    background = styleEqual(
+                      c("HABITAT ZACHOVÁN", "DESTRUKCE HABITATU"),
+                      c("green", "red")
+                    )) %>%
+        formatStyle(columns = "PREDACE",
+                    background = styleEqual(c("NE", "ANO"),
+                                            c("green", "red"))) %>%
+        formatStyle(columns = "TRANSP",
+                    background = styleEqual(c("NE", "ANO"),
+                                            c("green", "red"))) %>%
+        formatStyle(columns = "POKRYV",
+                    background = styleEqual(
+                      c("VYHOVUJÍCÍ", "NEVYHOVUJÍCÍ", "CHYBÍ DATA"),
+                      c("green", "red", "grey")
+                    ))
+    }
+    
+    amp_evl <- function(site) {
+      temp_site <- site %>%
+        mutate(ID = gsub("[^0-9.-]", "", LOKALDRUH.KOD_LOKAL)) %>%
+        group_by(ID) %>%
+        summarise(VÝSTUP = ifelse(mean(na.omit(OVERALL >= 0.5)), 1, 0),
+                  LOKALITA = unique(NAZ_LOKAL)[1])
+      return(temp_site)
+    }
+    
+    semafor_evl <- function(species) {
+      datatable(species,
+                filter = "top",
+                rownames = FALSE) %>%
+        formatStyle(columns = "VÝSTUP",
+                    background = styleEqual(c(1, 0),
+                                            c("green", "red")))
+    }
+    
+    
+    if (input$species == "Bombina bombina" |
+        input$species == "Bombina variegata" |
+        input$species == "Triturus cristatus" |
+        input$species == "Triturus carnifex" |
+        input$species == "Triturus dobrogicus" |
+        input$species == "Lissotriton montandoni") {
+      result <- semafor_evl(amp_evl(ampsite(amp_clear(species))))
+    }
+    
+    result
+    
+  })
+  
+  # MAPA EVL ----
+  output$mapa_evl <- renderLeaflet({
+    
+    req(input$species)
+    req(input$file1)
+    
+    find_evl_SITECODE <- function(species){
+      return(sites_subjects$SITECODE[which(grepl(species, sites_subjects$SUBJECT))])
+    }
+    find_evl_NAZEV <- function(species){
+      return(sites_subjects$NAZEV[which(grepl(species, sites_subjects$SUBJECT))])
+    }
+    
+    species <- read.csv(input$file1$datapath,
+                        sep = input$sep,
+                        stringsAsFactors = FALSE)
+    
+    species$DRUH <- gsub("Maculinea", "Phengaris", species$DRUH)
+    species$DRUH <- gsub("Callimorpha quadripunctaria", "Euplagia quadripunctaria", species$DRUH)
+    species$DRUH <- gsub("Triturus montandoni", "Lissotriton montandoni", species$DRUH)
+    species$DRUH <- gsub("Aspius aspius", "Leuciscus aspius", species$DRUH)
+    species$DRUH <- gsub("Cobitis elongatoides", "Cobitis taneia", species$DRUH)
+    
+    species <- filter(species, DRUH == input$species)
+    input_species <- input$species
+    
+    current_year <- input$curryear
+    
+    # Motýle ----
+    Lep_1_clear <- function(species) {
+      species <- species %>%
+        mutate(
+          DRUH = as.factor(DRUH),
+          DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+          YEAR = substring(DATE, 1, 4),
+          SITECODE = substr(EVL, 1, 9),
+          NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+          PRESENT = case_when(is.na(POCET) == TRUE | is.na(POCITANO) == TRUE ~ 0,
+                              (is.na(POCET) == FALSE & POCET > 0) | 
+                                (is.na(POCITANO) == FALSE & POCET > 0) ~ 1),
+          POCET_CAT = case_when((POCET > 0 & POCET <= 10) | REL_POC == "1-10" | 
+                                  REL_POC == "ojediněle" & 
+                                  (POCITANO == "imaga" | POCITANO == "jedinci") ~ 1,
+                                (POCET > 10 & POCET <= 35) | REL_POC == "11-100" | 
+                                  REL_POC == "vzácně" & 
+                                  (POCITANO == "imaga" | POCITANO == "jedinci") ~ 2,
+                                (POCET > 35 & POCET < 10) | REL_POC == "11-100" | 
+                                  REL_POC == "roztroušeně" & 
+                                  (POCITANO == "imaga" | POCITANO == "jedinci") ~ 3,
+                                (POCET > 100) | REL_POC == "hojně" & 
+                                  (POCITANO == "imaga" | POCITANO == "jedinci") ~ 4),
+          POCETNOST = case_when(DRUH == "Euplagia quadripunctaria" & POCET_CAT > 1 ~ 1,
+                                DRUH == "Euplagia quadripunctaria" & POCET_CAT <= 1 ~ 0,
+                                DRUH == "Phengaris nausithous" & POCET_CAT > 1 ~ 1,
+                                DRUH == "Phengaris nausithous" & POCET_CAT <= 1 ~ 0,
+                                DRUH == "Phengaris teleius" & POCET_CAT > 1 ~ 1,
+                                DRUH == "Phengaris teleius" & POCET_CAT <= 1 ~ 0),
+          PLANTS = case_when(DRUH == "Phengaris nausithous" & 
+                               grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
+                             DRUH == "Phengaris nausithous" & 
+                               grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
+                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == FALSE ~ 1,
+                             DRUH == "Phengaris nausithous" & 
+                               grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0,
+                             DRUH == "Phengaris nausithous" & 
+                               grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
+                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE ~ 0,
+                             DRUH == "Phengaris teleius" & 
+                               grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
+                             DRUH == "Phengaris teleius" & 
+                               grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
+                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == FALSE ~ 1,
+                             DRUH == "Phengaris teleius" & 
+                               grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0,
+                             DRUH == "Phengaris teleius" & 
+                               grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
+                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE ~ 0,
+                             DRUH == "Euplagia quadripunctiria" &
+                               grepl(paste(c("sadc", "sadec", "hlaváč", "bodlák", "bodlak"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1)) 
+      species <- species %>%
+        filter(YEAR >= (current_year - 6))
+      return(species)
+    }
+    
+    Lep_1_site <- function(species) {
+      species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                          as.vector(find_evl_NAZEV(input_species))))
+      colnames(species_site) <- c("SITECODE", "NAZEV")
+      hab_evl <- Lep_1_clear(species) %>%
+        bind_rows(species_site) %>%
+        group_by(SITECODE) %>%
+        summarise(SITECODE = SITECODE,
+                  NAZEV = NAZEV,
+                  PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                       max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                       max(na.omit(PRESENT)) == 0 ~ "NE"),
+                  POCETNOST = case_when(max(na.omit(POCETNOST)) == -Inf ~ "CHYBÍ DATA",
+                                        max(na.omit(POCETNOST)) == 1 ~ "DOSTATEČNÁ",
+                                        max(na.omit(POCETNOST)) == 0 ~ "NEDOSTATEČNÁ"),
+                  VITALITA = case_when((max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
+                                                      max(na.omit(POCET[YEAR == (current_year - 1)])),
+                                                      max(na.omit(POCET[YEAR == (current_year - 2)])))))/
+                                          mean(na.omit(c(max(na.omit(POCET[YEAR == (current_year - 3)])),
+                                                         max(na.omit(POCET[YEAR == (current_year - 4)])),
+                                                         max(na.omit(POCET[YEAR == (current_year - 5)])),
+                                                         max(na.omit(POCET[YEAR == (current_year - 6)]))))))
+                                       >= 0.85 ~ "POSITIVNÍ",
+                                       (max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
+                                                      max(na.omit(POCET[YEAR == (current_year - 1)])),
+                                                      max(na.omit(POCET[YEAR == (current_year - 2)])))))/
+                                          mean(na.omit(c(max(na.omit(POCET[YEAR == (current_year - 3)])),
+                                                         max(na.omit(POCET[YEAR == (current_year - 4)])),
+                                                         max(na.omit(POCET[YEAR == (current_year - 5)])),
+                                                         max(na.omit(POCET[YEAR == (current_year - 6)]))))))
+                                       < 0.85 ~ "NEGATIVNÍ",
+                                       max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
+                                                     max(na.omit(POCET[YEAR == (current_year - 1)])),
+                                                     max(na.omit(POCET[YEAR == (current_year - 2)])))))
+                                       == -Inf ~ "CHYBÍ DATA",
+                                       PRESENCE == "CHYBÍ DATA" ~ "CHYBÍ DATA"),
+                  HABITAT = NA,
+                  ROSTLINY = case_when(max(na.omit(PLANTS)) == 1 ~ "DOSTATEČNÝ",
+                                       max(na.omit(PLANTS)) == 0 ~ "NEDOSTATEČNÝ",
+                                       max(na.omit(PLANTS)) == -Inf ~ "CHYBÍ DATA"),
+                  LIKVIDACE = NA,
+                  NEGATIV = NA,
+                  MANAGEMENT = NA,
+                  MONITOR = NA,
+                  COLOUR = case_when(max(na.omit(PRESENT)) == 1 ~ "green",
+                                     max(na.omit(PRESENT)) == -Inf ~ "grey",
+                                     max(na.omit(PRESENT)) == 0 ~ "red"),
+                  OVERALL = NA)
+      hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+      hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+      return(hab_evl)
+    }
+    Lep_2_clear <- function(species) {
+      species <- species %>%
+        mutate(
+          DRUH = as.factor(DRUH),
+          DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+          YEAR = substring(DATE, 1, 4),
+          SITECODE = substr(EVL, 1, 9),
+          NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+          PRESENT = case_when(is.na(POCET) == TRUE | is.na(POCITANO) == TRUE ~ 0,
+                              (is.na(POCET) == FALSE & POCET > 0) | 
+                                (is.na(POCITANO) == FALSE & POCET > 0) ~ 1),
+          PLANTS = case_when(DRUH == "Phengaris nausithous | Phengaris teleius" & 
+                               (grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                                  grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE) |
+                               (grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
+                                  grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == FALSE) ~ 1,
+                             DRUH == "Phengaris nausithous | Phengaris teleius" & 
+                               (grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
+                                  grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE) |
+                               (grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
+                                  grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE) ~ 0)) 
+      species <- species %>%
+        filter(YEAR >= (current_year - 6))
+      return(species)
+    }
+    
+    Lep_2_site <- function(species) {
+      species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                          as.vector(find_evl_NAZEV(input_species))))
+      colnames(species_site) <- c("SITECODE", "NAZEV")
+      hab_evl <- Lep_2_clear(species) %>%
+        bind_rows(species_site) %>%
+        group_by(SITECODE) %>%
+        summarise(SITECODE = SITECODE,
+                  NAZEV = NAZEV,
+                  PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                       max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                       max(na.omit(PRESENT)) == 0 ~ "NE"),
+                  HABITAT = NA,
+                  ROSTLINY = case_when(max(na.omit(PLANTS)) == 1 ~ "DOSTATEČNÝ",
+                                       max(na.omit(PLANTS)) == 0 ~ "NEDOSTATEČNÝ",
+                                       max(na.omit(PLANTS)) == -Inf ~ "CHYBÍ DATA"),
+                  LIKVIDACE = NA,
+                  NEGATIV = NA,
+                  MANAGEMENT = NA,
+                  MONITOR = NA,
+                  COLOUR = case_when(max(na.omit(PRESENT)) == 1 ~ "green",
+                                     max(na.omit(PRESENT)) == -Inf ~ "grey",
+                                     max(na.omit(PRESENT)) == 0 ~ "red"),
+                  OVERALL = NA)
+      hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+      hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+      return(hab_evl)
+    }
+    # Brouci ----
+    # Carabidae ----
+    # Carabus hungaricus
+    CarOpen_clear <- function(species) {
+      species <- species %>%
+        mutate(
+          DRUH = as.factor(DRUH),
+          DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+          YEAR = substring(DATE, 1, 4),
+          SITECODE = substr(as.character(EVL), 1, 9),
+          NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+          PRESENT = case_when(is.na(POCET) == FALSE & POCET > 0 & is.na(POCITANO) == TRUE ~ 0,
+                              is.na(POCET) == FALSE | POCET > 0 | is.na(POCITANO) == FALSE ~ 1))
+      species <- species %>%
+        filter(YEAR >= (current_year - 3))
+      return(species)
+    }
+    
+    CarOpen_site <- function(species) {
+      species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                          as.vector(find_evl_NAZEV(input_species))))
+      colnames(species_site) <- c("SITECODE", "NAZEV")
+      hab_evl <- CarOpen_clear(species) %>%
+        bind_rows(species_site) %>%
+        group_by(SITECODE) %>%
+        summarise(SITECODE = SITECODE,
+                  NAZEV = NAZEV,
+                  PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                       max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                       max(na.omit(PRESENT)) == 0 ~ "NE"),
+                  HABITAT = NA,
+                  LIKVIDACE = NA,
+                  MANAGEMENT = NA,
+                  NEGATIV = NA,
+                  OVERALL = NA,
+                  COLOUR = case_when(max(na.omit(PRESENT)) == 1 ~ "green",
+                                     max(na.omit(PRESENT)) == -Inf ~ "grey",
+                                     max(na.omit(PRESENT)) == 0 ~ "red"),
+                  VITALITA = NA)
+      hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+      hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+      return(hab_evl)
+    }
+   
+    CarAqua_clear <- function(species) {
+      species <- species %>%
+        mutate(
+          DRUH = as.factor(DRUH),
+          DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+          YEAR = substring(DATE, 1, 4),
+          SITECODE = substr(as.character(EVL), 1, 9),
+          NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+          PRESENT = case_when(is.na(POCET) == FALSE & POCET > 0 & is.na(POCITANO) == TRUE ~ 0,
+                              is.na(POCET) == FALSE | POCET > 0 | is.na(POCITANO) == FALSE ~ 1))
+      species <- species %>%
+        filter(YEAR >= (current_year - 6))
+      return(species)
+    }
+    
+    CarAqua_site <- function(species) {
+      species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                          as.vector(find_evl_NAZEV(input_species))))
+      colnames(species_site) <- c("SITECODE", "NAZEV")
+      hab_evl <- CarAqua_clear(species) %>%
+        bind_rows(species_site) %>%
+        group_by(SITECODE) %>%
+        summarise(SITECODE = SITECODE,
+                  NAZEV = NAZEV,
+                  PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                       max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                       max(na.omit(PRESENT)) == 0 ~ "NE"),
+                  HABITAT = NA,
+                  LIKVIDACE = NA,
+                  MANAGEMENT = NA,
+                  NEGATIV = NA,
+                  OVERALL = NA,
+                  COLOUR = case_when(max(na.omit(PRESENT)) == 1 ~ "green",
+                                     max(na.omit(PRESENT)) == -Inf ~ "grey",
+                                     max(na.omit(PRESENT)) == 0 ~ "red"),
+                  VITALITA = NA)
+      hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+      hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+      return(hab_evl)
+    }
+
+    # Saproxylický ----
+    SapOpen_clear <- function(species) {
+      species <- species %>%
+        mutate(
+          DRUH = as.factor(DRUH),
+          DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+          YEAR = substring(DATE, 1, 4),
+          SITECODE = substr(as.character(EVL), 1, 9),
+          NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+          PRESENT = case_when(is.na(POCET) == FALSE & POCET > 0 & is.na(POCITANO) == TRUE ~ 0,
+                              is.na(POCET) == FALSE | POCET > 0 | is.na(POCITANO) == FALSE ~ 1))
+      species <- species %>%
+        filter(YEAR >= (current_year - 6))
+      return(species)
+    }
+    
+    SapOpen_site <- function(species) {
+      species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                          as.vector(find_evl_NAZEV(input_species))))
+      colnames(species_site) <- c("SITECODE", "NAZEV")
+      hab_evl <- SapOpen_clear(species) %>%
+        bind_rows(species_site) %>%
+        group_by(SITECODE) %>%
+        summarise(SITECODE = SITECODE,
+                  NAZEV = NAZEV,
+                  PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                       max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                       max(na.omit(PRESENT)) == 0 ~ "NE"),
+                  HABITAT = NA,
+                  LIKVIDACE = NA,
+                  MANAGEMENT = NA,
+                  NEGATIV = NA,
+                  OVERALL = NA,
+                  COLOUR = case_when(max(na.omit(PRESENT)) == 1 ~ "green",
+                                     max(na.omit(PRESENT)) == -Inf ~ "grey",
+                                     max(na.omit(PRESENT)) == 0 ~ "red"),
+                  VITALITA = NA)
+      hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+      hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+      return(hab_evl)
+    }
+    
+    SapFor_clear <- function(species) {
+      species <- species %>%
+        mutate(
+          DRUH = as.factor(DRUH),
+          DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+          YEAR = substring(DATE, 1, 4),
+          SITECODE = substr(EVL, 1, 9),
+          NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+          PRESENT = case_when(is.na(POCET) == FALSE & POCET > 0 & is.na(POCITANO) == TRUE ~ 0,
+                              is.na(POCET) == FALSE | POCET > 0 | is.na(POCITANO) == FALSE ~ 1),
+          POCETNOST = case_when(DRUH == "Rosalia alpina" & POCET >= 100 & SITECODE == "CZ0514243" ~ 1,
+                                DRUH == "Rosalia alpina" & POCET < 100 & SITECODE == "CZ0514243" ~ 0,
+                                DRUH == "Rosalia alpina" & POCET >= 10 & SITECODE != "CZ0514243" ~ 1,
+                                DRUH == "Rosalia alpina" & POCET < 10 & SITECODE != "CZ0514243" ~ 0,
+                                DRUH == "Rhysodes sulcatus" & POCET >= 10 ~ 1,
+                                DRUH == "Rhysodes sulcatus" & POCET < 10 ~ 0)
+        ) 
+      species <- species %>%
+        filter(YEAR >= (current_year - 6))
+      return(species)
+    }
+    
+    SapFor_site <- function(species) {
+      species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                          as.vector(find_evl_NAZEV(input_species))))
+      colnames(species_site) <- c("SITECODE", "NAZEV")
+      hab_evl <- SapFor_clear(species) %>%
+        bind_rows(species_site) %>%
+        group_by(SITECODE) %>%
+        summarise(SITECODE = SITECODE,
+                  NAZEV = NAZEV,
+                  PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                       max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                       max(na.omit(PRESENT)) == 0 ~ "NE"),
+                  POCETNOST = case_when(max(na.omit(POCETNOST)) == -Inf ~ "CHYBÍ DATA",
+                                        max(na.omit(POCETNOST)) == 1 ~ "DOSTATEČNÁ"),
+                  VITALITA = NA,
+                  HABITAT = NA,
+                  DREVO = NA,
+                  LIKVIDACE = NA,
+                  MANAGEMENT = NA,
+                  NEGATIV = NA,
+                  OVERALL = NA,
+                  COLOUR = case_when(max(na.omit(PRESENT)) == 1 ~ "green",
+                                     max(na.omit(PRESENT)) == -Inf ~ "grey",
+                                     max(na.omit(PRESENT)) == 0 ~ "red"),
+                  VITALITA = NA)
+      hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+      hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+      return(hab_evl)
+    }
+    
+    # Graphoderus ----
+    
+    ColAqua_clear <- function(species) {
+      species <- species %>%
+        mutate(
+          DRUH = as.factor(DRUH),
+          DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+          YEAR = substring(DATE, 1, 4),
+          SITECODE = substr(as.character(EVL), 1, 9),
+          NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+          PRESENT = case_when(is.na(POCET) == FALSE & POCET > 0 & is.na(POCITANO) == TRUE ~ 0,
+                              is.na(POCET) == FALSE | POCET > 0 | is.na(POCITANO) == FALSE ~ 1),
+          POCETNOST = case_when(POCET > 10 ~ 1,
+                                POCET <= 10 ~ 0))
+      species <- species %>%
+        filter(YEAR >= (current_year - 2))
+      return(species)
+    }
+    
+    ColAqua_site <- function(species) {
+      species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                          as.vector(find_evl_NAZEV(input_species))))
+      colnames(species_site) <- c("SITECODE", "NAZEV")
+      hab_evl <- ColAqua_clear(species) %>%
+        bind_rows(species_site) %>%
+        group_by(SITECODE) %>%
+        summarise(SITECODE = SITECODE,
+                  NAZEV = NAZEV,
+                  PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                       max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                       max(na.omit(PRESENT)) == 0 ~ "NE"),
+                  POCETNOST = case_when(max(na.omit(POCETNOST)) == -Inf ~ "CHYBÍ DATA",
+                                        max(na.omit(POCETNOST)) == 1 ~ "DOSTATEČNÁ"),
+                  VITALITA = NA,
+                  HABITAT = NA,
+                  PRUHLEDNOST = NA,
+                  ZOOPLANKTON = NA,
+                  LIKVIDACE = NA,
+                  MANAGEMENT = NA,
+                  NEGATIV = NA,
+                  OVERALL = NA,
+                  COLOUR = case_when(max(na.omit(PRESENT)) == 1 ~ "green",
+                                     max(na.omit(PRESENT)) == -Inf ~ "grey",
+                                     max(na.omit(PRESENT)) == 0 ~ "red"))
+      hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+      hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+      return(hab_evl)
+    }
+    
+    # Fish ----
+    
+    # Ssawci ----
+    Carniv_clear <- function(species) {
+      species <- species %>%
+        mutate(
+          DRUH = as.factor(DRUH),
+          DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+          YEAR = substring(DATE, 1, 4),
+          SITECODE = substr(EVL, 1, 9),
+          NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+          PRESENT = case_when(grepl("DNA", POZNAMKA) == TRUE |
+                              grepl("C1", STRUKT_POZN) == TRUE |
+                              grepl("C2", STRUKT_POZN) == TRUE ~ 1)) 
+      species <- species %>%
+        filter(YEAR >= (current_year - 1))
+      return(species)
+    }
+    
+    Carniv_site <- function(species) {
+      species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                          as.vector(find_evl_NAZEV(input_species))))
+      colnames(species_site) <- c("SITECODE", "NAZEV")
+      hab_evl <- Carniv_clear(species) %>%
+        bind_rows(species_site) %>%
+        group_by(SITECODE) %>%
+        summarise(SITECODE = SITECODE,
+                  NAZEV = NAZEV,
+                  PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                       max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                       max(na.omit(PRESENT)) == 0 ~ "NE"),
+                  HABITAT = NA,
+                  LIKVIDACE = NA,
+                  MANAGEMENT = NA,
+                  NEGATIV = NA,
+                  OVERALL = NA,
+                  COLOUR = case_when(max(na.omit(PRESENT)) == 1 ~ "green",
+                                     max(na.omit(PRESENT)) == -Inf ~ "grey",
+                                     max(na.omit(PRESENT)) == 0 ~ "red"))
+      hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+      hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+      return(hab_evl)
+    }
+    # RESULT MAP----
+    # Motýle
+    if (input$species == "Euplagia quadripunctaria") {
+      result_evl <- Lep_1_site(species)
+    } 
+    if (input$species == "Phengaris nausithous") {
+      result_evl <- Lep_1_site(species)
+    } 
+    if (input$species == "Phengaris teleius") {
+      result_evl <- Lep_1_site(species)
+    } 
+    if (input$species == "Colias myrmidone") {
+      result_evl <- Lep_2_site(species)
+    } 
+    if (input$species == "Lycaena dispar") {
+      result_evl <- Lep_2_site(species)
+    } 
+    if (input$species == "Euphydryas aurinia") {
+      result_evl <- Lep_1_site(species)
+    } 
+    if (input$species == "Euphydryas maturna") {
+      result_evl <- Lep_1_site(species)
+    } 
+    if (input$species == "Eriogaster catax") {
+      result_evl <- Lep_2_site(species)
+    } 
+    # Brouke
+    if (input$species == "Carabus hungaricus") {
+      result_evl <- CarOpen_site(species)
+    } 
+    if (input$species == "Carabus menetriesi pacholei") {
+      result_evl <- CarAqua_site(species)
+    } 
+    if (input$species == "Carabus variolosus") {
+      result_evl <- CarAqua_site(species)
+    } 
+    if (input$species == "Bolbelasmus unicornis") {
+      result_evl <- SapOpen_site(species)
+    } 
+    if (input$species == "Lucanus cervus") {
+      result_evl <- SapOpen_site(species)
+    } 
+    if (input$species == "Cerambyx cerdo") {
+      result_evl <- SapOpen_site(species)
+    } 
+    if (input$species == "Osmoderma barnabita") {
+      result_evl <- SapOpen_site(species)
+    }
+    if (input$species == "Cucujus cinnaberinus") {
+      result_evl <- SapFor_site(species)
+    }
+    if (input$species == "Rhysodes sulcatus") {
+      result_evl <- SapFor_site(species)
+    }
+    if (input$species == "Limoniscus violaceus") {
+      result_evl <- SapFor_site(species)
+    }
+    if (input$species == "Rosalia alpina") {
+      result_evl <- SapFor_site(species)
+    }
+    if (input$species == "Graphoderus bilineatus") {
+      result_evl <- ColAqua_site(species)
+    }
+    #Ryby
+    if (input$species == "Cottus gobio") {
+      result_evl <- icht_site(icht_clear(species))
+    }
+    if (input$species == "Bombina bombina" |
+        input$species == "Bombina variegata" |
+        input$species == "Triturus cristatus" |
+        input$species == "Triturus carnifex" |
+        input$species == "Triturus dobrogicus" |
+        input$species == "Lissotriton montandoni") {
+      result_evl <- ampsite(amp_clear(species))
+    }
+    if (input$species == "Rhinolophus hipposideros" |
+        input$species == "Barbastella barbastellus" |
+        input$species == "Myotis bechsteini" |
+        input$species == "Myotis blythii" |
+        input$species == "Myotis dasycneme" |
+        input$species == "Myotis emarginatus" |
+        input$species == "Myotis myotis") {
+      result_evl <- chirsite(clear_chir(species))
+    }
+    if (input$species == "Canis lupus") {
+      result_evl <- Carniv_site(species)
+    }
+    if (input$species == "Ursus arctos") {
+      result_evl <- Carniv_site(species)
+    }
+    if (input$species == "Lynx lynx") {
+      result_evl <- Carniv_site(species)
+    }
+    
+    target_evl <- evl[evl$SITECODE %in% find_evl_SITECODE(input$species),]
+    target_evl <- merge(target_evl, result_evl, by = "SITECODE")
+    
+    leaflet() %>%
+      addProviderTiles(providers$Esri.WorldTopo) %>%
+      addPolygons(data = czechia,
+                  color = "black",
+                  fill = NA,
+                  weight = 1,
+                  opacity = 1) %>%
+      addPolygons(data = bioregs,
+                  color = "black",
+                  fill = NA,
+                  weight = 1,
+                  opacity = .5) %>%
+      addPolygons(data = target_evl,
+                  color = ~COLOUR,
+                  fill = ~COLOUR,
+                  weight = 3,
+                  opacity = .97,
+                  label = target_evl$NAZEV.y)
+  })
+  
+  # Mapa nálezů ----
+  output$mapa_nalezu <- renderPlot({
+    req(input$file1)
+    
+    species <- read.csv(input$file1$datapath,
+                        sep = input$sep)
+    
+    species <- filter(species, DRUH == input$species)
+    
+    mapicka <- function(species){
+      species <- species[!(species$X == "<i>Skrytá lokalizace</i>"),]
+      species <- species[!(species$Y == "<i>Skrytá lokalizace</i>"),]
+      d <- data.frame(lon=as.numeric(sub(",", ".", species$X, fixed = TRUE)), 
+                      lat=as.numeric(sub(",", ".", species$Y, fixed = TRUE)))
+      coordinates(d) <- ~lon + lat
+      proj4string(d) <- CRS("+init=epsg:5514")
+      sp.d <- as.data.frame(spTransform(d, CRS("+init=epsg:4326")))
+      names(sp.d) <- c("decimallongtitude", "decimallatitude")
+      species <- cbind(species, sp.d)
+      species$DATUM <- as.Date(as.character(species$DATUM_OD), format = '%Y%m%d')
+      species <- (subset(species, species$DATUM > "2014-01-01"))
+      return(species)
+    }
+    
+    mapka <- function(species, mapa){
+      ggplot() +
+        geom_polygon(data = mapa, 
+                     aes(x = long, y = lat, group = group),
+                     fill = NA, colour = "black") + 
+        geom_polygon(data = bioregs, 
+                     aes(x = long, y = lat, group = group),
+                     fill = NA, colour = "black", alpha = 0.01) +
+        geom_point(data = species, aes(x = decimallongtitude, y = decimallatitude, colour = DRUH), 
+                   alpha = 0.3) +
+        guides(colour = guide_legend(override.aes = list(alpha = 1))) +
+        coord_fixed() +
+        coord_quickmap() +  
+        theme_void() +
+        theme(legend.position = "none")
+    }
+    
+    species_points <- function(species){
+      species_points <- data.frame(mapicka(species)$decimallongtitude, mapicka(species)$decimallatitude)
+      names(species_points) <- c("long", "lat")
+      coordinates(species_points) = ~long +lat
+      proj4string(species_points)=proj4string(czechia)
+      return(species_points)
+    }
+    
+    species_evl <- function(species, species_points, species_sites){
+      species_evl_sites <- subset(evl, evl$SITECODE %in% species_sites)
+      species_evl_result <- species[!(is.na(over(species_points(mapicka(species)), 
+                                                 species_evl_sites)$SITECODE)),]
+      return(species_evl_result)
+    }
+    
+    species_sites <-  function(species){
+      return(sites_subjects$SITECODE[which(grepl(input$species, sites_subjects$SUBJECT))])
+    }
+    
+    result <- mapka(mapicka(species_evl(species, species_points(species), species_sites(species))), czechia)
+    
+    result
+  })
+  
+  # Výběr taxonu ----
+  output$group_selector = renderUI({
+    selectInput(inputId = "Group",
+                label = "Vyberte skupinu",
+                choices = as.character(unique(taxa$Group)))
+  })
+  
+  output$species_selector = renderUI({
+    data_available = taxa[taxa$Group == input$Group, "Species"]
+    selectInput(
+      inputId = "species",
+      label = "Vyberte druh",
+      choices = unique(data_available),
+      selected = unique(data_available)[1]
+    )
+  })
+  
+  output$evl_selector = renderUI({
+    find_evl_SITECODE <- function(species){
+      return(sites_subjects$SITECODE[which(grepl(species, sites_subjects$SUBJECT))])
+    }
+    find_evl_NAZEV <- function(species){
+      return(sites_subjects$NAZEV[which(grepl(species, sites_subjects$SUBJECT))])
+    }
+    evl_available = find_evl_NAZEV(input$species)
+    selectInput(
+      inputId = "evl_site",
+      label = "Vyberte EVL",
+      choices = c("", as.character(evl_available)),
+      selected = NULL
+    )
+  })
+
+  
+  # Metodika ----
+  output$metodika <- renderUI({
+    
+    req(input$species)
+    req(input$file1)
+    
+    find_czechname <- function(species) {
+      return(taxa[grepl(species, taxa$Species),]$Species_CZ)
+    }
+    find_latinname <- function(species) {
+      return(taxa[grepl(species, taxa$Species_CZ),]$Species)
+    }
+    
+    str_head <-
+      paste(h4("Metodika hodnocení stavu druhu", (find_czechname(input$species))))
+    # Motýle
+    str_phenau <- paste(text_phenau, text_Lep_1)
+    str_phetel <- paste(text_phetel, text_Lep_1)
+    str_eupqua <- paste(p("Daří se mi dobře"), text_Lep_1)
+    str_colmyr <- paste(text_colmyr, text_Lep_2)
+    str_lycdis <- paste(text_lycdis, text_Lep_1)
+    # Brouke
+    str_carvar <- paste(text_carvar)
+    str_luccer <- paste(text_luccer, text_SapOpen)
+    str_cercer <- paste(text_cercer, text_SapOpen)
+    str_osmbar <- paste(text_SapOpen)
+    str_limvio <- paste(text_limvio, text_SapFor)
+    str_grabil <- paste(text_grabil)
+    str_cuccin <- paste(text_cuccin, text_SapFor)
+    # Korejši
+    str_austor <- paste(p("Morová rána"))
+    # Štírci
+    str_antste <- paste(p("Prcek"))
+    # Ryby
+    str_cotgob <- paste(p("Jsem pod kamenem"))
+    # Obojživelníci
+    str_bombom <- paste(p("Neolizovat kuňky?"))
+    str_bomvar <- paste(p("Olizovat kuňky?"))
+    str_tricri <- paste(p("Kde jsi?"))
+    str_tricar <- paste(p("Neztratil ses?"))
+    str_tridob <- paste(p("Dunaj, Dunaj, Dunaj, Dunaj, aj to širé móře!"))
+    str_lismon <- paste(p("Proč se nerozmnožuješ?"))
+    # Ssawci
+    str_canlup <- paste(text_canlup, text_Carniv)
+    str_lynlyn <- paste(text_lynlyn, text_Carniv)
+    
+    if (input$species == "Phengaris nausithous") {
+      result <- HTML(paste(str_head, str_phenau))
+    }
+    if (input$species == "Phengaris teleius") {
+      result <- HTML(paste(str_head, str_phetel))
+    }
+    if (input$species == "Colias myrmidone") {
+      result <- HTML(paste(str_head, str_colmyr))
+    }
+    if (input$species == "Lycaena dispar") {
+      result <- HTML(paste(str_head, str_lycdis))
+    }
+    if (input$species == "Euplagia quadripunctaria") {
+      result <- HTML(paste(str_head, str_eupqua))
+    }
+    if (input$species == "Carabus variolosus") {
+      result <- HTML(paste(str_head, str_carvar))
+    }
+    if (input$species == "Lucanus cervus") {
+      result <- HTML(paste(str_head, str_luccer))
+    }
+    if (input$species == "Cerambyx cerdo") {
+      result <- HTML(paste(str_head, str_cercer))
+    }
+    if (input$species == "Osmoderma barnabita") {
+      result <- HTML(paste(str_head, str_osmbar))
+    }
+    if (input$species == "Limoniscus violaceus") {
+      result <- HTML(paste(str_head, str_limvio))
+    }
+    if (input$species == "Graphoderus bilineatus") {
+      result <- HTML(paste(str_head, str_grabil))
+    }
+    if (input$species == "Cucujus cinnaberinus") {
+      result <- HTML(paste(str_head, str_cuccin))
+    }
+    if (input$species == "Austropotamobius torrentium") {
+      result <- HTML(paste(str_head, str_austor))
+    }
+    if (input$species == "Anthrenochernes stellae") {
+      result <- HTML(paste(str_head, str_antste))
+    }
+    if (input$species == "Cottus gobio") {
+      result <- HTML(paste(str_head, str_cotgob))
+    }
+    if (input$species == "Bombina bombina") {
+      result <- HTML(paste(str_head, str_bombom))
+    }
+    if (input$species == "Bombina variegata") {
+      result <- HTML(paste(str_head, str_bomvar))
+    }
+    if (input$species == "Triturus cristatus") {
+      result <- HTML(paste(str_head, str_tricri))
+    }
+    if (input$species == "Triturus carnifex") {
+      result <- HTML(paste(str_head, str_tricar))
+    }
+    if (input$species == "Triturus dobrogicus") {
+      result <- HTML(paste(str_head, str_tridob))
+    }
+    if (input$species == "Lissotriton montandoni") {
+      result <- HTML(paste(str_head, str_lismon))
+    }
+    if (input$species == "Canis lupus") {
+      result <- HTML(paste(str_head, str_canlup))
+    }
+    if (input$species == "Lynx lynx") {
+      result <- HTML(paste(str_head, str_lynlyn))
+    }
+    result
+    
+  })
+  
+  # Lokality ----
+  output$lokality <- renderTable({
+    
+    req(input$species)
+    
+    cbind("Název EVL" = find_evl_NAZEV(input$species), 
+          "SITECODE" = find_evl_SITECODE(input$species))
+    
+  })
+  
+  # Default UI ----
+  output$default <- renderUI({
+
+    if (input$species == "" | is.null(input$file1)== TRUE) {
+      
+      div(img(src = "logo.png", width = "30%"), style = "text-align: center;")
+      
+      } else {
+        NULL
+      }
+    
+  })
+  
+}
+
+shinyApp(ui = ui, server = server)
