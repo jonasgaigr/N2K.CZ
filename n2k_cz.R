@@ -54,46 +54,46 @@ Motýli	'Phengaris nausithous' 'modrásek bahenní'
 Motýli	'Phengaris teleius' 'modrásek očkovaný'
 Brouci	'Bolbelasmus unicornis' 'chrobák jednorohý'
 Motýli	'Euplagia quadripunctaria' 'přástevník kostivalový'
-Brouci	'Carabus hungaricus' ''
-Brouci	'Carabus menetriesi pacholei' ''
-Brouci	'Carabus variolosus' ''
+Brouci	'Carabus hungaricus' 'střevlík uherský'
+Brouci	'Carabus menetriesi pacholei' 'střevlík Ménétriésův'
+Brouci	'Carabus variolosus' 'střevlík hrbolkatý'
 Brouci	'Cerambyx cerdo' 'tesařík velký'
 Motýli	'Colias myrmidone' 'žluťásek barvoměnný'
 Brouci	'Cucujus cinnaberinus' 'lesák rumělkový'
-Motýli	'Euphydryas aurinia' ''
-Motýli	'Euphydryas maturna' ''
+Motýli	'Euphydryas aurinia' 'hnědásek chrastavcový'
+Motýli	'Euphydryas maturna' 'hnědásek osikový'
 Brouci	'Graphoderus bilineatus' 'potápník dvoučárý'
-Brouci	'Limoniscus violaceus' ''
+Brouci	'Limoniscus violaceus' 'kovařík fialový'
 Brouci	'Lucanus cervus' 'roháč obecný'
 Motýli	'Lycaena dispar' 'ohniváček černočárný'
 Brouci	'Osmoderma barnabita' 'páchník hnědý'
 Brouci	'Rhysodes sulcatus' 'rýhovec pralesní'
 Brouci	'Rosalia alpina' 'tesařík alpský'
 Rovnokřídlí	'Stenobothrus eurasius' ''
-Motýli	'Eriogaster catax' ''
-Vážky	'Coenagrion ornatum' ''
-Vážky	'Leucorrhinia pectoralis' ''
-Vážky	'Ophiogomphus cecilia' ''
-Vážky	'Cordulegaster heros' ''
-Plži	'Anisus vorticulus' ''
-Korýši	'Austropotamobius torrentium' ''
+Motýli	'Eriogaster catax' 'bourovec trnkový'
+Vážky	'Coenagrion ornatum' 'šidélko ozdobné'
+Vážky	'Leucorrhinia pectoralis' 'vážka jasnoskvrnná'
+Vážky	'Ophiogomphus cecilia' 'klínatka rohatá'
+Vážky	'Cordulegaster heros' 'páskovec velký'
+Plži	'Anisus vorticulus' 'svinutec tenký'
+Korýši	'Austropotamobius torrentium' 'rak říční'
 Mlži	'Margaritifera margaritifera' 'perlorodka říční'
 Mlži	'Unio crassus' 'velevrub tupý'
-Plži	'Vertigo angustior' ''
-Plži	'Vertigo geyeri' ''
-Plži	'Vertigo moulinsiana' ''
+Plži	'Vertigo angustior' 'vrkoč útlý'
+Plži	'Vertigo geyeri' 'vrkoč Geyerův'
+Plži	'Vertigo moulinsiana' 'vrkoč bažinný'
 Štírci	'Anthrenochernes stellae' 'štírek Stella'
 Ryby	'Leuciscus aspius' 'bolen dravý'
-Ryby	'Cobitis taneia' ''
-Ryby	'Cottus gobio' ''
+Ryby	'Cobitis taneia' 'sekavec písečný'
+Ryby	'Cottus gobio' 'vranka obecná'
 Ryby	'Gobio albipinnatus' ''
 Ryby	'Gobio kesslerii' ''
 Ryby	'Gymnocephalus baloni' ''
 Ryby	'Gymnocephalus schraetser' ''
-Ryby	'Misgurmus fossilis' ''
+Ryby	'Misgurmus fossilis' 'piskoř pruhovaný'
 Ryby	'Pelecus cultratus' ''
 Ryby	'Rhodeus amarus' 'hořavka duhová'
-Ryby	'Sabanejewia aurata' ''
+Ryby	'Sabanejewia aurata' 'sekavčík dunajský'
 Ryby	'Salmo salar' 'losos obecný'
 Ryby	'Zingel streber' ''
 Ryby	'Zingel zingel' ''
@@ -123,7 +123,7 @@ Savci	'Lynx lynx' 'rys ostrovid'",
   encoding = "UTF-8"
 )
 
-# Texty----
+# Texty ----
 text_phenau <-
   paste(
     HTML(
@@ -158,9 +158,37 @@ text_phetel <-
       kde jsou vyhledány dělnicemi hostitelských mravenců (druhu Myrmica rubra, méně často Myrmica 
       scabrinodis), které je odnášejí do svých mravenišť. Tam se živí larvami a kuklami mravenců, 
       zhruba po dobu 10 měsíců. Po přezimování se v hnízdech mravenců i kuklí. Modrásek očkovaný 
-      je ekologicky velmi podobný příbuznému modrásku bahennímu (Maculinea nausithous), se kterým 
+      je ekologicky velmi podobný příbuznému modrásku bahennímu (Phengaris nausithous), se kterým 
       se na řadě lokalit vyskytuje společně. Modrásek očkovaný má však vyhraněnější nároky na 
-      stanoviště a je tedy vzácnější.</p>'
+      stanoviště a je tedy vzácnější.</p>
+      <h5><b>Péče o druh</b></h5>'
+    )
+  )
+text_eupqua <-
+  paste(
+    HTML(
+      '<h5><b>Ekologie druhu</b></h5>
+      <p style="text-align: justify">Tento druh preferuje skalnaté lesostepi, osluněné křovinaté 
+      stráně, řídké teplomilné doubravy, teplé suťové lesy, ale i osluněné lesní průseky. Dospělce 
+      ve dne zastihneme nejčastěji na porostech nektaronosných rostlin, především sadce konopáče 
+      (Eupatorium cannabinum). Druh má jednu generaci v roce, dospělci se vyskytují od konce 
+      června do začátku září, s vrcholem letu v poslední dekádě července a první polovině srpna. 
+      Létá ve dne i v noci, v noci je možné jej přilákat na světlo. Samice kladou vajíčka 
+      jednotlivě na živné rostliny. Housenky jsou poměrně polyfágní, živí se především hluchavkami,
+      šalvějemi, sadcem konopáčem, starčky, vrbovkami, ale i některými listnatými dřevinami 
+      (např. lískou, ostružiníky nebo zimolezy). Housenky se líhnou v září, přezimují a kuklí se v 
+      květnu následujícího roku při povrchu země v zápředku.</p>
+      <h5><b>Péče o druh</b></h5>
+      <p style="text-align: justify">Intenzivní hospodaření na lokalitách (intenzivní pastva s 
+      plošným sečením nedopasků, plošné sečení luk a vícenásobná seč) je hodnocen negativně z 
+      důvodu ničení obývaného habitatu i populace. Pozitivní je naopak extenzivní způsob 
+      hospodaření spolu s odstraňováním náletových dřevin, regulace porostu a nelesní vegetace 
+      mozaikovitým sečením (jedenkrát ročně) nebo řízenou extenzivní pastvou. Absence managementu 
+      vede k přirozeným změnám stanoviště (zarůstání), které se stávají sjeně jako negativní vlivy
+      problematické v případě, že se v okolí nenachází další vhodný habitat, který by zajistil 
+      přežití dané populace. Zalesňování lokalit má stejný dopad jako zarůstání v případě absence 
+      managementu a je proto hodnoceno negativně spolu s plošným používáním biocidů na lokalitách 
+      i v jejich nejbližším okolí.</p>'
     )
   )
 text_colmyr <-
@@ -186,6 +214,68 @@ text_colmyr <-
       stepní nebo lesostepní charakter lokalit, především udržování členitých širokých závětrných 
       lemů, širokých světlých lemů podél cest a trvalých lesních průseků (pod elektrickým vedením 
       apod.), které by zprostupnily krajinu pro migraci motýla.</p>'
+    )
+  )
+text_eupaur <-
+  paste(
+    HTML(
+      '<h5><b>Ekologie druhu</b></h5>
+      <p style="text-align: justify">Biotop: Mokré rašelinné a slatinné louky a vlhké podhorské 
+      pastviny, případně i vysychavější stanoviště s výskytem živné rostliny. Živná rostlina 
+      housenek: V ČR pouze čertkus luční (Succisa pratensis). Vývoj. Jednogenerační (květen–konec 
+      června). Vajíčka kladena ve shlucích v několika vrstvách na spodní stranu listů čertkusu. 
+      Preferují přitom živné rostliny rostoucí ve výrazných shlucích, jež jsou obklopeny nižší a 
+      někdy až nezapojenou vegetací. Pouze zde je živná rostlina dostatečně viditelná pro kladoucí 
+      samice, a současně dost osluněná pro vyhřívající se larvy. Housenky jsou gregarické, žijí v 
+      pozdním létě a na začátku podzimu v zámotcích na listech živných rostlin; po zkonzumování 
+      rostliny se někdy celé hnízdo přesune na jiný trs čertkusu. Podmínkou úspěšného dokončení 
+      vývoje na jaře je možnost vyhřívání se na trsech nízkých trav a příjem velkého množství 
+      potravy. Nápadně zbarvené kukly leží přímo na listech čertkusu.</p>
+      <h5><b>Péče o druh</b></h5>
+      <p style="text-align: justify">Motýl má zvláštní nároky na členitost mozaikovitost lokalit.
+      K vývoji housenek potřebuje husté porosty živné rostliny situované v nižších travnatých 
+      porostech. Vedle nich však vyžaduje bohatou nabídku nektaronosných rostlin a slunná 
+      závětrná místa, kde může probíhat páření (pásy keřů, rozhraní luk a lesů). Všechny tyto 
+      podmínky nalézá na extenzivních pastvinách, resp. částech pastvin vyhledávaných dobytkem 
+      jen nepravidelně. Vhodnou péčí o obsazené lokality je buď extenzivní pastva, nebo 
+      mozaikovité sečení během června. Při sečení musí být ponechávány široké okraje i nesečené 
+      pásy či enklávy v lukách, ty z roku na rok střídat. Nepřípustná je druhá seč. Kosené louky 
+      mohou být na podzim velmi mírně přepaseny (1-2 krávy na hektar), což zajistí narušování 
+      drnu. Na menších lokalitách by se sečení mělo přímo vyhýbat rostlinám s hnízdy.</p>'
+    )
+  )
+text_eupmat <-
+  paste(
+    HTML(
+      '<h5><b>Ekologie druhu</b></h5>
+      <p style="text-align: justify">Živná rostlina housenek: ve středních Čechách pouze jasan 
+      ztepilý (Fraxinus excelsior), po přezimovaní se housenky v Polabí nejprve krmí bylinami 
+      (plicníky, violky aj.), případně rašícími pupeny ptačího zobu (Ligustrum vulgare). Poté, 
+      co začne rašit jasan, přecházejí na pupeny a mladé listy jasanu. Na jižní Moravě kromě 
+      jasanu také na kalina tušalaj (Viburnum lantana). Motýl je příkladem druhu, který je v 
+      různých částech areálu vázán na různé živné rostliny. Vývoj je jednogenerační (konec 
+      května – začátek července). Samice kladou hromadně do kupiček několik desítek až stovek 
+      žlutavých vajíček na osluněné listy mladých jasanů, přičemž na jednom stromku bývá někdy 
+      i více snůšek. Je-li snůška umístěna na vzrostlejší strom, není to výše než 4 metry od 
+      země. Zajímavé je, že více snůšek lze na některých stromcích najít opakovaně i několik let 
+      po sobě až do doby, než daný strom ”přeroste”. Vajíčka jsou zpravidla uložena ve dvou 
+      vrstvách. Mladé housenky jsou gregarické, opřádají vlákny nejprve lístek se snůškou, později 
+      celý list (vytvoří tzv. primární hnízdo). Po zkonzumování ”snůškového” listu se housenky 
+      přesunou na další listy; housenky z různých snůšek se někdy mísí a znovu opřádají vhodnou 
+      větev živné rostliny zámotkem (tzv. sekundárním hnízdem). Larvy v hnízdech nezimují, ale 
+      již na podzim se rozlézají a hibernují solitérně v přízemní vegetaci, v tuto dobu se musí 
+      často slunit.</p>
+      <h5><b>Péče o druh</b></h5>
+      <p style="text-align: justify">V péči o lokality druhu je jednoznačně negativně hodnocen 
+      nízký podíl porostů s hospodářským tvarem lesa středního, nedostatečný podíl a malá rozloha 
+      pasek, zarůstání lesních lemů a lemů kolem cest. Druhu neprospívají především změny druhové 
+      skladby porostů, výsadba stanovištně nebo geograficky nepůvodních druhů dřevin, plošná 
+      likvidace jasanového náletu, mechanizovaná příprava půdy, zejména naorávání pasek a aplikace 
+      biocidů. V ideálním habitatu je zachována stálá nabídka po většinu dne osluněných pasek a 
+      světlin s mladými jasany a zároveň dostatek nektaronosných křovin a bylin. Světliny od sebe 
+      musí být v takové vzdálenosti, aby přeletující samice vždy našly dostatek míst s podmínkami 
+      vhodnými pro kladení (maximálně 300 metrů). Vhodné je také propojení již osídlených světliny
+      lesními cestami či průseky.</p>'
     )
   )
 text_lycdis <-
@@ -508,11 +598,14 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   
+  # Stanovení maximální velikosti nahrávaného souboru
   options(shiny.maxRequestSize=50*1024^2)
   
+  # Vyhledávání SITECODE EVL v nichž je druh předmětem ochrany
   find_evl_SITECODE <- function(species){
     return(sites_subjects$SITECODE[which(grepl(species, sites_subjects$SUBJECT))])
   }
+  # Vyhledávání NAZEV EVL v nichž je druh předmětem ochrany
   find_evl_NAZEV <- function(species){
     return(sites_subjects$NAZEV[which(grepl(species, sites_subjects$SUBJECT))])
   }
@@ -522,13 +615,6 @@ server <- function(input, output, session) {
 
     req(input$file1)
     req(input$species)
-    
-    find_evl_SITECODE <- function(species){
-      return(sites_subjects$SITECODE[which(grepl(species, sites_subjects$SUBJECT))])
-    }
-    find_evl_NAZEV <- function(species){
-      return(sites_subjects$NAZEV[which(grepl(species, sites_subjects$SUBJECT))])
-    }
     
     species <- read.csv(input$file1$datapath,
                         sep = input$sep,
@@ -573,7 +659,11 @@ server <- function(input, output, session) {
                                   DRUH == "Phengaris nausithous" & POCET_CAT > 1 ~ 1,
                                   DRUH == "Phengaris nausithous" & POCET_CAT <= 1 ~ 0,
                                   DRUH == "Phengaris teleius" & POCET_CAT > 1 ~ 1,
-                                  DRUH == "Phengaris teleius" & POCET_CAT <= 1 ~ 0),
+                                  DRUH == "Phengaris teleius" & POCET_CAT <= 1 ~ 0,
+                                  DRUH == "Euphydryas aurinia" & POCET_CAT > 1 ~ 1,
+                                  DRUH == "Euphydryas aurinia" & POCET_CAT <= 1 ~ 0,
+                                  DRUH == "Euphydryas maturna" & POCET_CAT > 1 ~ 1,
+                                  DRUH == "Euphydryas maturna" & POCET_CAT <= 1 ~ 0),
             PLANTS = case_when(DRUH == "Phengaris nausithous" & 
                                  grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
                                  grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
@@ -609,7 +699,11 @@ server <- function(input, output, session) {
                                  grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
                                DRUH == "Euphydryas aurinia" &
                                  grepl(paste(c("succisa, čert, certk"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
-                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0)) 
+                                 grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0,
+                               DRUH == "Euphydryas maturna" &
+                                 grepl(paste(c("fraxinus"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 1,
+                               DRUH == "Euphydryas maturna" &
+                                 grepl(paste(c("fraxinus"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE  ~ 0)) 
         species <- species %>%
           filter(YEAR >= (current_year - 6))
         return(species)
@@ -698,31 +792,7 @@ server <- function(input, output, session) {
             NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
             PRESENT = case_when(is.na(POCET) == TRUE | is.na(POCITANO) == TRUE ~ 0,
                                 (is.na(POCET) == FALSE & POCET > 0) | 
-                                  (is.na(POCITANO) == FALSE & POCET > 0) ~ 1),
-            PLANTS = case_when(DRUH == "Phengaris nausithous" & 
-                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
-                                    grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
-                               DRUH == "Phengaris nausithous" & 
-                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
-                                    grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == FALSE ~ 1,
-                               DRUH == "Phengaris nausithous" & 
-                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
-                                    grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0,
-                               DRUH == "Phengaris nausithous" & 
-                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
-                                    grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE ~ 0,
-                               DRUH == "Phengaris teleius" & 
-                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
-                                    grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
-                               DRUH == "Phengaris teleius" & 
-                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
-                                    grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == FALSE ~ 1,
-                               DRUH == "Phengaris teleius" & 
-                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
-                                    grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0,
-                               DRUH == "Phengaris teleius" & 
-                                 grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
-                                    grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE ~ 0)) 
+                                  (is.na(POCITANO) == FALSE & POCET > 0) ~ 1)) 
         species <- species %>%
           filter(YEAR >= (current_year - 6))
         return(species)
@@ -741,9 +811,6 @@ server <- function(input, output, session) {
                                          max(na.omit(PRESENT)) >= 1 ~ "ANO",
                                          max(na.omit(PRESENT)) == 0 ~ "NE"),
                     HABITAT = NA,
-                    ROSTLINY = case_when(max(na.omit(PLANTS)) == 1 ~ "DOSTATEČNÝ",
-                                         max(na.omit(PLANTS)) == 0 ~ "NEDOSTATEČNÝ",
-                                         max(na.omit(PLANTS)) == -Inf ~ "CHYBÍ DATA"),
                     LIKVIDACE = NA,
                     NEGATIV = NA,
                     MANAGEMENT = NA,
@@ -759,14 +826,10 @@ server <- function(input, output, session) {
                   rownames = FALSE,
                   filter = "top",
                   colnames = c("KÓD EVL", "NÁZEV EVL", "PŘÍTOMNOST DRUHU", 
-                               "STAV HABITATU", "DOSTATEČNÝ VÝSKYT ŽIVNÝCH ROSTLIN", 
-                               "PŘÍMÁ LIKVIDACE HABITATU", "VLIV MANAGEMENTU", "NEGATIVNÍ VLIVY",
-                               "POSLEDNÍ MONITORING", "CELKOVÉ HODNOCENÍ")) %>%
+                               "STAV HABITATU", "PŘÍMÁ LIKVIDACE HABITATU", "VLIV MANAGEMENTU", 
+                               "NEGATIVNÍ VLIVY", "POSLEDNÍ MONITORING", "CELKOVÉ HODNOCENÍ")) %>%
           formatStyle(columns = "PRESENCE",
                       background = styleEqual(c("ANO", "NE", "CHYBÍ DATA"), 
-                                              c("green", "red", "grey"))) %>%
-          formatStyle(columns = "ROSTLINY",
-                      background = styleEqual(c("DOSTATEČNÝ", "NEDOSTATEČNÝ", "CHYBÍ DATA"), 
                                               c("green", "red", "grey")))
       }
       
@@ -3102,8 +3165,10 @@ server <- function(input, output, session) {
     # Motýle
     str_phenau <- paste(text_phenau, text_Lep_1)
     str_phetel <- paste(text_phetel, text_Lep_1)
-    str_eupqua <- paste(p("Daří se mi dobře"), text_Lep_1)
+    str_eupqua <- paste(text_eupqua, text_Lep_1)
     str_colmyr <- paste(text_colmyr, text_Lep_2)
+    str_eupaur <- paste(text_eupaur, text_Lep_1)
+    str_eupmat <- paste(text_eupmat, text_Lep_1)
     str_lycdis <- paste(text_lycdis, text_Lep_1)
     # Brouke
     str_carvar <- paste(text_carvar)
@@ -3144,6 +3209,12 @@ server <- function(input, output, session) {
     }
     if (input$species == "Euplagia quadripunctaria") {
       result <- HTML(paste(str_head, str_eupqua))
+    }
+    if (input$species == "Euphydryas aurinia") {
+      result <- HTML(paste(str_head, str_eupaur))
+    }
+    if (input$species == "Euphydryas maturna") {
+      result <- HTML(paste(str_head, str_eupmat))
     }
     if (input$species == "Carabus variolosus") {
       result <- HTML(paste(str_head, str_carvar))
