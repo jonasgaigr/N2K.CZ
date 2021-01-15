@@ -43,7 +43,7 @@ převzato z Gilson et al. (2019)</p>
 
 ## Hodnocení předmětů ochrany
 
-Aplikace [HOST.N2K](https://jonasgaigr.shinyapps.io/HOST_N2K/) na platformě [Shinyapps.io](https://www.shinyapps.io/)
+Aktuální verze aplikace [HOST.N2K](https://jonasgaigr.shinyapps.io/HOST_N2K/) je k dispozici na platformě [Shinyapps.io](https://www.shinyapps.io/)
 
 ### Habitaty
 
