@@ -91,9 +91,7 @@ Aktuální verze aplikace [HOST.N2K](https://jonasgaigr.shinyapps.io/HOST_N2K/) 
 
 ##### Velevrub tupý (*Unio crassus*)
 
-##### Svinutec tenký (*Anisus vorticulus*)
-
-##### Vrkoči (*Vertigo* sp.)
+##### Svinutec tenký (*Anisus vorticulus*) a vrkoči (*Vertigo* sp.)
 
 ##### Štírek Stella
 
