@@ -43,6 +43,8 @@ převzato z Gilson et al. (2019)</p>
 
 ## Hodnocení předmětů ochrany
 
+Aplikace [HOST.N2K](https://jonasgaigr.shinyapps.io/HOST_N2K/) na platformě [Shinyapps.io](https://www.shinyapps.io/)
+
 ### Habitaty
 
 #### Vodní toky a nádrže
