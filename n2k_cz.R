@@ -3362,7 +3362,6 @@ server <- function(input, output, session) {
   output$metodika <- renderUI({
     
     req(input$species)
-    req(input$file1)
     
     find_czechname <- function(species) {
       return(taxa[grepl(species, taxa$Species),]$Species_CZ)
