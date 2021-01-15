@@ -75,39 +75,43 @@ Aktuální verze aplikace [HOST.N2K](https://jonasgaigr.shinyapps.io/HOST_N2K/) 
 
 ##### Motýli
 
-##### Brouci
+##### Brouci (*Coleoptera*)
 
-##### Vážky
+###### Saproxyličtí brouci
+
+###### Střevlíkovití (*Carabidae*)
+
+##### Vážky (*Odonata*)
 
 #### Ostatní bezobratlí
 
-##### Rak kamenáč
+##### Rak kamenáč (*Austropotamobius torrentium*)
 
-##### Perlorodka říční
+##### Perlorodka říční (*Margaritifera margaritifera*)
 
-##### Velevrub tupý
+##### Velevrub tupý (*Unio crassus*)
 
-##### Svinutec tenký
+##### Svinutec tenký (*Anisus vorticulus*)
 
-##### Vrkoči
+##### Vrkoči (*Vertigo* sp.)
 
 ##### Štírek Stella
 
 #### Ryby a mihule
 
-#### Obojživelníci
+#### Obojživelníci (*Amphibia*)
 
 #### Savci
 
-##### Letouni
+##### Letouni (*Chiroptera*)
 
-##### Sysel
+##### Sysel obecný (*Spermophilus citellus*)
 
-##### Bobr
+##### Bobr (*Castor fiber*)
 
-##### Vydra
+##### Vydra (*Lutra lutra*)
 
-##### Vlk, rys a medvěd
+##### Vlk obecný(*Canis lupus*), rys ostrovid (*Lynx lynx*) a medvěd hnědý (*Ursus arctos*)
 
 ## Zdroje
 
