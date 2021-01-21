@@ -593,14 +593,15 @@ server <- function(input, output, session) {
     return(sites_subjects$NAZEV[which(grepl(species, sites_subjects$SUBJECT))])
   }
   
+  species <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/evl_data_export_encoded.csv",
+                      sep = ",",
+                      stringsAsFactors = FALSE,
+                      encoding = "UTF-8")
+  
   # HODNOCENÍ EVL ----
   output$mytable <- renderDataTable({
 
     req(input$species)
-    
-    species <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/evl_data_export_encoded.csv",
-                        sep = ",",
-                        stringsAsFactors = FALSE)
     
     species$DRUH <- gsub("Maculinea", "Phengaris", species$DRUH)
     species$DRUH <- gsub("Callimorpha quadripunctaria", "Euplagia quadripunctaria", species$DRUH)
@@ -2157,10 +2158,6 @@ server <- function(input, output, session) {
   
   # HODNOCENÍ LOKALIT ----
   output$mytable1 <- renderDataTable({
-
-    species <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/evl_data_export_encoded.csv",
-                        sep = ",",
-                        stringsAsFactors = FALSE)
     
     species <- filter(species, DRUH == input$species)
     
@@ -2628,10 +2625,6 @@ server <- function(input, output, session) {
     find_evl_NAZEV <- function(species){
       return(sites_subjects$NAZEV[which(grepl(species, sites_subjects$SUBJECT))])
     }
-    
-    species <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/evl_data_export_encoded.csv",
-                        sep = ",",
-                        stringsAsFactors = FALSE)
     
     species$DRUH <- gsub("Maculinea", "Phengaris", species$DRUH)
     species$DRUH <- gsub("Callimorpha quadripunctaria", "Euplagia quadripunctaria", species$DRUH)
