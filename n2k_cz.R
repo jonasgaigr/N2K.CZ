@@ -69,7 +69,7 @@ Motýli	'Lycaena dispar' 'ohniváček černočárný'
 Brouci	'Osmoderma barnabita' 'páchník hnědý'
 Brouci	'Rhysodes sulcatus' 'rýhovec pralesní'
 Brouci	'Rosalia alpina' 'tesařík alpský'
-Rovnokřídlí	'Stenobothrus eurasius' ''
+Rovnokřídlí	'Stenobothrus eurasius' 'saranče skalní'
 Motýli	'Eriogaster catax' 'bourovec trnkový'
 Vážky	'Coenagrion ornatum' 'šidélko ozdobné'
 Vážky	'Leucorrhinia pectoralis' 'vážka jasnoskvrnná'
@@ -86,32 +86,32 @@ Plži	'Vertigo moulinsiana' 'vrkoč bažinný'
 Ryby	'Leuciscus aspius' 'bolen dravý'
 Ryby	'Cobitis taneia' 'sekavec písečný'
 Ryby	'Cottus gobio' 'vranka obecná'
-Ryby	'Gobio albipinnatus' ''
-Ryby	'Gobio kesslerii' ''
-Ryby	'Gymnocephalus baloni' ''
-Ryby	'Gymnocephalus schraetser' ''
+Ryby	'Gobio albipinnatus' 'hrouzek běloploutvý'
+Ryby	'Gobio kesslerii' 'hrouzek Kesslerův'
+Ryby	'Gymnocephalus baloni' 'ježdík dunajský'
+Ryby	'Gymnocephalus schraetser' 'ježdík žlutý'
 Ryby	'Misgurmus fossilis' 'piskoř pruhovaný'
-Ryby	'Pelecus cultratus' ''
+Ryby	'Pelecus cultratus' 'ostrucha křivočará'
 Ryby	'Rhodeus amarus' 'hořavka duhová'
 Ryby	'Sabanejewia aurata' 'sekavčík dunajský'
 Ryby	'Salmo salar' 'losos obecný'
-Ryby	'Zingel streber' ''
-Ryby	'Zingel zingel' ''
+Ryby	'Zingel streber' 'drsek měnší'
+Ryby	'Zingel zingel' 'drsek větší'
 Mihule	'Eudontomyzon mariae' 'mihule ukrajinská'
 Mihule	'Lampetra planerii' 'mihule říční'
-Obojživelníci	'Triturus carnifex' ''
-Obojživelníci	'Triturus cristatus' ''
-Obojživelníci	'Triturus dobrogicus' ''
+Obojživelníci	'Triturus carnifex' 'čolek dravý'
+Obojživelníci	'Triturus cristatus' 'čolek velký'
+Obojživelníci	'Triturus dobrogicus' 'čolek dunajský'
 Obojživelníci	'Lissotriton montandoni' 'čolek karpatský'
 Obojživelníci	'Bombina bombina' 'kuňka ohnivá'
 Obojživelníci	'Bombina variegata' 'kuňka žlutobřichá'
-Savci	'Rhinolophus hipposideros' ''
-Savci	'Barbastella barbastellus' ''
-Savci	'Myotis bechsteini' ''
-Savci	'Myotis blythii' ''
-Savci	'Myotis dasycneme' ''
-Savci	'Myotis emarginatus' ''
-Savci	'Myotis myotis' ''
+Savci	'Rhinolophus hipposideros' 'vrápenec malý'
+Savci	'Barbastella barbastellus' 'netopýr černý'
+Savci	'Myotis bechsteini' 'netopýr velkouchý'
+Savci	'Myotis blythii' 'netopýr východní'
+Savci	'Myotis dasycneme' 'netopýr pobřežní'
+Savci	'Myotis emarginatus' 'netopýr brvitý'
+Savci	'Myotis myotis' 'netopýr velký '
 Savci	'Spermophilus citellus' 'sysel obecný'
 Savci	'Castor fiber' 'bobr evropský'
 Savci	'Canis lupus' 'vlk obecný'
@@ -527,14 +527,16 @@ ui <- fluidPage(
   
   br(),
   
-    column(2,
-           htmlOutput("group_selector")),
-    column(2,
-           htmlOutput("species_selector")),
-    column(2,
-           htmlOutput("evl_selector")),
-    column(2,
-           numericInput("curryear", "Rok hodnocení", 2019)),
+  column(2,
+         htmlOutput("group_selector")),
+  column(3,
+         htmlOutput("species_selector")),
+  column(2,
+         htmlOutput("evl_selector")),
+  column(2,
+         numericInput("curryear", "Rok hodnocení", 2019)),
+  column(3,
+  ),
   
   br(),
   br(),
