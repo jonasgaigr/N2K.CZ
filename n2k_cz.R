@@ -1489,6 +1489,64 @@ server <- function(input, output, session) {
                                               c("green", "red", "grey")))
       }
       
+      Dec_clear <- function(species) {
+        species <- species %>%
+          mutate(
+            DRUH = as.factor(DRUH),
+            DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+            YEAR = substring(DATE, 1, 4),
+            SITECODE = substr(as.character(EVL), 1, 9),
+            NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+            PRESENT = case_when(is.na(POCET) == FALSE & POCET > 0 & is.na(POCITANO) == TRUE ~ 0,
+                                is.na(POCET) == FALSE | POCET > 0 | is.na(POCITANO) == FALSE ~ 1),
+            POCETNOST = case_when(POCET > 10 ~ 1,
+                                  POCET <= 10 ~ 0))
+        species <- species %>%
+          filter(YEAR >= (current_year - 6))
+        return(species)
+      }
+      
+      Dec_site <- function(species) {
+        species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                            as.vector(find_evl_NAZEV(input_species))))
+        colnames(species_site) <- c("SITECODE", "NAZEV")
+        hab_evl <- Dec_clear(species) %>%
+          bind_rows(species_site) %>%
+          group_by(SITECODE) %>%
+          summarise(SITECODE = SITECODE,
+                    NAZEV = NAZEV,
+                    PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                         max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                         max(na.omit(PRESENT)) == 0 ~ "NE"),
+                    POCETNOST = case_when(max(na.omit(POCETNOST)) == -Inf ~ "CHYBÍ DATA",
+                                          max(na.omit(POCETNOST)) == 1 ~ "DOSTATEČNÁ",
+                                          max(na.omit(POCETNOST)) == 0 ~ "NEDOSTATEČNÁ"),
+                    HABITAT = NA,
+                    LIKVIDACE = NA,
+                    NEGATIV = NA,
+                    MANAGEMENT = NA,
+                    MONITOR = NA,
+                    OVERALL = NA)
+        hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+        hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+        return(hab_evl)
+      }
+      
+      Dec_semafor <- function(species) {
+        datatable(species, 
+                  rownames = FALSE,
+                  filter = "top",
+                  colnames = c("KÓD EVL", "NÁZEV EVL", "PŘÍTOMNOST DRUHU", 
+                               "POČETNOST POPULACE", "VITALITA POPULACE", "ZAZNAMENÁNÍ REPRODUKCE", 
+                               "STAV HABITATU", 
+                               "DOSTATEČNÝ VÝSKYT ŽIVNÝCH ROSTLIN", "PŘÍMÁ LIKVIDACE HABITATU", 
+                               "VLIV MANAGEMENTU", "NEGATIVNÍ VLIVY",
+                               "POSLEDNÍ MONITORING", "CELKOVÉ HODNOCENÍ")) %>%
+          formatStyle(columns = "PRESENCE",
+                      background = styleEqual(c("ANO", "NE", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey")))
+      }
+      
       # Fish ----
       
       # Amphibia ----
@@ -1931,6 +1989,108 @@ server <- function(input, output, session) {
       }
     
       # Ssawci ----
+      
+      Chi_clear <- function(species) {
+        species <- species %>%
+          mutate(
+            DRUH = as.factor(DRUH),
+            DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+            YEAR = substring(DATE, 1, 4),
+            SITECODE = substr(EVL, 1, 9),
+            NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+            PRESENT = case_when(grepl("DNA", POZNAMKA) == TRUE |
+                                  grepl("C1", STRUKT_POZN) == TRUE |
+                                  grepl("C2", STRUKT_POZN) == TRUE ~ 1),
+            REPRO = case_when(DRUH == "Canis lupus" & grepl("vlča", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Canis lupus" & grepl("vlče", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Canis lupus" & grepl("mládě", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Canis lupus" & grepl("mláď", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Canis lupus" & grepl("juvenil", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Ursus arctos" & grepl("mládě", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Ursus arctos" & grepl("mláď", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Ursus arctos" & grepl("medví", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Ursus arctos" & grepl("juvenil", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Lynx lynx" & grepl("mláď", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Lynx lynx" & grepl("mládě", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Lynx lynx" & grepl("juv.", POZNAMKA) == TRUE ~ 1,
+                              DRUH == "Lynx lynx" & grepl("juvenil", POZNAMKA) == TRUE ~ 1),
+            POKRYV = case_when(SITECODE == "CZ0724089" &
+                                 subset(mammal_evl, mammal_evl$KOD_BVS == "24")$SHAPEAREA/subset(evl, SITECODE == "CZ0724089")$SHAPEAREA >= 0.75 ~ 1,
+                               SITECODE == "CZ0724089" &
+                                 subset(mammal_evl, mammal_evl$KOD_BVS == "24")$SHAPEAREA/subset(evl, SITECODE == "CZ0724089")$SHAPEAREA < 0.75 ~ 0,
+                               SITECODE == "CZ0314024" &
+                                 subset(mammal_evl, mammal_evl$KOD_BVS == "58")$SHAPEAREA/subset(evl, SITECODE == "CZ0314024")$SHAPEAREA >= 0.75 ~ 1,
+                               SITECODE == "CZ0314024" &
+                                 subset(mammal_evl, mammal_evl$KOD_BVS == "58")$SHAPEAREA/subset(evl, SITECODE == "CZ0314024")$SHAPEAREA < 0.75 ~ 0,
+                               SITECODE == "CZ0314124" &
+                                 subset(mammal_evl, mammal_evl$KOD_BVS == "26" | mammal_evl$KOD_BVS == "3")$SHAPEAREA/subset(evl, SITECODE == "CZ0314124")$SHAPEAREA >= 0.75 ~ 1,
+                               SITECODE == "CZ0314124" &
+                                 subset(mammal_evl, mammal_evl$KOD_BVS == "26" | mammal_evl$KOD_BVS == "3")$SHAPEAREA/subset(evl, SITECODE == "CZ0314124")$SHAPEAREA < 0.75 ~ 0),
+            FRAG = NA,
+            POACH = 0,
+            POACH = case_when(grepl("pytl", POZNAMKA) == TRUE ~ 1)) 
+        species <- species %>%
+          filter(YEAR >= (current_year - 1))
+        return(species)
+      }
+      
+      Chi_site <- function(species) {
+        species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
+                                            as.vector(find_evl_NAZEV(input_species))))
+        colnames(species_site) <- c("SITECODE", "NAZEV")
+        hab_evl <- Chi_clear(species) %>%
+          bind_rows(species_site) %>%
+          group_by(SITECODE) %>%
+          summarise(SITECODE = SITECODE,
+                    NAZEV = NAZEV,
+                    PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                         max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                         max(na.omit(PRESENT)) == 0 ~ "NE"),
+                    REPRODUKCE = case_when(max(na.omit(REPRO)) == -Inf ~ "CHYBÍ DATA",
+                                           max(na.omit(REPRO)) == 1 ~ "ANO",
+                                           max(na.omit(REPRO)) == 0 ~ "NE"),
+                    HABITAT = case_when(max(na.omit(POKRYV)) == 1 ~ "DOSTAČUJÍCÍ",
+                                        max(na.omit(POKRYV)) == 0 ~ "NEDOSTAČUJÍCÍ",
+                                        max(na.omit(POKRYV)) == -Inf ~ "CHYBÍ DATA"),
+                    FRAGMENTACE = NA,
+                    PYTLACTVI = case_when(max(na.omit(POACH)) == -Inf ~ "NE",
+                                          max(na.omit(POACH)) == 1 ~ "ANO"),
+                    NEGATIV = NA,
+                    OVERALL = case_when(PRESENCE == "ANO" & REPRODUKCE == "ANO" &
+                                          PYTLACTVI == "NE" ~ "POSITIVNÍ",
+                                        PRESENCE == "CHYBÍ DATA" | REPRODUKCE == "CHYBÍ DATA" |
+                                          PYTLACTVI == "CHYBÍ DATA" ~ "CHYBÍ DATA",
+                                        PRESENCE == "NE" | REPRODUKCE == "NE" |
+                                          PYTLACTVI == "ANO" ~ "NEGATIVNÍ"))
+        hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
+        hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
+        return(hab_evl)
+      }
+      
+      Chi_semafor <- function(species) {
+        datatable(species, 
+                  rownames = FALSE,
+                  filter = "top",
+                  colnames = c("KÓD EVL", "NÁZEV EVL", "PŘÍTOMNOST DRUHU", 
+                               "ZAZNAMENÁNÍ REPRODUKCE", "POKRYVNOST LESŮ", 
+                               "ÚBYTEK FRAGMENTACE", "PYTLÁCTVÍ", 
+                               "NOVÉ DÁLNICE A SILNICE 1. TŘÍDY", "CELKOVÉ HODNOCENÍ")) %>%
+          formatStyle(columns = "PRESENCE",
+                      background = styleEqual(c("ANO", "CHYBÍ DATA"), c("green", "grey"))) %>%
+          formatStyle(columns = "REPRODUKCE",
+                      background = styleEqual(c("ANO", "NE", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey"))) %>%
+          formatStyle(columns = "PYTLACTVI",
+                      background = styleEqual(c("ANO", "NE", "CHYBÍ DATA"), 
+                                              c("red", "green", "grey"))) %>%
+          formatStyle(columns = "OVERALL",
+                      background = styleEqual(c("POSITIVNÍ", "NEGATIVNÍ", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey"))) %>%
+          formatStyle(columns = "HABITAT",
+                      background = styleEqual(c("DOSTAČUJÍCÍ", "NEDOSTAČUJÍCÍ", "CHYBÍ DATA"), 
+                                              c("green", "red", "grey")))
+      }
+      
       Carniv_clear <- function(species) {
         species <- species %>%
           mutate(
@@ -2121,6 +2281,10 @@ server <- function(input, output, session) {
     if (input$species == "Vertigo moulinsiana") {
       result <- Gas_semafor(Gas_site(species))
     }   
+    # Rake
+    if (input$species == "Austropotamobius torrentium") {
+      result <- Dec_semafor(Dec_site(species))
+    }  
     # Rybe
     if (input$species == "Cottus gobio") {
       result <- icht_semafor(icht_site(icht_clear(species)))
