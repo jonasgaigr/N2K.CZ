@@ -1382,6 +1382,9 @@ server <- function(input, output, session) {
             NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
             PRESENT = case_when(is.na(POCET) == FALSE & POCET > 0 & is.na(POCITANO) == TRUE ~ 0,
                                 is.na(POCET) == FALSE | POCET > 0 | is.na(POCITANO) == FALSE ~ 1),
+            SCHRANKY = case_when(is.na(POCET) == FALSE & POCET > 0 & is.na(POCITANO) == TRUE ~ 0,
+                                 is.na(POCET) == FALSE | POCET > 0 | is.na(POCITANO) == FALSE &
+                                   (POCITANO == "schránky" | POCITANO == "mrtví jedinci") ~ 1),
             POCETNOST = case_when(POCET > 10 ~ 1,
                                   POCET <= 10 ~ 0))
         species <- species %>%
