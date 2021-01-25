@@ -620,14 +620,21 @@ server <- function(input, output, session) {
       Lep_1_clear <- function(species) {
         species <- species %>%
           mutate(
+            # Převedení druhu na kategorickou veličinu
             DRUH = as.factor(DRUH),
+            # Převedení datumu do vhodného formátu
             DATE = as.Date(as.character(DATUM_OD), format = '%d.%m.%Y'),
+            # Redukce data na rok
             YEAR = substring(DATE, 1, 4),
+            # Izolace kódu EVL
             SITECODE = substr(EVL, 1, 9),
+            # Izolace názvu lokality
             NAZEV = substr(as.character(EVL), 12, nchar(as.character(EVL))),
+            # Přítomnost druhu
             PRESENT = case_when(is.na(POCET) == TRUE | is.na(POCITANO) == TRUE ~ 0,
                                 (is.na(POCET) == FALSE & POCET > 0) | 
                                   (is.na(POCITANO) == FALSE & POCET > 0) ~ 1),
+            # Převedení dostupných dat o početnosti na jednotné kategorie početnosti
             POCET_CAT = case_when((POCET > 0 & POCET <= 10) | REL_POC == "1-10" | 
                                     REL_POC == "ojediněle" & 
                                     (POCITANO == "imaga" | POCITANO == "jedinci") ~ 1,
@@ -639,6 +646,7 @@ server <- function(input, output, session) {
                                     (POCITANO == "imaga" | POCITANO == "jedinci") ~ 3,
                                   (POCET > 100) | REL_POC == "hojně" & 
                                     (POCITANO == "imaga" | POCITANO == "jedinci") ~ 4),
+            # Vyhodnocení početnosti z hlediska metodiky
             POCETNOST = case_when(DRUH == "Euplagia quadripunctaria" & POCET_CAT > 1 ~ 1,
                                   DRUH == "Euplagia quadripunctaria" & POCET_CAT <= 1 ~ 0,
                                   DRUH == "Phengaris nausithous" & POCET_CAT > 1 ~ 1,
@@ -649,6 +657,8 @@ server <- function(input, output, session) {
                                   DRUH == "Euphydryas aurinia" & POCET_CAT <= 1 ~ 0,
                                   DRUH == "Euphydryas maturna" & POCET_CAT > 1 ~ 1,
                                   DRUH == "Euphydryas maturna" & POCET_CAT <= 1 ~ 0),
+            # Hodnocení výskytu hostitelských rostliv podle poznámky - řešení pro data, která nejsou nasbírána v souladu s metodikou
+            # Pro data nasbíraná podle metodiky bude analýza sahat do strukturované poznámky, která by měla obsahovat data ze Survey123
             PLANTS = case_when(DRUH == "Phengaris nausithous" & 
                                  grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
                                  grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
@@ -690,25 +700,32 @@ server <- function(input, output, session) {
                                DRUH == "Euphydryas maturna" &
                                  grepl(paste(c("fraxinus"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE  ~ 0)) 
         species <- species %>%
+        # Posledních 6 let pro hodnocení
           filter(YEAR >= (current_year - 6))
         return(species)
       }
       
-      Lep_1_site <- function(species) {
+      # Hodnocení lokality (hodnocení EVL v konečné verzi bude záviset na velikosti EVL - EVL může obsahovat více jak jednu lokalitu)
+        Lep_1_site <- function(species) {
+        # Data frame obsahující všechny EVL druhu
         species_site <- as.data.frame(cbind(as.vector(find_evl_SITECODE(input_species)), 
                                             as.vector(find_evl_NAZEV(input_species))))
         colnames(species_site) <- c("SITECODE", "NAZEV")
-        hab_evl <- Lep_1_clear(species) %>%
-          bind_rows(species_site) %>%
-          group_by(SITECODE) %>%
+        hab_evl <- Lep_1_clear(species) %>% # Aplikace funcḱce GROUP_clear na hrubá data z NDOP 
+          bind_rows(species_site) %>% # Použití kódu a názvu EVL 
+          group_by(SITECODE) %>% # Rozdělení dat z NDOP podle kódu lokality - každá EVL je analyzována zvlášť
+          # Vytvoření nové matice
           summarise(SITECODE = SITECODE,
                     NAZEV = NAZEV,
+                    # Vyhodnocení přítomnosti druhu - pro pozitivní záznam stačí 1 záznam za období
                     PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
                                          max(na.omit(PRESENT)) >= 1 ~ "ANO",
                                          max(na.omit(PRESENT)) == 0 ~ "NE"),
+                    # Vyhodnocení početnosti - zatím počítáme s optimistickým hodnocením, ale lze upřednostit data z určitých projektů
                     POCETNOST = case_when(max(na.omit(POCETNOST)) == -Inf ~ "CHYBÍ DATA",
                                           max(na.omit(POCETNOST)) == 1 ~ "DOSTATEČNÁ",
                                           max(na.omit(POCETNOST)) == 0 ~ "NEDOSTATEČNÁ"),
+                    # Hodnocení vitality populace - bude potřeba upravit jednodušší funkcí rollmean pro klouzavý průměr
                     VITALITA = case_when((max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
                                                        max(na.omit(POCET[YEAR == (current_year - 1)])),
                                                        max(na.omit(POCET[YEAR == (current_year - 2)])))))/
@@ -730,10 +747,12 @@ server <- function(input, output, session) {
                                                        max(na.omit(POCET[YEAR == (current_year - 2)])))))
                                          == -Inf ~ "CHYBÍ DATA",
                                          PRESENCE == "CHYBÍ DATA" ~ "CHYBÍ DATA"),
-                    HABITAT = NA,
+                    HABITAT = NA, # Hodnocení stavu prostředí zatím nebylo prováděno
+                    # Optimistická analýza výskytu hostitelských rostlin
                     ROSTLINY = case_when(max(na.omit(PLANTS)) == 1 ~ "DOSTATEČNÝ",
                                          max(na.omit(PLANTS)) == 0 ~ "NEDOSTATEČNÝ",
                                          max(na.omit(PLANTS)) == -Inf ~ "CHYBÍ DATA"),
+                    # Zatím nemonitorované parametry
                     LIKVIDACE = NA,
                     NEGATIV = NA,
                     MANAGEMENT = NA,
@@ -744,6 +763,7 @@ server <- function(input, output, session) {
         return(hab_evl)
       }
       
+      # Tabulka s upravenými názvy a vybarvená podle hodnot
       Lep_1_semafor <-  function(species) {
         datatable(species, 
                   rownames = FALSE,
