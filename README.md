@@ -40,6 +40,7 @@ převzato z Gilson et al. (2019)</p>
 
 * Uživateské rozhraní bylo vybudováno s využitím [R Shiny](https://github.com/rstudio/shiny)
 * Mapy evropsky významných lokalit a ptačích oblastí byly vytvořeny pomocí [leaflet](https://rstudio.github.io/leaflet/) package
+* Aplikace vyžaduje [mapové vrstvy](https://gis-aopkcr.opendata.arcgis.com/) Agentury ochrany přírody a krajiny ČR dostupné pod licencí [Creative Commons By 4.0](https://creativecommons.org/licenses/by/4.0/deed.cs)
 
 ## Hodnocení předmětů ochrany
 
