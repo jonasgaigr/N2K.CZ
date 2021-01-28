@@ -25,6 +25,7 @@ sites_subjects$SUBJECT <- gsub("Osmoderma eremita", "Osmoderma barnabita", sites
 sites_subjects$SUBJECT <- gsub("Triturus montandoni", "Lissotriton montandoni", sites_subjects$SUBJECT)
 sites_subjects$SUBJECT <- gsub("Aspius aspius", "Leuciscus aspius", sites_subjects$SUBJECT)
 sites_subjects$SUBJECT <- gsub("Cobitis elongatoides", "Cobitis taneia", sites_subjects$SUBJECT)
+sites_subjects$SUBJECT <- gsub("Rhodeus sericeus amarus", "Rhodeus amarus", sites_subjects$SUBJECT)
 
 evl <- readOGR(dsn = ".", layer = "Evropsky_v%C3%BDznamn%C3%A9_lokality")
 evl <- spTransform(evl, CRS("+init=epsg:4326"))
@@ -87,10 +88,10 @@ Ryby	'Leuciscus aspius' 'bolen dravý'
 Ryby	'Cobitis taneia' 'sekavec písečný'
 Ryby	'Cottus gobio' 'vranka obecná'
 Ryby	'Gobio albipinnatus' 'hrouzek běloploutvý'
-Ryby	'Gobio kesslerii' 'hrouzek Kesslerův'
+Ryby	'Gobio kessleri' 'hrouzek Kesslerův'
 Ryby	'Gymnocephalus baloni' 'ježdík dunajský'
 Ryby	'Gymnocephalus schraetser' 'ježdík žlutý'
-Ryby	'Misgurmus fossilis' 'piskoř pruhovaný'
+Ryby	'Misgurnus fossilis' 'piskoř pruhovaný'
 Ryby	'Pelecus cultratus' 'ostrucha křivočará'
 Ryby	'Rhodeus amarus' 'hořavka duhová'
 Ryby	'Sabanejewia aurata' 'sekavčík dunajský'
