@@ -635,29 +635,6 @@ server <- function(input, output, session) {
             PRESENT = case_when(is.na(POCET) == TRUE | is.na(POCITANO) == TRUE ~ 0,
                                 (is.na(POCET) == FALSE & POCET > 0) | 
                                   (is.na(POCITANO) == FALSE & POCET > 0) ~ 1),
-            # Převedení dostupných dat o početnosti na jednotné kategorie početnosti
-            POCET_CAT = case_when((POCET > 0 & POCET <= 10) | REL_POC == "1-10" | 
-                                    REL_POC == "ojediněle" & 
-                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 1,
-                                  (POCET > 10 & POCET <= 35) | REL_POC == "11-100" | 
-                                    REL_POC == "vzácně" & 
-                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 2,
-                                  (POCET > 35 & POCET < 10) | REL_POC == "11-100" | 
-                                    REL_POC == "roztroušeně" & 
-                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 3,
-                                  (POCET > 100) | REL_POC == "hojně" & 
-                                    (POCITANO == "imaga" | POCITANO == "jedinci") ~ 4),
-            # Vyhodnocení početnosti z hlediska metodiky
-            POCETNOST = case_when(DRUH == "Euplagia quadripunctaria" & POCET_CAT > 1 ~ 1,
-                                  DRUH == "Euplagia quadripunctaria" & POCET_CAT <= 1 ~ 0,
-                                  DRUH == "Phengaris nausithous" & POCET_CAT > 1 ~ 1,
-                                  DRUH == "Phengaris nausithous" & POCET_CAT <= 1 ~ 0,
-                                  DRUH == "Phengaris teleius" & POCET_CAT > 1 ~ 1,
-                                  DRUH == "Phengaris teleius" & POCET_CAT <= 1 ~ 0,
-                                  DRUH == "Euphydryas aurinia" & POCET_CAT > 1 ~ 1,
-                                  DRUH == "Euphydryas aurinia" & POCET_CAT <= 1 ~ 0,
-                                  DRUH == "Euphydryas maturna" & POCET_CAT > 1 ~ 1,
-                                  DRUH == "Euphydryas maturna" & POCET_CAT <= 1 ~ 0),
             # Hodnocení výskytu hostitelských rostliv podle poznámky - řešení pro data, která nejsou nasbírána v souladu s metodikou
             # Pro data nasbíraná podle metodiky bude analýza sahat do strukturované poznámky, která by měla obsahovat data ze Survey123
             PLANTS = case_when(DRUH == "Phengaris nausithous" & 
@@ -726,28 +703,6 @@ server <- function(input, output, session) {
                     POCETNOST = case_when(max(na.omit(POCETNOST)) == -Inf ~ "CHYBÍ DATA",
                                           max(na.omit(POCETNOST)) == 1 ~ "DOSTATEČNÁ",
                                           max(na.omit(POCETNOST)) == 0 ~ "NEDOSTATEČNÁ"),
-                    # Hodnocení vitality populace - bude potřeba upravit jednodušší funkcí rollmean pro klouzavý průměr
-                    VITALITA = case_when((max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
-                                                       max(na.omit(POCET[YEAR == (current_year - 1)])),
-                                                       max(na.omit(POCET[YEAR == (current_year - 2)])))))/
-                                            mean(na.omit(c(max(na.omit(POCET[YEAR == (current_year - 3)])),
-                                                   max(na.omit(POCET[YEAR == (current_year - 4)])),
-                                                   max(na.omit(POCET[YEAR == (current_year - 5)])),
-                                                   max(na.omit(POCET[YEAR == (current_year - 6)]))))))
-                                         >= 0.85 ~ "POSITIVNÍ",
-                                         (max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
-                                                        max(na.omit(POCET[YEAR == (current_year - 1)])),
-                                                        max(na.omit(POCET[YEAR == (current_year - 2)])))))/
-                                            mean(na.omit(c(max(na.omit(POCET[YEAR == (current_year - 3)])),
-                                                           max(na.omit(POCET[YEAR == (current_year - 4)])),
-                                                           max(na.omit(POCET[YEAR == (current_year - 5)])),
-                                                           max(na.omit(POCET[YEAR == (current_year - 6)]))))))
-                                         < 0.85 ~ "NEGATIVNÍ",
-                                         max(na.omit(c(max(na.omit(POCET[YEAR == current_year])),
-                                                       max(na.omit(POCET[YEAR == (current_year - 1)])),
-                                                       max(na.omit(POCET[YEAR == (current_year - 2)])))))
-                                         == -Inf ~ "CHYBÍ DATA",
-                                         PRESENCE == "CHYBÍ DATA" ~ "CHYBÍ DATA"),
                     HABITAT = NA, # Hodnocení stavu prostředí zatím nebylo prováděno
                     # Optimistická analýza výskytu hostitelských rostlin
                     ROSTLINY = case_when(max(na.omit(PLANTS)) == 1 ~ "DOSTATEČNÝ",
@@ -769,19 +724,12 @@ server <- function(input, output, session) {
         datatable(species, 
                   rownames = FALSE,
                   filter = "top",
-                  colnames = c("KÓD EVL", "NÁZEV EVL", "PŘÍTOMNOST DRUHU", 
-                               "POČETNOST POPULACE", "VITALITA POPULACE", "STAV HABITATU", 
+                  colnames = c("KÓD EVL", "NÁZEV EVL", "PŘÍTOMNOST DRUHU", "STAV HABITATU", 
                                "DOSTATEČNÝ VÝSKYT ŽIVNÝCH ROSTLIN", "PŘÍMÁ LIKVIDACE HABITATU", 
                                "VLIV MANAGEMENTU", "NEGATIVNÍ VLIVY",
                                "POSLEDNÍ MONITORING", "CELKOVÉ HODNOCENÍ")) %>%
           formatStyle(columns = "PRESENCE",
                       background = styleEqual(c("ANO", "NE", "CHYBÍ DATA"), 
-                                              c("green", "red", "grey"))) %>%
-          formatStyle(columns = "POCETNOST",
-                      background = styleEqual(c("DOSTATEČNÁ", "NEDOSTATEČNÁ", "CHYBÍ DATA"), 
-                                              c("green", "red", "grey"))) %>%
-          formatStyle(columns = "VITALITA",
-                      background = styleEqual(c("POSITIVNÍ", "NEGATIVNÍ", "CHYBÍ DATA"), 
                                               c("green", "red", "grey"))) %>%
           formatStyle(columns = "ROSTLINY",
                       background = styleEqual(c("DOSTATEČNÝ", "NEDOSTATEČNÝ", "CHYBÍ DATA"), 
