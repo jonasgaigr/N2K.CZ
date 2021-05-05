@@ -23,6 +23,7 @@ sites_subjects <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/
 sites_subjects$SPECIES_NAME <- gsub("Maculinea", "Phengaris", sites_subjects$SPECIES_NAME)
 sites_subjects$SPECIES_NAME <- gsub("Thersamonolycaena", "Lycaena", sites_subjects$SPECIES_NAME)
 sites_subjects$SPECIES_NAME <- gsub("Callimorpha quadripunctaria", "Euplagia quadripunctaria", sites_subjects$SPECIES_NAME)
+sites_subjects$SPECIES_NAME <- gsub("Hypodryas", "Euphydryas", sites_subjects$SPECIES_NAME)
 sites_subjects$SPECIES_NAME <- gsub("Osmoderma eremita", "Osmoderma barnabita", sites_subjects$SPECIES_NAME)
 sites_subjects$SPECIES_NAME <- gsub("Triturus montandoni", "Lissotriton montandoni", sites_subjects$SPECIES_NAME)
 sites_subjects$SPECIES_NAME <- gsub("Aspius aspius", "Leuciscus aspius", sites_subjects$SPECIES_NAME)
