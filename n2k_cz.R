@@ -17,18 +17,9 @@ library(leaflet)
 options(shiny.sanitize.errors = FALSE)
 
 # SEZNAM TAXONŮ ----
-
-sites_subjects <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/sites_subjects_utf.csv")
-
-sites_subjects$SPECIES_NAME <- gsub("Maculinea", "Phengaris", sites_subjects$SPECIES_NAME)
-sites_subjects$SPECIES_NAME <- gsub("Thersamonolycaena", "Lycaena", sites_subjects$SPECIES_NAME)
-sites_subjects$SPECIES_NAME <- gsub("Callimorpha quadripunctaria", "Euplagia quadripunctaria", sites_subjects$SPECIES_NAME)
-sites_subjects$SPECIES_NAME <- gsub("Hypodryas", "Euphydryas", sites_subjects$SPECIES_NAME)
-sites_subjects$SPECIES_NAME <- gsub("Osmoderma eremita", "Osmoderma barnabita", sites_subjects$SPECIES_NAME)
-sites_subjects$SPECIES_NAME <- gsub("Triturus montandoni", "Lissotriton montandoni", sites_subjects$SPECIES_NAME)
-sites_subjects$SPECIES_NAME <- gsub("Aspius aspius", "Leuciscus aspius", sites_subjects$SPECIES_NAME)
-sites_subjects$SPECIES_NAME <- gsub("Cobitis elongatoides", "Cobitis taneia", sites_subjects$SPECIES_NAME)
-sites_subjects$SPECIES_NAME <- gsub("Rhodeus sericeus amarus", "Rhodeus amarus", sites_subjects$SPECIES_NAME)
+sites_subjects <- read.xlsx("http://webgis.nature.cz/publicdocs/opendata/natura2000/seznam_predmetolokalit_Natura2000.xlsx")
+sites_subjects <- sites_subjects %>%
+  rename(Název.latinsky = "Název.latinsky.(druh)")
 
 evl <- st_read("Evropsky_v%C3%BDznamn%C3%A9_lokality.shp")
 evl <- st_transform(evl, CRS("+init=epsg:4326"))
@@ -39,7 +30,7 @@ czechia <- st_transform(czechia, CRS("+init=epsg:4326"))
 bioregs <- st_read("BiogeoRegions_CR.shp")
 bioregs <- st_transform(bioregs, CRS("+init=epsg:4326"))
 
-taxa <- read.csv("taxa.csv", encoding = "UTF-8")
+taxa <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/taxa.csv", encoding = "UTF-8")
 
 # Texty ----
 text_phenau <-
@@ -541,13 +532,13 @@ server <- function(input, output, session) {
   options(shiny.maxRequestSize=50*1024^2)
   
   find.evl.SITECODE <- function(species) {
-    return(subset(sites_subjects, sites_subjects$SPECIES_NAME == species)$SITECODE)
+    return(subset(sites_subjects, sites_subjects$Název.latinsky == species)$Kód.lokality )
   }
   find.evl.NAZEV <- function(species) {
-    return(subset(sites_subjects, sites_subjects$SPECIES_NAME == species)$EVL)
+    return(subset(sites_subjects, sites_subjects$Název.latinsky == species)$Název.lokality)
   }
   find.evl.NUMBER <- function(species) {
-    return(nrow(subset(sites_subjects, sites_subjects$SPECIES_NAME == species)))
+    return(nrow(subset(sites_subjects, sites_subjects$Název.latinsky == species)))
   }
   
   species <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/evl_data_export_encoded.csv",
@@ -2040,13 +2031,13 @@ server <- function(input, output, session) {
     req(input$species)
     
     find.evl.SITECODE <- function(species) {
-      return(subset(sites_subjects, sites_subjects$SPECIES_NAME == species)$SITECODE)
+      return(subset(sites_subjects, sites_subjects$Název.latinsky == species)$Kód.lokality )
     }
     find.evl.NAZEV <- function(species) {
-      return(subset(sites_subjects, sites_subjects$SPECIES_NAME == species)$EVL)
+      return(subset(sites_subjects, sites_subjects$Název.latinsky == species)$Název.lokality)
     }
     find.evl.NUMBER <- function(species) {
-      return(nrow(subset(sites_subjects, sites_subjects$SPECIES_NAME == species)))
+      return(nrow(subset(sites_subjects, sites_subjects$Název.latinsky == species)))
     }
     
     species$DRUH <- gsub("Maculinea", "Phengaris", species$DRUH)
@@ -2759,13 +2750,13 @@ server <- function(input, output, session) {
   
   output$evl_selector = renderUI({
     find.evl.SITECODE <- function(species) {
-      return(subset(sites_subjects, sites_subjects$SPECIES_NAME == species)$SITECODE)
+      return(subset(sites_subjects, sites_subjects$Název.latinsky == species)$Kód.lokality )
     }
     find.evl.NAZEV <- function(species) {
-      return(subset(sites_subjects, sites_subjects$SPECIES_NAME == species)$EVL)
+      return(subset(sites_subjects, sites_subjects$Název.latinsky == species)$Název.lokality)
     }
     find.evl.NUMBER <- function(species) {
-      return(nrow(subset(sites_subjects, sites_subjects$SPECIES_NAME == species)))
+      return(nrow(subset(sites_subjects, sites_subjects$Název.latinsky == species)))
     }
     evl_available = find.evl.NAZEV(input$species)
     selectInput(
