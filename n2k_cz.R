@@ -30,6 +30,8 @@ sites_subjects$SPECIES_NAME <- gsub("Aspius aspius", "Leuciscus aspius", sites_s
 sites_subjects$SPECIES_NAME <- gsub("Cobitis elongatoides", "Cobitis taneia", sites_subjects$SPECIES_NAME)
 sites_subjects$SPECIES_NAME <- gsub("Rhodeus sericeus amarus", "Rhodeus amarus", sites_subjects$SPECIES_NAME)
 
+taxa <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/taxa.csv", encoding = "UTF-8")
+
 evl <- st_read("Evropsky_v%C3%BDznamn%C3%A9_lokality.shp")
 evl <- st_transform(evl, CRS("+init=epsg:4326"))
 mammal_evl <- st_read("Biotop_zvl%C3%A1%C5%A1t%C4%9B_chr%C3%A1n%C4%9Bn%C3%BDch_druh%C5%AF_velk%C3%BDch_savc%C5%AF.shp")
@@ -38,8 +40,6 @@ czechia <- st_read("HraniceCR.shp")
 czechia <- st_transform(czechia, CRS("+init=epsg:4326"))
 bioregs <- st_read("BiogeoRegions_CR.shp")
 bioregs <- st_transform(bioregs, CRS("+init=epsg:4326"))
-
-taxa <- read.csv("taxa.csv", encoding = "UTF-8")
 
 # Texty ----
 text_phenau <-
