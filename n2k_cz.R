@@ -14,12 +14,17 @@ library(proj4)
 library(sp)
 library(sf)
 library(leaflet)
+library(openxlsx)
 options(shiny.sanitize.errors = FALSE)
 
 # SEZNAM TAXONŮ ----
 sites_subjects <- read.xlsx("http://webgis.nature.cz/publicdocs/opendata/natura2000/seznam_predmetolokalit_Natura2000.xlsx")
 sites_subjects <- sites_subjects %>%
   rename(Název.latinsky = "Název.latinsky.(druh)")
+sites_subjects$Název.latinsky <- gsub("Osmoderma eremita", "Osmoderma barnabita", sites_subjects$Název.latinsky)
+sites_subjects$Název.latinsky <- gsub("Stenobothrus eurasius bohemicus", "Stenobothrus eurasius", sites_subjects$Název.latinsky)
+
+taxa <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/taxa.csv", encoding = "UTF-8")
 
 evl <- st_read("Evropsky_v%C3%BDznamn%C3%A9_lokality.shp")
 evl <- st_transform(evl, CRS("+init=epsg:4326"))
@@ -29,8 +34,6 @@ czechia <- st_read("HraniceCR.shp")
 czechia <- st_transform(czechia, CRS("+init=epsg:4326"))
 bioregs <- st_read("BiogeoRegions_CR.shp")
 bioregs <- st_transform(bioregs, CRS("+init=epsg:4326"))
-
-taxa <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/taxa.csv", encoding = "UTF-8")
 
 # Texty ----
 text_phenau <-
@@ -1227,6 +1230,9 @@ server <- function(input, output, session) {
                                             c("green", "red", "grey")))
     }
     
+    # Stenobothrus ----
+    Steno.clear <- ´
+    
     # Other Invertebrates ----
     
     Gas.clear <- function(species) {
@@ -2119,8 +2125,10 @@ server <- function(input, output, session) {
       hab_evl <- Lep.1.clear(species) %>%
         bind_rows(species_site) %>%
         group_by(SITECODE) %>%
+        group_by(KVADRAT) %>%
         summarise(SITECODE = SITECODE,
                   NAZEV = NAZEV,
+                  CTVEREC = CTVEREC,
                   PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
                                        max(na.omit(PRESENT)) >= 1 ~ "ANO",
                                        max(na.omit(PRESENT)) == 0 ~ "NE"),
