@@ -514,13 +514,9 @@ ui <- fluidPage(
   fluidRow(dataTableOutput("mytable") %>%
              withSpinner(color = "green")),
   
-  fluidRow(downloadButton("downloadData", "Download")),
-  
   mainPanel(h3("Hodnocení lokalit v rámci EVL")),
   
   fluidRow(dataTableOutput("mytable1")),
-  
-  fluidRow(downloadButton("downloadData1", "Download")),
   
   hr(),
   
@@ -560,7 +556,7 @@ server <- function(input, output, session) {
                       encoding = "UTF-8")
   
   # HODNOCENÍ EVL ----
-  output$mytable <- renderDataTable({
+  output$mytable <- renderDataTable(server = FALSE,{
     
     req(input$species)
     
@@ -716,7 +712,16 @@ server <- function(input, output, session) {
     
     # Tabulka s upravenými názvy a vybarvená podle hodnot
     Lep.1.semafor <-  function(species) {
-      datatable(species, 
+      datatable(species,
+                extensions = 'Buttons',
+                options = list(
+                  paging = TRUE,
+                  searching = TRUE,
+                  fixedColumns = TRUE,
+                  autoWidth = TRUE,
+                  ordering = TRUE,
+                  dom = 'Bfrtip',
+                  buttons = c('csv', 'excel')),
                 rownames = FALSE,
                 filter = "top",
                 colnames = c("KÓD EVL", "NÁZEV EVL", "PŘÍTOMNOST DRUHU", "STAV HABITATU", 
@@ -1608,12 +1613,11 @@ server <- function(input, output, session) {
     }
     
     result
-    
-  })
-  
+  }
+  )
   
   # HODNOCENÍ LOKALIT ----
-  output$mytable1 <- renderDataTable({
+  output$mytable1 <- renderDataTable(server = FALSE,{
     
     req(input$species)
     species <- filter(species, DRUH == input$species)
@@ -2121,18 +2125,18 @@ server <- function(input, output, session) {
         summarise(SITECODE = unique(SITECODE),
                   POLE = unique(POLE),
                   NAZEV = unique(NAZEV),
-                  PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
-                                       max(na.omit(PRESENT)) >= 1 ~ "ANO",
-                                       max(na.omit(PRESENT)) == 0 ~ "NE"),
-                  ROSTLINY = case_when(max(na.omit(PLANTS)) == 1 ~ "DOSTATEČNÝ",
-                                       max(na.omit(PLANTS)) == 0 ~ "NEDOSTATEČNÝ",
-                                       max(na.omit(PLANTS)) == Inf ~ "CHYBÍ DATA"),
+                  PRESENCE = case_when(mean(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
+                                       mean(na.omit(PRESENT)) >= 0.5 ~ "ANO",
+                                       mean(na.omit(PRESENT)) < 0.5 ~ "NE"),
+                  ROSTLINY = case_when(mean(na.omit(PLANTS)) >= 0.5 ~ "DOSTATEČNÝ",
+                                       mean(na.omit(PLANTS)) < 0.5 ~ "NEDOSTATEČNÝ",
+                                       mean(na.omit(PLANTS)) == -Inf ~ "CHYBÍ DATA"),
                   LIKVIDACE = case_when(max(na.omit(DESTRUCT)) == 0 ~ "ANO",
                                         max(na.omit(DESTRUCT)) == -Inf ~ "NE"),
-                  MANAGEMENT = case_when((max(na.omit(MOWING_TIME)) + max(na.omit(MOWING_METHOD))) == -Inf ~ "CHYBÍ DATA",
-                                         (max(na.omit(MOWING_TIME)) + max(na.omit(MOWING_METHOD))) == 2 ~ "VHODNÝ",
-                                         (max(na.omit(MOWING_TIME)) + max(na.omit(MOWING_METHOD))) == 1 ~ "NEVHODNÝ",
-                                         (max(na.omit(MOWING_TIME)) + max(na.omit(MOWING_METHOD))) == 0 ~ "NEVHODNÝ"),
+                  MANAGEMENT = case_when((mean(na.omit(MOWING_TIME)) + mean(na.omit(MOWING_METHOD))) == -Inf ~ "CHYBÍ DATA",
+                                         (mean(na.omit(MOWING_TIME)) + mean(na.omit(MOWING_METHOD))) >= 1 ~ "VHODNÝ",
+                                         (mean(na.omit(MOWING_TIME)) + mean(na.omit(MOWING_METHOD))) < 1~ "NEVHODNÝ",
+                                         (mean(na.omit(MOWING_TIME)) + mean(na.omit(MOWING_METHOD))) == 0 ~ "NEVHODNÝ"),
                   NEGATIV = case_when(mean(THREATS) >= 3 ~ "PŮSOBÍ",
                                       mean(THREATS) < 3 ~ "NEPŮSOBÍ"),
                   OVERALL = NA)
@@ -2145,6 +2149,16 @@ server <- function(input, output, session) {
     
     Lep.1.semafor.site <-  function(species) {
       datatable(species, 
+                extensions = 'Buttons',
+                options = list(
+                  paging = TRUE,
+                  searching = TRUE,
+                  fixedColumns = TRUE,
+                  autoWidth = TRUE,
+                  ordering = TRUE,
+                  dom = 'Bfrtip',
+                  buttons = c('csv', 'excel')
+                  ),
                 rownames = FALSE,
                 filter = "top",
                 colnames = c("KÓD EVL", "NÁZEV EVL", "POLE SÍŤOVÉHO MAPOVÁNÍ",
@@ -3131,26 +3145,6 @@ server <- function(input, output, session) {
     }
     
   })
-  
-  # Downloader ----
-  
-  output$downloadData <- downloadHandler(
-    filename = function() {
-      paste("hodnoceni_evl.csv")
-    },
-    content = function(file) {
-      write.csv(output$mytable, file, row.names = FALSE)
-    }
-  )
-  
-  output$downloadData1 <- downloadHandler(
-    filename = function() {
-      paste("hodnoceni_lokality.csv")
-    },
-    content = function(file) {
-      write.csv(output$mytable1, file, row.names = FALSE)
-    }
-  )
   
 }
 
