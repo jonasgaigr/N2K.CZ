@@ -35,6 +35,8 @@ czechia <- st_transform(czechia, CRS("+init=epsg:4326"))
 bioregs <- st_read("BiogeoRegions_CR.shp")
 bioregs <- st_transform(bioregs, CRS("+init=epsg:4326"))
 
+phengaris_habitaty <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/phengaris_habitaty.csv", encoding = "UTF-8")
+
 # Texty ----
 text_phenau <-
   paste(
@@ -549,6 +551,9 @@ server <- function(input, output, session) {
   find.evl.NUMBER <- function(species) {
     return(nrow(subset(sites_subjects, sites_subjects$Název.latinsky == species)))
   }
+  find.evl.HAB_QUAL <- function(species) {
+    return(subset(phengaris_habitaty, phengaris_habitaty$SITECODE == species)$HAB_AREA)
+  }
   
   species <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/evl_data_export_encoded.csv",
                       sep = ",",
@@ -687,13 +692,16 @@ server <- function(input, output, session) {
                   # Vyhodnocení přítomnosti druhu - pro pozitivní záznam stačí 1 záznam za období
                   PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
                                        max(na.omit(PRESENT)) >= 1 ~ "ANO",
-                                       max(na.omit(PRESENT)) == 0 ~ "NE"),
-                  HABITAT = case_when(max(na.omit(TARGET)) == -Inf ~ "CHYBÍ DATA",
-                                      max(na.omit(TARGET)) == 0 ~ "CHYBÍ DATA"),
+                                       max(na.omit(PRESENT)) == 0 ~ "NE",
+                                       min(na.omit(NEGATIVNI)) == 1 ~ "NE"),
+                  HABITAT = case_when(max(find.evl.HAB_QUAL(unique(SITECODE))) == -Inf ~ "NEDOSTAČUJÍCÍ",
+                                      max(find.evl.HAB_QUAL(unique(SITECODE))) < 0.5 ~ "NEDOSTAČUJÍCÍ",
+                                      max(find.evl.HAB_QUAL(unique(SITECODE))) >= 0.5 ~ "DOSTAČUJÍCÍ"),
                   # Optimistická analýza výskytu hostitelských rostlin
                   ROSTLINY = case_when(max(na.omit(PLANTS)) == 1 ~ "DOSTATEČNÝ",
                                        max(na.omit(PLANTS)) == 0 ~ "NEDOSTATEČNÝ",
-                                       max(na.omit(PLANTS)) == -Inf ~ "CHYBÍ DATA"),
+                                       max(na.omit(TARGET)) == -Inf ~ "CHYBÍ DATA",
+                                       max(na.omit(TARGET)) == 0 ~ "CHYBÍ DATA"),
                   # Zatím nemonitorované parametry
                   LIKVIDACE = case_when(max(na.omit(TARGET)) == -Inf ~ "CHYBÍ DATA",
                                         max(na.omit(TARGET)) == 0 ~ "CHYBÍ DATA"),
@@ -732,7 +740,7 @@ server <- function(input, output, session) {
                     background = styleEqual(c("ANO", "NE", "CHYBÍ DATA"), 
                                             c("green", "red", "grey"))) %>%
         formatStyle(columns = "HABITAT",
-                    background = styleEqual(c("ANO", "NE", "CHYBÍ DATA"), 
+                    background = styleEqual(c("DOSTAČUJÍCÍ", "NEDOSTAČUJÍCÍ", "CHYBÍ DATA"), 
                                             c("green", "red", "grey"))) %>%
         formatStyle(columns = "ROSTLINY",
                     background = styleEqual(c("DOSTATEČNÝ", "NEDOSTATEČNÝ", "CHYBÍ DATA"), 
@@ -2125,15 +2133,14 @@ server <- function(input, output, session) {
         summarise(SITECODE = unique(SITECODE),
                   POLE = unique(POLE),
                   NAZEV = unique(NAZEV),
-                  PRESENCE = case_when(mean(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
-                                       mean(na.omit(PRESENT)) >= 0.5 ~ "ANO",
-                                       mean(na.omit(PRESENT)) < 0.5 ~ "NE"),
+                  PRESENCE = case_when(min(na.omit(NEGATIVNI)) == 0 ~ "ANO",
+                                       min(na.omit(NEGATIVNI)) == 1 ~ "NE"),
                   ROSTLINY = case_when(mean(na.omit(PLANTS)) >= 0.5 ~ "DOSTATEČNÝ",
                                        mean(na.omit(PLANTS)) < 0.5 ~ "NEDOSTATEČNÝ",
                                        mean(na.omit(PLANTS)) == -Inf ~ "CHYBÍ DATA"),
                   LIKVIDACE = case_when(max(na.omit(DESTRUCT)) == 0 ~ "ANO",
                                         max(na.omit(DESTRUCT)) == -Inf ~ "NE"),
-                  MANAGEMENT = case_when((mean(na.omit(MOWING_TIME)) + mean(na.omit(MOWING_METHOD))) == -Inf ~ "CHYBÍ DATA",
+                  MANAGEMENT = case_when((max(na.omit(MOWING_TIME)) + max(na.omit(MOWING_METHOD))) == -Inf ~ "CHYBÍ DATA",
                                          (mean(na.omit(MOWING_TIME)) + mean(na.omit(MOWING_METHOD))) >= 1 ~ "VHODNÝ",
                                          (mean(na.omit(MOWING_TIME)) + mean(na.omit(MOWING_METHOD))) < 1~ "NEVHODNÝ",
                                          (mean(na.omit(MOWING_TIME)) + mean(na.omit(MOWING_METHOD))) == 0 ~ "NEVHODNÝ"),
