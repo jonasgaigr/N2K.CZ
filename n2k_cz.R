@@ -554,6 +554,10 @@ server <- function(input, output, session) {
   find.evl.HAB_QUAL <- function(species) {
     return(subset(phengaris_habitaty, phengaris_habitaty$SITECODE == species)$HAB_AREA)
   }
+  find.evl.TARGETS <- function(species) {
+    return(subset(phengaris_habitaty, phengaris_habitaty$SITECODE == species)$SINGLE_EVL)
+  }
+
   
   species <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/evl_data_export_encoded.csv",
                       sep = ",",
@@ -623,46 +627,21 @@ server <- function(input, output, session) {
                                 DRUH == "Euphydryas maturna" & POCET_CAT <= 1 ~ 0),
           # Hodnocení výskytu hostitelských rostliv podle poznámky - řešení pro data, která nejsou nasbírána v souladu s metodikou
           # Pro data nasbíraná podle metodiky bude analýza sahat do strukturované poznámky, která by měla obsahovat data ze Survey123
-          PLANTS = case_when(DRUH == "Phengaris nausithous" & 
-                               grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
-                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
-                             DRUH == "Phengaris nausithous" & 
-                               grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
-                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == FALSE ~ 1,
-                             DRUH == "Phengaris nausithous" & 
-                               grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
-                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0,
-                             DRUH == "Phengaris nausithous" & 
-                               grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
-                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE ~ 0,
-                             DRUH == "Phengaris teleius" & 
-                               grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
-                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
-                             DRUH == "Phengaris teleius" & 
-                               grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
-                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == FALSE ~ 1,
-                             DRUH == "Phengaris teleius" & 
-                               grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
-                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0,
-                             DRUH == "Phengaris teleius" & 
-                               grepl(paste(c("krvav", "toten", "sangui"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE &
-                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZN_BIO, ignore.case = TRUE) == TRUE ~ 0,
-                             DRUH == "Euplagia quadripunctiria" &
-                               grepl(paste(c("sadc", "sadec", "hlaváč", "bodlák", "bodlak"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
-                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
-                             DRUH == "Euplagia quadripunctiria" &
-                               grepl(paste(c("sadc", "sadec", "hlaváč", "bodlák", "bodlak"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
-                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0,
-                             DRUH == "Euphydryas aurinia" &
-                               grepl(paste(c("succisa, čert, certk"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
-                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == FALSE ~ 1,
-                             DRUH == "Euphydryas aurinia" &
-                               grepl(paste(c("succisa, čert, certk"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE &
-                               grepl(paste(c("jedn, vzác, ojed"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 0,
-                             DRUH == "Euphydryas maturna" &
-                               grepl(paste(c("fraxinus"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE ~ 1,
-                             DRUH == "Euphydryas maturna" &
-                               grepl(paste(c("fraxinus"), collapse = "|"), POZNAMKA, ignore.case = TRUE) == TRUE  ~ 0),
+          MOWING_TIME = case_when(grepl(paste(c("<sec_nacasovani>ne"), collapse = "|"), STRUKT_POZN, ignore.case = TRUE) ~ 0,
+                                  grepl(paste(c("<sec_nacasovani>ano"), collapse = "|"), STRUKT_POZN, ignore.case = TRUE) ~ 1),
+          MOWING_METHOD = case_when(grepl(paste(c("<sec_celoplosna>ano"), collapse = "|"), STRUKT_POZN, ignore.case = TRUE) ~ 0,
+                                    grepl(paste(c("<sec_celoplosna>ne"), collapse = "|"), STRUKT_POZN, ignore.case = TRUE) ~ 1),
+          PLANTS = case_when(DRUH == "Phengaris nausithous" & grepl(paste(c("<toten_pritomnost>žádné"), collapse = "|"), STRUKT_POZN, ignore.case = TRUE) ~ 0,
+                             DRUH == "Phengaris nausithous" & grepl(paste(c("<toten_pritomnost>jednotlivě"), collapse = "|"), STRUKT_POZN, ignore.case = TRUE) ~ 0,
+                             DRUH == "Phengaris nausithous" & grepl(paste(c("<toten_pritomnost>hojně"), collapse = "|"), STRUKT_POZN, ignore.case = TRUE) ~ 1,
+                             DRUH == "Phengaris nausithous" & grepl(paste(c("<toten_pritomnost>dominantně"), collapse = "|"), STRUKT_POZN, ignore.case = TRUE) ~ 1,
+                             DRUH == "Phengaris teleius" & grepl(paste(c("<toten_pritomnost>žádné"), collapse = "|"), STRUKT_POZN, ignore.case = TRUE) ~ 0,
+                             DRUH == "Phengaris teleius" & grepl(paste(c("<toten_pritomnost>jednotlivě"), collapse = "|"), STRUKT_POZN, ignore.case = TRUE) ~ 0,
+                             DRUH == "Phengaris teleius" & grepl(paste(c("<toten_pritomnost>hojně"), collapse = "|"), STRUKT_POZN, ignore.case = TRUE) ~ 1,
+                             DRUH == "Phengaris teleius" & grepl(paste(c("<toten_pritomnost>dominantně"), collapse = "|"), STRUKT_POZN, ignore.case = TRUE) ~ 1),
+          DESTRUCT = case_when(grepl(paste(c("vysazování lesů", "odvodňování, meliorace",
+                                             "zalesňování bezlesí", "změna zemědělského využívání půdy"), collapse = "|"), STRUKT_POZN, ignore.case = TRUE) ~ 0),
+          THREATS = str_count(STRUKT_POZN, ","),
           TARGET = case_when(ZDROJ != "Kolektiv autorů (2018) Monitoring totenových modrásků. Monitoring druhů ČR. AOPK ČR." &
                                ZDROJ != "Kolektiv autorů (2019) Monitoring totenových modrásků. Monitoring druhů ČR. AOPK ČR." &
                                ZDROJ != "Kolektiv autorů (2020) Monitoring totenových modrásků. Monitoring druhů ČR. AOPK ČR." &
@@ -678,31 +657,33 @@ server <- function(input, output, session) {
     }
     
     # Hodnocení lokality (hodnocení EVL v konečné verzi bude záviset na velikosti EVL - EVL může obsahovat více jak jednu lokalitu)
-    Lep.1.site <- function(species) {
+    Lep.1.evl <- function(species) {
       # Data frame obsahující všechny EVL druhu
       species_site <- as.data.frame(cbind(as.vector(find.evl.SITECODE(input_species)), 
                                           as.vector(find.evl.NAZEV(input_species))))
       colnames(species_site) <- c("SITECODE", "NAZEV")
       hab_evl <- Lep.1.clear(species) %>% # Aplikace funcḱce GROUP_clear na hrubá data z NDOP 
+        filter(TARGET == 0) %>%
         bind_rows(species_site) %>% # Použití kódu a názvu EVL 
-        group_by(SITECODE) %>% # Rozdělení dat z NDOP podle kódu lokality - každá EVL je analyzována zvlášť
-        # Vytvoření nové matice
+        group_by(SITECODE) %>%  # Rozdělení dat z NDOP podle kódu lokality - každá EVL je analyzována zvlášť
         summarise(SITECODE = SITECODE,
                   NAZEV = NAZEV,
                   # Vyhodnocení přítomnosti druhu - pro pozitivní záznam stačí 1 záznam za období
                   PRESENCE = case_when(max(na.omit(PRESENT)) == -Inf ~ "CHYBÍ DATA",
-                                       max(na.omit(PRESENT)) >= 1 ~ "ANO",
+                                       max(na.omit(PRESENT)) == 1 ~ "ANO",
                                        max(na.omit(PRESENT)) == 0 ~ "NE",
                                        min(na.omit(NEGATIVNI)) == 1 ~ "NE"),
-                  HABITAT = case_when(max(find.evl.HAB_QUAL(unique(SITECODE))) == -Inf ~ "NEDOSTAČUJÍCÍ",
-                                      max(find.evl.HAB_QUAL(unique(SITECODE))) < 0.5 ~ "NEDOSTAČUJÍCÍ",
-                                      max(find.evl.HAB_QUAL(unique(SITECODE))) >= 0.5 ~ "DOSTAČUJÍCÍ"),
-                  # Optimistická analýza výskytu hostitelských rostlin
-                  ROSTLINY = case_when(max(na.omit(PLANTS)) == 1 ~ "DOSTATEČNÝ",
-                                       max(na.omit(PLANTS)) == 0 ~ "NEDOSTATEČNÝ",
-                                       max(na.omit(TARGET)) == -Inf ~ "CHYBÍ DATA",
-                                       max(na.omit(TARGET)) == 0 ~ "CHYBÍ DATA"),
-                  # Zatím nemonitorované parametry
+                  HABITAT = case_when(max(find.evl.TARGETS(SITECODE)) == 1 & 
+                                        max(find.evl.HAB_QUAL(SITECODE)) < 0.5 ~ "NEDOSTAČUJÍCÍ",
+                                      max(find.evl.TARGETS(SITECODE)) == 1 &
+                                        max(find.evl.HAB_QUAL(SITECODE)) >= 0.5 ~ "DOSTAČUJÍCÍ",
+                                      max(find.evl.TARGETS(SITECODE)) == 0 &
+                                        max(find.evl.HAB_QUAL(SITECODE)) < 0.1 ~ "NEDOSTAČUJÍCÍ",
+                                      max(find.evl.TARGETS(SITECODE)) == 0 &
+                                        max(find.evl.HAB_QUAL(SITECODE)) >= 0.1~ "DOSTAČUJÍCÍ",
+                                      max(find.evl.HAB_QUAL(SITECODE)) == -Inf ~ "NEDOSTAČUJÍCÍ",
+                                      max(find.evl.TARGETS(SITECODE)) == -Inf ~ "NEDOSTAČUJÍCÍ"),
+                  ROSTLINY =  "CHYBÍ DATA",
                   LIKVIDACE = case_when(max(na.omit(TARGET)) == -Inf ~ "CHYBÍ DATA",
                                         max(na.omit(TARGET)) == 0 ~ "CHYBÍ DATA"),
                   NEGATIV = case_when(max(na.omit(TARGET)) == -Inf ~ "CHYBÍ DATA",
@@ -713,6 +694,62 @@ server <- function(input, output, session) {
                                       max(na.omit(TARGET)) == 0 ~ "NEPROBĚHL",
                                       max(na.omit(TARGET)) == 1 ~ "PROBĚHL"),
                   OVERALL = NA)
+      hab_evl_target <- Lep.1.clear(species) %>%
+        bind_rows(species_site) %>%
+        filter(ZDROJ == "Kolektiv autorů (2018) Monitoring totenových modrásků. Monitoring druhů ČR. AOPK ČR." |
+                 ZDROJ == "Kolektiv autorů (2019) Monitoring totenových modrásků. Monitoring druhů ČR. AOPK ČR." |
+                 ZDROJ == "Kolektiv autorů (2020) Monitoring totenových modrásků. Monitoring druhů ČR. AOPK ČR." |
+                 ZDROJ == "Sledování stavu EVL - IPLife") %>%
+        group_by(SITECODE, POLE) %>%
+        summarise(SITECODE = unique(SITECODE),
+                  POLE = unique(POLE),
+                  NAZEV = unique(NAZEV),
+                  PRESENCE = case_when(min(na.omit(NEGATIVNI)) == 0 ~ 1,
+                                       min(na.omit(NEGATIVNI)) == 1 ~ 0),
+                  ROSTLINY_pre = case_when(mean(na.omit(PLANTS)) == -Inf ~ as.integer(NA),
+                                           max(find.evl.TARGETS(SITECODE)) == 1 &
+                                             mean(na.omit(filter(., YEAR == current_year)$PLANTS)) < 0.5 ~ as.integer(0),
+                                           mean(na.omit(PLANTS)) >= 0.5 ~ as.integer(1),
+                                           mean(na.omit(PLANTS)) < 0.5 ~ as.integer(0)),
+                  LIKVIDACE = case_when(max(na.omit(DESTRUCT)) == 0 ~ 0,
+                                        max(na.omit(DESTRUCT)) == -Inf ~ 1),
+                  NEGATIV = case_when(mean(THREATS) > 0 ~ 0,
+                                      mean(THREATS) == 0 ~ 1),
+                  MANAGEMENT = case_when((max(na.omit(MOWING_TIME)) + max(na.omit(MOWING_METHOD))) == -Inf ~ as.integer(NA),
+                                         (mean(na.omit(MOWING_TIME)) + mean(na.omit(MOWING_METHOD))) >= 1 ~ as.integer(1),
+                                         (mean(na.omit(MOWING_TIME)) + mean(na.omit(MOWING_METHOD))) < 1~ as.integer(0),
+                                         (mean(na.omit(MOWING_TIME)) + mean(na.omit(MOWING_METHOD))) == 0 ~ as.integer(0)),
+                  OVERALL = NA) %>%
+        ungroup() %>%
+        group_by(SITECODE) %>%
+        summarise(SITECODE = unique(SITECODE),
+                  NAZEV = unique(NAZEV),
+                  PRESENCE = case_when(mean(na.omit(PRESENCE)) > 0 ~ "ANO",
+                                       mean(na.omit(PRESENCE)) == 0 ~ "NE"),
+                  HABITAT = case_when(max(find.evl.TARGETS(SITECODE)) == 1 & 
+                                        max(find.evl.HAB_QUAL(SITECODE)) < 0.5 ~ "NEDOSTAČUJÍCÍ",
+                                      max(find.evl.TARGETS(SITECODE)) == 1 &
+                                        max(find.evl.HAB_QUAL(SITECODE)) >= 0.5 ~ "DOSTAČUJÍCÍ",
+                                      max(find.evl.TARGETS(SITECODE)) == 0 &
+                                        max(find.evl.HAB_QUAL(SITECODE)) < 0.1 ~ "NEDOSTAČUJÍCÍ",
+                                      max(find.evl.TARGETS(SITECODE)) == 0 &
+                                        max(find.evl.HAB_QUAL(SITECODE)) >= 0.1~ "DOSTAČUJÍCÍ",
+                                      max(find.evl.HAB_QUAL(SITECODE)) == -Inf ~ "NEDOSTAČUJÍCÍ",
+                                      max(find.evl.TARGETS(SITECODE)) == -Inf ~ "NEDOSTAČUJÍCÍ"),
+                  ROSTLINY = case_when(mean(na.omit(ROSTLINY_pre)) >= 0.5 ~ "DOSTATEČNÝ",
+                                       mean(na.omit(ROSTLINY_pre)) < 0.5 ~ "NEDOSTATEČNÝ",
+                                       max(na.omit(ROSTLINY_pre)) == -Inf ~ "CHYBÍ DATA"),
+                  LIKVIDACE = case_when(mean(na.omit(LIKVIDACE)) >= 0.5 ~ "NE",
+                                        mean(na.omit(LIKVIDACE)) < 0.5 ~ "ANO"),
+                  NEGATIV = case_when(mean(NEGATIV) < 0.5 ~ "ANO",
+                                      mean(NEGATIV) >= 0.5 ~ "NE"),
+                  MANAGEMENT = case_when(max(na.omit(MANAGEMENT))== -Inf ~ "CHYBÍ DATA",
+                                         mean(na.omit(MANAGEMENT)) >= 0.5 ~ "VHODNÝ",
+                                         mean(na.omit(MANAGEMENT)) < 0.5~ "NEVHODNÝ"),
+                  MONITOR =  "PROBĚHL",
+                  OVERALL = NA) %>%
+        filter(is.na(PRESENCE) == FALSE)
+      hab_evl <- bind_rows(hab_evl_target, hab_evl)
       hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
       hab_evl <- hab_evl[!duplicated(hab_evl$SITECODE),]
       return(hab_evl)
@@ -746,13 +783,13 @@ server <- function(input, output, session) {
                     background = styleEqual(c("DOSTATEČNÝ", "NEDOSTATEČNÝ", "CHYBÍ DATA"), 
                                             c("green", "red", "grey"))) %>%
         formatStyle(columns = "LIKVIDACE",
-                    background = styleEqual(c("DOSTATEČNÝ", "NEDOSTATEČNÝ", "CHYBÍ DATA"), 
+                    background = styleEqual(c("NE", "ANO", "CHYBÍ DATA"), 
                                             c("green", "red", "grey"))) %>%
         formatStyle(columns = "NEGATIV",
-                    background = styleEqual(c("DOSTATEČNÝ", "NEDOSTATEČNÝ", "CHYBÍ DATA"), 
+                    background = styleEqual(c("NE", "ANO", "CHYBÍ DATA"), 
                                             c("green", "red", "grey"))) %>%
         formatStyle(columns = "MANAGEMENT",
-                    background = styleEqual(c("DOSTATEČNÝ", "NEDOSTATEČNÝ", "CHYBÍ DATA"), 
+                    background = styleEqual(c("VHODNÝ", "NEVHODNÝ", "CHYBÍ DATA"), 
                                             c("green", "red", "grey"))) %>%
         formatStyle(columns = "MONITOR",
                     background = styleEqual(c("PROBĚHL", "NEPROBĚHL", "CHYBÍ DATA"), 
@@ -1498,22 +1535,22 @@ server <- function(input, output, session) {
     # RESULT ----
     # Motýle 
     if (input$species == "Phengaris nausithous") {
-      result <- Lep.1.semafor(Lep.1.site(species))
+      result <- Lep.1.semafor(Lep.1.evl(species))
     } 
     if (input$species == "Phengaris teleius") {
-      result <- Lep.1.semafor(Lep.1.site(species))
+      result <- Lep.1.semafor(Lep.1.evl(species))
     } 
     if (input$species == "Euplagia quadripunctaria") {
-      result <- Lep.1.semafor(Lep.1.site(species))
+      result <- Lep.1.semafor(Lep.1.evl(species))
     } 
     if (input$species == "Colias myrmidone") {
       result <- Lep.2.semafor(Lep.2.site(species))
     } 
     if (input$species == "Euphydryas aurinia") {
-      result <- Lep.1.semafor(Lep.1.site(species))
+      result <- Lep.1.semafor(Lep.1.evl(species))
     }   
     if (input$species == "Euphydryas maturna") {
-      result <- Lep.1.semafor(Lep.1.site(species))
+      result <- Lep.1.semafor(Lep.1.evl(species))
     }
     if (input$species == "Lycaena dispar") {
       result <- Lep.2.semafor(Lep.2.site(species))
@@ -2135,17 +2172,20 @@ server <- function(input, output, session) {
                   NAZEV = unique(NAZEV),
                   PRESENCE = case_when(min(na.omit(NEGATIVNI)) == 0 ~ "ANO",
                                        min(na.omit(NEGATIVNI)) == 1 ~ "NE"),
-                  ROSTLINY = case_when(mean(na.omit(PLANTS)) >= 0.5 ~ "DOSTATEČNÝ",
-                                       mean(na.omit(PLANTS)) < 0.5 ~ "NEDOSTATEČNÝ",
-                                       mean(na.omit(PLANTS)) == -Inf ~ "CHYBÍ DATA"),
+                  ROSTLINY = case_when(mean(na.omit(PLANTS)) == -Inf ~ "CHYBÍ DATA",
+                                       max(find.evl.TARGETS(SITECODE)) == 1 &
+                                         max(pull(filter(., YEAR == current_year), PLANTS)) != -Inf &
+                                         mean(na.omit(pull(filter(., YEAR == current_year), PLANTS))) < 0.5 ~ "NEDOSTATEČNÝ",
+                                       mean(na.omit(PLANTS)) >= 0.5 ~ "DOSTATEČNÝ",
+                                       mean(na.omit(PLANTS)) < 0.5 ~ "NEDOSTATEČNÝ"),
                   LIKVIDACE = case_when(max(na.omit(DESTRUCT)) == 0 ~ "ANO",
                                         max(na.omit(DESTRUCT)) == -Inf ~ "NE"),
                   MANAGEMENT = case_when((max(na.omit(MOWING_TIME)) + max(na.omit(MOWING_METHOD))) == -Inf ~ "CHYBÍ DATA",
                                          (mean(na.omit(MOWING_TIME)) + mean(na.omit(MOWING_METHOD))) >= 1 ~ "VHODNÝ",
                                          (mean(na.omit(MOWING_TIME)) + mean(na.omit(MOWING_METHOD))) < 1~ "NEVHODNÝ",
                                          (mean(na.omit(MOWING_TIME)) + mean(na.omit(MOWING_METHOD))) == 0 ~ "NEVHODNÝ"),
-                  NEGATIV = case_when(mean(THREATS) >= 3 ~ "PŮSOBÍ",
-                                      mean(THREATS) < 3 ~ "NEPŮSOBÍ"),
+                  NEGATIV = case_when(mean(THREATS) >= 0.5 ~ "PŮSOBÍ",
+                                      mean(THREATS) < 0.5 ~ "NEPŮSOBÍ"),
                   OVERALL = NA)
       hab_evl <- hab_evl[hab_evl$SITECODE %in% species_site$SITECODE,]
       hab_evl <- hab_evl %>%
