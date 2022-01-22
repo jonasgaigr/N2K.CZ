@@ -48,21 +48,23 @@ Aktuální verze aplikace [HOST.N2K](https://jonasgaigr.shinyapps.io/HOST_N2K/) 
 
 ### Habitaty
 
-#### Vodní toky a nádrže
+#### Formační skupiny habitatů 
 
-#### Mokřady
+##### Vodní toky a nádrže
 
-#### Rašeliniště
+##### Mokřady
 
-#### Skály, sutě a jeskyně
+##### Rašeliniště
 
-#### Alpínské bezlesí
+##### Skály, sutě a jeskyně
 
-#### Sekundární trávníky a vřesoviště
+##### Alpínské bezlesí
 
-#### Křoviny
+##### Sekundární trávníky a vřesoviště
 
-#### Lesy
+##### Křoviny
+
+##### Lesy
 
 #### Hodnocení stavu habitatů
 
