@@ -64,6 +64,28 @@ Aktuální verze aplikace [HOST.N2K](https://jonasgaigr.shinyapps.io/HOST_N2K/) 
 
 #### Lesy
 
+#### Hodnocení stavu habitatů
+
+##### Rozloha
+
+##### Typické druhy
+
+##### Kvalita
+
+##### Minimiareál
+
+##### Mozaika
+
+##### Celistvost
+
+##### Konektivita
+
+##### Ohrožené druhy z červeného seznamu
+
+##### Invazní druhy
+
+##### Expanzní druhy
+
 ### Rostliny
 
 #### Cévnaté rostliny
