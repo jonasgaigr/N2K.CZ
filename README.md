@@ -95,21 +95,230 @@ Aktuální verze aplikace [HOST.N2K](https://jonasgaigr.shinyapps.io/HOST_N2K/) 
 #### Mechorosty
 
 ### Živočichové
+#### Hmyz (*Insecta*)
+##### Motýli (*Lepidoptera*)
+###### Modrásek bahenní (*Phengaris nausithous*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ 50 % výměry EVL | VMB |
+| přítomnost kvetoucích krvavců totenů | ≥ hojně | NDOP (ArcGIS Survey123) |
+| sukcese | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+| zarůstání expanzními či invazními druhy | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+| management | vhodný typ a načasování | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
 
-#### Hmyz
+Frekvence monitoringu: 1 za 3 roky
+###### Modrásek očkovaný (*Phengaris teleius*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ 50 % výměry EVL | VMB |
+| přítomnost kvetoucích krvavců totenů | ≥ hojně | NDOP (ArcGIS Survey123) |
+| sukcese | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+| zarůstání expanzními či invazními druhy | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+| management | vhodný typ a načasování | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
 
-##### Motýli
+Frekvence monitoringu: 1 za 3 roky
+###### Přástevník kostivalový (*Euplagia quadripunctaria*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ 50 % výměry EVL | VMB |
+| přítomnost nektaronosných rostlin | ≥ hojně | NDOP (ArcGIS Survey123) |
+| sukcese | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+| zarůstání expanzními či invazními druhy | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+
+
+###### Žluťásek barvoměnný (*Colias myrmidone*)
+Druh je předmětem ochrany v jedinné EVL, kde vyhynul.
+
+###### Hnědásek chrastavcový (*Euphydryas aurinia*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| počet larválních hnízd | ≥ 10 | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ 50 % výměry EVL | VMB |
+| přítomnost čertkusů | ≥ hojně | NDOP (ArcGIS Survey123) |
+| sukcese | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+| zarůstání expanzními či invazními druhy | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+| management | vhodný typ a načasování | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+
+###### Hnědásek osikový (*Euphydryas maturna*)
+
+###### Ohniváček černočárný (*Lycaena dispar*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ 50 % výměry EVL | VMB |
+| přítomnost širokolistých šťovíků | ≥ hojně | NDOP (ArcGIS Survey123) |
+| sukcese | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+| zarůstání expanzními či invazními druhy | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+| management | vhodný typ a načasování | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+
+###### Bourovec trnkový (*Eriogaster catax*)
 
 ##### Brouci (*Coleoptera*)
+###### Chrobák jednorohý (*Bolbelasmus unicornis*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ 25 % výměry EVL | VMB |
+| sukcese | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+| zarůstání expanzními či invazními druhy | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
 
-###### Saproxyličtí brouci
+Frekvence monitoringu: 1 za 3 roky
+###### Střevlík panonský (*Carabus hungaricus*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ 25 % výměry EVL | VMB |
+| dostatečná přítomnost vysokostébelné vegetace se stařinou | dostatečná přítomnost (min. 10 %) | NDOP (ArcGIS Survey123) |
+| přítomnost vhodných remízků a úhorů v blízkém okolí | přítomnost | NDOP (ArcGIS Survey123) |
+| sukcese | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+| zarůstání expanzními či invazními druhy | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
 
-###### Střevlíkovití (*Carabidae*)
+Frekvence monitoringu: 1 za 3 roky
+###### Střevlík Menetriesův (*Carabus menetriesi pacholei*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ 25 % výměry EVL | VMB |
+| sukcese | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+| zarůstání expanzními či invazními druhy | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+
+Frekvence monitoringu: 1 za 6 roky
+###### Střevlík hrbolatý (*Carabus variolosus*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ 25 % výměry EVL | VMB |
+| přítomnost mrtvého dřeva | dostatečná přítomnost | NDOP (ArcGIS Survey123) |
+| přítomnost tekoucí vody | přítomnost | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+
+Frekvence monitoringu: 1 za 6 roky
+###### tesařík obrovský (*Cerambyx cerdo*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ 25 % výměry EVL | VMB |
+| dostatečná nabídka vhodných stromů | dostatečná nabídka | NDOP (ArcGIS Survey123) |
+| zabezpečená kontinuita nabídky v hodných stromů | zabezpečená kontinuita | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+
+###### Lesák rumělkový (*Cucujus cinnaberinus*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ 25 % výměry EVL | VMB |
+| dostatečná nabídka vhodných stromů | dostatečná nabídka | NDOP (ArcGIS Survey123) |
+| zabezpečená kontinuita nabídky v hodných stromů | zabezpečená kontinuita | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+
+###### Potápník dvoučárý (*Graphoderus bilineatus*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ 25 % výměry EVL | VMB |
+| pokryvnost litorální vegetace | ≥ 40 % obvodu vodní plochy | NDOP (ArcGIS Survey123) |
+| šířka litorálu | ≥ 2 metry | NDOP (ArcGIS Survey123) |
+| zastínění vodní hladiny | < 30 % litorálu | NDOP (ArcGIS Survey123) |
+| intenzivní rybniční hospodaření | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+
+###### Kovařík fialový (*Limoniscus violaceus*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ 25 % výměry EVL | VMB |
+| dostatečná nabídka vhodných stromů | dostatečná nabídka | NDOP (ArcGIS Survey123) |
+| zabezpečená kontinuita nabídky v hodných stromů | zabezpečená kontinuita | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+
+###### Roháč obecný (*Lucanus cervus*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ 25 % výměry EVL | VMB |
+| dostatečná nabídka vhodných stromů | dostatečná nabídka | NDOP (ArcGIS Survey123) |
+| predace larev | absence vlivu | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+
+###### Páchník hnědý (*Osmoderma eremita*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ 25 % výměry EVL | VMB |
+| dostatečná nabídka vhodných stromů | dostatečná nabídka | NDOP (ArcGIS Survey123) |
+| zabezpečená kontinuita nabídky v hodných stromů | zabezpečená kontinuita | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+
+###### Rýhovec pralesní (*Rhysodes sulcatus*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ 25 % výměry EVL | VMB |
+| dostatečná nabídka vhodných stromů | dostatečná nabídka | NDOP (ArcGIS Survey123) |
+| zabezpečená kontinuita nabídky v hodných stromů | zabezpečená kontinuita | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+
+###### Tesařík alpský (*Rosalia alpina*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ 25 % výměry EVL | VMB |
+| dostatečná nabídka vhodných stromů | dostatečná nabídka | NDOP (ArcGIS Survey123) |
+| zabezpečená kontinuita nabídky v hodných stromů | zabezpečená kontinuita | NDOP (ArcGIS Survey123) |
+| skládkování dřeva | absence vlivu | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
 
 ##### Vážky (*Odonata*)
+###### Šidélko ozdobné (*Coenagrion ornatum*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| projevy rozmnožování | doloženy | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ X % výměry EVL | VMB |
+| pokryvnost dřevinné vegetace |  ≤ 10% délky obvodu vodní plochy | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+
+###### Vážka jasnoskvrnná (*Leucorrhinia pectoralis*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| projevy rozmnožování | doloženy | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ X % výměry EVL | VMB |
+| pokryvnost dřevinné vegetace | 5 % ≥ pokryvnost ≤ 60 % délky obvodu vodní plochy | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+
+###### Klínatka rohatá (*Ophiogomphus cecilia*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| projevy rozmnožování | doloženy | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ X % výměry EVL | VMB |
+| zazemění původních písečných a štěrkových substrátů | < 10 % plochy lokality | NDOP (ArcGIS Survey123) |
+| pokryvnost dřevinné vegetace | ≤ 50 % délky obvodu vodní plochy | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
+
+###### Páskovec velký (*Cordulegaster heros*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP (ArcGIS Survey123) |
+| projevy rozmnožování | doloženy | NDOP (ArcGIS Survey123) |
+| pokryvnost preferovaných habitatů | ≥ X % výměry EVL | VMB |
+| přítomnost tekoucí vody | přítomnost | NDOP (ArcGIS Survey123) |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP (ArcGIS Survey123) |
 
 #### Ostatní bezobratlí
-
 ##### Rak kamenáč (*Austropotamobius torrentium*)
 
 ##### Perlorodka říční (*Margaritifera margaritifera*)
@@ -118,23 +327,55 @@ Aktuální verze aplikace [HOST.N2K](https://jonasgaigr.shinyapps.io/HOST_N2K/) 
 
 ##### Svinutec tenký (*Anisus vorticulus*) a vrkoči (*Vertigo* sp.)
 
-##### Štírek Stella
+##### Štírek Stellin (*Anthrenochernes stellae*)
 
 #### Ryby a mihule
+##### Leuciscus aspius
+
+##### Cobitis taenia
+
+##### Cottus gobio
+
+##### Gobio albipinnatus
+
+##### Gobio kesslerii
+
+##### Gymnocephalus baloni
+
+##### Gymnocephalus schraetser
+
+##### Misgurnus fossilis
+
+##### Pelecus cultratus
+
+##### Rhodeus amarus
+
+##### Sabanejewia aurata
+
+##### Salmo salar
+
+##### Zingel streber
+
+##### Zingel zingel
+
+##### Eudontomyzon mariae
+
+##### Lampetra planeri
 
 #### Obojživelníci (*Amphibia*)
 
-#### Savci
-
+#### Savci (*Mammalia*)
 ##### Letouni (*Chiroptera*)
 
 ##### Sysel obecný (*Spermophilus citellus*)
 
-##### Bobr (*Castor fiber*)
+##### Bobr evropský (*Castor fiber*)
 
-##### Vydra (*Lutra lutra*)
+##### Vydra říční (*Lutra lutra*)
 
 ##### Vlk obecný(*Canis lupus*), rys ostrovid (*Lynx lynx*) a medvěd hnědý (*Ursus arctos*)
+
+</details>
 
 ## Zdroje
 
