@@ -93,6 +93,77 @@ Aktuální verze aplikace [HOST.N2K](https://jonasgaigr.shinyapps.io/HOST_N2K/) 
 #### Cévnaté rostliny
 
 #### Mechorosty
+###### Šikoušek zelený (*Buxbaumia viridis*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP |
+| početnost populace | ≥ 3 hnědé (zralé) tobolky | NDOP |
+| množství mrvtého dřeva | dostačující | NDOP |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP |
+
+Frekvence monitoringu: 1 za 6 let
+
+###### Dvouhrotec zelený (*Dicranum viride*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP |
+| počet mikrolokalit | druh zaznamenán na > 3 stromech | NDOP |
+| velikost populace | hromadný součet jedinců (=trsů) > 10 cm^2 | NDOP |
+| pokles velikosti populace | < 30% za poslední 2 návštěvy | NDOP |
+| věková struktura stromového patra | věkově rozrůzněný porost | NDOP |
+| druhové složení stromového patra | > 10 listnatých stromů o průměru > 30 cm | NDOP |
+| intenzita těžby v okruhu 100 m od výskytu druhu | bezzásahovost, výběrová těžba | NDOP |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP |
+
+Frekvence monitoringu: 1 za 6 let
+
+###### Srpnatka fermežová (*Hamatocaulis vernicosus*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP |
+| velikost populace | ≥ 500 cm^2 | NDOP |
+| plocha výskytu druhu | ≥ 10 m^2 | NDOP |
+| změna velikosti populace I | < 10% za poslední 4 návštěvy | NDOP |
+| změna velikosti populace II | < 30% za poslední 2 návštěvy | NDOP |
+| výměra potenciální lokality | ≥ 500 m^2 | NDOP |
+| pokryvnost bylinného patra | ≤ 90 % | NDOP |
+| pokryvnost expanzních druhů bylin | ≤ 10 % | NDOP |
+| zastínění (průmět korun dřevin > 30 cm) | ≤ 5 % | NDOP |
+| management | pozitivní či neutrální | NDOP |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP |
+
+Frekvence monitoringu: 1 za 6 let
+
+###### Mozolka skalní (*Mannia triandra*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP |
+| velikost populace | ≥ 200 stélkových ramen | NDOP |
+| plocha výskytu druhu | ≥ 4 m^2 | NDOP |
+| změna velikosti populace I | < 10% za poslední 4 návštěvy | NDOP |
+| změna velikosti populace II | < 30% za poslední 2 návštěvy | NDOP |
+| reprodukce (přítomnost sporogonů) | prokázání reprodukce | NDOP |
+| výměra potenciální lokality | ≥ 15 m^2 | NDOP |
+| pokryvnost bylinného patra | ≤ 50 % | NDOP |
+| pokryvnost expanzních druhů bylin | ≤ 10 % | NDOP |
+| zastínění (průmět korun dřevin > 30 cm) | ≤ 5 % | NDOP |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP |
+
+Frekvence monitoringu: 1 za 6 let
+
+###### Šurpek Rogerův (*Orthotrichum rogeri*)
+| Parametr | Limitní hodnota | Zdroj dat |
+| :---: | :---: | :---: |
+| výskyt druhu | doložen | NDOP |
+| velikost mikropopulace | ≥ 2 tobolky | NDOP |
+| počet sporofytů v mikropopulaci | ≥ 4 m^2 | NDOP |
+| vývoj velikosti mikropopulace | < 10% za poslední 4 návštěvy | NDOP |
+| plodnost mikropopulace| < 30% za poslední 2 návštěvy | NDOP |
+| vhodná mikrostanoviště | prokázání reprodukce | NDOP |
+| vývoj lokality | ≥ 15 m^2 | NDOP |
+| jiný negativní vliv | absence vlivu na lokalitě | NDOP |
+
+Frekvence monitoringu: 1 za 6 let
 
 ### Živočichové
 #### Hmyz (*Insecta*)
