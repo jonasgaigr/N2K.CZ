@@ -74,27 +74,20 @@ if(!isTRUE(require(ggsn, quietly = TRUE))) {
 } else {
   require(ggsn)}
 
-if(!isTRUE(require(DT, quietly = TRUE))) {
-  install.packages("DT", dependencies = TRUE); library(DT)
+if(!isTRUE(require(grid, quietly = TRUE))) {
+  install.packages("grid", dependencies = TRUE); library(grid)
 } else {
-  require(DT)}
+  require(grid)}
+
+if(!isTRUE(require(gridGraphics, quietly = TRUE))) {
+  install.packages("gridGraphics", dependencies = TRUE); library(gridGraphics)
+} else {
+  require(gridGraphics)}
 
 if(!isTRUE(require(DT, quietly = TRUE))) {
   install.packages("DT", dependencies = TRUE); library(DT)
 } else {
   require(DT)}
-
-library()
-library()
-library()
-library()
-library()
-library()
-library()
-library()
-library(grid)
-library(gridGraphics)
-library()
 
 # LOAD DATA ----
 # VRSTVA EVL
@@ -598,7 +591,6 @@ write.csv2(results_habitats,
            "S:/Gaigr/hodnoceni_stanovist_grafy/results_habitats_fin_invexp.csv", 
            row.names = FALSE)
 results_habitats_read <-  read.csv2("S:/Gaigr/hodnoceni_stanovist_grafy/results_habitats_fin.csv")
-
 
 # NASTAVENÍ LIMITNÍCH HODNOT ----
 limits <- matrix(as.integer(NA), nrow(sites_habitats), ncol(hablimits)+2) %>% 
