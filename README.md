@@ -16,6 +16,11 @@ N2K.CZ
 <p align="center" class="caption">Integrace přístupu adaptivního managementu a dostupných poznatků -
 převzato z Gilson et al. (2019)</p>
 
+<p align="center" class="caption">Implementace principů adaptivního managementového cyklu do hodnocení a plánování péče o předměty ochrany v soustavě Natura 2000:</p>
+
+<p align="center"><a href="#"><img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/amc_matice.png" alt="Implementace principů adaptivního managementového cyklu do hodnocení a plánování péče o předměty ochrany v soustavě Natura 2OOO" width="50%" height="50%" /></a></p>
+
+
 ## Metodika sběru a vyhodnocení dat
 
 <p align="center"><a href="#"><img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/flow_analysis.png" width="75%" height="75%" style="display: block; margin: auto;" /></a></p>
