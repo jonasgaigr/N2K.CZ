@@ -698,7 +698,20 @@ habitats_datatable_sum <- DT::datatable(results_habitats_values %>%
                                              KONEKTIVITA_ABSL,
                                              INVASIVE_ABSL,  
                                              EXPANSIVE_ABSL)) %>%
-                            mutate(across(c(4:13,18,22:30), round, 3)) %>%
+                            dplyr::mutate(across(c(ROZLOHA,
+                                                   TYPICKE_DRUHY,
+                                                   KVALITA,
+                                                   MINIMIAREAL,
+                                                   MOZAIKA,
+                                                   CELISTVOST,
+                                                   KONEKTIVITA,
+                                                   RED_LIST,
+                                                   INVASIVE,
+                                                   EXPANSIVE,
+                                                   VYPLNENOST_TD,
+                                                   VYPLNENOST_KVALITA,
+                                                   OVERALL_SUM),
+                                                 round, 3)) %>%
                             as.data.frame(),
                          extensions = 'Buttons',
                          options = list(
@@ -760,7 +773,27 @@ habitats_datatable_all <- DT::datatable(results_habitats_values %>%
                                                            KONEKTIVITA_ABSL,
                                                            INVASIVE_ABSL,  
                                                            EXPANSIVE_ABSL)) %>%
-                                          mutate(across(c(4:13,17:24,30:40), round, 3)) %>%
+                                          mutate(across(c(ROZLOHA,
+                                                          TYPICKE_DRUHY,
+                                                          KVALITA,
+                                                          MINIMIAREAL,
+                                                          MOZAIKA,
+                                                          CELISTVOST,
+                                                          KONEKTIVITA,
+                                                          RED_LIST,
+                                                          INVASIVE,
+                                                          EXPANSIVE,
+                                                          TD_LIM,
+                                                          QUAL_LIM,
+                                                          MINIMIAREAL_LIM,
+                                                          MOZAIKA_LIM,
+                                                          CELISTVOST_LIM,
+                                                          KONEKTIVITA_LIM,
+                                                          INVASIVE_LIM,
+                                                          EXPANSIVE_LIM,
+                                                          VYPLNENOST_TD,
+                                                          VYPLNENOST_KVALITA,
+                                                          OVERALL_SUM), round, 3)) %>%
                                           as.data.frame(),
                                         extensions = 'Buttons',
                                         options = list(
@@ -822,7 +855,6 @@ for(i in 1:nrow(sites_habitats)) {
   ggplot2::ggsave(result, filename = file_name, height = 8, width = 12, units = "in")
 }
 
-results_habitats_values_plot[,c(19:24, 26:28)] %>% head
 results_habitats_values_plot %>% 
   dplyr::select(TD_LIM,
                 QUAL_LIM, 
