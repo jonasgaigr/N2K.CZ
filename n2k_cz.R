@@ -542,20 +542,48 @@ server <- function(input, output, session) {
   # Stanovení maximální velikosti nahrávaného souboru
   options(shiny.maxRequestSize=50*1024^2)
   
+  # SITECODE EVL PODLE PŘEDMĚTU OCHRANY
   find.evl.SITECODE <- function(species) {
-    return(subset(sites_subjects, sites_subjects$Název.latinsky == species)$Kód.lokality )
+    return(sites_subjects %>%
+             dplyr::filter(Typ.lokality == "EVL") %>%
+             dplyr::filter(Název.česky == species) %>%
+             dplyr::pull(Kód.lokality) %>%
+             unique()
+    )
   }
+  # NÁZEV EVL PODLE PŘEDMĚTU OCHRANY
   find.evl.NAZEV <- function(species) {
-    return(subset(sites_subjects, sites_subjects$Název.latinsky == species)$Název.lokality)
+    return(sites_subjects %>%
+             dplyr::filter(Typ.lokality == "EVL") %>%
+             dplyr::filter(Název.česky == species) %>%
+             dplyr::pull(Název.lokality) %>%
+             unique()
+    )
   }
+  # POČET EVL PODLE PŘEDMĚTU OCHRANY
   find.evl.NUMBER <- function(species) {
-    return(nrow(subset(sites_subjects, sites_subjects$Název.latinsky == species)))
+    return(nrow(subset(sites_subjects, sites_subjects$Název.česky == species)))
+    return(sites_subjects %>%
+             dplyr::filter(Typ.lokality == "EVL") %>%
+             dplyr::filter(Název.česky == species) %>%
+             nrow()
+    )
   }
+  # PLOCHA PREFEROVANÉHO BIOTOPU P. NAUSITHOUS A P. TELEIUS
   find.evl.HAB_QUAL <- function(species) {
-    return(subset(phengaris_habitaty, phengaris_habitaty$SITECODE == species)$HAB_AREA)
+    return(phengaris_habitaty %>% 
+             dplyr::filter(SITECODE == species) %>%
+             dplyr::pull(HAB_AREA) %>%
+             unique()
+    )
   }
+  # SEZNAM PŘEDMĚTŮ OCHRANY EVL
   find.evl.TARGETS <- function(species) {
-    return(subset(phengaris_habitaty, phengaris_habitaty$SITECODE == species)$SINGLE_EVL)
+    return(sites_subjects %>%
+             filter(Typ.lokality == "EVL") %>%
+             filter(Název.lokality == species) %>%
+             pull(Název.česky)
+    )
   }
 
   
