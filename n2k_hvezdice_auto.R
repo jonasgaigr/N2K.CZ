@@ -569,8 +569,6 @@ hvezdice_plot <- function(habresult) {
 
 
 # RESULTS ----
-hvezdice_eval(sites_habitats[31,5], sites_habitats[31,2])
-
 hu <- hvezdice_eval(sites_habitats[1,5], sites_habitats[1,2])
 habresults_1_900 <- matrix(NA, 1, ncol(hu)) %>% dplyr::as_tibble()
 colnames(habresults_1_900) <- colnames(hu)
