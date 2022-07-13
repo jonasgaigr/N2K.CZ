@@ -99,7 +99,7 @@ czechia_line <- st_cast(czechia, "LINESTRING")
 # BIOGEOGRAFICKÉ ČLENĚNÍ ČR
 #bioregs <- st_read("BiogeoRegions_CR.shp")
 #bioregs <- st_transform(bioregs, CRS("+init=epsg:4326"))
-# VMB - MÁJOVÁ VRSTVA 2022
+# VMB - MÁJOVÁ VRSTVA 2020
 vmb_shp_sjtsk <- st_read("20200608_Segment.shp")
 vmb_hab_dbf <- st_read("HAB_BIOTOP.dbf")
 vmb_shp_sjtsk <- vmb_shp_sjtsk %>%
@@ -171,7 +171,7 @@ hablimits <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/
 # N2K.CZ FUNKCE ----
 # FUNKCE USNADŇUJÍCÍ PRÁCI S PŘEDMĚTY OCHRANY
 # SITECODE EVL PODLE PŘEDMĚTU OCHRANY
-find.evl.SITECODE <- function(species) {
+find_evl_SITECODE <- function(species) {
   return(sites_subjects %>%
            dplyr::filter(Typ.lokality == "EVL") %>%
            dplyr::filter(Název.česky == species) %>%
@@ -180,7 +180,7 @@ find.evl.SITECODE <- function(species) {
          )
 }
 # NÁZEV EVL PODLE PŘEDMĚTU OCHRANY
-find.evl.NAZEV <- function(species) {
+find_evl_NAZEV <- function(species) {
   return(sites_subjects %>%
            dplyr::filter(Typ.lokality == "EVL") %>%
            dplyr::filter(Název.česky == species) %>%
@@ -189,7 +189,7 @@ find.evl.NAZEV <- function(species) {
   )
 }
 # POČET EVL PODLE PŘEDMĚTU OCHRANY
-find.evl.NUMBER <- function(species) {
+find_evl_NUMBER <- function(species) {
   return(nrow(subset(sites_subjects, sites_subjects$Název.česky == species)))
   return(sites_subjects %>%
            dplyr::filter(Typ.lokality == "EVL") %>%
@@ -198,7 +198,7 @@ find.evl.NUMBER <- function(species) {
   )
 }
 # SITECODE EVL PODLE NÁZVU
-find.evl.NAME_TO_CODE <- function(species) {
+find_evl_NAME_TO_CODE <- function(species) {
   return(sites_subjects %>%
            dplyr::filter(Typ.lokality == "EVL") %>%
            dplyr::filter(Název.lokality == species) %>%
@@ -207,7 +207,7 @@ find.evl.NAME_TO_CODE <- function(species) {
   )
 }
 # NÁZVEV HABITATU PODLE KÓDU
-find.habitat.NAME_CZ <-function(species) {
+find_habitat_NAME_CZ <-function(species) {
   return(habitats %>%
            dplyr::filter(HABITAT_CODE == species) %>%
            dplyr::pull(HABITAT_CZ) %>%
@@ -215,7 +215,7 @@ find.habitat.NAME_CZ <-function(species) {
   )
 }
 # KÓD HABITATU PODLE NÁZVU
-find.habitat.CODE <-function(species) {
+find_habitat_CODE <-function(species) {
   return(habitats %>%
            dplyr::filter(HABITAT_CZ == species) %>%
            dplyr::pull(HABITAT_CODE) %>%
@@ -223,7 +223,7 @@ find.habitat.CODE <-function(species) {
   )
 }
 # MINIMIAREÁL HABITATU
-find.habitat.MINIMISIZE <- function(species) {
+find_habitat_MINIMISIZE <- function(species) {
   return(mean(subset(minimisize, minimisize$HABITAT == species)$MINIMISIZE))
   return(minimisize %>%
            dplyr::filter(HABITAT == species) %>%
@@ -232,7 +232,7 @@ find.habitat.MINIMISIZE <- function(species) {
          )
 }
 # PRIORITA OCHRANY HABITATU
-find.evl.PRIORITY <- function(species) {
+find_evl_PRIORITY <- function(species) {
   return(minimisize %>%
            dplyr::filter(HABITAT == species) %>%
            pull(PRIORITA) %>%
@@ -240,13 +240,13 @@ find.evl.PRIORITY <- function(species) {
   )
 }
 # LIMITNÍ HODNOTY PARAMETRŮ HODNOCENÍ HABITATU
-find.habitat.LIMIT <- function(species) {
+find_habitat_LIMIT <- function(species) {
   return(hablimits %>%
            dplyr::filter(HABITAT_CODE == species)
   )
 }
 # SEZNAM PŘEDMĚTŮ OCHRANY EVL
-find.evl.TARGETS <- function(species) {
+find_evl_TARGETS <- function(species) {
   return(sites_subjects %>%
            filter(Typ.lokality == "EVL") %>%
            filter(Název.lokality == species) %>%
@@ -255,7 +255,7 @@ find.evl.TARGETS <- function(species) {
 }
 
 # VÝPOČET HODNOCENÍ ----
-hvezdice.eval <- function(hab_code, evl_site) {
+hvezdice_eval <- function(hab_code, evl_site) {
   # VÝBĚR KOMBINACE EVL A PŘEDMĚTU OCHRANY, PŘEPOČÍTÁNÍ PLOCHY BIOTOPU
   vmb_target_sjtsk <- vmb_shp_sjtsk %>%
     st_intersection(filter(evl_sjtsk, NAZEV == evl_site)) %>%
@@ -290,15 +290,15 @@ hvezdice.eval <- function(hab_code, evl_site) {
     # KVALITA
     mutate(QUALITY = sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/sum(filter(., QUAL == 1 | QUAL == 2)$PLO_BIO_M2_EVL)*10,
     # MINIMIAREÁL
-           MINIMIAREAL = case_when(find.evl.PRIORITY(hab_code) == 0 ~ sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/find.habitat.MINIMISIZE(hab_code),
-                                   find.evl.PRIORITY(hab_code) == 1 ~ (sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/find.habitat.MINIMISIZE(hab_code)) + (sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/find.habitat.MINIMISIZE(hab_code)*0.2)),
+           MINIMIAREAL = case_when(find_evl_PRIORITY(hab_code) == 0 ~ sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/find_habitat_MINIMISIZE(hab_code),
+                                   find_evl_PRIORITY(hab_code) == 1 ~ (sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/find_habitat_MINIMISIZE(hab_code)) + (sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/find_habitat_MINIMISIZE(hab_code)*0.2)),
            MINIMIAREAL = case_when(MINIMIAREAL > 10 ~ 10, 
                                    MINIMIAREAL <= 10 ~ MINIMIAREAL),
-           MINIMISIZE = case_when(HABITAT == hab_code & PLO_BIO_M2_EVL > find.habitat.MINIMISIZE(hab_code) ~ 1,
-                                  HABITAT == hab_code & PLO_BIO_M2_EVL <= find.habitat.MINIMISIZE(hab_code) ~ 0))
+           MINIMISIZE = case_when(HABITAT == hab_code & PLO_BIO_M2_EVL > find_habitat_MINIMISIZE(hab_code) ~ 1,
+                                  HABITAT == hab_code & PLO_BIO_M2_EVL <= find_habitat_MINIMISIZE(hab_code) ~ 0))
   
   # PŘÍPRAVA SLOUČENÝH SEGENTŮ PRO CELISTVOST
-  if(find.evl.PRIORITY(hab_code) == 1) {
+  if(find_evl_PRIORITY(hab_code) == 1) {
     spat_multi <- vmb_qual %>%
       filter(QUAL == 1 | QUAL == 2) %>%
       filter(lengths(st_touches(geometry)) > 0)
@@ -327,11 +327,11 @@ hvezdice.eval <- function(hab_code, evl_site) {
   spat_celistvost <- spat_union %>%
     st_intersection(., vmb_qual) %>%
     group_by(ID_COMB) %>%
-    mutate(COMB_SIZE = case_when(find.evl.PRIORITY(hab_code) == 0 ~ sum(PLO_BIO_M2_EVL),
-                                 find.evl.PRIORITY(hab_code) == 1 ~ (sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/find.habitat.MINIMISIZE(hab_code)) + 
-                                   (sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/find.habitat.MINIMISIZE(hab_code)*0.2))) %>%
-    mutate(MINIMI_SIZE = case_when(COMB_SIZE > find.habitat.MINIMISIZE(hab_code) ~ 1,
-                                   COMB_SIZE <= find.habitat.MINIMISIZE(hab_code) ~ 0))
+    mutate(COMB_SIZE = case_when(find_evl_PRIORITY(hab_code) == 0 ~ sum(PLO_BIO_M2_EVL),
+                                 find_evl_PRIORITY(hab_code) == 1 ~ (sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/find_habitat_MINIMISIZE(hab_code)) + 
+                                   (sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/find_habitat_MINIMISIZE(hab_code)*0.2))) %>%
+    mutate(MINIMI_SIZE = case_when(COMB_SIZE > find_habitat_MINIMISIZE(hab_code) ~ 1,
+                                   COMB_SIZE <= find_habitat_MINIMISIZE(hab_code) ~ 0))
     
   
   if(nrow(filter(vmb_qual, QUAL == 1)) > 0) {
@@ -488,7 +488,7 @@ hvezdice.eval <- function(hab_code, evl_site) {
                 ) %>%
       st_drop_geometry()
   } else {
-    result <- tibble(SITECODE = find.evl.NAME_TO_CODE(evl_site),
+    result <- tibble(SITECODE = find_evl_NAME_TO_CODE(evl_site),
                      NAZEV = evl_site,
                      HABITAT_CODE = hab_code,
                      ROZLOHA = NA,
@@ -513,7 +513,7 @@ hvezdice.eval <- function(hab_code, evl_site) {
 }
 
 # VYKRESLENÍ HVĚZDICOVÉHO GRAFU ----
-hvezdice.plot <- function(habresult) {
+hvezdice_plot <- function(habresult) {
   habresult <- as.data.frame(habresult)
   result_area <- paste("Rozloha stanoviště:", 
                        format(round(habresult[1,4], 3), nsmall = 3), 
@@ -524,7 +524,7 @@ hvezdice.plot <- function(habresult) {
                                 habresult[1,3] == "6230" ~ "Druhově bohaté smilkové louky na silikátových podložích v horských oblastech (a v kontinentální\nEvropě v podhorských oblastech)",
                                 habresult[1,3] != "91F0" |
                                   habresult[1,3] == "3130" |
-                                  habresult[1,3] == "6230" ~ find.habitat.NAME_CZ(habresult[1,3]))
+                                  habresult[1,3] == "6230" ~ find_habitat_NAME_CZ(habresult[1,3]))
   result_fill_TD <- paste("Vyplněnost parametru 'typické druhy': ", habresult[1,17]*100, "%", sep = "")
   result_fill_QUAL <- paste("Vyplněnost parametru 'kvalita': ", paste(format(round(habresult[1,18]*100, 0), nsmall = 0)), "%", sep = "")
   result_fill <- paste(result_fill_TD, result_fill_QUAL, sep = "; ")
@@ -569,19 +569,19 @@ hvezdice.plot <- function(habresult) {
 
 
 # RESULTS ----
-hvezdice.eval(sites_habitats[31,5], sites_habitats[31,2])
+hvezdice_eval(sites_habitats[31,5], sites_habitats[31,2])
 
-hu <- hvezdice.eval(sites_habitats[1,5], sites_habitats[1,2])
+hu <- hvezdice_eval(sites_habitats[1,5], sites_habitats[1,2])
 habresults_1_900 <- matrix(NA, 1, ncol(hu)) %>% dplyr::as_tibble()
 colnames(habresults_1_900) <- colnames(hu)
 habresults_901_1893 <- matrix(NA, 1, ncol(hu)) %>% dplyr::as_tibble()
 colnames(habresults_901_1893) <- colnames(hu)
 
 for(i in 1:900) {
-  habresults_1_900 <- dplyr::bind_rows(habresults_1_900, as.data.frame(hvezdice.eval(sites_habitats[i,5], sites_habitats[i,2])))
+  habresults_1_900 <- dplyr::bind_rows(habresults_1_900, as.data.frame(hvezdice_eval(sites_habitats[i,5], sites_habitats[i,2])))
 }
 for(i in 901:nrow(sites_habitats)) {
-  habresults_901_1893 <- dplyr::bind_rows(habresults_901_1893, as.data.frame(hvezdice.eval(sites_habitats[i,5], sites_habitats[i,2])))
+  habresults_901_1893 <- dplyr::bind_rows(habresults_901_1893, as.data.frame(hvezdice_eval(sites_habitats[i,5], sites_habitats[i,2])))
 }
 
 #write.csv2(habresults_1_900, "S:/Gaigr/hodnoceni_stanovist_grafy/results_habitats_1.csv", row.names = FALSE)
@@ -615,7 +615,7 @@ limits <- limits %>%
 for(i in 1:nrow(sites_habitats)) {
   limits[i,1] <- sites_habitats[i,1]
   limits[i,2] <- sites_habitats[i,2]
-  limits[i,3:14] <- (find.habitat.LIMIT(sites_habitats[i,5]))
+  limits[i,3:14] <- (find_habitat_LIMIT(sites_habitats[i,5]))
 }
 
 # HODNOTY PARAMETRŮ VZTAŽENÉ K LIMITNÍM HODNOTÁM
@@ -654,7 +654,7 @@ results_habitats_values <- results_habitats_limits %>%
                                     is.na(EXPANSIVE_DIF) ~ 0,
                                     EXPANSIVE_DIF >= 0 ~ 1)) %>%
   group_by(NAZEV, HABITAT_CODE) %>%
-  mutate(SITECODE = find.evl.NAME_TO_CODE(NAZEV),
+  mutate(SITECODE = find_evl_NAME_TO_CODE(NAZEV),
          OVERALL_SUM = sum(TD_DIF, QUAL_DIF, MINIMIAREAL_DIF, 
                            MOZAIKA_DIF, CELISTVOST_DIF, KONEKTIVITA_DIF, 
                            INVASIVE_DIF, EXPANSIVE_DIF),
@@ -851,7 +851,7 @@ results_habitats_values_plot[is.na(results_habitats_values_plot)] <- 0
 for(i in 1:nrow(sites_habitats)) {
   file_name_prep <- paste(results_habitats_read[i,2], results_habitats_read[i,3], sep = "_")
   file_name <- paste("S:/Gaigr/hodnoceni_stanovist_grafy/", "hodnoceni_", file_name_prep, ".png", sep = "")
-  result <- hvezdice.plot(as.data.frame(results_habitats_read[i,]))
+  result <- hvezdice_plot(as.data.frame(results_habitats_read[i,]))
   ggplot2::ggsave(result, filename = file_name, height = 8, width = 12, units = "in")
 }
 
