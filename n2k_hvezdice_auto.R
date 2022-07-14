@@ -206,6 +206,15 @@ find_evl_NAME_TO_CODE <- function(species) {
            unique()
   )
 }
+# NÁZEV EVL PODLE KÓDU
+find_evl_CODE_TO_NAME <- function(species) {
+  return(sites_subjects %>%
+           dplyr::filter(Typ.lokality == "EVL") %>%
+           dplyr::filter(Kód.lokalit == species) %>%
+           dplyr::pull(Název.lokality) %>%
+           unique()
+  )
+}
 # NÁZVEV HABITATU PODLE KÓDU
 find_habitat_NAME_CZ <-function(species) {
   return(habitats %>%
