@@ -306,7 +306,7 @@ hvezdice_eval <- function(hab_code, evl_site) {
            MINIMISIZE = case_when(HABITAT == hab_code & PLO_BIO_M2_EVL > find_habitat_MINIMISIZE(hab_code) ~ 1,
                                   HABITAT == hab_code & PLO_BIO_M2_EVL <= find_habitat_MINIMISIZE(hab_code) ~ 0))
   
-  # PŘÍPRAVA SLOUČENÝH SEGENTŮ PRO CELISTVOST
+  # PŘÍPRAVA SLOUČENÝH SEGmENTŮ PRO CELISTVOST
   if(find_evl_PRIORITY(hab_code) == 1) {
     spat_multi <- vmb_qual %>%
       filter(QUAL == 1 | QUAL == 2) %>%

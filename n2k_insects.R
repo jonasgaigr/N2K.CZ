@@ -469,7 +469,7 @@ for(i in 1:nrow(sites_phenau)) {
   results_quad_phenau <- dplyr::bind_rows(results_quad_phenau, 
                                           as.data.frame(ins_lep_1_quad_eval("Phengaris nausithous", sites_phenau[i,1])))
 }
-write.csv(results_quad_phenau, 
+write.csv(results_quad_phenau[c(2:nrow(results_quad_phenau)),], 
           "C:/Users/jonas.gaigr/N2K.CZ/results/results_phenau_quad.csv",
           row.names = FALSE,
           fileEncoding = "UTF-8")
