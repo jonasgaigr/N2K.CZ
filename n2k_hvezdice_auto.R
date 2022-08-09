@@ -91,7 +91,8 @@ if(!isTRUE(require(DT, quietly = TRUE))) {
 
 # LOAD DATA ----
 # VRSTVA EVL
-evl <- st_read("Evropsky_v%C3%BDznamn%C3%A9_lokality.shp")
+#evl <- st_read("Evropsky_v%C3%BDznamn%C3%A9_lokality.shp")
+evl <- st_read("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/Evropsky_v%C3%BDznamn%C3%A9_lokality.geojson")
 evl_sjtsk <- st_transform(evl, CRS("+init=epsg:5514"))
 # HRANICE ČR
 czechia <- st_read("HraniceCR.shp")
@@ -267,7 +268,7 @@ find_evl_TARGETS <- function(species) {
 hvezdice_eval <- function(hab_code, evl_site) {
   # VÝBĚR KOMBINACE EVL A PŘEDMĚTU OCHRANY, PŘEPOČÍTÁNÍ PLOCHY BIOTOPU
   vmb_target_sjtsk <- vmb_shp_sjtsk %>%
-    st_intersection(filter(evl_sjtsk, NAZEV == evl_site)) %>%
+    st_intersection(filter(evl_sjtsk, SITECODE == evl_site)) %>%
     filter(HABITAT == hab_code) %>%
     mutate(AREA_real = units::drop_units(st_area(geometry))) %>%
     mutate(PLO_BIO_M2_EVL = PLO_BIO_M2*AREA_real/SHAPE_AREA)
@@ -275,7 +276,7 @@ hvezdice_eval <- function(hab_code, evl_site) {
   # PŘÍPRAVA VRSTVY PRO VÝPOČET PARAMETRU "MOZAIKA"
   vmb_buff <- vmb_shp_sjtsk %>%
     st_filter(., evl_sjtsk %>%
-                filter(., NAZEV == evl_site) %>%
+                filter(., SITECODE == evl_site) %>%
                 st_buffer(., 500)) %>%
     filter(FSB != "X" | 
              FSB != "-" |
@@ -350,7 +351,7 @@ hvezdice_eval <- function(hab_code, evl_site) {
   }
   
   # MAXIMÁLNÍ VZDÁLENOST MEZI 2 BODY V EVL 
-  evl_length <- filter(evl_lengths, NAZEV == evl_site) %>% 
+  evl_length <- filter(evl_lengths, SITECODE == evl_site) %>% 
     pull(MAX_DIST)
   
   # VÝPOČET PARAMETRU KONEKTIVITA
@@ -497,8 +498,8 @@ hvezdice_eval <- function(hab_code, evl_site) {
                 ) %>%
       st_drop_geometry()
   } else {
-    result <- tibble(SITECODE = find_evl_NAME_TO_CODE(evl_site),
-                     NAZEV = evl_site,
+    result <- tibble(SITECODE = evl_site,
+                     NAZEV = find_evl_CODE_TO_NAME(evl_site),
                      HABITAT_CODE = hab_code,
                      ROZLOHA = NA,
                      TYPICKE_DRUHY = NA,
