@@ -38,11 +38,11 @@ sites_subjects <- sites_subjects %>%
                 feature_code = "Kód.fenoménu")
 sites_subjects$Nazev.latinsky <- gsub("Osmoderma eremita", "Osmoderma barnabita", sites_subjects$Nazev.latinsky)
 sites_subjects$Nazev.latinsky <- gsub("Stenobothrus eurasius bohemicus", "Stenobothrus eurasius", sites_subjects$Nazev.latinsky)
-
+str(sites_subjects)
 # Druhové seznamy Přílohy II
 taxa <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/taxa.csv", encoding = "UTF-8")
 
-species_read <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/evl_data_export_2022_03_encoded.csv",
+species_read <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/evl_data_export_2022_08_encoded.csv",
                          sep = ",",
                          stringsAsFactors = FALSE,
                          encoding = "UTF-8")
@@ -71,7 +71,7 @@ bioregs <- st_transform(bioregs, CRS("+init=epsg:4326"))
 
 phengaris_habitaty <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/phengaris_habitaty.csv", encoding = "UTF-8")
 
-# FUNKCE ----
+# FUNKCE N2K ----
 # SITECODE EVL PODLE PŘEDMĚTU OCHRANY
 find_evl_SITECODE <- function(species) {
   return(sites_subjects %>%
@@ -114,12 +114,13 @@ find_evl_HAB_QUAL <- function(species) {
            pull(HAB_AREA)
          )
 }
+
 # SEZNAM PŘEDMĚTŮ OCHRANY EVL
 find_evl_TARGETS <- function(species) {
   return(sites_subjects %>%
-           filter(Typ.lokality == "EVL") %>%
-           filter(Název.lokality == species) %>%
-           pull(Název.česky)
+           dplyr::filter(Typ.lokality == "EVL") %>%
+           dplyr::filter(Kod.lokality == species) %>%
+           dplyr::pull(Název.česky)
   )
 }
 # NÁZEV EVL PODLE KÓDU
@@ -132,11 +133,28 @@ find_evl_CODE_TO_NAME <- function(species) {
   )
 }
 
-# Motýle ----
+find_N2K_feature_code <- function(species) {
+  return(sites_subjects %>%
+           dplyr::filter(Nazev.latinsky == species) %>%
+           dplyr::pull(feature_code) %>%
+           unique()
+         )
+}
+
+find_N2K_name <- function(species) {
+  return(sites_subjects %>%
+           dplyr::filter(feature_code == species) %>%
+           dplyr::pull(Nazev.latinsky) %>%
+           unique()
+  )
+}
+
+# FUNKCE LEP ----
 ins_lep_1_quad_eval <- function(species_code, evl_site) {
   
   # FIND LEVEL
   species_target_find <- species %>%
+    filter(PRESNOST < 500) %>%
     filter(SITECODE == evl_site) %>%
     filter(DRUH == species_code) %>%
     mutate(
@@ -148,15 +166,17 @@ ins_lep_1_quad_eval <- function(species_code, evl_site) {
                                           grepl("<sec_nacasovani>ano", STRUKT_POZN, ignore.case = TRUE) ~ 1),
       MOWING_METHOD_find = dplyr::case_when(grepl("<sec_celoplosna>ano", STRUKT_POZN, ignore.case = TRUE) ~ 0,
                                             grepl("<sec_celoplosna>ne", STRUKT_POZN, ignore.case = TRUE) ~ 1),
-      PLANTS_find = dplyr::case_when(grepl("<toten_pritomnost>žádné", STRUKT_POZN, ignore.case = TRUE) ~ 0,
-                                     grepl("<toten_pritomnost>jednotlivě", STRUKT_POZN, ignore.case = TRUE) ~ 0,
-                                     grepl("<toten_pritomnost>hojně", STRUKT_POZN, ignore.case = TRUE) ~ 1,
-                                     grepl("<toten_pritomnost>dominantně", STRUKT_POZN, ignore.case = TRUE) ~ 1),
+      PLANTS_find = dplyr::case_when(grepl("<STA_PRITOMNOSTROSTLIN>žádné", STRUKT_POZN, ignore.case = TRUE) ~ 0,
+                                     grepl("<STA_PRITOMNOSTROSTLIN>jednotlivě", STRUKT_POZN, ignore.case = TRUE) ~ 0,
+                                     grepl("<STA_PRITOMNOSTROSTLIN>hojně", STRUKT_POZN, ignore.case = TRUE) ~ 1,
+                                     grepl("<STA_PRITOMNOSTROSTLIN>dominantně", STRUKT_POZN, ignore.case = TRUE) ~ 1),
       TARGET_MON_find = dplyr::case_when(ZDROJ == "Kolektiv autorů (2017) Monitoring totenových modrásků. Monitoring druhů ČR. AOPK ČR." ~ 1,
                                          ZDROJ == "Kolektiv autorů (2018) Monitoring totenových modrásků. Monitoring druhů ČR. AOPK ČR." ~ 1,
                                          ZDROJ == "Kolektiv autorů (2019) Monitoring totenových modrásků. Monitoring druhů ČR. AOPK ČR." ~ 1,
                                          ZDROJ == "Kolektiv autorů (2020) Monitoring totenových modrásků. Monitoring druhů ČR. AOPK ČR." ~ 1,
                                          ZDROJ == "Kolektiv autorů (2021) Monitoring totenových modrásků. Monitoring druhů ČR. AOPK ČR." ~ 1,
+                                         ZDROJ == "Kolektiv autorů (2020) Monitoring motýlů. Monitoring druhů ČR. AOPK ČR." ~ 1,
+                                         ZDROJ == "Kolektiv autorů (2021) Monitoring motýlů. Monitoring druhů ČR. AOPK ČR." ~ 1,
                                          ZDROJ == "Sledování stavu EVL - IPLife" ~ 1,
                                          TRUE ~ 0)
       ) %>%
@@ -183,7 +203,8 @@ ins_lep_1_quad_eval <- function(species_code, evl_site) {
                          PLANTS_find,
                          MANAGEMENT_find,
                          DESTRUCT_find,
-                         THREATS_find)
+                         THREATS_find,
+                         na.rm = TRUE)
     ) %>%
     dplyr::ungroup()
   
@@ -199,7 +220,8 @@ ins_lep_1_quad_eval <- function(species_code, evl_site) {
       DESTRUCT_site = unique(DESTRUCT_find),
       THREATS_site = unique(THREATS_find),
       OVERALL_site = unique(OVERALL_find),
-      TARGET_MON_site = unique(TARGET_MON_find)
+      TARGET_MON_site = unique(TARGET_MON_find),
+      DATE = unique(DATE)
            ) %>%
     dplyr::ungroup()
   
@@ -221,11 +243,13 @@ ins_lep_1_quad_eval <- function(species_code, evl_site) {
     dplyr::select(SITECODE, POLE, LAST_FIND)
   
   species_target_quad <- species_target_sites %>%
+    dplyr::filter(DATE >= 2021 - 6) %>%
     dplyr::group_by(POLE) %>%
     dplyr::summarise(
       SITECODE = evl_site,
       NAZEV = find_evl_CODE_TO_NAME(evl_site),
       DRUH = species_code,
+      FEATURE_CODE = find_N2K_feature_code(species_code),
       POLE = unique(POLE),
       PRESENCE = dplyr::case_when(max(na.omit(PRESENCE_site)) == 1 ~ 1,
                                   max(na.omit(PRESENCE_site)) == 0 ~ 0),
@@ -250,42 +274,69 @@ ins_lep_1_quad_eval <- function(species_code, evl_site) {
   
 }
 
-sites_phenau <- sites_subjects %>%
-  filter(feature_code == 6179)
+ins_lep_1_sci_eval <- function(species_code, sci_code) {
+  
+  # SCI LEVEL
+  species_target_sci <- results_quad_lep_1 %>%
+    dplyr::filter(FEATURE_CODE == species_code)  %>%
+    dplyr::filter(SITECODE == sci_code)
+  
+  if(nrow(species_target_sci) > 0) {
+    result <- species_target_sci %>%
+      dplyr::summarise(
+        SITECODE = unique(SITECODE),
+        NAZEV = unique(NAZEV),
+        FEATURE_CODE = unique(FEATURE_CODE),
+        DRUH = unique(DRUH),
+        PRESENCE = mean(na.omit(PRESENCE)),
+        ROSTLINY = mean(na.omit(ROSTLINY)),
+        LIKVIDACE = mean(na.omit(LIKVIDACE)),
+        NEGATIV = mean(na.omit(NEGATIV)),
+        MANAGEMENT = mean(na.omit(MANAGEMENT)),
+        HABITAT_PERC = find_evl_HAB_QUAL(sci_code),
+        HABITAT = dplyr::case_when(length(find_evl_TARGETS(sci_code)) == 1 &
+                                     find_evl_HAB_QUAL(sci_code) < 0.5 ~ 0,
+                                   length(find_evl_TARGETS(sci_code)) == 1 &
+                                     find_evl_HAB_QUAL(sci_code) >= 0.5 ~ 1,
+                                   length(find_evl_TARGETS(sci_code)) > 1 &
+                                     find_evl_HAB_QUAL(sci_code) < 0.1 ~ 0,
+                                   length(find_evl_TARGETS(sci_code)) > 1 &
+                                     find_evl_HAB_QUAL(sci_code) >= 0.1 ~ 1),
+        TARGET_MON = max(na.omit(LAST_TARGET_MON)),
+        OVERALL = mean(na.omit(OVERALL)))
+  } else {
+    result <- tibble(
+      SITECODE = sci_code,
+      NAZEV = find_evl_CODE_TO_NAME(sci_code),
+      FEATURE_CODE = species_code,
+      DRUH = find_N2K_name(species_code),
+      PRESENCE = NA,
+      ROSTLINY = NA,
+      LIKVIDACE = NA,
+      NEGATIV = NA,
+      MANAGEMENT = NA,
+      HABITAT_PERC = find_evl_HAB_QUAL(sci_code),
+      HABITAT = dplyr::case_when(find_evl_TARGETS(sci_code) == 1 &
+                                   find_evl_HAB_QUAL(sci_code) < 0.5 ~ 0,
+                                 find_evl_TARGETS(sci_code) == 1 &
+                                   find_evl_HAB_QUAL(sci_code) >= 0.5 ~ 1,
+                                 find_evl_TARGETS(sci_code) == 0 &
+                                   find_evl_HAB_QUAL(sci_code) < 0.1 ~ 0,
+                                 find_evl_TARGETS(sci_code) == 0 &
+                                   find_evl_HAB_QUAL(sci_code) >= 0.1 ~ 1),
+      TARGET_MON = NA,
+      OVERALL = NA)
+  }
+  
+  result
 
-testtest <- ins_lep_1_quad_eval(sites_phenau[1,7], sites_phenau[11,1])
-
-hu_phenau <- ins_lep_1_quad_eval(sites_phenau[1,7], sites_phenau[1,1])
-results_quad_phenau <- matrix(NA, 1, ncol(hu_phenau)) %>% 
-  dplyr::as_tibble()
-colnames(results_quad_phenau) <- colnames(hu_phenau)
-
-for(i in 1:nrow(sites_phenau)) {
-  results_quad_phenau <- dplyr::bind_rows(results_quad_phenau, 
-                                          as.data.frame(ins_lep_1_quad_eval("Phengaris nausithous", sites_phenau[i,1])))
 }
-write.csv(results_quad_phenau[c(2:nrow(results_quad_phenau)),], 
-          "C:/Users/jonas.gaigr/N2K.CZ/results/results_phenau_quad.csv",
-          row.names = FALSE,
-          fileEncoding = "UTF-8")
 
-# Phengaris teleius
-sites_phetel <- sites_subjects %>%
-  filter(feature_code == 6177)
-hu_phetel <- ins_lep_1_quad_eval(sites_phetel[1,7], sites_phetel[1,1])
-results_quad_phetel <- matrix(NA, 1, ncol(hu_phetel)) %>% 
-  dplyr::as_tibble()
-colnames(results_quad_phetel) <- colnames(hu)
-
-for(i in 1:nrow(sites_phetel)) {
-  results_quad_phetel <- dplyr::bind_rows(results_quad_phetel, 
-                                          as.data.frame(ins_lep_1_quad_eval(sites_phetel[1,7], sites_phetel[i,1])))
-}
-
-ins_lep_1_sci_eval <- function(species_code, evl_site) {
+ins_lep_2_quad_eval <- function(species_code, evl_site) {
   
   # FIND LEVEL
   species_target_find <- species %>%
+    filter(PRESNOST < 500) %>%
     filter(SITECODE == evl_site) %>%
     filter(DRUH == species_code) %>%
     mutate(
@@ -293,27 +344,16 @@ ins_lep_1_sci_eval <- function(species_code, evl_site) {
                                        NEGATIVNI == 1 ~ 0,
                                        POCET > 0 ~ 1,
                                        POCET == 0 ~ 0),
-      MOWING_TIME_find = dplyr::case_when(grepl("<sec_nacasovani>ne", STRUKT_POZN, ignore.case = TRUE) ~ 0,
-                                          grepl("<sec_nacasovani>ano", STRUKT_POZN, ignore.case = TRUE) ~ 1),
-      MOWING_METHOD_find = dplyr::case_when(grepl("<sec_celoplosna>ano", STRUKT_POZN, ignore.case = TRUE) ~ 0,
-                                            grepl("<sec_celoplosna>ne", STRUKT_POZN, ignore.case = TRUE) ~ 1),
-      PLANTS_find = dplyr::case_when(grepl("<toten_pritomnost>žádné", STRUKT_POZN, ignore.case = TRUE) ~ 0,
-                                     grepl("<toten_pritomnost>jednotlivě", STRUKT_POZN, ignore.case = TRUE) ~ 0,
-                                     grepl("<toten_pritomnost>hojně", STRUKT_POZN, ignore.case = TRUE) ~ 1,
-                                     grepl("<toten_pritomnost>dominantně", STRUKT_POZN, ignore.case = TRUE) ~ 1),
-      TARGET_MON_find = dplyr::case_when(ZDROJ == "Kolektiv autorů (2017) Monitoring totenových modrásků. Monitoring druhů ČR. AOPK ČR." ~ 1,
-                                         ZDROJ == "Kolektiv autorů (2018) Monitoring totenových modrásků. Monitoring druhů ČR. AOPK ČR." ~ 1,
-                                         ZDROJ == "Kolektiv autorů (2019) Monitoring totenových modrásků. Monitoring druhů ČR. AOPK ČR." ~ 1,
-                                         ZDROJ == "Kolektiv autorů (2020) Monitoring totenových modrásků. Monitoring druhů ČR. AOPK ČR." ~ 1,
-                                         ZDROJ == "Kolektiv autorů (2021) Monitoring totenových modrásků. Monitoring druhů ČR. AOPK ČR." ~ 1,
+      PLANTS_find = dplyr::case_when(grepl("<STA_PRITOMNOSTROSTLIN>žádné", STRUKT_POZN, ignore.case = TRUE) ~ 0,
+                                     grepl("<STA_PRITOMNOSTROSTLIN>jednotlivě", STRUKT_POZN, ignore.case = TRUE) ~ 0,
+                                     grepl("<STA_PRITOMNOSTROSTLIN>hojně", STRUKT_POZN, ignore.case = TRUE) ~ 1,
+                                     grepl("<STA_PRITOMNOSTROSTLIN>dominantně", STRUKT_POZN, ignore.case = TRUE) ~ 1),
+      TARGET_MON_find = dplyr::case_when(ZDROJ == "Kolektiv autorů (2020) Monitoring motýlů. Monitoring druhů ČR. AOPK ČR." ~ 1,
+                                         ZDROJ == "Kolektiv autorů (2021) Monitoring motýlů. Monitoring druhů ČR. AOPK ČR." ~ 1,
                                          ZDROJ == "Sledování stavu EVL - IPLife" ~ 1,
                                          TRUE ~ 0)
     ) %>%
     dplyr::mutate(
-      MANAGEMENT_find = dplyr::case_when(MOWING_TIME_find == 1 &
-                                           MOWING_METHOD_find == 1 ~ 1,
-                                         MOWING_TIME_find == 0 |
-                                           MOWING_METHOD_find == 0 ~ 0),
       DESTRUCT_find = dplyr::case_when(grepl(paste(c("vysazování lesů", 
                                                      "odvodňování, meliorace",
                                                      "zalesňování bezlesí", 
@@ -330,7 +370,6 @@ ins_lep_1_sci_eval <- function(species_code, evl_site) {
     dplyr::mutate(
       OVERALL_find = sum(PRESENCE_find, 
                          PLANTS_find,
-                         MANAGEMENT_find,
                          DESTRUCT_find,
                          THREATS_find)
     ) %>%
@@ -344,7 +383,112 @@ ins_lep_1_sci_eval <- function(species_code, evl_site) {
     dplyr::summarise(
       PRESENCE_site = unique(PRESENCE_find),
       PLANTS_site = unique(PLANTS_find),
-      MANAGEMENT_site = unique(MANAGEMENT_find),
+      DESTRUCT_site = unique(DESTRUCT_find),
+      THREATS_site = unique(THREATS_find),
+      OVERALL_site = unique(OVERALL_find),
+      TARGET_MON_site = unique(TARGET_MON_find),
+      DATE = unique(DATE)
+    ) %>%
+    dplyr::ungroup()
+  
+  last_targeted_mon_quad <- species_target_find %>%
+    dplyr::group_by(POLE) %>%
+    dplyr::filter(DATE >= 2021 - 6) %>%
+    dplyr::filter(TARGET_MON_find == 1) %>%
+    dplyr::summarise(SITECODE = evl_site,
+                     LAST_TARGET_MON = max(DATE)) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(SITECODE, POLE, LAST_TARGET_MON)
+  
+  last_find_quad <- species_target_find %>%
+    dplyr::group_by(POLE) %>%
+    dplyr::filter(PRESENCE_find == 1) %>%
+    dplyr::summarise(SITECODE = evl_site,
+                     LAST_FIND = max(DATE)) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(SITECODE, POLE, LAST_FIND)
+  
+  species_target_quad <- species_target_sites %>%
+    dplyr::filter(DATE >= 2021 - 6) %>%
+    dplyr::group_by(POLE) %>%
+    dplyr::summarise(
+      SITECODE = evl_site,
+      NAZEV = find_evl_CODE_TO_NAME(evl_site),
+      DRUH = species_code,
+      FEATURE_CODE = find_N2K_feature_code(species_code),
+      POLE = unique(POLE),
+      PRESENCE = dplyr::case_when(max(na.omit(PRESENCE_site)) == 1 ~ 1,
+                                  max(na.omit(PRESENCE_site)) == 0 ~ 0),
+      ROSTLINY = mean(na.omit(PLANTS_site)),
+      LIKVIDACE = mean(na.omit(DESTRUCT_site)),
+      NEGATIV = mean(na.omit(THREATS_site)),
+      TARGET_MON = dplyr::case_when(max(TARGET_MON_site) == 1 ~ 1,
+                                    max(TARGET_MON_site) == 0 ~ 0),
+      OVERALL = mean(na.omit(OVERALL_site))) %>%
+    dplyr::ungroup()
+  
+  result <- species_target_quad %>%
+    dplyr::full_join(.,
+                     last_targeted_mon_quad, 
+                     by = c("SITECODE", "POLE")) %>%
+    dplyr::full_join(., 
+                     last_find_quad, 
+                     by = c("SITECODE", "POLE"))
+  
+  result
+  
+}
+
+ins_lep_2_sci_eval <- function(species_code, evl_site) {
+  
+  # FIND LEVEL
+  species_target_find <- species %>%
+    filter(SITECODE == evl_site) %>%
+    filter(DRUH == species_code) %>%
+    mutate(
+      PRESENCE_find = dplyr::case_when(NEGATIVNI == 0 ~ 1,
+                                       NEGATIVNI == 1 ~ 0,
+                                       POCET > 0 ~ 1,
+                                       POCET == 0 ~ 0),
+      PLANTS_find = dplyr::case_when(grepl("<STA_PRITOMNOSTROSTLIN>žádné", STRUKT_POZN, ignore.case = TRUE) ~ 0,
+                                     grepl("<STA_PRITOMNOSTROSTLIN>jednotlivě", STRUKT_POZN, ignore.case = TRUE) ~ 0,
+                                     grepl("<STA_PRITOMNOSTROSTLIN>hojně", STRUKT_POZN, ignore.case = TRUE) ~ 1,
+                                     grepl("<STA_PRITOMNOSTROSTLIN>dominantně", STRUKT_POZN, ignore.case = TRUE) ~ 1),
+      TARGET_MON_find = dplyr::case_when(ZDROJ == "Kolektiv autorů (2020) Monitoring motýlů. Monitoring druhů ČR. AOPK ČR." ~ 1,
+                                         ZDROJ == "Kolektiv autorů (2021) Monitoring motýlů. Monitoring druhů ČR. AOPK ČR." ~ 1,
+                                         ZDROJ == "Sledování stavu EVL - IPLife" ~ 1,
+                                         TRUE ~ 0)
+    ) %>%
+    dplyr::mutate(
+      DESTRUCT_find = dplyr::case_when(grepl(paste(c("vysazování lesů", 
+                                                     "odvodňování, meliorace",
+                                                     "zalesňování bezlesí", 
+                                                     "změna zemědělského využívání půdy"), 
+                                                   collapse = "|"), 
+                                             STRUKT_POZN, 
+                                             ignore.case = TRUE) ~ 0,
+                                       TARGET_MON_find == 1 ~ 1),
+      THREATS_find = dplyr::case_when(grepl("žádný vliv", STRUKT_POZN) ~ 1,
+                                      TARGET_MON_find == 1 ~ 0),
+      THREATS_NUM_find = stringr::str_count(STRUKT_POZN, ",")
+    ) %>%
+    dplyr::group_by(ID_ND_NALEZ) %>%
+    dplyr::mutate(
+      OVERALL_find = sum(PRESENCE_find, 
+                         PLANTS_find,
+                         DESTRUCT_find,
+                         THREATS_find)
+    ) %>%
+    dplyr::ungroup()
+  
+  # SITE LEVEL
+  species_target_sites <- species_target_find %>%
+    dplyr::group_by(POLE) %>%
+    dplyr::arrange(desc(OVERALL_find), desc(DATE)) %>%
+    dplyr::slice(1) %>%
+    dplyr::summarise(
+      PRESENCE_site = unique(PRESENCE_find),
+      PLANTS_site = unique(PLANTS_find),
       DESTRUCT_site = unique(DESTRUCT_find),
       THREATS_site = unique(THREATS_find),
       OVERALL_site = unique(OVERALL_find),
@@ -381,7 +525,6 @@ ins_lep_1_sci_eval <- function(species_code, evl_site) {
       ROSTLINY = mean(na.omit(PLANTS_site)),
       LIKVIDACE = mean(na.omit(DESTRUCT_site)),
       NEGATIV = mean(na.omit(THREATS_site)),
-      MANAGEMENT = mean(na.omit(MANAGEMENT_site)),
       TARGET_MON = dplyr::case_when(max(TARGET_MON_site) == 1 ~ 1,
                                     max(TARGET_MON_site) == 0 ~ 0),
       OVERALL = mean(na.omit(OVERALL_site))) %>%
@@ -397,7 +540,6 @@ ins_lep_1_sci_eval <- function(species_code, evl_site) {
       ROSTLINY = mean(na.omit(ROSTLINY)),
       LIKVIDACE = mean(na.omit(LIKVIDACE)),
       NEGATIV = mean(na.omit(NEGATIV)),
-      MANAGEMENT = mean(na.omit(MANAGEMENT)),
       TARGET_MON = max(last_targeted_mon_quad$LAST_TARGET_MON),
       OVERALL = mean(na.omit(OVERALL))) %>%
     dplyr::ungroup()
@@ -407,4 +549,79 @@ ins_lep_1_sci_eval <- function(species_code, evl_site) {
   result
   
 }
-testtest <- ins_lep_1_sci_eval(sites_phenau[1,7], sites_phenau[11,1])
+
+# RESULTS LEP ----
+# |-Phengaris nausithous ----
+sites_phenau <- sites_subjects %>%
+  filter(feature_code == 6179)
+
+hu_phenau <- ins_lep_1_quad_eval(sites_phenau[1,7], sites_phenau[1,1])
+results_quad_phenau <- matrix(NA, 1, ncol(hu_phenau)) %>% 
+  dplyr::as_tibble()
+colnames(results_quad_phenau) <- colnames(hu_phenau)
+
+for(i in 1:nrow(sites_phenau)) {
+  results_quad_phenau <- dplyr::bind_rows(results_quad_phenau, 
+                                          as.data.frame(ins_lep_1_quad_eval("Phengaris nausithous", sites_phenau[i,1])))
+}
+write.csv(results_quad_phenau[c(2:nrow(results_quad_phenau)),], 
+          "C:/Users/jonas.gaigr/N2K.CZ/results/results_phenau_quad.csv",
+          row.names = FALSE,
+          fileEncoding = "UTF-8")
+
+# |-Phengaris teleius ----
+sites_phetel <- sites_subjects %>%
+  filter(feature_code == 6177)
+hu_phetel <- ins_lep_1_quad_eval(sites_phetel[1,7], sites_phetel[1,1])
+results_quad_phetel <- matrix(NA, 1, ncol(hu_phetel)) %>% 
+  dplyr::as_tibble()
+colnames(results_quad_phetel) <- colnames(hu_phetel)
+
+for(i in 1:nrow(sites_phetel)) {
+  results_quad_phetel <- dplyr::bind_rows(results_quad_phetel, 
+                                          as.data.frame(ins_lep_1_quad_eval(sites_phetel[1,7], sites_phetel[i,1])))
+}
+
+write.csv(results_quad_phetel[c(2:nrow(results_quad_phetel)),], 
+          "C:/Users/jonas.gaigr/N2K.CZ/results/results_phetel_quad.csv",
+          row.names = FALSE,
+          fileEncoding = "UTF-8")
+#|-lep_1_quad_results ----
+results_quad_lep_1 <- dplyr::bind_rows(results_quad_phenau,
+                                           results_quad_phetel)
+#|-lep_1_sci_results ----
+sites_lep_1 <- sites_subjects %>%
+  dplyr::filter(feature_code == 6177 | feature_code == 6179)
+hu_lep_1 <- ins_lep_1_sci_eval(sites_lep_1[20,5],
+                               sites_lep_1[20,1])
+results_sci_lep_1 <- matrix(NA, 1, ncol(hu_lep_1)) %>% 
+  dplyr::as_tibble()
+colnames(results_sci_lep_1) <- colnames(hu_lep_1)
+
+for(i in 1:nrow(sites_lep_1)) {
+  results_sci_lep_1 <- dplyr::bind_rows(results_sci_lep_1, 
+                                          as.data.frame(ins_lep_1_sci_eval(sites_lep_1[i,5], sites_lep_1[i,1])))
+}
+
+# |-Euplagia quadripunctaria ----
+sites_eupqua <- sites_subjects %>%
+  filter(feature_code == 6199)
+hu_eupqua <- ins_lep_2_quad_eval(sites_eupqua[1,7], sites_eupqua[1,1])
+results_quad_eupqua <- matrix(NA, 1, ncol(hu_eupqua)) %>% 
+  dplyr::as_tibble()
+colnames(results_quad_eupqua) <- colnames(hu_eupqua)
+
+for(i in 1:nrow(sites_eupqua)) {
+  results_quad_eupqua <- dplyr::bind_rows(results_quad_eupqua, 
+                                          as.data.frame(ins_lep_2_quad_eval(sites_eupqua[1,7], sites_eupqua[i,1])))
+}
+
+write.csv(results_quad_eupqua[c(2:nrow(results_quad_eupqua)),], 
+          "C:/Users/jonas.gaigr/N2K.CZ/results/results_eupqua_quad.csv",
+          row.names = FALSE,
+          fileEncoding = "UTF-8")
+# FUNKCE COL ----
+
+# FUNKCE ORT ----
+length(find_evl_TARGETS("CZ0514113"))
+find_evl_TARGETS("CZ0110050")
