@@ -1,0 +1,40 @@
+"EVL_SITECODE","NAZEV","DRUH","PRESENCE","POP","HABLOS","PRED","TRANSP","REPRO","WATER","DRY","VEG","OVERALL","SUFFICIENT_SITES","TOTAL_SITES"
+"CZ0214009","Libické luhy","Bombina bombina",0.333333333333333,0,0,1,0.666666666666667,1,1,1,0,0.166666666666667,0,3
+"CZ0313116","Radomilická mokřina","Bombina bombina",1,1,1,1,1,1,1,1,0,0.5,0,1
+"CZ0313134","Újezdec","Bombina bombina",1,1,1,0,NA,1,1,1,1,NA,0,1
+"CZ0323158","Osek - rybník Labutinka","Bombina bombina",1,NA,1,1,NA,1,1,1,NA,NA,0,1
+"CZ0423216","Kopistská výsypka","Bombina bombina",1,NA,0.7,0.35,0,1,0.95,1,1,NA,0,20
+"CZ0423228","Strádovský rybník","Bombina bombina",0,0,1,0,1,1,1,1,0,0,0,1
+"CZ0513237","Česká Lípa - mokřad v nivě Šporky","Bombina bombina",1,1,1,1,NA,1,1,1,NA,NA,0,1
+"CZ0513244","Manušické rybníky","Bombina bombina",1,1,1,1,NA,1,1,1,NA,NA,0,2
+"CZ0513257","Stružnické rybníky","Bombina bombina",1,0,1,0,NA,1,1,1,NA,NA,0,1
+"CZ0523268","Dubno - Česká Skalice","Bombina bombina",1,1,1,1,1,1,1,1,0,0.5,0,1
+"CZ0533696","Kochánovické rybníky a tůně","Bombina bombina",1,1,1,0,1,1,1,1,0,0.5,0,1
+"CZ0623348","Jankovec","Bombina bombina",1,1,1,1,1,1,1,1,1,1,1,1
+"CZ0623367","U Huberta","Bombina bombina",1,NA,1,1,NA,1,1,1,1,NA,0,1
+"CZ0623772","Božický mokřad","Bombina bombina",1,NA,1,1,NA,1,1,1,NA,NA,0,1
+"CZ0713394","Dolní a Prostřední Svrčov","Bombina bombina",0,0,1,0.2,NA,1,1,1,NA,0,0,5
+"CZ0723413","Ovčírka","Bombina bombina",1,NA,1,0,1,1,1,1,0,NA,0,1
+"CZ0813439","Děhylovský potok - Štěpán","Bombina bombina",0.25,0,0.25,0.75,NA,1,1,1,NA,0,0,4
+"CZ0213783","Felbabka","Bombina variegata",1,1,1,1,1,1,1,1,1,1,1,1
+"CZ0713385","Písečná - mokřad","Bombina variegata",0,0,1,1,NA,1,1,1,0,0,0,1
+"CZ0724089","Beskydy","Bombina variegata",0.909090909090909,1,0.909090909090909,0.909090909090909,0.125,1,1,1,0.5,0.5,1,11
+"CZ0213790","Javůrek","Triturus cristatus",1,NA,0,1,NA,1,0,1,NA,NA,0,1
+"CZ0213794","Kerské rybníčky","Triturus cristatus",1,1,1,1,1,1,1,1,0,0.5,0,1
+"CZ0214006","Milovice - Mladá","Triturus cristatus",1,NA,1,1,0,1,1,1,0,NA,0,2
+"CZ0323144","Bonětice","Triturus cristatus",0,NA,1,1,0,1,1,1,0,0,0,1
+"CZ0413174","Borecké rybníky","Triturus cristatus",1,1,1,0,0,1,1,1,0,0.5,0,1
+"CZ0413184","Pískovna Erika","Triturus cristatus",1,1,1,1,1,1,1,1,1,1,1,1
+"CZ0413193","U sedmi rybníků","Triturus cristatus",1,1,1,1,0,1,1,1,1,0.5,0,1
+"CZ0423006","Nebeský rybníček u Veselí","Triturus cristatus",1,NA,1,1,NA,1,1,1,NA,NA,0,1
+"CZ0423202","Březina","Triturus cristatus",0.666666666666667,0.666666666666667,1,1,0,1,1,1,1,0.333333333333333,0,3
+"CZ0423216","Kopistská výsypka","Triturus cristatus",1,NA,0.6,0.8,0.4,1,0.9,1,0.8,NA,0,10
+"CZ0513249","Prácheň - Zicht","Triturus cristatus",1,1,1,1,0,1,1,1,1,0.5,0,2
+"CZ0533696","Kochánovické rybníky a tůně","Triturus cristatus",1,1,1,0,1,1,1,1,0,0.5,0,1
+"CZ0613319","Ficků rybník","Triturus cristatus",1,1,1,1,0,1,1,1,0,0.5,0,1
+"CZ0713383","Ohrozim - Horka","Triturus cristatus",1,1,1,0,NA,1,1,1,NA,NA,0,1
+"CZ0813438","Cihelna Kunín","Triturus cristatus",0.5,1,1,1,0.333333333333333,1,1,1,0.833333333333333,0.125,0,6
+"CZ0623345","Citonice - rybník Skalka","Triturus carnifex",1,NA,1,1,NA,1,1,1,NA,NA,0,1
+"CZ0713397","Zlaté Hory - Černé jezero","Lissotriton montandoni",1,1,1,1,NA,1,1,1,0,NA,0,1
+"CZ0724089","Beskydy","Lissotriton montandoni",0.611111111111111,0.4,0.888888888888889,0.888888888888889,0.333333333333333,1,1,1,0.333333333333333,0.111111111111111,0,18
+"CZ0813450","Karlova Studánka","Lissotriton montandoni",0.666666666666667,NA,1,1,NA,1,1,1,0,0,0,3

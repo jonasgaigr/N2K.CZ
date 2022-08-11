@@ -1,0 +1,53 @@
+"SITECODE","NAZEV","FEATURE_CODE","DRUH","PRESENCE","ROSTLINY","LIKVIDACE","NEGATIV","MANAGEMENT","HABITAT_PERC","HABITAT","TARGET_MON","OVERALL"
+"CZ0213063","Rakovník - za koupalištěm","6179","Phengaris nausithous",1,1,1,0,1,0.38399040894705,0,2021-08-04,4
+"CZ0213777","Bohostice","6179","Phengaris nausithous",1,1,1,1,NA,0.668017017208554,1,2021-07-27,4
+"CZ0214004","Černý Orel","6179","Phengaris nausithous",0.5,0,1,0,0,0.244400174050944,1,2020-07-16,1.5
+"CZ0214005","Andělské schody","6177","Phengaris teleius",1,1,1,0,1,0.242206138299297,1,2020-07-29,4
+"CZ0214040","Louky u Drahlína","6179","Phengaris nausithous",1,0,1,0,0,0.117528443887316,1,2021-08-03,2
+"CZ0214040","Louky u Drahlína","6177","Phengaris teleius",1,0,1,0,0,0.117528443887316,1,2021-08-03,2
+"CZ0313004","Terčino údolí","6177","Phengaris teleius",1,1,1,1,1,0.987012903529677,1,2021-07-13,5
+"CZ0313096","Čábuze","6179","Phengaris nausithous",1,NA,NA,NA,NA,0.209796894070324,0,NA,1
+"CZ0313114","Onšovice - Mlýny","6179","Phengaris nausithous",1,NA,NA,NA,NA,0.348109101348736,0,NA,1
+"CZ0313123","Stropnice","6177","Phengaris teleius",0.5,0.5,1,0,0.5,0.165444483923372,1,2020-07-23,2.5
+"CZ0313141","Žofina Huť","6179","Phengaris nausithous",1,NA,NA,NA,NA,0.25261257664504,0,NA,1
+"CZ0314123","Boletice","6179","Phengaris nausithous",1,1,1,0,0,0.0838944495269681,0,2019-07-24,1.5
+"CZ0314123","Boletice","6177","Phengaris teleius",1,1,1,0,1,0.0838944495269681,0,2019-07-08,1.5
+"CZ0314124","Blanský les","6179","Phengaris nausithous",1,0.714285714285714,1,0.5,0.8,0.0299044503399562,0,2021-08-10,3.18181818181818
+"CZ0314124","Blanský les","6177","Phengaris teleius",0.777777777777778,0.857142857142857,1,0.285714285714286,0.5,0.0299044503399562,0,2021-08-10,2.55555555555556
+"CZ0323150","Kamenec","6179","Phengaris nausithous",1,NA,NA,NA,NA,1.47054402537238,1,NA,1
+"CZ0323150","Kamenec","6177","Phengaris teleius",1,NA,NA,NA,NA,1.47054402537238,1,NA,1
+"CZ0414127","Hradiště","6179","Phengaris nausithous",0.666666666666667,0.5,1,0,0.25,0.489246648672157,1,2020-08-12,2.25
+"CZ0424030","Bezručovo údolí","6179","Phengaris nausithous",1,NA,NA,NA,NA,0.0541493702908616,0,NA,1
+"CZ0424030","Bezručovo údolí","6177","Phengaris teleius",1,NA,NA,NA,NA,0.0541493702908616,0,NA,1
+"CZ0424127","Východní Krušnohoří","6179","Phengaris nausithous",0.333333333333333,0.5,1,0,0,0.172174674241312,1,2019-08-11,1.33333333333333
+"CZ0424127","Východní Krušnohoří","6177","Phengaris teleius",1,NA,NA,NA,NA,0.172174674241312,1,NA,1
+"CZ0513506","Horní Ploučnice","6179","Phengaris nausithous",1,0.5,1,0,0.5,0.457019419756758,1,2021-07-23,2.2
+"CZ0513506","Horní Ploučnice","6177","Phengaris teleius",0.666666666666667,0.5,1,0,0,0.457019419756758,1,2020-08-07,1.66666666666667
+"CZ0514113","Podtrosecká údolí","6179","Phengaris nausithous",1,NA,NA,NA,NA,0.124637552813449,1,NA,1
+"CZ0514670","Ronov - Vlhošť","6179","Phengaris nausithous",1,1,1,0,0.5,0.427786157761787,1,2019-07-24,3.5
+"CZ0514670","Ronov - Vlhošť","6177","Phengaris teleius",1,0.5,1,0,0.5,0.427786157761787,1,2018-08-17,3
+"CZ0523010","Na Plachtě","6177","Phengaris teleius",1,NA,NA,NA,NA,0.274772271743454,1,NA,1
+"CZ0523014","Vladivostok","6179","Phengaris nausithous",1,NA,NA,NA,NA,0.850213878046847,1,NA,1
+"CZ0523014","Vladivostok","6177","Phengaris teleius",1,NA,NA,NA,NA,0.850213878046847,1,NA,1
+"CZ0523273","Javorka a Cidlina - Sběř","6179","Phengaris nausithous",1,NA,NA,NA,NA,0.997132034135701,1,NA,1
+"CZ0523275","Kačerov","6179","Phengaris nausithous",1,NA,NA,NA,NA,0.664357746696464,1,NA,1
+"CZ0523275","Kačerov","6177","Phengaris teleius",1,NA,NA,NA,NA,0.664357746696464,1,NA,1
+"CZ0523291","Uhřínov - Benátky","6179","Phengaris nausithous",1,NA,NA,NA,NA,0.615946277109376,1,NA,1
+"CZ0533308","Bohdanečský rybník","6179","Phengaris nausithous",1,0,1,1,1,0.0542204324625622,0,2021-07-24,2.5
+"CZ0534051","Anenské údolí","6179","Phengaris nausithous",1,NA,NA,NA,NA,0.149730586526852,1,NA,1
+"CZ0534055","Ratajské rybníky","6179","Phengaris nausithous",1,NA,NA,NA,NA,1.30856548997746,1,NA,1
+"CZ0534055","Ratajské rybníky","6177","Phengaris teleius",1,NA,NA,NA,NA,1.30856548997746,1,NA,1
+"CZ0537011","Louky u Přelouče","6179","Phengaris nausithous",1,NA,NA,NA,NA,0.515345217422125,1,NA,1
+"CZ0537011","Louky u Přelouče","6177","Phengaris teleius",1,NA,NA,NA,NA,0.515345217422125,1,NA,1
+"CZ0613009","Niva Fryšávky","6179","Phengaris nausithous",1,1,1,0,1,1.1217530705175,1,2020-08-14,4
+"CZ0613010","Údolí Svratky u Krásného","6179","Phengaris nausithous",1,NA,NA,NA,NA,0.650931578853306,1,NA,1
+"CZ0613012","Na Ostrážné","6179","Phengaris nausithous",1,NA,NA,NA,NA,1.19263553500248,1,NA,1
+"CZ0713388","Protivanov","6179","Phengaris nausithous",1,NA,NA,NA,NA,1.40096577182787,1,NA,1
+"CZ0713395","Vidnava","6179","Phengaris nausithous",1,1,1,0,1,0.0667617298093301,0,2020-08-13,4
+"CZ0714073","Litovelské Pomoraví","6179","Phengaris nausithous",1,0.666666666666667,1,0,1,0.0368162479177325,0,2019-08-02,2.5
+"CZ0714085","Morava - Chropyňský luh","6179","Phengaris nausithous",0.75,NA,NA,NA,NA,0.0643424171105571,0,NA,0.75
+"CZ0723403","Uhliska","6179","Phengaris nausithous",1,1,1,0,1,1.26474775760322,1,2020-07-24,2.5
+"CZ0723403","Uhliska","6177","Phengaris teleius",1,1,1,0,1,1.26474775760322,1,2020-07-24,2.5
+"CZ0724090","Bílé Karpaty","6179","Phengaris nausithous",0.833333333333333,0.25,1,0,0.5,0.151082018904813,1,2020-08-21,1.33333333333333
+"CZ0724090","Bílé Karpaty","6177","Phengaris teleius",0.727272727272727,0.333333333333333,1,0,1,0.151082018904813,1,2020-08-21,1.18181818181818
+"CZ0814092","Poodří","6179","Phengaris nausithous",0.875,0.5,1,0,0.666666666666667,0.29633635095178,1,2020-07-28,1.875

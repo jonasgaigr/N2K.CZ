@@ -1,0 +1,469 @@
+"EVL_SITECODE","SITECODE","NAZEV","DRUH","PRESENCE","POP","HABLOS","PRED","TRANSP","REPRO","WATER","DRY","VEG","OVERALL","SUFFICIENT"
+"amp103","amp103","Strizovice mokrad","Bombina bombina",0,0,1,1,0,1,1,1,1,0,0
+"amp104","amp104","Písečný vrch","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp11","amp11","Jizbice - pískovna","Bombina bombina",1,1,1,1,1,1,1,1,0,0.5,0
+"amp110","amp110","Manušické rybníky","Bombina bombina",1,1,1,1,1,NA,1,1,NA,NA,NA
+"amp114","amp114","Stružnické rybníky","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp117","amp117a","Zábřezí-Řečice - koupaliště","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp122","amp122","Rybník Buben u Červené Třemešné","Bombina bombina",0,0,1,1,0,1,1,1,NA,0,0
+"amp122","amp122a","Rybník Buben u Červené Třemešné","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp122","amp122b","Rybník Buben u Červené Třemešné","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp128","amp128","Cihelna Pulice","Bombina bombina",1,1,0,1,1,1,1,1,1,0.5,0
+"amp13","amp13","Srby-Malé Záplavy","Bombina bombina",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp14","amp14","cihadla","Bombina bombina",1,0,1,0,0,1,1,1,1,0.5,0
+"amp140","amp140a","rybníky u Opatovického kanálu - rybník blíže k silnici","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp140","amp140b","rybníky u Opatovického kanálu - rybník dál od silnice","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp145","amp145","PP Boušovka","Bombina bombina",1,1,1,1,1,1,1,1,1,1,1
+"amp157","amp157a","V Pouštích - Jezírko","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp157","amp157b","V Pouštích - Stonařovský ryb.","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp157","amp157c","V Pouštích - Lovětínský ryb.","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp159","amp159","Častotice lom","Bombina bombina",1,1,1,1,1,1,1,1,0,0.5,0
+"amp163","amp163a","U Borovné - rybníčky","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp163","amp163b","U Borovné - Nový ryb.","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp163","amp163c","U Borovné - Šilhan","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp167","amp167","Převoroský rybník","Bombina bombina",1,1,1,1,1,1,1,1,NA,NA,NA
+"amp18","amp18","Malý Býkovický rybník","Bombina bombina",1,1,1,1,0,1,1,1,1,0.5,0
+"amp181","amp181","Knížecí les","Bombina bombina",1,1,1,1,1,1,1,1,1,1,1
+"amp189","amp189","Nesyt","Bombina bombina",1,1,1,1,1,1,1,1,NA,NA,NA
+"amp19","amp19","Lazy, Vočert","Bombina bombina",NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp19","amp19a","Lazy","Bombina bombina",1,NA,0,0,1,NA,0,1,NA,NA,NA
+"amp19","amp19b","Vočert","Bombina bombina",0,NA,0,0,1,NA,0,1,NA,0,0
+"amp2","amp2","Klánovický les","Bombina bombina",1,1,1,1,0,1,1,1,1,0.5,0
+"amp202","amp202","Černovírský les - pískovny","Bombina bombina",1,1,1,0,1,1,1,1,NA,NA,NA
+"amp205","amp205","PR Kačení louka","Bombina bombina",1,1,1,1,1,1,1,1,NA,NA,NA
+"amp22","amp22","Jablonná - mokřad","Bombina bombina",1,1,1,1,1,1,1,1,NA,NA,NA
+"amp223","amp223","Kavkova tůň","Bombina bombina",1,1,1,1,1,NA,1,1,NA,NA,NA
+"amp24","amp24","Hrachoviště","Bombina bombina",1,1,1,1,0,1,1,1,0,0.5,0
+"amp240","amp240a","NPR Polanská niva - rybník Velký váček","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp240","amp240b","NPR Polanská niva - rybník Kačírek","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp240","amp240c","NPR Polanská niva - rybník Malý váček","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp240","amp240d","NPR Polanská niva - rybník Zimní","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp25","amp25","Dolní Obděnický rybník","Bombina bombina",1,1,1,0,1,1,0,1,NA,NA,NA
+"amp252","amp252","Dolní Marklovice","Bombina bombina",1,1,1,0,0,1,1,1,1,0.5,0
+"amp252","amp252a","Adamecký rybník II, plocha 1","Bombina bombina",NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp252","amp252b","Adamecký rybník II, plocha 2","Bombina bombina",NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp252","amp252c","Adamecký rybník I","Bombina bombina",NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp252","amp252d","Radecký rybník I","Bombina bombina",NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp252","amp252e","Radecký rybník II","Bombina bombina",NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp252","amp252f","Fojtík","Bombina bombina",NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp252","amp252g","Kotlina 5","Bombina bombina",NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp252","amp252h","Kotlina 4","Bombina bombina",NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp252","amp252i","Kotlina 3","Bombina bombina",NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp252","amp252j","Kotlina 2","Bombina bombina",NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp252","amp252k","Kotlina 1","Bombina bombina",NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp27","amp27","Na Plachtě","Bombina bombina",1,1,1,1,1,1,1,1,1,1,1
+"amp276","amp276","V Pouštích -  Lovětínský","Bombina bombina",1,0,1,1,1,1,1,1,NA,NA,NA
+"amp277","amp277","V Pouštích - Stonařovský","Bombina bombina",1,1,1,1,1,1,1,1,NA,NA,NA
+"amp278","amp278","V Pouštích - Jezírko","Bombina bombina",0,0,1,1,0,1,1,1,NA,0,0
+"amp279","amp279","U Borovné - Nový ryb.","Bombina bombina",1,1,1,1,1,1,1,1,0,0.5,0
+"amp280","amp280","U Borovné - Šilhan","Bombina bombina",0,0,1,1,1,1,1,1,0,0,0
+"amp281","amp281","U Borovné - rybníčky","Bombina bombina",1,1,1,1,1,1,1,1,0,0.5,0
+"amp285","amp285","Ostřice - malý rybník","Bombina bombina",0,0,1,0,0,1,1,1,NA,0,0
+"amp286","amp286","Ostřice - velký rybník","Bombina bombina",0,0,1,0,0,1,1,1,NA,0,0
+"amp293","amp293","NPR Polanská niva - rybník Malý váček","Bombina bombina",1,0,1,1,0,1,1,1,NA,NA,NA
+"amp294","amp294","NPR Polanská niva - rybník Zimní","Bombina bombina",1,0,1,1,0,1,1,1,NA,NA,NA
+"amp295","amp295","NPR Polanská niva - rybník Velký váček","Bombina bombina",1,0,1,1,0,1,1,1,NA,NA,NA
+"amp312","amp312","NPR Polanská niva - rybník Kačírek","Bombina bombina",1,NA,1,1,0,1,1,1,NA,NA,NA
+"amp315pok","amp315pokus","pokus","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp339","amp339","Lazy","Bombina bombina",0,NA,1,0,NA,1,0,1,NA,0,0
+"amp340","amp340","Vočert","Bombina bombina",1,NA,1,0,NA,1,1,1,NA,NA,NA
+"amp43","amp43","Rybníky u Třebína","Bombina bombina",1,1,1,0,1,1,1,1,NA,NA,NA
+"amp43","amp43a","Velký Hajský","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp43","amp43b","Doubí","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp43","amp43c","Žabinec","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp43","amp43d","Horni Farsky","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp43","amp43e","Drclavek","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp43","amp43f","Dolni Rohovec","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp43","amp43g","Horní Rohovec","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp43","amp43h","Kukla","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp43","amp43i","Prostřední Farský","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp43","amp43j","Dolní Farský","Bombina bombina",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp45","amp45","Luží u Lovětína","Bombina bombina",1,NA,1,1,1,1,1,1,1,NA,NA
+"amp51","amp51","Planinský rybník a Kozor","Bombina bombina",1,1,0,0,1,NA,0,1,NA,NA,NA
+"amp71","amp71","Osek - Labutinka","Bombina bombina",0,0,1,1,1,1,1,1,NA,0,0
+"amp78","amp78","Telecske r.","Bombina bombina",1,1,1,1,1,1,1,1,1,1,1
+"amp8","amp8","Kalspot","Bombina bombina",1,1,1,1,1,1,1,1,1,1,1
+"amp81","amp81","Albericky rybník","Bombina bombina",1,1,1,1,1,1,1,1,0,0.5,0
+"CZ0214009","CZ0214009_1","EVL Libické luhy","Bombina bombina",0,0,0,1,1,1,1,1,0,0,0
+"CZ0214009","CZ0214009_2","EVL Libické luhy","Bombina bombina",0,0,0,1,0,1,1,1,0,0,0
+"CZ0214009","CZ0214009_3","EVL Libické luhy, tůň ve Veltrubském luhu","Bombina bombina",1,0,0,1,1,1,1,1,0,0.5,0
+"CZ0313116","CZ0313116","Radomilická mokřina","Bombina bombina",1,1,1,1,1,1,1,1,0,0.5,0
+"CZ0313134","CZ0313134","Újezdec","Bombina bombina",1,1,1,0,NA,1,1,1,1,NA,NA
+"CZ0323158","CZ0323158","Osek - Labutinka","Bombina bombina",1,NA,1,1,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_10","K275+K176","Bombina bombina",1,NA,0,0,0,1,1,1,1,NA,NA
+"CZ0423216","CZ0423216_11","K312+K135","Bombina bombina",1,NA,1,0,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_12","K008","Bombina bombina",1,NA,1,0,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_13","K016","Bombina bombina",1,NA,1,0,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_14","K051","Bombina bombina",1,NA,1,0,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_15","K063+K064","Bombina bombina",1,NA,0,1,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_16","K075+K076","Bombina bombina",1,NA,0,0,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_17","K123","Bombina bombina",1,NA,0,1,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_18","K138","Bombina bombina",1,NA,0,1,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_19","K144","Bombina bombina",1,NA,1,0,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_2","K049","Bombina bombina",1,NA,1,1,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_20","K145+K146","Bombina bombina",1,NA,1,0,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_21","K216+K217","Bombina bombina",1,NA,1,0,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_22","K220","Bombina bombina",1,NA,1,0,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_23","K227","Bombina bombina",1,NA,1,0,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_24","K305","Bombina bombina",1,NA,1,0,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_3","K229","Bombina bombina",1,NA,1,1,NA,1,0,1,NA,NA,NA
+"CZ0423216","CZ0423216_4","K066","Bombina bombina",1,NA,1,1,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_8","K234","Bombina bombina",1,NA,0,1,NA,1,1,1,NA,NA,NA
+"CZ0423216","CZ0423216_9","K254","Bombina bombina",1,NA,1,0,NA,1,1,1,NA,NA,NA
+"CZ0423228","CZ0423228","Strádovský rybník","Bombina bombina",0,0,1,0,1,1,1,1,0,0,0
+"CZ0513237","CZ0513237","Česká Lípa - mokřad v nivě Šporky","Bombina bombina",1,1,1,1,NA,1,1,1,NA,NA,NA
+"CZ0513244","CZ0513244","Manušické rybníky","Bombina bombina",1,1,1,1,NA,1,1,1,NA,NA,NA
+"CZ0513244","CZ0513244_110","Manušické rybníky","Bombina bombina",1,NA,1,1,NA,1,1,1,NA,NA,NA
+"CZ0513257","CZ0513257","Stružnické rybníky","Bombina bombina",1,0,1,0,NA,1,1,1,NA,NA,NA
+"CZ0523268","CZ0523268","Dubno - Česká Skalice","Bombina bombina",1,1,1,1,1,1,1,1,0,0.5,0
+"CZ0533696","CZ0533696","Kochánovické rybníky a tůně","Bombina bombina",1,1,1,0,1,1,1,1,0,0.5,0
+"CZ0623348","CZ0623348","Jankovec","Bombina bombina",1,1,1,1,1,1,1,1,1,1,1
+"CZ0623367","CZ0623367","U Huberta","Bombina bombina",1,NA,1,1,NA,1,1,1,1,NA,NA
+"CZ0623772","CZ0623772","Božický mokřad","Bombina bombina",1,NA,1,1,NA,1,1,1,NA,NA,NA
+"CZ0713394","CZ0713394_1","Nové tůně","Bombina bombina",0,0,1,1,NA,1,1,1,NA,0,0
+"CZ0713394","CZ0713394_2","Nad Horním Svrčovem","Bombina bombina",0,0,1,0,NA,1,1,1,NA,0,0
+"CZ0713394","CZ0713394_3","Horní Svrčov","Bombina bombina",0,0,1,0,NA,1,1,1,NA,0,0
+"CZ0713394","CZ0713394_4","Prostřední Svrčov","Bombina bombina",0,0,1,0,NA,1,1,1,NA,0,0
+"CZ0713394","CZ0713394_5","Dolní Svrčov","Bombina bombina",0,0,1,0,NA,1,1,1,NA,0,0
+"CZ0723413","CZ0723413","Ovčírka","Bombina bombina",1,NA,1,0,1,1,1,1,0,NA,NA
+"CZ0813439","CZ0813439_1","EVL Děhylovský potok-Štěpán, Bezedná tůň","Bombina bombina",0,0,0,0,NA,1,1,1,NA,0,0
+"CZ0813439","CZ0813439_2","EVL Děhylovský potok-Štěpán, rybník Štěpán","Bombina bombina",0,0,1,1,NA,1,1,1,NA,0,0
+"CZ0813439","CZ0813439_3","EVL Děhylovský potok-Štěpán, tůň na Žabinci","Bombina bombina",0,0,0,1,NA,1,1,1,NA,0,0
+"CZ0813439","CZ0813439_4","EVL Děhylovský potok - Štěpán, Žabinec","Bombina bombina",1,NA,0,1,NA,1,1,1,NA,NA,NA
+"amp12","amp12","Skočová","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp204","amp204","Velké Kunětice - pískovna
+","Bombina variegata",1,NA,1,1,NA,1,1,1,NA,NA,NA
+"amp207","amp207","Písečná - mokřad
+","Bombina variegata",1,NA,1,1,NA,1,0,1,NA,NA,NA
+"amp208","amp208","Libavá","Bombina variegata",1,NA,0,1,NA,1,1,1,NA,NA,NA
+"amp209","amp209","Vidnava - kaolinový lom
+","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp210","amp210","Mikulovice - tůně u lesa
+","Bombina variegata",1,NA,1,1,NA,1,1,1,NA,NA,NA
+"amp219","amp219","Dušná u červených","Bombina variegata",0,NA,1,1,0,1,1,1,1,0,0
+"amp220","amp220","Tůně Babská","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp222","amp222","Slovačica","Bombina variegata",1,NA,1,1,0,1,1,1,1,NA,NA
+"amp233","amp233","Ptáčnice - u jezera","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp24","amp24","Hrachoviště","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp244","amp244","Věřňovice","Bombina variegata",1,NA,1,1,NA,1,0,1,0,NA,NA
+"amp245","amp245","Staré hliniště","Bombina variegata",0,NA,1,1,NA,1,1,1,1,0,0
+"amp264","amp264","Tůň Mezivodí","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp270","amp270/a","Smržovice - lom - prameniště pod stěnou","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp270","amp270/b","Smržovice - lom - tůň pod dopravníkem","Bombina variegata",1,NA,1,1,NA,1,1,1,NA,NA,NA
+"amp270","amp270/c","Smržovice - lom - louže na dně","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp270","amp270/d","Smržovice - lom - tůň pod stěnou","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp270","amp270/e","Smržovice - lom - tůň na konci dopravníku","Bombina variegata",1,NA,1,1,0,1,1,1,1,NA,NA
+"amp330","amp330","VVP Boletice - Třebovice","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp331","amp331","VVP Boletice - Podvoří","Bombina variegata",1,NA,0,1,NA,1,1,1,1,NA,NA
+"amp35","amp35","Kalubice-pískovna","Bombina variegata",0,NA,1,1,NA,1,1,1,1,0,0
+"amp44","amp44","Omlenička","Bombina variegata",0,NA,1,1,NA,1,1,1,0,0,0
+"amp58","amp58","Přeštice - cihelna","Bombina variegata",1,NA,1,1,NA,1,1,1,NA,NA,NA
+"amp61","amp61","Kyšice","Bombina variegata",1,NA,1,1,NA,1,0,1,0,NA,NA
+"amp62","amp62/c","Podhájí - tůně na severu - východ - malá","Bombina variegata",1,NA,1,1,0,1,1,1,1,NA,NA
+"amp62","amp62/d","Podhájí - tůně na severu - JZ","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp62","amp62/g","Podhájí - tůně na severu - střední","Bombina variegata",1,NA,1,1,0,1,1,1,1,NA,NA
+"amp62","amp62/j","Podhájí - kanál - V","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp62","amp62/r","Podhájí - kolej u potoka - S od kanálu","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp62","amp62/u","Podhájí - koleje u kraje pole 30 m od S","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp62","amp62/v","Podhájí - kanál střed","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp62","amp62/w","Podhájí - slepé rameno","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp64","amp64","Blovice - cihelna","Bombina variegata",1,NA,0,1,NA,1,1,1,1,NA,NA
+"amp65","amp65","Dobřany - vojenské cvičiště","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp67","amp67/ay","Rokycany - vojenské cvičiště - nová plocha JV od depozitu","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp67","amp67/be","Rokycany - vojenské cvičiště - plocha J od depozitu","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp67","amp67/bg","Rokycany - vojenské cvičiště - nové tůně V od muzea - V","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp67","amp67/bh","Rokycany - vojenské cvičiště - za plotem - SZ","Bombina variegata",1,NA,1,1,0,1,1,1,1,NA,NA
+"amp67","amp67/bi","Rokycany - vojenské cvičiště - tůň za plotem JZ od vjezdu","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp67","amp67/bj","Rokycany - vojenské cvičiště - kanál před drtírnou","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp67","amp67/bk","Rokycany - vojenské cvičiště - louže SZ od schodů","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp67","amp67/bl","Rokycany - vojenské cvičiště - Z od cesty ke schodům","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp67","amp67/f","Rokycany - vojenské cvičiště - J od panelky - střed","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp67","amp67/g","Rokycany - vojenské cvičiště - Z od valu - Z","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp67","amp67/j","Rokycany - vojenské cvičiště - louže před muzeem velká Z","Bombina variegata",1,NA,1,1,0,1,1,1,1,NA,NA
+"amp67","amp67/o","Rokycany - vojenské cvičiště - koleje JV od valu","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp67","amp67/p","Rokycany - vojenské cvičiště - louže V od muzea","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp67","amp67/v","Rokycany - vojenské cvičiště - nová tůň V od muzea (JV)","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp67","amp67/w","Rokycany - vojenské cvičiště - nová tůň V od požární nádrže (JZ)","Bombina variegata",1,NA,1,1,0,1,1,1,1,NA,NA
+"amp67","amp67/z","Rokycany - vojenské cvičiště - louže na cestě JV od požární nádrže","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp68","amp68","Smržovice - koupaliště","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp69","amp69/a","Vlčí hora - horní louže","Bombina variegata",0,NA,1,1,NA,1,1,1,0,0,0
+"amp69","amp69/b","Vlčí hora - horní soustava","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp69","amp69/d","Vlčí hora - horní velká - kaliště","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp69","amp69/e","Vlčí hora - horní velká","Bombina variegata",0,NA,1,1,0,1,1,1,1,0,0
+"amp69","amp69/f","Vlčí hora - dolní velká","Bombina variegata",0,NA,1,1,0,1,1,1,1,0,0
+"amp69","amp69/g","Vlčí hora - soustava pod dolní velkou","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp69","amp69/h","Vlčí hora - čtverec","Bombina variegata",0,NA,1,1,0,1,1,1,0,0,0
+"amp69","amp69/i","Vlčí hora - řada V (levá, k louce)","Bombina variegata",0,NA,1,1,NA,1,1,1,0,0,0
+"amp69","amp69/j","Vlčí hora - řada Z (pravá, k lesu)","Bombina variegata",1,NA,1,1,0,1,1,1,1,NA,NA
+"amp69","amp69/k","Vlčí hora - nad cestou","Bombina variegata",0,NA,1,1,0,1,1,1,1,0,0
+"amp69","amp69/l","Vlčí hora - pod cestou","Bombina variegata",0,NA,1,1,NA,1,1,1,0,0,0
+"amp69","amp69/m","Vlčí hora - pod lesem","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp69","amp69/n","Vlčí hora - u vrby","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp69","amp69/o","Vlčí hora - dlouhá","Bombina variegata",0,NA,1,1,0,1,1,1,1,0,0
+"amp69","amp69/p","Vlčí hora - velká se smrkem","Bombina variegata",0,NA,1,1,0,1,1,1,1,0,0
+"amp69","amp69/q","Vlčí hora - tůň nad velkou se SM","Bombina variegata",0,NA,1,1,NA,1,1,1,0,0,0
+"amp69","amp69/r","Vlčí hora - tůň západně od velké se smrkem","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp70","amp70/aa","Stříbro - tůň SZ od zákopu 4","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/ab","Stříbro - tůň S od zákopu 4","Bombina variegata",0,NA,1,1,NA,1,1,1,1,0,0
+"amp70","amp70/ad","Stříbro - louže V od zákopu 4","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/af","Stříbro - zákop 5","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp70","amp70/ai","Stříbro - louže na cestě před zákopy","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/aj","Stříbro - tůňka u louky","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/ak","Stříbro - tůň ve vrbách","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp70","amp70/am","Stříbro - J cesta - tůň Z","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/an","Stříbro - J cesta - tůň 15 m V od Z","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/ap","Stříbro - J cesta - tůň 10 m Z od křižovatky","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/ar","Stříbro - J cesta - tůň křižovatka","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp70","amp70/at","Stříbro - J cesta - tůň V od půlené","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp70","amp70/av","Stříbro - Z cesta - velká tůň J","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp70","amp70/ax","Stříbro - Z cesta - velká tůň střed","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/ay","Stříbro - Z cesta - velká tůň S","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/az","Stříbro - S cesta - tůň na Z křižovatce","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp70","amp70/b","Stříbro - louže pod kopcem","Bombina variegata",0,NA,1,1,NA,1,1,1,0,0,0
+"amp70","amp70/ba","Stříbro - S cesta - 1. tůň Z od Z křižovatky","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp70","amp70/bb","Stříbro - S cesta - 2. tůň Z od Z křižovatky","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/be","Stříbro - S cesta - 5. tůň Z od Z křižovatky - SZ","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/bf","Stříbro - S cesta - 6. tůň Z od Z křižovatky - SZ","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp70","amp70/bg","Stříbro - S cesta - V křižovatka - S","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/bh","Stříbro - S cesta - V křižovatka - Z","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/bi","Stříbro - S cesta - V křižovatka - střed","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp70","amp70/bk","Stříbro - S cesta - tůň V od V křižovatky","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/bl","Stříbro - S cesta - tůň V od V křižovatky - velká","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp70","amp70/bm","Stříbro - S cesta - V od V křižovatky - koleje","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp70","amp70/bp","Stříbro - V cesta - tůň 20 m J od křižovatky na S","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/bq","Stříbro - V cesta - tůň 30 m J od křižovatky na S velká","Bombina variegata",1,NA,1,1,0,1,1,1,1,NA,NA
+"amp70","amp70/br","Stříbro - V cesta - tůň 45 m J od křižovatky na S velká","Bombina variegata",1,NA,1,1,0,1,1,1,1,NA,NA
+"amp70","amp70/bv","Stříbro - u borovice - louže S","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/bw","Stříbro - u borovice - sever","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/bx","Stříbro - u borovice - jih","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp70","amp70/by","Stříbro - S cesta - tůň na JV od V křižovatky","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp70","amp70/ca","Stříbro - tůně na JV - 5 (S)","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp70","amp70/cb","Stříbro - údolnice JZ od asfaltky - Z - Z","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp70","amp70/cc","Stříbro - údolnice JZ od asfaltky - Z - S","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp70","amp70/cd","Stříbro - údolnice JZ od asfaltky - Z - J","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp70","amp70/ce","Stříbro - údolnice JZ od asfaltky - J","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp70","amp70/cf","Stříblo - louže J od borovice","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/cg","
+Stříbro - údolnice JZ od asfaltky - SZ od L","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/ci","Stříbro - údolnice nad asfaltkou","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/cj","Stříbro - údolnice JZ od asfaltky - V od 1. valu - V","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/ck","Stříbro - údolnice JZ od asfaltky - V od 1. valu - Z","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/cl","Stříbro - údolnice JZ od asfaltky - V od 1. valu - J","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/cm","Stříbro - údolnice JZ od asfaltky - mezi valy","Bombina variegata",1,NA,1,1,0,1,1,1,1,NA,NA
+"amp70","amp70/cn","Stříbro - S cesta - V křižovatka - JZ","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/d","Stříbro - tůně na JV - Z","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/h","Stříbro - cesta pod skládkou - 60 m V od údolnice (u třešně)","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/ch","Stříbro - cesta pod skládkou - Z křižovatka","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp70","amp70/i","Stříbro - cesta pod skládkou - 50 m V od údolnice (u borovice)","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/j","Stříbro - cesta pod skládkou - 30 m V od údolnice (Z od cesty)","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/k","Stříbro - cesta pod skládkou - údolnice – Z","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/l","Stříbro - cesta pod skládkou - 10 m Z od údolnice","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/n","Stříbro - tůň 40 m J od tůně v údolnici na bývalé cestě","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/p","Stříbro - údolnice JZ od asfaltky - velká pod svahem","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/r","Stříbro - údolnice JZ od asfaltky - louže na SZ","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp70","amp70/s","Stříbro - údolnice JZ od asfaltky - uprostřed střed","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp70","amp70/t","Stříbro - údolnice JZ od asfaltky - uprostřed jih","Bombina variegata",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp70","amp70/u","Stříbro - údolnice JZ od asfaltky - Z - V","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/v","Stříbro - zákop 1","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/x","Stříbro - zákop 2","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/z","Stříbro - zákop 4","Bombina variegata",0,NA,1,1,0,1,1,1,0,0,0
+"amp74","amp74","Horní Lukavice","Bombina variegata",0,NA,1,1,NA,1,0,1,NA,0,0
+"CZ0213783","CZ0213783","Felbabka","Bombina variegata",1,1,1,1,1,1,1,1,1,1,1
+"CZ0713385","CZ0713385","mokřad Písečná, asi totožné s Psci","Bombina variegata",0,0,1,1,NA,1,1,1,0,0,0
+"CZ0724089","CZ0724089_1","Ptáčnice - u jezera","Bombina variegata",1,NA,1,1,0,1,1,1,1,NA,NA
+"CZ0724089","CZ0724089_12","","Bombina variegata",1,1,0,1,0,1,1,1,0,0.5,0
+"CZ0724089","CZ0724089_13","","Bombina variegata",1,1,1,1,NA,1,1,1,NA,NA,NA
+"CZ0724089","CZ0724089_16","","Bombina variegata",1,NA,1,1,0,1,1,1,0,NA,NA
+"CZ0724089","CZ0724089_25","Zápulčínsko","Bombina variegata",1,NA,1,0,0,1,1,1,0,NA,NA
+"CZ0724089","CZ0724089_27","Karolinka-pod Stanovnicí","Bombina variegata",1,1,1,1,1,1,1,1,1,1,1
+"CZ0724089","CZ0724089_28","Malá Hanzlůvka","Bombina variegata",1,1,1,1,NA,1,1,1,1,NA,NA
+"CZ0724089","CZ0724089_30","Kněhyňský lom","Bombina variegata",1,NA,1,1,NA,1,1,1,0,NA,NA
+"CZ0724089","CZ0724089_7","Dušná u červených","Bombina variegata",1,NA,1,1,0,1,1,1,1,NA,NA
+"CZ0724089","CZ0724089_8","Tůně Babská","Bombina variegata",0,NA,1,1,0,1,1,1,0,0,0
+"CZ0724089","CZ0724089_9","Slovačica","Bombina variegata",1,NA,1,1,0,1,1,1,1,NA,NA
+"amp101","amp101","Nebeský rybníček v osadě Veselí","Triturus cristatus",1,0,1,1,NA,1,1,1,1,NA,NA
+"amp102","amp102","Kateřina mokřad","Triturus cristatus",0,0,1,1,NA,1,1,1,1,0,0
+"amp106","amp106","Meandry Chřibské Kamenice","Triturus cristatus",1,1,1,1,0,1,1,1,0,0.5,0
+"amp107","amp107","Meandry Chřibské Kamenice","Triturus cristatus",1,0,1,1,0,1,1,1,1,0.5,0
+"amp115","amp115","Polní domky - soustava","Triturus cristatus",1,1,1,1,1,1,1,1,1,1,1
+"amp116","amp116","Zicht","Triturus cristatus",1,1,1,1,0,1,1,1,NA,NA,NA
+"amp128","amp128","Cihelna Pulice","Triturus cristatus",1,1,0,1,NA,1,1,1,1,NA,NA
+"amp129","amp129","Rýzmburk","Triturus cristatus",1,1,1,1,NA,1,1,1,NA,NA,NA
+"amp138","amp138","Na Plachtě - Starý mokřad","Triturus cristatus",1,1,1,1,NA,1,1,1,NA,NA,NA
+"amp138","amp138a","5861, Hradec Králové, Plachta - Starý mokřad","Triturus cristatus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp138","amp138b","5861, Hradec Králové, Plachta - rybník Jáma","Triturus cristatus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp138","amp138c","5861, Hradec Králové, Plachta - Nový mokřad","Triturus cristatus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp14","amp14","cihadla","Triturus cristatus",0,0,1,0,NA,1,1,1,1,0,0
+"amp15","amp15","EVL Javůrek","Triturus cristatus",1,0,1,1,1,1,1,1,1,0.5,0
+"amp159","amp159","Častotice lom","Triturus cristatus",1,0,1,1,1,1,1,1,0,0.5,0
+"amp16","amp16","Libický luh","Triturus cristatus",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp166","amp166","Rybníček u Dolního Dvora","Triturus cristatus",1,NA,1,1,NA,1,1,1,NA,NA,NA
+"amp195","amp195","Horní Kounice","Triturus cristatus",1,1,1,1,0,1,1,1,1,0.5,0
+"amp202","amp202","Černovírský les - pískovny","Triturus cristatus",0,0,1,0,NA,1,1,1,NA,0,0
+"amp205","amp205","PR Kačení louka","Triturus cristatus",1,0,1,1,NA,1,1,1,NA,NA,NA
+"amp210","amp210","Mikulovice - tůně u lesa","Triturus cristatus",1,0,1,1,NA,1,1,1,NA,NA,NA
+"amp215","amp215","Rybník Neratov","Triturus cristatus",1,1,1,1,1,1,1,1,1,1,1
+"amp216","amp216","Mokřad u Slováckých strojíren","Triturus cristatus",1,1,1,1,NA,1,1,1,NA,NA,NA
+"amp227","amp227","EVL Mokřad Pumpák","Triturus cristatus",0,1,0,1,NA,1,1,1,0,0,0
+"amp228","amp228","Tůň Rysová","Triturus cristatus",1,1,1,1,0,1,1,1,1,0.5,0
+"amp232","amp232","Mojena","Triturus cristatus",0,1,1,1,1,1,1,1,1,0,0
+"amp234","amp234","Vápenka","Triturus cristatus",1,1,0,1,1,1,1,1,1,0.5,0
+"amp245","amp245","Staré hliniště","Triturus cristatus",1,0,1,1,1,1,1,1,0,0.5,0
+"amp253","amp253","Štramberk","Triturus cristatus",1,1,1,1,0,1,1,1,1,0.5,0
+"amp254","amp254","Mokřad u Rondelu","Triturus cristatus",1,NA,1,1,1,1,1,1,1,NA,NA
+"amp268","amp268","Sucha Rudna","Triturus cristatus",1,1,1,1,NA,1,1,1,NA,NA,NA
+"amp29","amp29","Pískovna u Nového Knína","Triturus cristatus",1,NA,0,1,1,1,1,1,0,NA,NA
+"amp291","amp291","Bohuslavice - tůně","Triturus cristatus",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp292","amp292","Bohuslavice - koupaliště","Triturus cristatus",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp296","amp296","Niva Odry - tůň Pastvina","Triturus cristatus",0,0,1,0,0,1,1,1,1,0,0
+"amp297","amp297","Niva Odry - tůň U cesty","Triturus cristatus",0,0,1,1,0,1,1,1,0,0,0
+"amp298","amp298","Niva Odry - tůně V trojúhelníku","Triturus cristatus",1,NA,1,0,0,1,1,1,0,NA,NA
+"amp299","amp299","Niva Odry - tůň Pod Mládežnickým revírem","Triturus cristatus",0,0,1,1,0,1,1,1,0,0,0
+"amp30","amp30","Sudoměřice","Triturus cristatus",1,NA,1,0,1,1,1,1,0,NA,NA
+"amp303","amp303","Cihelna Kunín - pískovna, úzká","Triturus cristatus",0,0,1,1,0,1,1,1,1,0,0
+"amp304","amp304","Cihelna Kunín - Hliniště, Štěpánova tůň","Triturus cristatus",1,0,1,1,1,1,1,1,1,0.5,0
+"amp305","amp305","Cihelna Kunín - hliniště, Lenčina tůň","Triturus cristatus",1,NA,1,1,0,1,1,1,1,NA,NA
+"amp306","amp306","Cihelna Kunín - pískovna, kulatá","Triturus cristatus",0,0,1,1,NA,1,1,1,1,0,0
+"amp314","amp314","Rožmitál pod Třemšínem1","Triturus cristatus",0,0,1,1,1,1,1,1,1,0,0
+"amp315","amp315","Rožmitál pod Třemšínem1","Triturus cristatus",1,0,1,0,1,1,1,1,1,0.5,0
+"amp316","amp316","Rožmitál pid Třemšínem3","Triturus cristatus",0,0,0,1,1,1,1,1,0,0,0
+"amp322","amp322","","Triturus cristatus",0,0,1,1,1,1,1,1,0,0,0
+"amp323","amp323","","Triturus cristatus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp332","amp332","Polní domky - rybnik","Triturus cristatus",0,0,1,1,0,1,1,1,0,0,0
+"amp334","amp334","Na Plachtě - Nový mokřad","Triturus cristatus",1,1,1,1,NA,1,1,1,NA,NA,NA
+"amp335","amp335","Na Plachtě - rybník Jáma","Triturus cristatus",1,1,1,1,NA,1,1,1,NA,NA,NA
+"amp336","amp336","Cikánská tůň","Triturus cristatus",1,1,1,1,NA,1,1,1,0,NA,NA
+"amp337","amp337","Ohrozim - Horka","Triturus cristatus",1,NA,1,1,NA,1,1,1,NA,NA,NA
+"amp41","amp41","Koupaliště u Mnichova","Triturus cristatus",1,1,1,1,NA,1,1,1,0,NA,NA
+"amp53","amp53","Cepská pískovna","Triturus cristatus",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp59","amp59","Boječnice u Darmyšle","Triturus cristatus",1,NA,1,1,0,1,1,1,1,NA,NA
+"amp63","amp63","Stod - areál Tondach","Triturus cristatus",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp70","amp70/aa","Stříbro - tůň SZ od zákopu 4","Triturus cristatus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp70","amp70/ab","Stříbro - tůň S od zákopu 4","Triturus cristatus",1,1,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/af","Stříbro - zákop 5","Triturus cristatus",1,1,1,1,0,1,1,1,0,0.5,0
+"amp70","amp70/am","Stříbro - J cesta - tůň Z","Triturus cristatus",0,0,1,1,0,1,1,1,0,0,0
+"amp70","amp70/an","Stříbro - J cesta - tůň 15 m V ","Triturus cristatus",0,0,1,1,0,1,1,1,0,0,0
+"amp70","amp70/ap","Stříbro - J cesta - tůň 10 m Z od křižovatky","Triturus cristatus",0,0,1,1,NA,1,1,1,0,0,0
+"amp70","amp70/ar","Stříbro - J cesta - tůň křižovatka","Triturus cristatus",1,1,1,1,0,1,1,1,1,0.5,0
+"amp70","amp70/as","Stříbro - J cesta - tůň J od křižovatky půlená","Triturus cristatus",1,1,1,1,NA,1,1,1,NA,NA,NA
+"amp70","amp70/at","Stříbro - J cesta - tůň V od půlené","Triturus cristatus",1,NA,1,1,NA,1,1,1,1,NA,NA
+"amp70","amp70/av","Stříbro - Z cesta - velká tůň J ","Triturus cristatus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp70","amp70/ax","Stříbro - Z cesta - velká tůň střed","Triturus cristatus",1,0,1,1,0,1,1,1,0,0.5,0
+"amp70","amp70/ay","Stříbro - Z cesta - velká tůň S","Triturus cristatus",0,0,1,1,0,1,1,1,0,0,0
+"amp70","amp70/az","Stříbro - S cesta - tůň na Z křižovatce","Triturus cristatus",1,NA,1,1,0,1,1,1,1,NA,NA
+"amp70","amp70/ba","Stříbro - S cesta - 1. tůň Z od Z křižovatky","Triturus cristatus",1,1,1,1,0,1,1,1,0,0.5,0
+"amp70","amp70/bb","Stříbro - S cesta - 2. tůň Z od Z křižovatky","Triturus cristatus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp70","amp70/bg","Stříbro - S cesta - V křižovatka - S","Triturus cristatus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp70","amp70/bl","Stříbro - S cesta - tůň V od V křižovatky - velká ","Triturus cristatus",0,0,1,1,NA,1,1,1,1,0,0
+"amp70","amp70/bp","Stříbro - V cesta - tůň 20 m J od křižovatky na S","Triturus cristatus",1,NA,1,1,NA,1,1,1,0,NA,NA
+"amp70","amp70/bq","Stříbro - V cesta - tůň 30 m J od křižovatky na S velká","Triturus cristatus",1,1,1,1,0,1,1,1,1,0.5,0
+"amp70","amp70/br","Stříbro - V cesta - tůň 45 m J od křižovatky na S velká","Triturus cristatus",1,NA,1,1,0,1,1,1,1,NA,NA
+"amp70","amp70/bw","Stříbro - u borovice - sever","Triturus cristatus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp70","amp70/bx","Stříbro - u borovice - jih","Triturus cristatus",0,0,1,1,0,1,1,1,0,0,0
+"amp70","amp70/by","Stříbro - S cesta - tůň na JV od V křižovatky","Triturus cristatus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp70","amp70/ca","Stříbro - tůně na JV - 5","Triturus cristatus",1,0,1,1,0,1,1,1,0,0.5,0
+"amp70","amp70/d","Stříbro - tůně na JV","Triturus cristatus",0,0,1,1,NA,1,1,1,0,0,0
+"amp70","amp70/e","Stříbro - tůně na JV - 2","Triturus cristatus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp70","amp70/f","Stříbro - tůně na JV - 3","Triturus cristatus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp70","amp70/g","Stříbro - tůně na JV - 4","Triturus cristatus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"amp70","amp70/y","Stříbro - zákop 3","Triturus cristatus",1,1,1,1,0,1,1,1,NA,NA,NA
+"amp70","amp70/z","Stříbro - zákop 4","Triturus cristatus",1,0,1,1,0,1,1,1,0,0.5,0
+"amp74","amp74","Horní Lukavice - koupaliště","Triturus cristatus",1,NA,1,1,NA,1,0,1,NA,NA,NA
+"amp80","amp80","Týniště","Triturus cristatus",0,0,1,1,0,1,1,1,0,0,0
+"amp90","amp90","Lesní rybník v Poříčském lese","Triturus cristatus",1,NA,1,1,1,1,1,1,0,NA,NA
+"amp99","amp99","Rybník Tišina","Triturus cristatus",1,1,1,1,0,1,1,1,0,0.5,0
+"CZ0213790","CZ0213790","Javůrek","Triturus cristatus",1,NA,0,1,NA,1,0,1,NA,NA,NA
+"CZ0213794","CZ0213794","Kerské rybníčky","Triturus cristatus",1,1,1,1,1,1,1,1,0,0.5,0
+"CZ0214006","CZ0214006_1","EVL Milovice - Mladá","Triturus cristatus",1,NA,1,1,NA,1,1,1,0,NA,NA
+"CZ0214006","CZ0214006_2","EVL Milovice - Mladá","Triturus cristatus",1,NA,1,1,0,1,1,1,0,NA,NA
+"CZ0323144","CZ0323144","Boječnice u Darmyšle","Triturus cristatus",0,NA,1,1,0,1,1,1,0,0,0
+"CZ0413174","CZ0413174","Borecké rybníky","Triturus cristatus",1,1,1,0,0,1,1,1,0,0.5,0
+"CZ0413184","CZ0413184","Pískovna Erika","Triturus cristatus",1,1,1,1,1,1,1,1,1,1,1
+"CZ0413193","CZ0413193","U sedmi rybníků","Triturus cristatus",1,1,1,1,0,1,1,1,1,0.5,0
+"CZ0423006","CZ0423006","Nebeský rybníček v osadě Veselí","Triturus cristatus",1,NA,1,1,NA,1,1,1,NA,NA,NA
+"CZ0423202","CZ0423202_1","EVL Březina - Vojenský rybník","Triturus cristatus",1,1,1,1,0,1,1,1,1,0.5,0
+"CZ0423202","CZ0423202_2","EVL Březina - tůň","Triturus cristatus",0,0,1,1,0,1,1,1,1,0,0
+"CZ0423202","CZ0423202_3","EVL Březina - rašeliniště","Triturus cristatus",1,1,1,1,0,1,1,1,1,0.5,0
+"CZ0423216","CZ0423216_1","K088","Triturus cristatus",1,NA,0,1,1,1,1,1,1,NA,NA
+"CZ0423216","CZ0423216_10","K275+K176","Triturus cristatus",1,NA,0,0,0,1,1,1,1,NA,NA
+"CZ0423216","CZ0423216_2","K049","Triturus cristatus",1,NA,1,1,1,1,1,1,1,NA,NA
+"CZ0423216","CZ0423216_3","K229","Triturus cristatus",1,NA,1,1,0,1,0,1,1,NA,NA
+"CZ0423216","CZ0423216_4","K066","Triturus cristatus",1,NA,1,1,0,1,1,1,1,NA,NA
+"CZ0423216","CZ0423216_5","K078","Triturus cristatus",1,NA,0,1,1,1,1,1,0,NA,NA
+"CZ0423216","CZ0423216_6","K282+K162","Triturus cristatus",1,NA,1,1,0,1,1,1,0,NA,NA
+"CZ0423216","CZ0423216_7","K296+K298","Triturus cristatus",1,NA,1,1,0,1,1,1,1,NA,NA
+"CZ0423216","CZ0423216_8","K234","Triturus cristatus",1,NA,0,1,1,1,1,1,1,NA,NA
+"CZ0423216","CZ0423216_9","K254","Triturus cristatus",1,NA,1,0,0,1,1,1,1,NA,NA
+"CZ0513249","CZ0513249","Prácheň - Zicht","Triturus cristatus",1,1,1,1,0,1,1,1,1,0.5,0
+"CZ0513249","CZ0513249_115","Polní domky - soustava","Triturus cristatus",1,NA,1,1,NA,1,1,1,NA,NA,NA
+"CZ0533696","CZ0533696","Kochánovické rybníky a tůně","Triturus cristatus",1,1,1,0,1,1,1,1,0,0.5,0
+"CZ0613319","CZ0613319","Ficků rybník","Triturus cristatus",1,1,1,1,0,1,1,1,0,0.5,0
+"CZ0713383","CZ0713383","Ohrozim-Horka","Triturus cristatus",1,1,1,0,NA,1,1,1,NA,NA,NA
+"CZ0813438","CZ0813438_1","Cihelna Kunín - hliniště, Nová tůň","Triturus cristatus",1,1,1,1,0,1,1,1,1,0.5,0
+"CZ0813438","CZ0813438_2","Cihelna Kunín - hliniště, příkop","Triturus cristatus",1,NA,1,1,0,1,1,1,1,NA,NA
+"CZ0813438","CZ0813438_303","Cihelna Kunín - pískovna, úzká","Triturus cristatus",0,NA,1,1,0,1,1,1,0,0,0
+"CZ0813438","CZ0813438_304","Cihelna Kunín - Hliniště, Štěpánova tůň","Triturus cristatus",0,NA,1,1,1,1,1,1,1,0,0
+"CZ0813438","CZ0813438_305","Cihelna Kunín - hliniště, Lenčina tůň","Triturus cristatus",1,NA,1,1,1,1,1,1,1,NA,NA
+"CZ0813438","CZ0813438_306","Cihelna Kunín - pískovna, kulatá","Triturus cristatus",0,NA,1,1,0,1,1,1,1,0,0
+"amp182","amp182","Kaolínka Únanov","Triturus carnifex",0,0,1,1,NA,1,1,1,0,0,0
+"amp183","amp183","mašovice","Triturus carnifex",1,1,1,1,0,1,1,1,1,0.5,0
+"amp184","amp184","Podmolí strouha","Triturus carnifex",0,1,1,1,NA,1,1,1,0,0,0
+"amp185","amp185","Citonice","Triturus carnifex",1,0,1,1,NA,1,1,1,NA,NA,NA
+"amp186","amp186","Tasovice lom","Triturus carnifex",1,1,1,0,1,1,1,1,0,0.5,0
+"amp190","amp190","žerůtky","Triturus carnifex",1,0,1,1,NA,1,1,1,0,NA,NA
+"amp191","amp191","Hostim","Triturus carnifex",1,0,1,1,NA,1,1,1,1,NA,NA
+"amp192","amp192","olbramkostel","Triturus carnifex",1,1,1,1,0,1,1,1,1,0.5,0
+"amp193","amp193","Čížovský lesní rybník","Triturus carnifex",1,0,1,1,NA,1,1,1,1,NA,NA
+"amp194","amp194","Popice - tůň nad popickou kaplí","Triturus carnifex",1,NA,1,1,0,1,1,1,0,NA,NA
+"amp70","amp70/z","Stříbro - zákop 4","Triturus carnifex",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"CZ0623345","CZ0623345","Citonice - rybník Skalka","Triturus carnifex",1,NA,1,1,NA,1,1,1,NA,NA,NA
+"amp200","amp200","tune pod Cernym jezerem","Lissotriton montandoni",0,1,1,1,NA,1,1,1,NA,0,0
+"amp206","amp206","Filipovické louky","Lissotriton montandoni",0,1,1,1,NA,1,1,1,NA,0,0
+"amp212","amp212","Cerne jezero","Lissotriton montandoni",0,1,1,1,NA,1,1,1,NA,0,0
+"amp213","amp213","Rejvíz","Lissotriton montandoni",1,NA,1,1,NA,1,1,1,NA,NA,NA
+"amp219","amp219","Dušná u červených","Lissotriton montandoni",1,1,1,1,0,1,1,1,1,0.5,0
+"amp220","amp220","Tůně Babská","Lissotriton montandoni",1,1,1,1,0,1,1,1,1,0.5,0
+"amp222","amp222","Slovačica","Lissotriton montandoni",1,1,1,1,1,1,1,1,1,1,1
+"amp225","amp225","Tůň u Kamenného domku","Lissotriton montandoni",0,1,1,1,0,1,1,1,0,0,0
+"amp226","amp226","Požární nádrž na Tesáku","Lissotriton montandoni",1,1,1,1,0,1,1,1,1,0.5,0
+"amp231","amp231","Tůně pod Horalem (na celnici)","Lissotriton montandoni",0,NA,1,1,NA,1,1,1,0,0,0
+"amp233","amp233","Ptáčnice - u jezera","Lissotriton montandoni",1,1,1,1,0,1,1,1,1,0.5,0
+"amp235","amp235","Mořské oko","Lissotriton montandoni",1,0,1,1,1,1,1,1,1,0.5,0
+"amp237","amp237","Vidly - Stredni Opava","Lissotriton montandoni",0,0,1,1,NA,1,1,1,0,0,0
+"amp238","amp238","Karlova Studanka - pozarni nadrz","Lissotriton montandoni",1,1,1,1,NA,1,1,1,NA,NA,NA
+"amp239","amp239","Karlova Studanka - expozice","Lissotriton montandoni",0,1,1,1,NA,1,1,1,NA,0,0
+"amp242","amp242","Muroňka","Lissotriton montandoni",1,1,0,0,1,1,1,1,1,0.5,0
+"amp243","amp243","Obidová","Lissotriton montandoni",1,1,0,1,1,1,1,1,0,0.5,0
+"amp255","amp255","Hermanovice - rybnicek nad krizovatkou","Lissotriton montandoni",0,0,1,1,1,1,1,1,1,0,0
+"amp256","amp256","Nová Ves","Lissotriton montandoni",0,1,1,1,NA,1,1,1,NA,0,0
+"amp260","amp260","Velký Kyčmol v Horní Lomné","Lissotriton montandoni",1,1,0,1,1,1,1,1,0,0.5,0
+"amp265","amp265","Kozubová","Lissotriton montandoni",0,0,1,0,1,1,0,1,0,0,0
+"amp267","amp267","Hermanovice - koupaliste","Lissotriton montandoni",0,0,1,1,NA,1,1,1,0,0,0
+"amp269","amp269","Vidly - nekorancova trasa","Lissotriton montandoni",0,0,1,1,NA,1,1,1,0,0,0
+"amp307","amp307","EVL Hermanovice - podlouhla","Lissotriton montandoni",0,1,1,1,NA,1,1,1,NA,0,0
+"amp308","amp308","EVL Hermanovice - Gapcikovo","Lissotriton montandoni",0,1,1,1,NA,1,1,1,0,0,0
+"amp309","amp309","EVL Hermanovice - zahnuta","Lissotriton montandoni",1,1,1,1,NA,1,1,1,0,NA,NA
+"amp310","amp310","EVL Hermanovice - u brizy","Lissotriton montandoni",0,1,1,1,1,1,1,1,NA,0,0
+"amp311","amp311","EVL Hermanovice - za plotem","Lissotriton montandoni",0,1,1,1,NA,1,1,1,NA,0,0
+"CZ0713397","CZ0713397","Černé jezero, k.ú. Zlaté Hory","Lissotriton montandoni",1,1,1,1,NA,1,1,1,0,NA,NA
+"CZ0724089","CZ0724089_1","Ptáčnice - u jezera","Lissotriton montandoni",1,NA,1,1,0,1,1,1,NA,NA,NA
+"CZ0724089","CZ0724089_10","Armaturka","Lissotriton montandoni",1,NA,1,1,NA,1,1,1,0,NA,NA
+"CZ0724089","CZ0724089_11","Max klaus","Lissotriton montandoni",0,NA,1,1,NA,1,1,1,0,0,0
+"CZ0724089","CZ0724089_12","","Lissotriton montandoni",0,0,0,1,0,1,1,1,0,0,0
+"CZ0724089","CZ0724089_13","","Lissotriton montandoni",0,0,1,1,NA,1,1,1,NA,0,0
+"CZ0724089","CZ0724089_14","Vendryně","Lissotriton montandoni",1,1,1,1,1,1,1,1,0,0.5,0
+"CZ0724089","CZ0724089_15","Řečice","Lissotriton montandoni",0,NA,1,1,1,1,1,1,0,0,0
+"CZ0724089","CZ0724089_16","","Lissotriton montandoni",1,1,1,1,0,1,1,1,0,0.5,0
+"CZ0724089","CZ0724089_17","Malý Polom","Lissotriton montandoni",1,NA,1,1,0,1,1,1,0,NA,NA
+"CZ0724089","CZ0724089_18","Smutné údolí","Lissotriton montandoni",1,NA,1,1,NA,1,1,1,1,NA,NA
+"CZ0724089","CZ0724089_2","Muroňka","Lissotriton montandoni",1,NA,1,0,0,1,1,1,1,NA,NA
+"CZ0724089","CZ0724089_20","Pod Juráškou","Lissotriton montandoni",0,0,1,1,NA,1,1,1,1,0,0
+"CZ0724089","CZ0724089_3","Obidová","Lissotriton montandoni",0,NA,0,1,1,1,1,1,0,0,0
+"CZ0724089","CZ0724089_4","Kozubová","Lissotriton montandoni",0,NA,1,0,NA,1,1,1,0,0,0
+"CZ0724089","CZ0724089_6","Mořské oko","Lissotriton montandoni",1,NA,1,1,1,1,1,1,1,NA,NA
+"CZ0724089","CZ0724089_7","Dušná u červených","Lissotriton montandoni",1,NA,1,1,0,1,1,1,1,NA,NA
+"CZ0724089","CZ0724089_8","Tůně Babská","Lissotriton montandoni",1,NA,1,1,0,1,1,1,0,NA,NA
+"CZ0724089","CZ0724089_9","Slovačica","Lissotriton montandoni",1,NA,1,1,0,1,1,1,NA,NA,NA
+"CZ0813450","CZ0813450","","Lissotriton montandoni",1,NA,1,1,NA,1,1,1,0,NA,NA
+"CZ0813450","CZ0813450_238","Karlova Studánka,požární nádrž","Lissotriton montandoni",1,NA,1,1,NA,1,1,1,NA,NA,NA
+"CZ0813450","CZ0813450_239","Karlova Studánka, za GEO eXpozicí","Lissotriton montandoni",0,NA,1,1,NA,1,1,1,NA,0,0
