@@ -1,0 +1,55 @@
+"EVL_SITECODE","NAZEV","DRUH","PRESENCE_P1a","POP_P1b","REPRO_P2","HABLOS_P3","PRED_P4","WATER_P5","DRY_P6","VEG_P7","TRANSP_P8","CHYTRI_P9","OVERALL","SUFFICIENT_SITES","TOTAL_SITES","SUFFICIENT_PERC"
+"CZ0213008","Bezděkovský lom","Triturus cristatus",0,0,1,0,1,1,0,0,1,1,0,0,1,0
+"CZ0213029","Kalspot","Triturus cristatus",1,NA,1,1,1,1,1,1,1,1,0.5,0,4,0
+"CZ0213038","Kyšice - Kobyla","Triturus cristatus",1,NA,1,1,1,1,1,0.75,1,1,0.5,0,4,0
+"CZ0213082","Velký Raputovský rybník","Triturus cristatus",1,NA,1,1,1,1,1,0.5,1,1,0.5,0,2,0
+"CZ0213086","Aglaia","Triturus cristatus",0.625,0,1,1,1,1,1,0.875,1,1,0.3125,0,8,0
+"CZ0213790","Javůrek","Triturus cristatus",1,0,1,1,1,0,1,0,1,1,0.5,0,1,0
+"CZ0213794","Kerské rybníčky","Triturus cristatus",1,NA,1,1,1,1,1,NA,1,1,0.5,0,1,0
+"CZ0213822","V Hlinišťatech","Triturus cristatus",0,0,1,1,1,1,1,NA,1,1,0,0,1,0
+"CZ0214006","Milovice - Mladá","Triturus cristatus",1,NA,1,1,1,1,1,NA,1,1,0.5,0,1,0
+"CZ0214007","Káraný - Hrbáčkovy tůně","Triturus cristatus",0.1,0,1,1,1,1,1,0.375,1,1,0.05,0,10,0
+"CZ0313097","Cepská pískovna a okolí","Triturus cristatus",0.333333333333333,0,1,1,1,1,1,0.666666666666667,1,1,0.166666666666667,0,3,0
+"CZ0313098","Hliníř - Ponědrážka","Triturus cristatus",0.25,0,1,0.75,0.25,1,0.75,0.75,1,1,0.125,0,4,0
+"CZ0313103","Lom Skalka u Sepekova","Triturus cristatus",1,NA,1,1,1,1,1,0,1,1,0.5,0,1,0
+"CZ0313119","Rašeliniště Radlice","Triturus cristatus",0.666666666666667,0,1,1,1,1,1,0.666666666666667,1,1,0.333333333333333,0,3,0
+"CZ0313815","Malý Bukač","Triturus cristatus",1,NA,1,1,1,1,1,0,1,1,0.5,0,1,0
+"CZ0314639","Rybníky u Lovětína","Triturus cristatus",0.666666666666667,0,1,1,1,1,1,0.333333333333333,1,1,0.333333333333333,0,3,0
+"CZ0323144","Bonětice","Triturus cristatus",0,NA,1,1,0,1,1,0,1,1,0,0,1,0
+"CZ0323147","Darmyšl - pískovna","Triturus cristatus",1,NA,1,1,1,1,1,1,1,1,0.5,0,1,0
+"CZ0323149","Kakejcov","Triturus cristatus",1,NA,1,1,1,1,1,0,1,1,0.5,0,1,0
+"CZ0323160","Pocinovice","Triturus cristatus",1,NA,1,1,1,1,1,0,1,1,0.5,0,1,0
+"CZ0413174","Borecké rybníky","Triturus cristatus",1,NA,1,1,1,1,1,1,1,1,0.5,0,1,0
+"CZ0413184","Pískovna Erika","Triturus cristatus",1,NA,1,1,1,1,1,1,1,1,0.5,0,1,0
+"CZ0413190","Ostrovské rybníky","Triturus cristatus",0.444444444444444,0,1,1,0.777777777777778,1,1,0.222222222222222,1,1,0.222222222222222,0,9,0
+"CZ0413193","U sedmi rybníků","Triturus cristatus",1,NA,1,1,1,1,1,1,1,1,0.5,0,1,0
+"CZ0414127","Hradiště","Triturus cristatus",0.367924528301887,0,1,0.962264150943396,0.89622641509434,0.943396226415094,0.962264150943396,0.554455445544555,1,1,0.179245283018868,0,106,0
+"CZ0423006","Nebeský rybníček u Veselí","Triturus cristatus",1,0,1,1,1,1,1,NA,1,1,0.5,0,1,0
+"CZ0423202","Březina","Triturus cristatus",0.666666666666667,NA,1,1,1,0.666666666666667,1,0.666666666666667,1,1,0.333333333333333,0,3,0
+"CZ0423206","Dobrná","Triturus cristatus",0.5,0,1,1,1,1,1,0,1,1,0.25,0,2,0
+"CZ0423215","Kateřina - mokřad","Triturus cristatus",0,1,1,0,1,1,0,1,1,1,0,0,1,0
+"CZ0423216","Kopistská výsypka","Triturus cristatus",1,1,1,1,1,1,1,0.7,1,1,0.85,7,10,0.7
+"CZ0423660","Pražská pole","Triturus cristatus",0,0,1,1,1,1,1,0.111111111111111,1,1,0,0,9,0
+"CZ0424125","Doupovské hory","Triturus cristatus",0.241379310344828,0,1,1,0.896551724137931,0.96551724137931,1,0.39622641509434,1,1,0.120689655172414,0,58,0
+"CZ0513249","Prácheň - Zicht","Triturus cristatus",1,NA,1,1,1,1,1,NA,1,1,0.5,0,2,0
+"CZ0520178","Březinka","Triturus cristatus",1,NA,1,1,1,1,1,NA,1,1,0.5,0,1,0
+"CZ0523010","Na Plachtě","Triturus cristatus",1,NA,1,1,1,1,1,1,1,1,0.5,0,4,0
+"CZ0523276","Kanice - lesní rybník","Triturus cristatus",1,NA,1,1,1,1,1,0,1,1,0.5,0,1,0
+"CZ0533012","Michnovka-Pravy","Triturus cristatus",0.5,0,1,1,1,1,1,0.5,1,1,0.25,0,2,0
+"CZ0533696","Kochánovické rybníky a tůně","Triturus cristatus",1,NA,1,1,1,1,1,0,1,1,0.5,0,1,0
+"CZ0613319","Ficků rybník","Triturus cristatus",1,NA,1,1,0,1,1,NA,1,1,0.5,0,1,0
+"CZ0623365","Rakšické louky","Triturus cristatus",0.125,0,1,1,1,1,1,0.125,1,1,0.0625,0,8,0
+"CZ0623366","Střelická bažinka","Triturus cristatus",1,NA,1,1,1,1,1,1,1,1,0.5,0,2,0
+"CZ0623801","Přísnotický les","Triturus cristatus",0,0,1,1,1,1,1,1,1,1,0,0,1,0
+"CZ0624064","Krumlovský les","Triturus cristatus",0.558823529411765,0,1,1,0.588235294117647,1,1,0.382352941176471,1,1,0.279411764705882,0,34,0
+"CZ0624129","Luční údolí","Triturus cristatus",0.142857142857143,0,1,1,0.285714285714286,1,1,0.285714285714286,1,1,0.0714285714285714,0,7,0
+"CZ0713008","Deylův ostrůvek","Triturus cristatus",1,NA,1,1,1,1,1,NA,1,1,0.5,0,1,0
+"CZ0713383","Ohrozim - Horka","Triturus cristatus",1,NA,1,1,1,1,1,NA,1,1,0.5,0,1,0
+"CZ0723406","Chvalčov","Triturus cristatus",1,NA,1,1,1,1,1,NA,1,1,0.5,0,1,0
+"CZ0723409","Kurovice - lom","Triturus cristatus",1,NA,1,1,1,1,1,1,1,1,0.5,0,1,0
+"CZ0723410","Mokřad Pumpák","Triturus cristatus",1,NA,1,1,1,1,1,1,1,1,0.5,0,1,0
+"CZ0723412","Mokřad u Slováckých strojíren","Triturus cristatus",1,1,1,1,1,1,1,NA,1,1,0.5,0,1,0
+"CZ0813438","Cihelna Kunín","Triturus cristatus",0.5,NA,1,0.833333333333333,1,1,0.833333333333333,0.833333333333333,1,1,0.25,0,6,0
+"CZ0813444","Heřmanický rybník","Triturus cristatus",0,0,1,1,0.636363636363636,1,1,0.5,1,1,0,0,11,0
+"CZ0813475","Václavovice - pískovna","Triturus cristatus",1,NA,1,1,1,1,1,1,1,1,0.5,0,1,0
+"CZ0814092","Poodří","Triturus cristatus",0,0,1,1,0.818181818181818,1,1,0.5,1,1,0,0,11,0

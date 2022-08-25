@@ -1,0 +1,909 @@
+"SITECODE","NAZEV","LOKALITA","DRUH","FEATURE_CODE","PRESENCE","PRESENCE_WINTER","ABUNDANCE_SITE","POP_0_ALL","POP_1_ALL","POP_2_ALL","POP_3_ALL","CHANGE","LAST_FIND","OVERALL"
+"CZ0213600","Bělá pod Bezdězem - zámek","Bělá pod Bezdězem - zámek","Myotis myotis","1324",NA,NA,NA,0,0,0,0,NA,2012-01-20,0
+"CZ0213601","Jungmannova škola v Berouně","Beroun - ZŠ Jungmannova","Myotis myotis","1324",NA,NA,NA,0,0,600,0,NA,2019-07-17,0
+"CZ0213610","Křivoklát - hrad","Křivoklát - sklepy pivovaru","Myotis myotis","1324",NA,NA,NA,0,0,0,0,NA,2016-03-08,0
+"CZ0213610","Křivoklát - hrad","Křivoklát - věž hradu","Myotis myotis","1324",NA,NA,NA,0,0,0,0,NA,2012-02-13,0
+"CZ0213611","Ledce - hájovna","Ledce","Myotis myotis","1324",1,1,2345,2345,3849,3542,4204,1,2021-06-12,2
+"CZ0213615","Štola Jarnice","Jarnice - štola","Rhinolophus hipposideros","1303",NA,NA,NA,0,2,1,0,0,2020-01-25,0
+"CZ0213620","Štola Mořic","Roudný - štola Mořic","Myotis myotis","1324",NA,NA,NA,0,0,0,0,NA,2016-02-27,0
+"CZ0213621","Štoly Velké Ameriky","Anděrova štola","Barbastella barbastellus","1308",NA,NA,NA,41,40,113,42,0,2022-02-04,0
+"CZ0213621","Štoly Velké Ameriky","Bucharova štola","Barbastella barbastellus","1308",1,1,7,41,40,113,42,1,2022-02-03,2
+"CZ0213621","Štoly Velké Ameriky","Maršálkova štola","Barbastella barbastellus","1308",1,1,12,41,40,113,42,1,2022-02-04,2
+"CZ0213621","Štoly Velké Ameriky","Mořina - Gotická chodba v lomu Mexiko","Barbastella barbastellus","1308",1,1,3,41,40,113,42,1,2021-01-30,2
+"CZ0213621","Štoly Velké Ameriky","Mořina - Vodní štola v Mexiku","Barbastella barbastellus","1308",NA,NA,NA,41,40,113,42,NA,2019-02-01,0
+"CZ0213621","Štoly Velké Ameriky","Velká Amerika","Barbastella barbastellus","1308",NA,NA,NA,41,40,113,42,NA,2018-09-29,0
+"CZ0213621","Štoly Velké Ameriky","vodní štola ve Velké Americe","Barbastella barbastellus","1308",1,1,18,41,40,113,42,1,2022-02-04,2
+"CZ0213621","Štoly Velké Ameriky","Zbytovského štola","Barbastella barbastellus","1308",1,1,1,41,40,113,42,0,2022-02-04,1
+"CZ0213621","Štoly Velké Ameriky","Anděrova štola","Myotis myotis","1324",NA,NA,NA,185,225,70,158,0,2022-02-04,0
+"CZ0213621","Štoly Velké Ameriky","Bucharova štola","Myotis myotis","1324",NA,NA,NA,185,225,70,158,NA,2022-02-03,0
+"CZ0213621","Štoly Velké Ameriky","Maršálkova štola","Myotis myotis","1324",1,1,31,185,225,70,158,1,2022-02-04,2
+"CZ0213621","Štoly Velké Ameriky","Mořina - Gotická chodba v lomu Mexiko","Myotis myotis","1324",1,1,114,185,225,70,158,1,2021-01-30,2
+"CZ0213621","Štoly Velké Ameriky","Mořina - Vodní štola v Mexiku","Myotis myotis","1324",NA,NA,NA,185,225,70,158,NA,2019-02-01,0
+"CZ0213621","Štoly Velké Ameriky","Velká Amerika","Myotis myotis","1324",NA,NA,NA,185,225,70,158,NA,2018-09-29,0
+"CZ0213621","Štoly Velké Ameriky","vodní štola ve Velké Americe","Myotis myotis","1324",1,1,40,185,225,70,158,1,2022-02-04,2
+"CZ0213621","Štoly Velké Ameriky","Zbytovského štola","Myotis myotis","1324",NA,NA,NA,185,225,70,158,NA,2022-02-04,0
+"CZ0213628","Točník - hrad","Královský palác na hradě Točník","Myotis myotis","1324",NA,NA,NA,0,555,820,600,0,2020-08-27,0
+"CZ0213628","Točník - hrad","Točník","Myotis myotis","1324",NA,NA,NA,0,555,820,600,NA,2019-08-10,0
+"CZ0213628","Točník - hrad","Točník - hrad","Myotis myotis","1324",NA,NA,NA,0,555,820,600,0,2020-07-02,0
+"CZ0214003","Zlatý kůň","jeskyně Zlomená","Myotis myotis","1324",NA,NA,NA,163,157,107,126,NA,2022-02-01,0
+"CZ0214003","Zlatý kůň","Jeskyně Zlomená","Myotis myotis","1324",NA,NA,NA,163,157,107,126,NA,2016-02-02,0
+"CZ0214003","Zlatý kůň","jeskyně Žába","Myotis myotis","1324",NA,NA,NA,163,157,107,126,NA,2017-02-01,0
+"CZ0214003","Zlatý kůň","Jeskyně Žába","Myotis myotis","1324",NA,NA,NA,163,157,107,126,NA,2017-02-01,0
+"CZ0214003","Zlatý kůň","Kobyla - tunel","Myotis myotis","1324",NA,NA,NA,163,157,107,126,NA,2018-01-30,0
+"CZ0214003","Zlatý kůň","Kobyla - vstupní tunel","Myotis myotis","1324",1,1,1,163,157,107,126,1,2022-02-01,2
+"CZ0214003","Zlatý kůň","Koněpruské jeskyně","Myotis myotis","1324",1,1,162,163,157,107,126,1,2022-02-01,2
+"CZ0214003","Zlatý kůň","NPP Zlatý kůň","Myotis myotis","1324",NA,NA,NA,163,157,107,126,NA,2019-09-21,0
+"CZ0214003","Zlatý kůň","jeskyně Zlomená","Rhinolophus hipposideros","1303",NA,NA,NA,148,113,64,80,NA,2016-02-02,0
+"CZ0214003","Zlatý kůň","Jeskyně Zlomená","Rhinolophus hipposideros","1303",NA,NA,NA,148,113,64,80,NA,2016-02-02,0
+"CZ0214003","Zlatý kůň","jeskyně Žába","Rhinolophus hipposideros","1303",1,1,2,148,113,64,80,1,2021-02-04,2
+"CZ0214003","Zlatý kůň","Jeskyně Žába","Rhinolophus hipposideros","1303",NA,NA,NA,148,113,64,80,NA,2018-01-30,0
+"CZ0214003","Zlatý kůň","Koněpruské jeskyně","Rhinolophus hipposideros","1303",1,1,146,148,113,64,80,1,2022-02-01,2
+"CZ0214012","Příhrazské skály","Branžež","Rhinolophus hipposideros","1303",1,1,NA,8,718,538,529,NA,2021-09-09,1
+"CZ0214012","Příhrazské skály","Dneboh","Rhinolophus hipposideros","1303",1,1,NA,8,718,538,529,NA,2021-10-07,1
+"CZ0214012","Příhrazské skály","Hynšta","Rhinolophus hipposideros","1303",NA,NA,NA,8,718,538,529,NA,2016-01-08,0
+"CZ0214012","Příhrazské skály","Jenčova sluj","Rhinolophus hipposideros","1303",NA,NA,NA,8,718,538,529,NA,2019-01-03,0
+"CZ0214012","Příhrazské skály","Krtola","Rhinolophus hipposideros","1303",NA,NA,NA,8,718,538,529,NA,2016-09-10,0
+"CZ0214012","Příhrazské skály","Krtola u Příhraz - jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,8,718,538,529,0,2020-01-15,0
+"CZ0214012","Příhrazské skály","Mužský","Rhinolophus hipposideros","1303",1,1,8,8,718,538,529,0,2021-10-07,1
+"CZ0214012","Příhrazské skály","Žďár u Mnichova Hradiště","Rhinolophus hipposideros","1303",1,1,NA,8,718,538,529,NA,2021-07-15,1
+"CZ0214016","Želivka","Švihov - chodba v hrázi nádrže Želivka","Barbastella barbastellus","1308",NA,NA,NA,0,17,16,14,0,2020-01-30,0
+"CZ0214016","Želivka","Želivka - most","Barbastella barbastellus","1308",NA,NA,NA,0,17,16,14,NA,2016-02-02,0
+"CZ0214017","Karlštejn - Koda","3. štola u trati","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,NA,2017-01-29,0
+"CZ0214017","Karlštejn - Koda","Alkazar","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,NA,2016-10-04,0
+"CZ0214017","Karlštejn - Koda","Alkazar - Kozel","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,NA,2019-01-28,0
+"CZ0214017","Karlštejn - Koda","Barrandova jeskyně","Barbastella barbastellus","1308",1,1,3,60,25,34,40,0,2022-01-30,1
+"CZ0214017","Karlštejn - Koda","Budňany - sklep pod konírnou na hradě Karlštejn","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,0,2020-01-31,0
+"CZ0214017","Karlštejn - Koda","Černý lom - chodba","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,NA,2019-01-31,0
+"CZ0214017","Karlštejn - Koda","Devítikorunová jeskyně","Barbastella barbastellus","1308",1,1,1,60,25,34,40,0,2021-02-01,1
+"CZ0214017","Karlštejn - Koda","Drahuščina štola","Barbastella barbastellus","1308",1,1,2,60,25,34,40,0,2021-02-02,1
+"CZ0214017","Karlštejn - Koda","Gaislerova štola","Barbastella barbastellus","1308",1,1,1,60,25,34,40,0,2021-02-02,1
+"CZ0214017","Karlštejn - Koda","Hostim u Berouna","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,NA,2020-08-20,0
+"CZ0214017","Karlštejn - Koda","Houmelesí štoly","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,NA,2017-01-29,0
+"CZ0214017","Karlštejn - Koda","jeskyně Kádelnice","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,NA,2017-01-29,0
+"CZ0214017","Karlštejn - Koda","jeskyně Metro","Barbastella barbastellus","1308",1,1,7,60,25,34,40,0,2022-01-31,1
+"CZ0214017","Karlštejn - Koda","jeskyně Nad Kačákem","Barbastella barbastellus","1308",1,1,1,60,25,34,40,0,2022-02-02,1
+"CZ0214017","Karlštejn - Koda","jeskyně Oblézačka","Barbastella barbastellus","1308",1,1,1,60,25,34,40,0,2021-02-01,1
+"CZ0214017","Karlštejn - Koda","jeskyně V Kodském polesí","Barbastella barbastellus","1308",1,1,1,60,25,34,40,0,2022-01-31,1
+"CZ0214017","Karlštejn - Koda","jeskyně Ve stráni","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,NA,2022-02-02,0
+"CZ0214017","Karlštejn - Koda","Karlštejn - hradní studna","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,NA,2017-01-24,0
+"CZ0214017","Karlštejn - Koda","kruhová pec v Tomáškově lomu","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,0,2020-01-26,0
+"CZ0214017","Karlštejn - Koda","levá štola v lomu Rybízák","Barbastella barbastellus","1308",1,1,1,60,25,34,40,0,2021-02-05,1
+"CZ0214017","Karlštejn - Koda","Malá Amerika","Barbastella barbastellus","1308",1,1,8,60,25,34,40,1,2021-02-26,2
+"CZ0214017","Karlštejn - Koda","Malá Romanovského štola","Barbastella barbastellus","1308",1,1,3,60,25,34,40,1,2022-02-03,2
+"CZ0214017","Karlštejn - Koda","NPR Koda - Kodská jeskyně","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,0,2020-01-30,0
+"CZ0214017","Karlštejn - Koda","pravá štola v lomu Rybízák","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,NA,2022-02-03,0
+"CZ0214017","Karlštejn - Koda","propast Amerika II.","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,0,2022-02-03,0
+"CZ0214017","Karlštejn - Koda","Průtahová štola","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,NA,2016-01-30,0
+"CZ0214017","Karlštejn - Koda","Romanovského štola","Barbastella barbastellus","1308",1,1,1,60,25,34,40,1,2021-02-02,2
+"CZ0214017","Karlštejn - Koda","Rudolfova jeskyně","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,NA,2017-01-31,0
+"CZ0214017","Karlštejn - Koda","Srbsko u Karlštejna","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,NA,2020-08-20,0
+"CZ0214017","Karlštejn - Koda","Srbsko u Karlštejna - štola v Petzoldově lomu","Barbastella barbastellus","1308",1,1,1,60,25,34,40,0,2021-01-31,1
+"CZ0214017","Karlštejn - Koda","Svážná Rešna","Barbastella barbastellus","1308",1,1,2,60,25,34,40,1,2021-02-02,2
+"CZ0214017","Karlštejn - Koda","štola Modlitebna","Barbastella barbastellus","1308",1,1,1,60,25,34,40,0,2022-02-03,1
+"CZ0214017","Karlštejn - Koda","Štola v rokli","Barbastella barbastellus","1308",1,1,1,60,25,34,40,0,2021-01-31,1
+"CZ0214017","Karlštejn - Koda","štola v Tetínské rokli","Barbastella barbastellus","1308",1,1,1,60,25,34,40,0,2022-01-31,1
+"CZ0214017","Karlštejn - Koda","štola za trafačkou v Tomáškově lomu","Barbastella barbastellus","1308",1,1,1,60,25,34,40,0,2021-01-31,1
+"CZ0214017","Karlštejn - Koda","štoly v lomu Kozel - Alkazar","Barbastella barbastellus","1308",1,1,19,60,25,34,40,1,2022-01-31,2
+"CZ0214017","Karlštejn - Koda","Terasová jeskyně","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,NA,2022-01-31,0
+"CZ0214017","Karlštejn - Koda","Tetínská chodba","Barbastella barbastellus","1308",NA,NA,NA,60,25,34,40,NA,2018-01-29,0
+"CZ0214017","Karlštejn - Koda","Troj-štolí","Barbastella barbastellus","1308",1,1,1,60,25,34,40,0,2022-01-30,1
+"CZ0214017","Karlštejn - Koda","Velikonoční štola","Barbastella barbastellus","1308",1,1,3,60,25,34,40,0,2021-02-02,1
+"CZ0214017","Karlštejn - Koda","3. štola u trati","Myotis myotis","1324",1,1,1,1202,1200,704,1512,0,2022-01-30,1
+"CZ0214017","Karlštejn - Koda","Alkazar","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,NA,2016-10-04,0
+"CZ0214017","Karlštejn - Koda","Alkazar - Kozel","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,NA,2019-01-28,0
+"CZ0214017","Karlštejn - Koda","Aragonitová jeskyně","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,0,2022-01-29,0
+"CZ0214017","Karlštejn - Koda","Barrandova jeskyně","Myotis myotis","1324",1,1,1,1202,1200,704,1512,0,2022-01-30,1
+"CZ0214017","Karlštejn - Koda","Budňany - Rudolfka","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,NA,2019-01-30,0
+"CZ0214017","Karlštejn - Koda","Budňany - sklep pod konírnou na hradě Karlštejn","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,0,2020-01-31,0
+"CZ0214017","Karlštejn - Koda","Černý lom - chodba","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,0,2020-01-28,0
+"CZ0214017","Karlštejn - Koda","Devítikorunová jeskyně","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,NA,2022-01-31,0
+"CZ0214017","Karlštejn - Koda","Drahuščina štola","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,NA,2016-01-30,0
+"CZ0214017","Karlštejn - Koda","Gaislerova štola","Myotis myotis","1324",1,1,48,1202,1200,704,1512,1,2022-02-03,2
+"CZ0214017","Karlštejn - Koda","Gaislerova štola, Liščí lom","Myotis myotis","1324",1,1,49,1202,1200,704,1512,0,2021-02-21,1
+"CZ0214017","Karlštejn - Koda","Hostim u Berouna","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,NA,2020-08-20,0
+"CZ0214017","Karlštejn - Koda","Jeskyně Arnoldka","Myotis myotis","1324",1,1,134,1202,1200,704,1512,1,2022-01-29,2
+"CZ0214017","Karlštejn - Koda","jeskyně Dynamitka","Myotis myotis","1324",1,1,1,1202,1200,704,1512,0,2021-02-03,1
+"CZ0214017","Karlštejn - Koda","jeskyně Kádelnice","Myotis myotis","1324",1,1,1,1202,1200,704,1512,0,2021-01-31,1
+"CZ0214017","Karlštejn - Koda","jeskyně Kostelík","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,0,2020-01-26,0
+"CZ0214017","Karlštejn - Koda","jeskyně Metro","Myotis myotis","1324",1,1,8,1202,1200,704,1512,1,2022-01-31,2
+"CZ0214017","Karlštejn - Koda","jeskyně Na Jarnici","Myotis myotis","1324",1,1,10,1202,1200,704,1512,1,2021-02-05,2
+"CZ0214017","Karlštejn - Koda","jeskyně Nad Kačákem","Myotis myotis","1324",1,1,6,1202,1200,704,1512,1,2022-02-02,2
+"CZ0214017","Karlštejn - Koda","jeskyně V Kodském polesí","Myotis myotis","1324",1,1,1,1202,1200,704,1512,0,2022-01-31,1
+"CZ0214017","Karlštejn - Koda","Karlštejn - hrad Císařský palác","Myotis myotis","1324",1,1,1,1202,1200,704,1512,0,2021-08-02,1
+"CZ0214017","Karlštejn - Koda","Karlštejn - hradní studna","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,0,2020-02-16,0
+"CZ0214017","Karlštejn - Koda","Krápníková jeskyně v Šanově koutě","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,NA,2022-01-30,0
+"CZ0214017","Karlštejn - Koda","kruhová pec v Tomáškově lomu","Myotis myotis","1324",1,1,1,1202,1200,704,1512,1,2022-01-30,2
+"CZ0214017","Karlštejn - Koda","Loděnice","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,NA,2017-07-25,0
+"CZ0214017","Karlštejn - Koda","Malá Amerika","Myotis myotis","1324",1,1,506,1202,1200,704,1512,1,2021-02-26,2
+"CZ0214017","Karlštejn - Koda","Malá Romanovského štola","Myotis myotis","1324",1,1,2,1202,1200,704,1512,1,2022-02-03,2
+"CZ0214017","Karlštejn - Koda","pravá štola v lomu Rybízák","Myotis myotis","1324",1,1,2,1202,1200,704,1512,1,2021-02-05,2
+"CZ0214017","Karlštejn - Koda","propast Amerika II.","Myotis myotis","1324",1,1,81,1202,1200,704,1512,1,2022-02-03,2
+"CZ0214017","Karlštejn - Koda","propast Čeřinka","Myotis myotis","1324",1,1,17,1202,1200,704,1512,1,2022-01-29,2
+"CZ0214017","Karlštejn - Koda","Průtahová štola","Myotis myotis","1324",1,1,15,1202,1200,704,1512,1,2022-01-29,2
+"CZ0214017","Karlštejn - Koda","Romanovského štola","Myotis myotis","1324",1,1,10,1202,1200,704,1512,1,2022-02-03,2
+"CZ0214017","Karlštejn - Koda","Rudolfova jeskyně","Myotis myotis","1324",1,1,4,1202,1200,704,1512,1,2022-02-02,2
+"CZ0214017","Karlštejn - Koda","Sedmisálová jeskyně","Myotis myotis","1324",1,1,2,1202,1200,704,1512,1,2022-01-31,2
+"CZ0214017","Karlštejn - Koda","Srbské jeskyně","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,NA,2017-01-29,0
+"CZ0214017","Karlštejn - Koda","Srbské jeskyně a jeskyně Netopýrka","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,NA,2017-01-29,0
+"CZ0214017","Karlštejn - Koda","Srbsko - lom Alkazar","Myotis myotis","1324",1,1,NA,1202,1200,704,1512,NA,2021-08-21,1
+"CZ0214017","Karlštejn - Koda","Srbsko u Karlštejna","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,NA,2020-07-19,0
+"CZ0214017","Karlštejn - Koda","Srbsko u Karlštejna - Chlumské jeskyně","Myotis myotis","1324",1,1,4,1202,1200,704,1512,0,2021-01-31,1
+"CZ0214017","Karlštejn - Koda","Stará Aragonitka","Myotis myotis","1324",1,1,2,1202,1200,704,1512,0,2021-01-30,1
+"CZ0214017","Karlštejn - Koda","Svatý Jan pod Skalou - půda kostela","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,0,2020-07-25,0
+"CZ0214017","Karlštejn - Koda","Svatý Jan pod skalou - sklepy v klášteře","Myotis myotis","1324",1,1,2,1202,1200,704,1512,1,2021-02-03,2
+"CZ0214017","Karlštejn - Koda","Svážná Rešna","Myotis myotis","1324",1,1,1,1202,1200,704,1512,0,2021-02-02,1
+"CZ0214017","Karlštejn - Koda","štola Modlitebna","Myotis myotis","1324",1,1,3,1202,1200,704,1512,1,2022-02-03,2
+"CZ0214017","Karlštejn - Koda","štola v Beranově lomu","Myotis myotis","1324",1,1,2,1202,1200,704,1512,0,2021-02-03,1
+"CZ0214017","Karlštejn - Koda","Štola v rokli","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,NA,2022-01-30,0
+"CZ0214017","Karlštejn - Koda","štola v Tetínské rokli","Myotis myotis","1324",1,1,1,1202,1200,704,1512,1,2021-02-01,2
+"CZ0214017","Karlštejn - Koda","Štoly v lomu Alkazar - levá","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,NA,2019-08-09,0
+"CZ0214017","Karlštejn - Koda","štoly v lomu Kozel - Alkazar","Myotis myotis","1324",1,1,251,1202,1200,704,1512,1,2022-01-31,2
+"CZ0214017","Karlštejn - Koda","Terasová jeskyně","Myotis myotis","1324",NA,NA,NA,1202,1200,704,1512,0,2022-01-31,0
+"CZ0214017","Karlštejn - Koda","Tetínská chodba","Myotis myotis","1324",1,1,1,1202,1200,704,1512,0,2021-02-01,1
+"CZ0214017","Karlštejn - Koda","Tetínská propástka II","Myotis myotis","1324",1,1,2,1202,1200,704,1512,1,2022-01-31,2
+"CZ0214017","Karlštejn - Koda","Tomáškova propast","Myotis myotis","1324",1,1,22,1202,1200,704,1512,1,2022-01-30,2
+"CZ0214017","Karlštejn - Koda","Troj-štolí","Myotis myotis","1324",1,1,2,1202,1200,704,1512,1,2022-01-30,2
+"CZ0214017","Karlštejn - Koda","Velikonoční štola","Myotis myotis","1324",1,1,8,1202,1200,704,1512,1,2021-02-02,2
+"CZ0313635","Kratochvíle - zámek","Kratochvíle-zámek","Myotis myotis","1324",NA,NA,NA,0,0,0,0,NA,2017-07-28,0
+"CZ0314024","Šumava","341 92 Kašperské Hory, Kašperské Hory, Regio Plzeň CZ","Myotis myotis","1324",NA,NA,NA,0,1,0,0,NA,2017-11-11,0
+"CZ0314024","Šumava","Czech Republic -Kašperské Hory","Myotis myotis","1324",NA,NA,NA,0,1,0,0,NA,2016-03-04,0
+"CZ0314024","Šumava","Červená 18, 341 92 Kašperské Hory, Česko","Myotis myotis","1324",NA,NA,NA,0,1,0,0,NA,2017-11-11,0
+"CZ0314024","Šumava","Klatovy, Krkonošská národní park, CZ-PK, CZ","Myotis myotis","1324",NA,NA,NA,0,1,0,0,NA,2017-11-11,0
+"CZ0314024","Šumava","NPR Boubínský prales","Myotis myotis","1324",NA,NA,NA,0,1,0,0,0,2020-08-27,0
+"CZ0314024","Šumava","PR Milešický prales 1154","Myotis myotis","1324",NA,NA,NA,0,1,0,0,NA,2020-08-16,0
+"CZ0314024","Šumava","341 92 Kašperské Hory, Kašperské Hory, Regio Plzeň CZ","Rhinolophus hipposideros","1303",NA,NA,NA,0,0,0,2,NA,2017-11-11,0
+"CZ0314024","Šumava","Červená 18, 341 92 Kašperské Hory, Česko","Rhinolophus hipposideros","1303",NA,NA,NA,0,0,0,2,NA,2017-11-11,0
+"CZ0314024","Šumava","Chalupa v osadě Jirkalov (k. ú. Stachy).","Rhinolophus hipposideros","1303",NA,NA,NA,0,0,0,2,NA,2018-09-28,0
+"CZ0314024","Šumava","Klatovy, Krkonošská národní park, CZ-PK, CZ","Rhinolophus hipposideros","1303",NA,NA,NA,0,0,0,2,NA,2017-11-11,0
+"CZ0314024","Šumava","Stachy (Jirkalov)","Rhinolophus hipposideros","1303",NA,NA,NA,0,0,0,2,NA,2017-09-28,0
+"CZ0314124","Blanský les","Jamné - 3 štoly v údolí Vltavy","Myotis myotis","1324",NA,NA,NA,0,6,6,9,0,2020-01-20,0
+"CZ0314124","Blanský les","Třísov - štola","Myotis myotis","1324",NA,NA,NA,0,6,6,9,0,2020-01-20,0
+"CZ0314634","Chýnovská jeskyně","Chýnovská jeskyně","Myotis myotis","1324",NA,NA,NA,0,32,35,55,0,2020-02-05,0
+"CZ0323636","Dolany - kostel","Dolany","Myotis myotis","1324",NA,NA,NA,0,612,614,685,0,2020-07-08,0
+"CZ0323637","Štola Rohatiny I","Kočín - štola","Myotis myotis","1324",NA,NA,NA,0,0,0,13,NA,2018-02-02,0
+"CZ0323638","Jeskyně Inků","Výškovice - štola Jeskyně Inků","Barbastella barbastellus","1308",1,1,5,5,6,4,6,1,2021-01-28,2
+"CZ0323639","Liblín - lihovar","EVL Liblín - lihovar","Myotis myotis","1324",NA,NA,NA,0,127,114,113,0,2020-07-08,0
+"CZ0323639","Liblín - lihovar","Liblín - sklepy lihovaru","Myotis myotis","1324",NA,NA,NA,0,127,114,113,NA,2018-02-01,0
+"CZ0323640","Manětín - kostel","Manětín","Myotis myotis","1324",NA,NA,NA,0,2174,2115,1612,0,2020-07-08,0
+"CZ0323642","Radnice - kostel","Radnice u Rokycan","Myotis myotis","1324",NA,NA,NA,0,431,381,398,0,2020-07-08,0
+"CZ0323645","Štola Věra","EVL Štola Věra","Myotis myotis","1324",1,1,23,23,7,8,13,1,2021-01-28,2
+"CZ0323646","Stříbro - štoly Dlouhý tah","Stříbro - štola Dlouhý tah","Barbastella barbastellus","1308",NA,NA,NA,0,0,0,2,NA,2018-01-30,0
+"CZ0323647","Všeruby - kostel","Všeruby u Plzně","Myotis myotis","1324",NA,NA,NA,0,117,145,116,0,2020-07-08,0
+"CZ0414110","Krušnohorské plató","Hřebečná - Bludná - Wildbahner","Myotis myotis","1324",1,1,1,182,300,386,139,0,2021-02-10,1
+"CZ0414110","Krušnohorské plató","Hřebečná - Mauricius","Myotis myotis","1324",NA,NA,NA,182,300,386,139,NA,2016-02-27,0
+"CZ0414110","Krušnohorské plató","Hřebečná - štola Kryštof (spojeno s Mauricius)","Myotis myotis","1324",1,1,9,182,300,386,139,1,2021-02-11,2
+"CZ0414110","Krušnohorské plató","Hřebečná, Mauritius - dolní jáma","Myotis myotis","1324",1,1,33,182,300,386,139,1,2021-09-03,2
+"CZ0414110","Krušnohorské plató","Hřebečná, Mauritius - horní jáma","Myotis myotis","1324",1,1,36,182,300,386,139,0,2021-09-03,1
+"CZ0414110","Krušnohorské plató","Mauricius - důl","Myotis myotis","1324",NA,NA,NA,182,300,386,139,0,2020-03-07,0
+"CZ0414110","Krušnohorské plató","Potůčky - Bludná - Zuzana","Myotis myotis","1324",1,1,1,182,300,386,139,0,2021-02-10,1
+"CZ0414110","Krušnohorské plató","Potůčky - štola Boží požehnání","Myotis myotis","1324",1,1,7,182,300,386,139,1,2021-02-10,2
+"CZ0414110","Krušnohorské plató","Ryžovna - Gottlib","Myotis myotis","1324",1,1,26,182,300,386,139,1,2021-02-09,2
+"CZ0414110","Krušnohorské plató","Ryžovna - Kohlreuter","Myotis myotis","1324",1,1,27,182,300,386,139,1,2021-02-09,2
+"CZ0414110","Krušnohorské plató","Ryžovna - štola Dolní Michael","Myotis myotis","1324",1,1,3,182,300,386,139,1,2021-02-09,2
+"CZ0414110","Krušnohorské plató","Ryžovna - štola Kapsa","Myotis myotis","1324",NA,NA,NA,182,300,386,139,0,2020-02-21,0
+"CZ0414110","Krušnohorské plató","Ryžovna - štola Kolejová","Myotis myotis","1324",NA,NA,NA,182,300,386,139,NA,2016-01-30,0
+"CZ0414110","Krušnohorské plató","Ryžovna - štola Tetřeví výduch","Myotis myotis","1324",1,1,3,182,300,386,139,0,2021-02-09,1
+"CZ0414110","Krušnohorské plató","Ryžovna - štola u Černé","Myotis myotis","1324",1,1,10,182,300,386,139,1,2021-02-09,2
+"CZ0414110","Krušnohorské plató","Ryžovna - štola Zlatokopecká","Myotis myotis","1324",1,1,10,182,300,386,139,1,2021-02-09,2
+"CZ0414110","Krušnohorské plató","Ryžovna - Zlatý Kopec - štola Dolní Perníková","Myotis myotis","1324",NA,NA,NA,182,300,386,139,NA,2018-01-31,0
+"CZ0414110","Krušnohorské plató","Ryžovna - Zlatý Kopec - štola Ementál","Myotis myotis","1324",1,1,9,182,300,386,139,1,2021-02-09,2
+"CZ0414110","Krušnohorské plató","Ryžovna - Zlatý Kopec - štola Horní Perníková","Myotis myotis","1324",NA,NA,NA,182,300,386,139,NA,2019-02-11,0
+"CZ0414110","Krušnohorské plató","Ryžovna - Zlatý Kopec - štola Rezonanční","Myotis myotis","1324",1,1,1,182,300,386,139,0,2021-02-09,1
+"CZ0414110","Krušnohorské plató","Zlatý kopec - štola Gottlib (Johannis)","Myotis myotis","1324",1,1,4,182,300,386,139,1,2021-09-04,2
+"CZ0414110","Krušnohorské plató","Zlatý Kopec, Johannes - dolní jáma","Myotis myotis","1324",1,1,2,182,300,386,139,0,2021-09-04,1
+"CZ0423651","Držovice - rodinný dům","Držovice dům - č.p. 13 EVL","Myotis myotis","1324",NA,NA,NA,0,0,0,0,NA,2018-06-12,0
+"CZ0423653","Jílové u Děčína - škola","Jílové u Děčína -  EVL ZŠ Jílové","Myotis myotis","1324",NA,NA,NA,0,0,0,0,NA,2016-07-15,0
+"CZ0423654","Lobendava - kostel","Lobendava - kostel","Myotis myotis","1324",NA,NA,NA,0,0,1300,1500,NA,2019-07-05,0
+"CZ0423656","Úštěk - kostel","Úštěk","Myotis myotis","1324",NA,NA,NA,0,1087,998,972,NA,2016-07-29,0
+"CZ0423656","Úštěk - kostel","Úštěk kostel - nám. Míru 1 EVL","Myotis myotis","1324",NA,NA,NA,0,1087,998,972,0,2020-07-05,0
+"CZ0424125","Doupovské hory","Boč – propustek","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2016-02-07,0
+"CZ0424125","Doupovské hory","Černýš - Lužný","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2017-01-21,0
+"CZ0424125","Doupovské hory","Doupov - u Rašovických skal","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2016-05-29,0
+"CZ0424125","Doupovské hory","Doupov, Lestkov - SV svahy Černého vrchu","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2017-08-23,0
+"CZ0424125","Doupovské hory","Doupov, Mašťov - pod Radechovskými skalami","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2017-06-11,0
+"CZ0424125","Doupovské hory","Doupov, Mašťov - u potoka Dubá","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2017-06-11,0
+"CZ0424125","Doupovské hory","Doupov, Radonice - údolí Dubé","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2017-06-11,0
+"CZ0424125","Doupovské hory","Horní Hrad","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2016-08-17,0
+"CZ0424125","Doupovské hory","Horní Hrad - Nebesa","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2020-07-14,0
+"CZ0424125","Doupovské hory","Klášterec nad Ohří - Šumburk - zřícenina hradu","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2018-02-19,0
+"CZ0424125","Doupovské hory","Kotvina","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,0,2020-08-16,0
+"CZ0424125","Doupovské hory","Krásný les - Horní Hrad - sklep u potoka","Barbastella barbastellus","1308",1,1,1,85,48,52,73,0,2021-02-02,1
+"CZ0424125","Doupovské hory","Krásný Les - Horní hrad - sklepy hradu","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,0,2020-02-12,0
+"CZ0424125","Doupovské hory","Krásný Les, Horní hrad - lesní rybníček","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2017-05-26,0
+"CZ0424125","Doupovské hory","Krásný Les, u Hornohradského potoka","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2017-05-26,0
+"CZ0424125","Doupovské hory","Kyselka - sklep za spodní budovou","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2017-01-07,0
+"CZ0424125","Doupovské hory","Kyselka - sklípek ve svahu za lázněmi 1","Barbastella barbastellus","1308",1,1,2,85,48,52,73,0,2021-02-15,1
+"CZ0424125","Doupovské hory","Kyselka - sklípek ve svahu za lázněmi 2","Barbastella barbastellus","1308",1,1,5,85,48,52,73,0,2021-02-15,1
+"CZ0424125","Doupovské hory","Kyselka - štolka za Ottovým pavilónem","Barbastella barbastellus","1308",1,1,9,85,48,52,73,0,2021-02-15,1
+"CZ0424125","Doupovské hory","Lestkov - sklep hradu","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2019-02-09,0
+"CZ0424125","Doupovské hory","Malý Hrzín - Mufloní rokle","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2016-08-14,0
+"CZ0424125","Doupovské hory","Mašťov, Pyškovo jezírko","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2019-05-30,0
+"CZ0424125","Doupovské hory","Mašťov, vrch Houština","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2019-05-30,0
+"CZ0424125","Doupovské hory","Nebesa","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,0,2020-08-08,0
+"CZ0424125","Doupovské hory","Nedíl - štola","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,0,2020-02-08,0
+"CZ0424125","Doupovské hory","Pastviny - Brodce - štola","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,0,2020-01-28,0
+"CZ0424125","Doupovské hory","Peklo – zřícenina hradu Himlštejn (Nebesa)","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,0,2020-02-15,0
+"CZ0424125","Doupovské hory","Radošov u Kyselky, u Ohře","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2019-05-26,0
+"CZ0424125","Doupovské hory","Rašovice","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,0,2020-07-31,0
+"CZ0424125","Doupovské hory","Rašovické skály","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,0,2020-08-25,0
+"CZ0424125","Doupovské hory","Suchý důl u Klášterce - Nedíl - štola","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2019-02-08,0
+"CZ0424125","Doupovské hory","Šemnice, Dubina - chata","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2018-08-04,0
+"CZ0424125","Doupovské hory","Valeč","Barbastella barbastellus","1308",1,1,2,85,48,52,73,0,2021-09-17,1
+"CZ0424125","Doupovské hory","Valeč - sklepy v zámeckém parku","Barbastella barbastellus","1308",1,1,52,85,48,52,73,1,2021-08-25,2
+"CZ0424125","Doupovské hory","Valeč - Šibeniční vrch - štola","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2018-01-25,0
+"CZ0424125","Doupovské hory","Vintířov","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,0,2020-09-20,0
+"CZ0424125","Doupovské hory","Vojkovice nad Ohří - propustek pod tratí","Barbastella barbastellus","1308",1,1,13,85,48,52,73,1,2021-01-17,2
+"CZ0424125","Doupovské hory","Vojkovice nad Ohří - propustek pod tratí II","Barbastella barbastellus","1308",1,1,1,85,48,52,73,0,2021-01-17,1
+"CZ0424125","Doupovské hory","Vrbička, rybník pod Linou","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2019-08-09,0
+"CZ0424125","Doupovské hory","Zvoníčkov - sklep","Barbastella barbastellus","1308",NA,NA,NA,85,48,52,73,NA,2017-02-04,0
+"CZ0424125","Doupovské hory","Boč","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2019-07-01,0
+"CZ0424125","Doupovské hory","Černý vrch","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2018-07-18,0
+"CZ0424125","Doupovské hory","Doupov, Brodce - Lipová","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2018-08-03,0
+"CZ0424125","Doupovské hory","Doupov, Lestkov - u Egerberku","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2017-08-23,0
+"CZ0424125","Doupovské hory","Horní Hrad","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2016-08-17,0
+"CZ0424125","Doupovské hory","Horní Hrad - Nebesa","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2020-09-08,0
+"CZ0424125","Doupovské hory","Jakubov - most přes Ohři","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2020-08-01,0
+"CZ0424125","Doupovské hory","Jakubov, cesta k řece","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2018-06-05,0
+"CZ0424125","Doupovské hory","Kadaň","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2017-05-28,0
+"CZ0424125","Doupovské hory","Klášterec nad Ohří, Ohřecká louka","Myotis myotis","1324",NA,NA,NA,10,12,23,14,0,2020-06-29,0
+"CZ0424125","Doupovské hory","Kotvina","Myotis myotis","1324",1,1,2,10,12,23,14,1,2021-07-12,2
+"CZ0424125","Doupovské hory","Krásný Les - Horní hrad - sklepy hradu","Myotis myotis","1324",NA,NA,NA,10,12,23,14,0,2020-02-12,0
+"CZ0424125","Doupovské hory","Kyselka - sklípek ve svahu za lázněmi 2","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2018-02-13,0
+"CZ0424125","Doupovské hory","Kyselka - štolka za Ottovým pavilónem","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2018-02-13,0
+"CZ0424125","Doupovské hory","Kyselka, most přes Ohři","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2018-08-04,0
+"CZ0424125","Doupovské hory","Lestkov","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2019-09-02,0
+"CZ0424125","Doupovské hory","Mašťov, Pyškovo jezírko","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2019-05-30,0
+"CZ0424125","Doupovské hory","Nedíl - štola","Myotis myotis","1324",NA,NA,NA,10,12,23,14,0,2020-02-08,0
+"CZ0424125","Doupovské hory","NPR Nebesa, pod Pekelskou skálou","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2018-05-27,0
+"CZ0424125","Doupovské hory","Peklo – zřícenina hradu Himlštejn (Nebesa)","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2018-02-18,0
+"CZ0424125","Doupovské hory","Radošov u Kyselky, u Ohře","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2019-05-26,0
+"CZ0424125","Doupovské hory","Rašovice","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2018-05-23,0
+"CZ0424125","Doupovské hory","Rašovický rybník","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2019-08-26,0
+"CZ0424125","Doupovské hory","Stráž - most přes Ohři","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2020-09-08,0
+"CZ0424125","Doupovské hory","Suchý důl u Klášterce - Nedíl - štola","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2018-03-06,0
+"CZ0424125","Doupovské hory","Šemnice, Dubina - chata","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2018-08-04,0
+"CZ0424125","Doupovské hory","Valeč","Myotis myotis","1324",1,1,2,10,12,23,14,0,2021-09-17,1
+"CZ0424125","Doupovské hory","Valeč - sklepy v zámeckém parku","Myotis myotis","1324",1,1,6,10,12,23,14,1,2021-08-25,2
+"CZ0424125","Doupovské hory","Vojkovice - Jakubov, most přes Ohři","Myotis myotis","1324",NA,NA,NA,10,12,23,14,NA,2018-06-05,0
+"CZ0424125","Doupovské hory","Zásada u Kadaně","Myotis myotis","1324",NA,NA,NA,10,12,23,14,0,2020-07-11,0
+"CZ0513657","Bílá Desná - kanál protržené přehrady","Bílá Desná","Myotis myotis","1324",NA,NA,NA,0,821,845,702,0,2020-01-08,0
+"CZ0513659","Doksy - zámek","Doksy","Myotis myotis","1324",NA,NA,NA,0,0,0,0,NA,2014-06-20,0
+"CZ0513662","Lemberk - zámek","Lemberk","Rhinolophus hipposideros","1303",NA,NA,NA,0,193,75,178,0,2020-06-05,0
+"CZ0513662","Lemberk - zámek","Lemberk - zámek","Rhinolophus hipposideros","1303",NA,NA,NA,0,193,75,178,0,2020-01-23,0
+"CZ0514113","Podtrosecká údolí","Hrubá Skála","Rhinolophus hipposideros","1303",NA,NA,NA,0,230,162,276,NA,2020-07-11,0
+"CZ0514113","Podtrosecká údolí","Hrubá Skála - zámek","Rhinolophus hipposideros","1303",NA,NA,NA,0,230,162,276,0,2020-01-16,0
+"CZ0514113","Podtrosecká údolí","Jeskyně U Hlavatice","Rhinolophus hipposideros","1303",NA,NA,NA,0,230,162,276,0,2020-01-11,0
+"CZ0514113","Podtrosecká údolí","Karlovice","Rhinolophus hipposideros","1303",NA,NA,NA,0,230,162,276,NA,2020-05-29,0
+"CZ0514113","Podtrosecká údolí","Podsemín","Rhinolophus hipposideros","1303",NA,NA,NA,0,230,162,276,NA,2017-07-21,0
+"CZ0514243","Velký a Malý Bezděz","Paledová jeskyně Na Bezdězu","Myotis bechsteinii","1323",1,1,11,11,0,0,0,NA,2021-06-18,1
+"CZ0514667","Západní jeskyně","Jítrava,Západní jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,0,111,131,120,0,2020-01-23,0
+"CZ0514668","Vápenice - Basa","Vápenice - Basa transekt č.1","Barbastella barbastellus","1308",NA,NA,NA,0,0,1,0,NA,2019-08-09,0
+"CZ0514668","Vápenice - Basa","Vápenice","Myotis bechsteinii","1323",NA,NA,NA,0,0,12,0,NA,2019-08-22,0
+"CZ0514668","Vápenice - Basa","Vápenice - Basa transekt č. 4","Myotis bechsteinii","1323",NA,NA,NA,0,0,12,0,NA,2019-06-09,0
+"CZ0514668","Vápenice - Basa","Velká Basa","Myotis bechsteinii","1323",NA,NA,NA,0,0,12,0,NA,2019-08-30,0
+"CZ0523009","Zámek v Kostelci nad Orlicí","Kostelec nad Orlicí - sklep pod zámeckým skleníkem","Rhinolophus hipposideros","1303",NA,NA,NA,0,81,92,108,0,2020-02-21,0
+"CZ0523669","Bílá Třemešná","Bílá Třemešná - přehradní hráz a štola","Barbastella barbastellus","1308",NA,NA,NA,0,0,0,0,NA,2017-12-29,0
+"CZ0523675","Jičíněves - zámek","Jičíněves","Rhinolophus hipposideros","1303",NA,NA,NA,0,22,68,36,0,2020-06-26,0
+"CZ0523676","Josefov - pevnost","Josefov u Jaroměře","Rhinolophus hipposideros","1303",NA,NA,NA,0,1135,1163,157,0,2020-02-15,0
+"CZ0523676","Josefov - pevnost","Josefov, pevnost - přístupná část (EVL)","Rhinolophus hipposideros","1303",NA,NA,NA,0,1135,1163,157,NA,2018-02-04,0
+"CZ0523677","Kost","Kost","Rhinolophus hipposideros","1303",NA,NA,NA,0,693,674,799,0,2020-06-13,0
+"CZ0523677","Kost","Kost - hrad","Rhinolophus hipposideros","1303",NA,NA,NA,0,693,674,799,0,2020-01-15,0
+"CZ0523680","Pevnost Dobrošov","Dobrošov","Myotis emarginatus","1321",NA,NA,NA,0,0,0,345,NA,2017-01-14,0
+"CZ0523680","Pevnost Dobrošov","Pevnost Dobrošov","Myotis emarginatus","1321",NA,NA,NA,0,0,0,345,NA,2018-01-06,0
+"CZ0523680","Pevnost Dobrošov","Dobrošov","Myotis myotis","1324",NA,NA,NA,0,0,0,48,NA,2017-01-14,0
+"CZ0523680","Pevnost Dobrošov","Pevnost Dobrošov","Myotis myotis","1324",NA,NA,NA,0,0,0,48,NA,2018-01-06,0
+"CZ0523680","Pevnost Dobrošov","Dobrošov","Rhinolophus hipposideros","1303",NA,NA,NA,0,0,0,304,NA,2017-01-14,0
+"CZ0523680","Pevnost Dobrošov","Pevnost Dobrošov","Rhinolophus hipposideros","1303",NA,NA,NA,0,0,0,304,NA,2018-01-06,0
+"CZ0523682","Staré Hrady - zámek","EVL Staré Hrady - zámek","Rhinolophus hipposideros","1303",NA,NA,NA,0,9,15,6,NA,2017-01-12,0
+"CZ0523682","Staré Hrady - zámek","Staré Hrady","Rhinolophus hipposideros","1303",NA,NA,NA,0,9,15,6,0,2020-06-07,0
+"CZ0523683","Štola Portál","Štola Portál","Barbastella barbastellus","1308",NA,NA,NA,0,0,0,44,NA,2018-01-05,0
+"CZ0523683","Štola Portál","Štola Portál","Myotis myotis","1324",NA,NA,NA,0,0,0,34,NA,2018-01-05,0
+"CZ0533685","Borová u Poličky","Borová u Poličky, kostel sv.Markéty","Rhinolophus hipposideros","1303",NA,NA,NA,0,0,25,21,NA,2019-06-19,0
+"CZ0533691","Pařížov","EVL Pařížov","Barbastella barbastellus","1308",NA,NA,NA,0,0,0,0,NA,2017-01-19,0
+"CZ0533693","Podolská a Páterova jeskyně","Vápenný Podol - Páterova a Podolská jeskyně","Myotis emarginatus","1321",NA,NA,NA,0,8,0,0,NA,2020-02-09,0
+"CZ0533693","Podolská a Páterova jeskyně","Vápenný Podol - Páterova a Podolská jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,0,292,0,0,0,2020-02-09,0
+"CZ0533694","Vranová Lhota","Vranová Lhota","Myotis myotis","1324",NA,NA,NA,0,600,0,0,0,2020-06-28,0
+"CZ0613002","Roštejnská obora","hrad Roštejn","Barbastella barbastellus","1308",1,1,30,30,0,0,25,NA,2021-07-13,1
+"CZ0613695","Biskupice - kostel","EVL Biskupice - kostel","Myotis myotis","1324",1,1,200,200,70,0,195,1,2021-07-13,2
+"CZ0613696","Biskupice - škola","EVL Biskupice - škola","Myotis myotis","1324",1,1,28,28,20,6,5,1,2021-07-13,2
+"CZ0613698","Jeřišno - Heřmaň","Jeřišno, Heřmaň - věž kostela","Myotis myotis","1324",1,1,360,360,632,592,484,1,2021-06-29,2
+"CZ0613700","Žďár nad Sázavou - garáže","Zámek Žďár","Myotis emarginatus","1321",1,1,323,323,238,235,218,NA,2021-07-01,1
+"CZ0613700","Žďár nad Sázavou - garáže","Zámek Žďár - garáže","Myotis emarginatus","1321",NA,NA,NA,323,238,235,218,NA,2017-06-27,0
+"CZ0613700","Žďár nad Sázavou - garáže","Žďár nad Sázavou-garáže","Myotis emarginatus","1321",NA,NA,NA,323,238,235,218,NA,2016-07-13,0
+"CZ0623016","Lednice - zámek","Lednice - sklepy pod zámeckým skleníkem","Rhinolophus hipposideros","1303",NA,NA,NA,0,232,156,250,0,2020-01-15,0
+"CZ0623016","Lednice - zámek","Lednice - sklepy pod zámkem a Licht. jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,0,232,156,250,0,2020-01-15,0
+"CZ0623329","Prudká","Prudká č.p.257, areál papírny","Myotis emarginatus","1321",NA,NA,NA,0,0,0,380,NA,2018-06-10,0
+"CZ0623329","Prudká","Prudká č.p.257, areál papírny","Rhinolophus hipposideros","1303",NA,NA,NA,0,0,80,180,NA,2019-07-07,0
+"CZ0623697","Doubravník - kostel","Doubravník, kostel Povýšení sv.Kříže","Myotis myotis","1324",NA,NA,NA,0,0,670,640,NA,2019-06-22,0
+"CZ0623707","Starý zámek Jevišovice","Jevišovice - starý zámek","Myotis myotis","1324",NA,NA,NA,0,750,105,1250,0,2020-07-01,0
+"CZ0623710","Křtiny - kostel","Křtiny","Myotis myotis","1324",NA,NA,NA,0,290,280,260,0,2020-07-07,0
+"CZ0623710","Křtiny - kostel","Křtiny","Rhinolophus hipposideros","1303",NA,NA,NA,0,10,10,9,0,2020-07-07,0
+"CZ0623717","Tavíkovice - zámek","Tavíkovice","Myotis emarginatus","1321",NA,NA,NA,0,230,380,320,NA,2020-07-01,0
+"CZ0623718","Uherčice - zámek","Uherčice","Rhinolophus hipposideros","1303",NA,NA,NA,0,180,97,172,0,2020-07-01,0
+"CZ0623718","Uherčice - zámek","Uherčice - zámek","Rhinolophus hipposideros","1303",NA,NA,NA,0,180,97,172,0,2020-01-21,0
+"CZ0623719","Vranov nad Dyjí - základní škola","Vranov nad Dyjí - škola","Myotis emarginatus","1321",NA,NA,NA,0,280,450,600,NA,2020-06-17,0
+"CZ0624065","Květnice","Květnice - Čtyřpatrová štola","Rhinolophus hipposideros","1303",NA,NA,NA,0,476,582,0,0,2020-02-15,0
+"CZ0624065","Květnice","Květnice - propast","Rhinolophus hipposideros","1303",NA,NA,NA,0,476,582,0,NA,2017-02-11,0
+"CZ0624065","Květnice","Květnice - štola Královna","Rhinolophus hipposideros","1303",NA,NA,NA,0,476,582,0,0,2020-02-15,0
+"CZ0624065","Květnice","Květnice – jeskyně Pod křížem","Rhinolophus hipposideros","1303",NA,NA,NA,0,476,582,0,0,2020-02-15,0
+"CZ0624095","Údolí Dyje","Bítov","Myotis myotis","1324",NA,NA,NA,0,69,65,95,0,2020-07-01,0
+"CZ0624095","Údolí Dyje","Cornštejn - sklepy hradu","Myotis myotis","1324",NA,NA,NA,0,69,65,95,0,2020-01-21,0
+"CZ0624096","Podyjí","Čertův mlýn - náhon","Barbastella barbastellus","1308",NA,NA,NA,0,36,29,10,NA,2017-01-30,0
+"CZ0624096","Podyjí","Devět mlýnů - sklepy","Barbastella barbastellus","1308",NA,NA,NA,0,36,29,10,0,2020-01-20,0
+"CZ0624096","Podyjí","Faltýskův mlýn - sklep","Barbastella barbastellus","1308",NA,NA,NA,0,36,29,10,0,2020-01-20,0
+"CZ0624096","Podyjí","Havraníky - ""Papírna"" - sklepy","Barbastella barbastellus","1308",NA,NA,NA,0,36,29,10,0,2020-01-20,0
+"CZ0624096","Podyjí","Hnanice - Baštův mlýn - sklep","Barbastella barbastellus","1308",NA,NA,NA,0,36,29,10,NA,2017-02-12,0
+"CZ0624096","Podyjí","Ledové sluje","Barbastella barbastellus","1308",NA,NA,NA,0,36,29,10,NA,2017-01-30,0
+"CZ0624096","Podyjí","Novohrádecký mlýn - sklep","Barbastella barbastellus","1308",NA,NA,NA,0,36,29,10,NA,2017-01-30,0
+"CZ0624096","Podyjí","Novohrádecký mlýn - štola","Barbastella barbastellus","1308",NA,NA,NA,0,36,29,10,0,2020-01-20,0
+"CZ0624096","Podyjí","Nový Hrádek - sklepy","Barbastella barbastellus","1308",NA,NA,NA,0,36,29,10,0,2020-01-20,0
+"CZ0624096","Podyjí","štola u Znojemské ú. n.","Barbastella barbastellus","1308",NA,NA,NA,0,36,29,10,NA,2017-01-30,0
+"CZ0624096","Podyjí","štoly u Pivovarského potoka","Barbastella barbastellus","1308",NA,NA,NA,0,36,29,10,0,2020-01-20,0
+"CZ0624096","Podyjí","Vranov nad Dyjí - zámek","Barbastella barbastellus","1308",NA,NA,NA,0,36,29,10,0,2020-01-20,0
+"CZ0624096","Podyjí","Ledové sluje","Myotis bechsteinii","1323",NA,NA,NA,0,0,1,0,NA,2016-02-06,0
+"CZ0624096","Podyjí","Nový Hrádek - sklepy","Myotis bechsteinii","1323",NA,NA,NA,0,0,1,0,NA,2019-02-01,0
+"CZ0624096","Podyjí","Čertův mlýn - náhon","Rhinolophus hipposideros","1303",NA,NA,NA,0,274,130,103,0,2020-01-20,0
+"CZ0624096","Podyjí","Devět mlýnů - sklepy","Rhinolophus hipposideros","1303",NA,NA,NA,0,274,130,103,0,2020-01-20,0
+"CZ0624096","Podyjí","Hradiště u Znojma","Rhinolophus hipposideros","1303",NA,NA,NA,0,274,130,103,0,2020-07-03,0
+"CZ0624096","Podyjí","Ledové sluje","Rhinolophus hipposideros","1303",NA,NA,NA,0,274,130,103,0,2020-01-25,0
+"CZ0624096","Podyjí","Novohrádecký mlýn - štola","Rhinolophus hipposideros","1303",NA,NA,NA,0,274,130,103,NA,2018-02-01,0
+"CZ0624096","Podyjí","Nový Hrádek - sklepy","Rhinolophus hipposideros","1303",NA,NA,NA,0,274,130,103,0,2020-01-20,0
+"CZ0624096","Podyjí","Podmolí","Rhinolophus hipposideros","1303",NA,NA,NA,0,274,130,103,0,2020-06-23,0
+"CZ0624096","Podyjí","Podmolí – roubenka u lesní správy","Rhinolophus hipposideros","1303",NA,NA,NA,0,274,130,103,0,2020-06-23,0
+"CZ0624096","Podyjí","štola u Znojemské ú. n.","Rhinolophus hipposideros","1303",NA,NA,NA,0,274,130,103,NA,2018-02-01,0
+"CZ0624096","Podyjí","štoly u Pivovarského potoka","Rhinolophus hipposideros","1303",NA,NA,NA,0,274,130,103,NA,2018-02-01,0
+"CZ0624096","Podyjí","Vranov nad Dyjí - zámek","Rhinolophus hipposideros","1303",NA,NA,NA,0,274,130,103,0,2020-07-01,0
+"CZ0624098","Turold","Na Turoldu - jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,0,619,573,401,0,2020-01-15,0
+"CZ0624099","Niva Dyje","Lednice - umělá jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,0,3,1,4,0,2020-01-15,0
+"CZ0624130","Moravský kras","Balcarka","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-02-14,0
+"CZ0624130","Moravský kras","Barová jeskyně","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2017-02-08,0
+"CZ0624130","Moravský kras","Býčí skála","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-02-23,0
+"CZ0624130","Moravský kras","Býčí skála - mimo monitoring","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-02-23,0
+"CZ0624130","Moravský kras","Býčí skála, mimo základní monitoring","Myotis emarginatus","1321",1,1,28,450,645,418,294,NA,2021-02-28,1
+"CZ0624130","Moravský kras","Císařská jeskyně","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2022-02-07,0
+"CZ0624130","Moravský kras","Černá propast","Myotis emarginatus","1321",1,1,2,450,645,418,294,NA,2021-02-08,1
+"CZ0624130","Moravský kras","Erichova jeskyně","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-02-09,0
+"CZ0624130","Moravský kras","Erichova jeskyně ","Myotis emarginatus","1321",1,1,1,450,645,418,294,NA,2021-02-08,1
+"CZ0624130","Moravský kras","chodba a Staré skály","Myotis emarginatus","1321",1,1,1,450,645,418,294,NA,2021-02-08,1
+"CZ0624130","Moravský kras","jeskyně Balcarka","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2022-02-07,0
+"CZ0624130","Moravský kras","jeskyně Balcarka ","Myotis emarginatus","1321",1,1,40,450,645,418,294,NA,2021-02-09,1
+"CZ0624130","Moravský kras","jeskyně Koňská jáma","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2022-02-07,0
+"CZ0624130","Moravský kras","jeskyně Lidomorna","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2022-02-04,0
+"CZ0624130","Moravský kras","Jeskyně Lidomorna","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2016-02-11,0
+"CZ0624130","Moravský kras","jeskyně Lidomorna ","Myotis emarginatus","1321",1,1,1,450,645,418,294,NA,2021-02-04,1
+"CZ0624130","Moravský kras","jeskyně Mastný flek","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2022-02-23,0
+"CZ0624130","Moravský kras","jeskyně Netopýrka ","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-02-24,0
+"CZ0624130","Moravský kras","jeskyně Nová Rasovna","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2018-01-31,0
+"CZ0624130","Moravský kras","jeskyně Nová Rasovna ","Myotis emarginatus","1321",1,1,2,450,645,418,294,NA,2021-02-04,1
+"CZ0624130","Moravský kras","jeskyně Pustožlebská zazděná","Myotis emarginatus","1321",1,1,49,450,645,418,294,NA,2022-02-11,1
+"CZ0624130","Moravský kras","jeskyně Sedmnáctka","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2022-02-23,0
+"CZ0624130","Moravský kras","jeskyně Sedmnáctka ","Myotis emarginatus","1321",1,1,76,450,645,418,294,NA,2021-03-25,1
+"CZ0624130","Moravský kras","jeskyně Silvestrovka","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2022-02-03,0
+"CZ0624130","Moravský kras","jeskyně Suchožlebská zazděná","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2022-02-11,0
+"CZ0624130","Moravský kras","jeskyně U tří síní","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-11-15,0
+"CZ0624130","Moravský kras","jeskyně Výpustek","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-02-22,0
+"CZ0624130","Moravský kras","Jestřábka","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2019-02-23,0
+"CZ0624130","Moravský kras","Kalova jeskyně","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-02-20,0
+"CZ0624130","Moravský kras","Kanibalka","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-02-22,0
+"CZ0624130","Moravský kras","Kateřinská jeskyně","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2022-02-07,0
+"CZ0624130","Moravský kras","Komínová jeskyně","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2017-02-14,0
+"CZ0624130","Moravský kras","Koudelkova propast","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2022-02-23,0
+"CZ0624130","Moravský kras","Králova jeskyně","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-02-20,0
+"CZ0624130","Moravský kras","Málčina jeskyně","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-02-24,0
+"CZ0624130","Moravský kras","Mariánská jeskyně","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-02-22,0
+"CZ0624130","Moravský kras","Netopýrka - jeskyně","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-02-24,0
+"CZ0624130","Moravský kras","Nová Drátenická jeskyně","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-02-22,0
+"CZ0624130","Moravský kras","Nová Rasovna - jeskyně","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-01-31,0
+"CZ0624130","Moravský kras","Ochozská jeskyně","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2022-02-18,0
+"CZ0624130","Moravský kras","Ochozská jeskyně ","Myotis emarginatus","1321",1,1,136,450,645,418,294,NA,2021-03-10,1
+"CZ0624130","Moravský kras","Ochozská jeskyně - Labyrint","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2016-03-18,0
+"CZ0624130","Moravský kras","Ochozská jeskyně - Stará Ochozská","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-02-24,0
+"CZ0624130","Moravský kras","Punkevní jeskyně","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2017-02-13,0
+"CZ0624130","Moravský kras","Punkevní jeskyně - chodba","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2022-02-07,0
+"CZ0624130","Moravský kras","Punkevní jeskyně - chodby","Myotis emarginatus","1321",1,1,6,450,645,418,294,NA,2021-02-08,1
+"CZ0624130","Moravský kras","Punkevní jeskyně - tunel","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-02-09,0
+"CZ0624130","Moravský kras","Pustožlebská zazděná","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2017-02-14,0
+"CZ0624130","Moravský kras","Rudické propadání","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-02-05,0
+"CZ0624130","Moravský kras","Rudické propadání ","Myotis emarginatus","1321",1,1,2,450,645,418,294,NA,2021-02-02,1
+"CZ0624130","Moravský kras","Rudoleckého propast","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2022-01-28,0
+"CZ0624130","Moravský kras","Sadová, Adamov","Myotis emarginatus","1321",1,1,2,450,645,418,294,NA,2021-02-27,1
+"CZ0624130","Moravský kras","Sloupská jeskyně ","Myotis emarginatus","1321",1,1,2,450,645,418,294,NA,2021-04-14,1
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2022-02-07,0
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně ","Myotis emarginatus","1321",1,1,102,450,645,418,294,NA,2021-02-08,1
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně - Staré skály a Černá propast","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2022-02-07,0
+"CZ0624130","Moravský kras","Stará Drátenická jeskyně","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2018-02-24,0
+"CZ0624130","Moravský kras","Suchožlebská zazděná jeskyně","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2020-02-20,0
+"CZ0624130","Moravský kras","štola za Švýcárnou","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2016-01-18,0
+"CZ0624130","Moravský kras","Vavřinecké paleoponory","Myotis emarginatus","1321",NA,NA,NA,450,645,418,294,NA,2022-02-17,0
+"CZ0624130","Moravský kras","Bertalánka","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,0,2020-02-20,0
+"CZ0624130","Moravský kras","Býčí skála","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,0,2020-02-23,0
+"CZ0624130","Moravský kras","Erichova jeskyně","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,0,2022-02-07,0
+"CZ0624130","Moravský kras","Erichova jeskyně ","Barbastella barbastellus","1308",1,1,24,124,78,96,98,0,2021-02-08,1
+"CZ0624130","Moravský kras","Feryho tajná","Barbastella barbastellus","1308",1,1,1,124,78,96,98,0,2021-02-27,1
+"CZ0624130","Moravský kras","chodba a Staré skály","Barbastella barbastellus","1308",1,1,2,124,78,96,98,0,2021-02-08,1
+"CZ0624130","Moravský kras","Jáchymka, Babice nad Svitavou","Barbastella barbastellus","1308",1,1,18,124,78,96,98,0,2021-01-12,1
+"CZ0624130","Moravský kras","jeskyně Bertalánka","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2022-02-11,0
+"CZ0624130","Moravský kras","jeskyně Bertalánka ","Barbastella barbastellus","1308",1,1,3,124,78,96,98,0,2021-02-23,1
+"CZ0624130","Moravský kras","jeskyně Býčí skála","Barbastella barbastellus","1308",1,1,1,124,78,96,98,0,2021-01-12,1
+"CZ0624130","Moravský kras","jeskyně Hamerníkova ","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2022-03-07,0
+"CZ0624130","Moravský kras","jeskyně Hladomorna","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2017-02-13,0
+"CZ0624130","Moravský kras","jeskyně Jáchymka","Barbastella barbastellus","1308",1,1,4,124,78,96,98,1,2021-02-27,2
+"CZ0624130","Moravský kras","jeskyně Koňská jáma","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2022-02-07,0
+"CZ0624130","Moravský kras","jeskyně Koňská jáma ","Barbastella barbastellus","1308",1,1,21,124,78,96,98,0,2021-02-09,1
+"CZ0624130","Moravský kras","jeskyně Kostelík ","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2022-03-11,0
+"CZ0624130","Moravský kras","jeskyne Lidomorna","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,0,2020-01-31,0
+"CZ0624130","Moravský kras","jeskyně Lidomorna","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2022-02-04,0
+"CZ0624130","Moravský kras","Jeskyně Lidomorna","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2016-02-11,0
+"CZ0624130","Moravský kras","jeskyně Lidomorna ","Barbastella barbastellus","1308",1,1,24,124,78,96,98,0,2021-02-04,1
+"CZ0624130","Moravský kras","jeskyně Michalka","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2022-01-14,0
+"CZ0624130","Moravský kras","jeskyně Nová Rasovna","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2022-02-04,0
+"CZ0624130","Moravský kras","jeskyně Nová Rasovna ","Barbastella barbastellus","1308",1,1,2,124,78,96,98,0,2021-02-04,1
+"CZ0624130","Moravský kras","jeskyně Stará drátenická","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2017-02-25,0
+"CZ0624130","Moravský kras","jeskyně Stará drátenická - propadání","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2017-02-25,0
+"CZ0624130","Moravský kras","jeskyně V Panském klínku","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2019-02-25,0
+"CZ0624130","Moravský kras","Kalová díra","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2017-02-14,0
+"CZ0624130","Moravský kras","Kalova jeskyně","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2019-02-08,0
+"CZ0624130","Moravský kras","Kalovy jeskyně ","Barbastella barbastellus","1308",1,1,3,124,78,96,98,0,2021-02-09,1
+"CZ0624130","Moravský kras","Kateřinská jeskyně","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2019-02-06,0
+"CZ0624130","Moravský kras","Koňská jáma","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,0,2020-02-14,0
+"CZ0624130","Moravský kras","Koudelkova propast","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,0,2020-02-09,0
+"CZ0624130","Moravský kras","Málčina jeskyně","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2018-02-27,0
+"CZ0624130","Moravský kras","Nová Rasovna - jeskyně","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2019-02-25,0
+"CZ0624130","Moravský kras","Ochozská jeskyně - Stará Ochozská","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2018-02-27,0
+"CZ0624130","Moravský kras","Pekárna - jeskyně","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2019-02-22,0
+"CZ0624130","Moravský kras","Podhradní ponor","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2022-01-18,0
+"CZ0624130","Moravský kras","Rudické propadání","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,0,2022-02-15,0
+"CZ0624130","Moravský kras","Rudické propadání ","Barbastella barbastellus","1308",1,1,9,124,78,96,98,0,2021-02-02,1
+"CZ0624130","Moravský kras","Sadová, Adamov","Barbastella barbastellus","1308",1,1,1,124,78,96,98,0,2021-01-12,1
+"CZ0624130","Moravský kras","Sloup - spojovací chodba","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2019-12-03,0
+"CZ0624130","Moravský kras","Sloup, Staré skály","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,0,2020-01-02,0
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2017-02-27,0
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně - ponor, levá strana","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,0,2020-02-14,0
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně - Staré skály a Černá propast","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2022-02-07,0
+"CZ0624130","Moravský kras","Stará Drátenická jeskyně","Barbastella barbastellus","1308",1,1,10,124,78,96,98,1,2021-12-21,2
+"CZ0624130","Moravský kras","Suchý žleb - transekt","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2018-05-25,0
+"CZ0624130","Moravský kras","Štajgrova díra","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2022-02-17,0
+"CZ0624130","Moravský kras","štola za Švýcárnou","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,NA,2016-01-18,0
+"CZ0624130","Moravský kras","Umrlčí jeskyně","Barbastella barbastellus","1308",NA,NA,NA,124,78,96,98,0,2022-03-11,0
+"CZ0624130","Moravský kras","Vandrácká jeskyně","Barbastella barbastellus","1308",1,1,1,124,78,96,98,0,2021-02-19,1
+"CZ0624130","Moravský kras","Bertalánka","Myotis bechsteinii","1323",NA,NA,NA,11,7,5,6,NA,2020-02-20,0
+"CZ0624130","Moravský kras","Býčí skála","Myotis bechsteinii","1323",NA,NA,NA,11,7,5,6,NA,2020-02-23,0
+"CZ0624130","Moravský kras","Býčí skála - transekt","Myotis bechsteinii","1323",NA,NA,NA,11,7,5,6,NA,2019-07-18,0
+"CZ0624130","Moravský kras","Býčí skála, mimo základní monitoring","Myotis bechsteinii","1323",1,1,1,11,7,5,6,NA,2021-02-28,1
+"CZ0624130","Moravský kras","Čihadlo - lesní cesta","Myotis bechsteinii","1323",NA,NA,NA,11,7,5,6,NA,2019-08-15,0
+"CZ0624130","Moravský kras","Erichova jeskyně ","Myotis bechsteinii","1323",1,1,2,11,7,5,6,NA,2021-02-08,1
+"CZ0624130","Moravský kras","jeskyně Výpustek","Myotis bechsteinii","1323",NA,NA,NA,11,7,5,6,NA,2020-02-22,0
+"CZ0624130","Moravský kras","Jestřábka","Myotis bechsteinii","1323",NA,NA,NA,11,7,5,6,NA,2019-02-23,0
+"CZ0624130","Moravský kras","Kateřinská jeskyně","Myotis bechsteinii","1323",NA,NA,NA,11,7,5,6,NA,2018-10-09,0
+"CZ0624130","Moravský kras","Koudelkova propast","Myotis bechsteinii","1323",NA,NA,NA,11,7,5,6,NA,2017-02-17,0
+"CZ0624130","Moravský kras","Králova jeskyně","Myotis bechsteinii","1323",NA,NA,NA,11,7,5,6,NA,2018-09-23,0
+"CZ0624130","Moravský kras","Macocha - transekt","Myotis bechsteinii","1323",NA,NA,NA,11,7,5,6,NA,2018-07-31,0
+"CZ0624130","Moravský kras","Nová Drátenická jeskyně","Myotis bechsteinii","1323",NA,NA,NA,11,7,5,6,NA,2019-02-23,0
+"CZ0624130","Moravský kras","Ochozská jeskyně ","Myotis bechsteinii","1323",1,1,1,11,7,5,6,NA,2021-03-10,1
+"CZ0624130","Moravský kras","Ochozská jeskyně - Stará Ochozská","Myotis bechsteinii","1323",NA,NA,NA,11,7,5,6,NA,2020-02-24,0
+"CZ0624130","Moravský kras","Punkevní jeskyně - chodba","Myotis bechsteinii","1323",NA,NA,NA,11,7,5,6,NA,2022-02-07,0
+"CZ0624130","Moravský kras","Sadová, Adamov","Myotis bechsteinii","1323",1,1,2,11,7,5,6,NA,2021-02-27,1
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně","Myotis bechsteinii","1323",NA,NA,NA,11,7,5,6,NA,2022-02-07,0
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně ","Myotis bechsteinii","1323",1,1,1,11,7,5,6,NA,2021-02-08,1
+"CZ0624130","Moravský kras","štola 2","Myotis bechsteinii","1323",1,1,1,11,7,5,6,NA,2021-02-27,1
+"CZ0624130","Moravský kras","štola Nad Švýcárnou (4)","Myotis bechsteinii","1323",1,1,3,11,7,5,6,NA,2021-02-27,1
+"CZ0624130","Moravský kras","37445, Habrůvka","Myotis myotis","1324",1,1,5,1346,3889,3166,2797,0,2021-01-12,1
+"CZ0624130","Moravský kras","Babická jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2018-09-26,0
+"CZ0624130","Moravský kras","Balcarka","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-14,0
+"CZ0624130","Moravský kras","Balcarka - muzeum","Myotis myotis","1324",1,1,7,1346,3889,3166,2797,1,2021-02-09,2
+"CZ0624130","Moravský kras","Barová jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2017-02-08,0
+"CZ0624130","Moravský kras","Bertalánka","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-20,0
+"CZ0624130","Moravský kras","Býčí skála","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-23,0
+"CZ0624130","Moravský kras","Býčí skála - mimo monitoring","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-23,0
+"CZ0624130","Moravský kras","Býčí skála - transekt","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2019-09-05,0
+"CZ0624130","Moravský kras","Býčí skála, mimo základní monitoring","Myotis myotis","1324",1,1,81,1346,3889,3166,2797,0,2021-02-28,1
+"CZ0624130","Moravský kras","Císařská jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2022-02-07,0
+"CZ0624130","Moravský kras","Černá propast","Myotis myotis","1324",1,1,16,1346,3889,3166,2797,0,2021-02-08,1
+"CZ0624130","Moravský kras","Erichova jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2022-02-07,0
+"CZ0624130","Moravský kras","Erichova jeskyně ","Myotis myotis","1324",1,1,72,1346,3889,3166,2797,0,2021-02-08,1
+"CZ0624130","Moravský kras","Holštejn","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2018-09-23,0
+"CZ0624130","Moravský kras","Holštejnská jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-01-18,0
+"CZ0624130","Moravský kras","chodba a Staré skály","Myotis myotis","1324",1,1,32,1346,3889,3166,2797,0,2021-02-08,1
+"CZ0624130","Moravský kras","Jáchymka, Babice nad Svitavou","Myotis myotis","1324",1,1,1,1346,3889,3166,2797,0,2021-01-12,1
+"CZ0624130","Moravský kras","jeskyně Balcarka","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-02-07,0
+"CZ0624130","Moravský kras","Jeskyně Balcarka","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2016-02-04,0
+"CZ0624130","Moravský kras","jeskyně Balcarka ","Myotis myotis","1324",1,1,15,1346,3889,3166,2797,0,2021-04-14,1
+"CZ0624130","Moravský kras","jeskyně Balcarka - muzeum","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-02-07,0
+"CZ0624130","Moravský kras","jeskyně Bertalánka","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-02-11,0
+"CZ0624130","Moravský kras","jeskyně Bertalánka ","Myotis myotis","1324",1,1,11,1346,3889,3166,2797,0,2021-02-23,1
+"CZ0624130","Moravský kras","jeskyně Býčí skála","Myotis myotis","1324",1,1,NA,1346,3889,3166,2797,NA,2021-01-12,1
+"CZ0624130","Moravský kras","jeskyně Dagmar","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-02-27,0
+"CZ0624130","Moravský kras","jeskyně Hladomorna","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2017-02-13,0
+"CZ0624130","Moravský kras","jeskyně Jáchymka","Myotis myotis","1324",1,1,4,1346,3889,3166,2797,0,2021-02-27,1
+"CZ0624130","Moravský kras","jeskyně Komínová","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2018-02-05,0
+"CZ0624130","Moravský kras","jeskyně Koňská jáma","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-02-07,0
+"CZ0624130","Moravský kras","jeskyně Koňská jáma ","Myotis myotis","1324",1,1,18,1346,3889,3166,2797,0,2021-02-09,1
+"CZ0624130","Moravský kras","jeskyně Kravská díra","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2018-03-02,0
+"CZ0624130","Moravský kras","jeskyne Lidomorna","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-01-31,0
+"CZ0624130","Moravský kras","jeskyně Lidomorna","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-02-04,0
+"CZ0624130","Moravský kras","Jeskyně Lidomorna","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2016-02-11,0
+"CZ0624130","Moravský kras","jeskyně Lidomorna ","Myotis myotis","1324",1,1,14,1346,3889,3166,2797,0,2021-02-04,1
+"CZ0624130","Moravský kras","jeskyně Malý lesík","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-02-02,0
+"CZ0624130","Moravský kras","jeskyně Mastný flek","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-02-23,0
+"CZ0624130","Moravský kras","jeskyně Michalka","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-01-14,0
+"CZ0624130","Moravský kras","jeskyně Nad Švýcárnou","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-11-07,0
+"CZ0624130","Moravský kras","jeskyně Netopýrka ","Myotis myotis","1324",1,1,5,1346,3889,3166,2797,0,2021-02-19,1
+"CZ0624130","Moravský kras","jeskyně Nová Rasovna","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2022-02-04,0
+"CZ0624130","Moravský kras","jeskyně Nová Rasovna ","Myotis myotis","1324",1,1,5,1346,3889,3166,2797,0,2021-02-04,1
+"CZ0624130","Moravský kras","jeskyně Osmnáctka ","Myotis myotis","1324",1,1,1,1346,3889,3166,2797,0,2021-03-25,1
+"CZ0624130","Moravský kras","jeskyně Pekárna","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2019-04-17,0
+"CZ0624130","Moravský kras","jeskyně Pod lipami","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-12-27,0
+"CZ0624130","Moravský kras","jeskyně Pustožlebská zazděná","Myotis myotis","1324",1,1,20,1346,3889,3166,2797,1,2022-02-11,2
+"CZ0624130","Moravský kras","jeskyně Řečiště","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2016-11-27,0
+"CZ0624130","Moravský kras","jeskyně Sedmnáctka","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2022-02-23,0
+"CZ0624130","Moravský kras","jeskyně Sedmnáctka ","Myotis myotis","1324",1,1,30,1346,3889,3166,2797,0,2021-03-25,1
+"CZ0624130","Moravský kras","jeskyně Silvestrovka","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-02-03,0
+"CZ0624130","Moravský kras","jeskyně Stará drátenická","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2017-02-25,0
+"CZ0624130","Moravský kras","jeskyně Stará drátenická - propadání","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2017-02-25,0
+"CZ0624130","Moravský kras","jeskyně Suchožlebská zazděná","Myotis myotis","1324",1,1,11,1346,3889,3166,2797,0,2022-02-11,1
+"CZ0624130","Moravský kras","jeskyně U tří síní","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-11-15,0
+"CZ0624130","Moravský kras","jeskyně V Panském klínku","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-11-15,0
+"CZ0624130","Moravský kras","jeskyně Vavřinecké paleoponory","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-11-15,0
+"CZ0624130","Moravský kras","jeskyně Výpustek","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-22,0
+"CZ0624130","Moravský kras","Jestřábka","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-22,0
+"CZ0624130","Moravský kras","Josefovské údolí - štola č. 2","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2018-09-27,0
+"CZ0624130","Moravský kras","Josefovské údolí - štola č. 4","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2018-09-26,0
+"CZ0624130","Moravský kras","Kalová díra","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2017-02-14,0
+"CZ0624130","Moravský kras","Kalova jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-20,0
+"CZ0624130","Moravský kras","Kalovy jeskyně ","Myotis myotis","1324",1,1,123,1346,3889,3166,2797,0,2021-02-09,1
+"CZ0624130","Moravský kras","Kanibalka","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-22,0
+"CZ0624130","Moravský kras","Karlovy jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-02-11,0
+"CZ0624130","Moravský kras","Kateřinská jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2022-02-07,0
+"CZ0624130","Moravský kras","Komínová jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-20,0
+"CZ0624130","Moravský kras","Komínová jeskyně ","Myotis myotis","1324",1,1,1,1346,3889,3166,2797,0,2021-02-09,1
+"CZ0624130","Moravský kras","Koňská jáma","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-14,0
+"CZ0624130","Moravský kras","Kostelík, Habrůvka","Myotis myotis","1324",1,1,3,1346,3889,3166,2797,0,2021-01-12,1
+"CZ0624130","Moravský kras","Koudelkova propast","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2022-02-23,0
+"CZ0624130","Moravský kras","Koudelkova propast I","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-04-21,0
+"CZ0624130","Moravský kras","Králova jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2022-02-11,0
+"CZ0624130","Moravský kras","Králova jeskyně ","Myotis myotis","1324",1,1,110,1346,3889,3166,2797,0,2021-02-23,1
+"CZ0624130","Moravský kras","Lidomorna","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-01-18,0
+"CZ0624130","Moravský kras","Lipovecká ventarola","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-04-20,0
+"CZ0624130","Moravský kras","Maiselův závrt","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-02-18,0
+"CZ0624130","Moravský kras","Málčina jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2022-02-18,0
+"CZ0624130","Moravský kras","Málčina jeskyně ","Myotis myotis","1324",1,1,7,1346,3889,3166,2797,0,2021-02-19,1
+"CZ0624130","Moravský kras","Mariánská jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-22,0
+"CZ0624130","Moravský kras","Netopýrka - jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-24,0
+"CZ0624130","Moravský kras","Nová Drátenická jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-22,0
+"CZ0624130","Moravský kras","Nová Rasovna","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2017-02-13,0
+"CZ0624130","Moravský kras","Nová Rasovna - jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-01-31,0
+"CZ0624130","Moravský kras","Novoroční jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2018-01-13,0
+"CZ0624130","Moravský kras","Ochozská jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-02-18,0
+"CZ0624130","Moravský kras","Ochozská jeskyně ","Myotis myotis","1324",1,1,17,1346,3889,3166,2797,0,2021-03-10,1
+"CZ0624130","Moravský kras","Ochozská jeskyně - Labyrint","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2016-03-18,0
+"CZ0624130","Moravský kras","Ochozská jeskyně - Stará Ochozská","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-24,0
+"CZ0624130","Moravský kras","Ostrov u Macochy","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2016-11-04,0
+"CZ0624130","Moravský kras","Podhradní ponor","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-01-18,0
+"CZ0624130","Moravský kras","Propast U obrázku","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-04-03,0
+"CZ0624130","Moravský kras","Punkevní jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2017-02-13,0
+"CZ0624130","Moravský kras","Punkevní jeskyně - chodba","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-02-07,0
+"CZ0624130","Moravský kras","Punkevní jeskyně - chodby","Myotis myotis","1324",1,1,8,1346,3889,3166,2797,0,2021-02-08,1
+"CZ0624130","Moravský kras","Punkevní jeskyně - tunel","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-09,0
+"CZ0624130","Moravský kras","Punkevní údolí - transekt","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2018-09-22,0
+"CZ0624130","Moravský kras","Pustožlebská zazděná","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2018-02-05,0
+"CZ0624130","Moravský kras","Pustý žleb - odvodňovací štola","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2018-11-07,0
+"CZ0624130","Moravský kras","Pustý žleb - transekt","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2018-09-08,0
+"CZ0624130","Moravský kras","Rudické propadání","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2022-02-15,0
+"CZ0624130","Moravský kras","Rudické propadání ","Myotis myotis","1324",1,1,17,1346,3889,3166,2797,0,2021-02-02,1
+"CZ0624130","Moravský kras","Rudoleckého propast","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-01-28,0
+"CZ0624130","Moravský kras","Sadová, Adamov","Myotis myotis","1324",1,1,19,1346,3889,3166,2797,1,2021-02-27,2
+"CZ0624130","Moravský kras","Sloup - Staré skály","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2019-12-03,0
+"CZ0624130","Moravský kras","Sloup, Staré skály","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-01-02,0
+"CZ0624130","Moravský kras","Sloupská jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2019-08-30,0
+"CZ0624130","Moravský kras","Sloupská jeskyně ","Myotis myotis","1324",1,1,6,1346,3889,3166,2797,0,2021-04-14,1
+"CZ0624130","Moravský kras","Sloupské jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2019-12-09,0
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2022-02-07,0
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně ","Myotis myotis","1324",1,1,670,1346,3889,3166,2797,0,2021-02-08,1
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně - Černá propast","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-14,0
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně - ponor, levá strana","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-14,0
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně - Staré skály a Černá propast","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-02-07,0
+"CZ0624130","Moravský kras","Sloupsko šošůvské jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-01-02,0
+"CZ0624130","Moravský kras","Sonda pod Jedničkou","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2019-02-21,0
+"CZ0624130","Moravský kras","Stará Drátenická","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2019-02-28,0
+"CZ0624130","Moravský kras","Stará Drátenická jeskyně","Myotis myotis","1324",1,1,6,1346,3889,3166,2797,0,2021-12-21,1
+"CZ0624130","Moravský kras","Staré skály","Myotis myotis","1324",1,1,1,1346,3889,3166,2797,0,2021-10-08,1
+"CZ0624130","Moravský kras","Suchdol v Moravském krasu","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2016-11-01,0
+"CZ0624130","Moravský kras","Suchožlebská zazděná jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-02-20,0
+"CZ0624130","Moravský kras","Suchý žleb - transekt","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2018-10-06,0
+"CZ0624130","Moravský kras","štola 1","Myotis myotis","1324",1,1,4,1346,3889,3166,2797,1,2021-02-27,2
+"CZ0624130","Moravský kras","štola 2","Myotis myotis","1324",1,1,1,1346,3889,3166,2797,1,2021-02-27,2
+"CZ0624130","Moravský kras","štola Nad Švýcárnou (4)","Myotis myotis","1324",1,1,4,1346,3889,3166,2797,0,2021-02-27,1
+"CZ0624130","Moravský kras","štola za Švýcárnou","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2016-01-18,0
+"CZ0624130","Moravský kras","Umrlčí jeskyně","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2022-03-11,0
+"CZ0624130","Moravský kras","Vandrácká jeskyně","Myotis myotis","1324",1,1,1,1346,3889,3166,2797,1,2021-02-19,2
+"CZ0624130","Moravský kras","Vavřinec, Silnice bez názvu","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-02-23,0
+"CZ0624130","Moravský kras","Vavřinecké paleoponory","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,NA,2022-02-17,0
+"CZ0624130","Moravský kras","Žitného","Myotis myotis","1324",NA,NA,NA,1346,3889,3166,2797,0,2020-04-11,0
+"CZ0624130","Moravský kras","37445, Habrůvka","Rhinolophus hipposideros","1303",1,1,7,4799,7414,5543,6281,0,2021-01-12,1
+"CZ0624130","Moravský kras","Babice nad Svitavou","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2016-10-19,0
+"CZ0624130","Moravský kras","Babická jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-16,0
+"CZ0624130","Moravský kras","Babická jeskyně ","Rhinolophus hipposideros","1303",1,1,80,4799,7414,5543,6281,0,2021-03-01,1
+"CZ0624130","Moravský kras","Balcarka","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-14,0
+"CZ0624130","Moravský kras","Balcarka - muzeum","Rhinolophus hipposideros","1303",1,1,91,4799,7414,5543,6281,1,2021-02-09,2
+"CZ0624130","Moravský kras","Barová jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-28,0
+"CZ0624130","Moravský kras","Bertalánka","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-20,0
+"CZ0624130","Moravský kras","Bobrovského jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-04-14,0
+"CZ0624130","Moravský kras","Býčí skála","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-23,0
+"CZ0624130","Moravský kras","Býčí skála - mimo monitoring","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-23,0
+"CZ0624130","Moravský kras","Býčí skála - transekt","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2019-08-15,0
+"CZ0624130","Moravský kras","Býčí skála, mimo základní monitoring","Rhinolophus hipposideros","1303",1,1,27,4799,7414,5543,6281,0,2021-02-28,1
+"CZ0624130","Moravský kras","Císařská jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2022-02-07,0
+"CZ0624130","Moravský kras","Černá propast","Rhinolophus hipposideros","1303",1,1,5,4799,7414,5543,6281,0,2021-02-08,1
+"CZ0624130","Moravský kras","Čertova kazatelna","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-17,0
+"CZ0624130","Moravský kras","Dámský závrt","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-01-28,0
+"CZ0624130","Moravský kras","Dolní suchodolská jeskyně","Rhinolophus hipposideros","1303",1,1,2,4799,7414,5543,6281,0,2021-12-16,1
+"CZ0624130","Moravský kras","Erichova jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2022-02-07,0
+"CZ0624130","Moravský kras","Erichova jeskyně ","Rhinolophus hipposideros","1303",1,1,14,4799,7414,5543,6281,0,2021-02-08,1
+"CZ0624130","Moravský kras","Feryho tajná","Rhinolophus hipposideros","1303",1,1,2,4799,7414,5543,6281,0,2021-02-27,1
+"CZ0624130","Moravský kras","Holštejnská jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-01-18,0
+"CZ0624130","Moravský kras","jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-03-07,0
+"CZ0624130","Moravský kras","jeskyně Balcarka","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-07,0
+"CZ0624130","Moravský kras","Jeskyně Balcarka","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2016-02-04,0
+"CZ0624130","Moravský kras","jeskyně Balcarka ","Rhinolophus hipposideros","1303",1,1,438,4799,7414,5543,6281,0,2021-02-09,1
+"CZ0624130","Moravský kras","jeskyně Balcarka - muzeum","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-07,0
+"CZ0624130","Moravský kras","jeskyně Bertalánka","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-11,0
+"CZ0624130","Moravský kras","jeskyně Bertalánka ","Rhinolophus hipposideros","1303",1,1,1,4799,7414,5543,6281,0,2021-02-23,1
+"CZ0624130","Moravský kras","jeskyně Bratří Nečasů ","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-03-07,0
+"CZ0624130","Moravský kras","jeskyně Býčí skála","Rhinolophus hipposideros","1303",1,1,20,4799,7414,5543,6281,0,2021-01-12,1
+"CZ0624130","Moravský kras","jeskyně Dagmar","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-27,0
+"CZ0624130","Moravský kras","jeskyně Daňkův žlíbek","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2018-02-09,0
+"CZ0624130","Moravský kras","jeskyně Dolina překvapení","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-12-30,0
+"CZ0624130","Moravský kras","jeskyně Hladomorna","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2017-02-13,0
+"CZ0624130","Moravský kras","jeskyně Hospoda","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2019-02-26,0
+"CZ0624130","Moravský kras","jeskyně Jáchymka","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2019-02-26,0
+"CZ0624130","Moravský kras","jeskyně Komínová","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-11,0
+"CZ0624130","Moravský kras","jeskyně Koňská jáma ","Rhinolophus hipposideros","1303",1,1,3,4799,7414,5543,6281,0,2021-02-09,1
+"CZ0624130","Moravský kras","jeskyně Kravská díra","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2018-03-02,0
+"CZ0624130","Moravský kras","jeskyne Lidomorna","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-01-31,0
+"CZ0624130","Moravský kras","jeskyně Lidomorna","Rhinolophus hipposideros","1303",1,1,1,4799,7414,5543,6281,0,2022-02-04,1
+"CZ0624130","Moravský kras","Jeskyně Lidomorna","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2016-02-11,0
+"CZ0624130","Moravský kras","jeskyně Lidomorna ","Rhinolophus hipposideros","1303",1,1,9,4799,7414,5543,6281,0,2021-02-04,1
+"CZ0624130","Moravský kras","jeskyně Liščí díra","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-12-15,0
+"CZ0624130","Moravský kras","jeskyně Malý lesík","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-02,0
+"CZ0624130","Moravský kras","jeskyně Mastný flek","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-23,0
+"CZ0624130","Moravský kras","jeskyně Michalka","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-01-14,0
+"CZ0624130","Moravský kras","jeskyně Na Technice","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-02,0
+"CZ0624130","Moravský kras","jeskyně Nad Švýcárnou","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-11-07,0
+"CZ0624130","Moravský kras","jeskyně Němcova 1","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-03-07,0
+"CZ0624130","Moravský kras","jeskyně Němcova 2","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-03-07,0
+"CZ0624130","Moravský kras","jeskyně Němcova II","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2018-11-20,0
+"CZ0624130","Moravský kras","jeskyně Netopýrka","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-18,0
+"CZ0624130","Moravský kras","jeskyně Netopýrka ","Rhinolophus hipposideros","1303",1,1,18,4799,7414,5543,6281,1,2021-02-19,2
+"CZ0624130","Moravský kras","Jeskyně netopýrka - Ochoz u Brna","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2019-03-23,0
+"CZ0624130","Moravský kras","jeskyně Nová Drátenická","Rhinolophus hipposideros","1303",1,1,1,4799,7414,5543,6281,0,2021-01-12,1
+"CZ0624130","Moravský kras","jeskyně Nová Rasovna","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2022-02-04,0
+"CZ0624130","Moravský kras","jeskyně Nová Rasovna ","Rhinolophus hipposideros","1303",1,1,714,4799,7414,5543,6281,0,2021-02-04,1
+"CZ0624130","Moravský kras","jeskyně Osmnáctka","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-23,0
+"CZ0624130","Moravský kras","jeskyně Osmnáctka ","Rhinolophus hipposideros","1303",1,1,1,4799,7414,5543,6281,0,2021-03-25,1
+"CZ0624130","Moravský kras","jeskyně Pekárna","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2022-02-18,0
+"CZ0624130","Moravský kras","jeskyně Pekárna ","Rhinolophus hipposideros","1303",1,1,1,4799,7414,5543,6281,1,2021-02-19,2
+"CZ0624130","Moravský kras","jeskyně Pustožlebská zazděná","Rhinolophus hipposideros","1303",1,1,32,4799,7414,5543,6281,1,2022-02-11,2
+"CZ0624130","Moravský kras","jeskyně Řečiště","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2016-11-27,0
+"CZ0624130","Moravský kras","jeskyně S Oky","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-01-18,0
+"CZ0624130","Moravský kras","jeskyně Sedmnáctka","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2022-02-23,0
+"CZ0624130","Moravský kras","jeskyně Sedmnáctka ","Rhinolophus hipposideros","1303",1,1,507,4799,7414,5543,6281,0,2021-03-25,1
+"CZ0624130","Moravský kras","jeskyně Silvestrovka","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-03,0
+"CZ0624130","Moravský kras","jeskyně Stará drátenická","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2017-02-25,0
+"CZ0624130","Moravský kras","jeskyně Suchožlebská zazděná","Rhinolophus hipposideros","1303",1,1,20,4799,7414,5543,6281,0,2022-02-11,1
+"CZ0624130","Moravský kras","jeskyně Šachta Adamováků","Rhinolophus hipposideros","1303",1,1,3,4799,7414,5543,6281,0,2021-02-27,1
+"CZ0624130","Moravský kras","jeskyně U tří síní","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-11-15,0
+"CZ0624130","Moravský kras","jeskyně V lomu Velká Dohoda - střední patro","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2016-11-21,0
+"CZ0624130","Moravský kras","jeskyně V lomu Velká Dohoda - vodní propast","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2016-11-21,0
+"CZ0624130","Moravský kras","jeskyně V Panském klínku","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2019-02-25,0
+"CZ0624130","Moravský kras","jeskyně Vavřinecké paleoponory","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-11-15,0
+"CZ0624130","Moravský kras","jeskyně Výpustek","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-22,0
+"CZ0624130","Moravský kras","Jestřábka","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-22,0
+"CZ0624130","Moravský kras","Josefovské údolí - štola 1","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2018-09-27,0
+"CZ0624130","Moravský kras","Josefovské údolí - štola č. 2","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2018-09-27,0
+"CZ0624130","Moravský kras","Josefovské údolí - štola č. 4","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2018-09-26,0
+"CZ0624130","Moravský kras","Kalová díra","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2017-02-14,0
+"CZ0624130","Moravský kras","Kalova jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-20,0
+"CZ0624130","Moravský kras","Kalovy jeskyně ","Rhinolophus hipposideros","1303",1,1,110,4799,7414,5543,6281,0,2021-02-09,1
+"CZ0624130","Moravský kras","Kanibalka","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-22,0
+"CZ0624130","Moravský kras","Karlovy jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-11,0
+"CZ0624130","Moravský kras","Kateřinská jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2022-02-07,0
+"CZ0624130","Moravský kras","Komínová jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-20,0
+"CZ0624130","Moravský kras","Komínová jeskyně ","Rhinolophus hipposideros","1303",1,1,1,4799,7414,5543,6281,0,2021-02-09,1
+"CZ0624130","Moravský kras","Koňská jáma","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-14,0
+"CZ0624130","Moravský kras","Koudelkova propast","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2022-02-23,0
+"CZ0624130","Moravský kras","Koudelkova propast I","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-04-21,0
+"CZ0624130","Moravský kras","Králova jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2022-02-11,0
+"CZ0624130","Moravský kras","Králova jeskyně ","Rhinolophus hipposideros","1303",1,1,46,4799,7414,5543,6281,0,2021-02-23,1
+"CZ0624130","Moravský kras","Křížova jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-01-30,0
+"CZ0624130","Moravský kras","Lipovecká ventarola","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-04-20,0
+"CZ0624130","Moravský kras","Maiselův závrt","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-18,0
+"CZ0624130","Moravský kras","Málčina jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2022-02-18,0
+"CZ0624130","Moravský kras","Málčina jeskyně ","Rhinolophus hipposideros","1303",1,1,107,4799,7414,5543,6281,0,2021-02-19,1
+"CZ0624130","Moravský kras","Mariánská jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-22,0
+"CZ0624130","Moravský kras","Němcova jeskyně 1","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2018-10-08,0
+"CZ0624130","Moravský kras","Němcova jeskyně 2","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2018-10-08,0
+"CZ0624130","Moravský kras","Netopýrka - jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-24,0
+"CZ0624130","Moravský kras","Nová Drátenická jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-22,0
+"CZ0624130","Moravský kras","Nová Rasovna","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2017-02-13,0
+"CZ0624130","Moravský kras","Nová Rasovna - jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-01-31,0
+"CZ0624130","Moravský kras","Novoroční jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-17,0
+"CZ0624130","Moravský kras","Ochozská jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-18,0
+"CZ0624130","Moravský kras","Ochozská jeskyně ","Rhinolophus hipposideros","1303",1,1,310,4799,7414,5543,6281,0,2021-03-10,1
+"CZ0624130","Moravský kras","Ochozská jeskyně - Labyrint","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2016-03-18,0
+"CZ0624130","Moravský kras","Ochozská jeskyně - Stará Ochozská","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-24,0
+"CZ0624130","Moravský kras","Ostrov u Macochy","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2017-06-20,0
+"CZ0624130","Moravský kras","Panáčkova jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-11-15,0
+"CZ0624130","Moravský kras","Pekárna - jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-24,0
+"CZ0624130","Moravský kras","Podhradní ponor","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-01-18,0
+"CZ0624130","Moravský kras","Propast U obrázku","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-04-03,0
+"CZ0624130","Moravský kras","Punkevní jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2017-10-27,0
+"CZ0624130","Moravský kras","Punkevní jeskyně - chodba","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-07,0
+"CZ0624130","Moravský kras","Punkevní jeskyně - chodby","Rhinolophus hipposideros","1303",1,1,9,4799,7414,5543,6281,0,2021-02-08,1
+"CZ0624130","Moravský kras","Punkevní jeskyně - tunel","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-09,0
+"CZ0624130","Moravský kras","Pustožlebská zazděná","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2018-02-05,0
+"CZ0624130","Moravský kras","Pustý žleb - odvodňovací štola","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2018-11-07,0
+"CZ0624130","Moravský kras","Rudické propadání","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2022-02-15,0
+"CZ0624130","Moravský kras","Rudické propadání ","Rhinolophus hipposideros","1303",1,1,350,4799,7414,5543,6281,0,2021-02-02,1
+"CZ0624130","Moravský kras","Rudoleckého propast","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-01-28,0
+"CZ0624130","Moravský kras","Sadová, Adamov","Rhinolophus hipposideros","1303",1,1,49,4799,7414,5543,6281,1,2021-02-27,2
+"CZ0624130","Moravský kras","Sloup","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2019-12-03,0
+"CZ0624130","Moravský kras","Sloup - spojovací chodba","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2019-12-03,0
+"CZ0624130","Moravský kras","Sloup, Staré skály","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-01-02,0
+"CZ0624130","Moravský kras","Sloupská jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2019-08-30,0
+"CZ0624130","Moravský kras","Sloupská jeskyně ","Rhinolophus hipposideros","1303",1,1,5,4799,7414,5543,6281,0,2021-04-14,1
+"CZ0624130","Moravský kras","Sloupské jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2016-10-16,0
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2022-02-07,0
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně ","Rhinolophus hipposideros","1303",1,1,1689,4799,7414,5543,6281,0,2021-02-08,1
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně - Černá propast","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-14,0
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně - ponor, levá strana","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-14,0
+"CZ0624130","Moravský kras","Sloupsko-šošůvské jeskyně - Staré skály a Černá propast","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-07,0
+"CZ0624130","Moravský kras","Sloupsko šošůvské jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-01-02,0
+"CZ0624130","Moravský kras","Smrtní jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-01-18,0
+"CZ0624130","Moravský kras","Sonda pod Jedničkou","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2019-02-21,0
+"CZ0624130","Moravský kras","Stará Amaterská jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-10-30,0
+"CZ0624130","Moravský kras","Stará amatérská jeskyně, Dóm objevitelů","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2016-10-09,0
+"CZ0624130","Moravský kras","Stará Drátenická","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2019-02-28,0
+"CZ0624130","Moravský kras","Stará Drátenická jeskyně","Rhinolophus hipposideros","1303",1,1,55,4799,7414,5543,6281,1,2021-12-21,2
+"CZ0624130","Moravský kras","Staré skály","Rhinolophus hipposideros","1303",1,1,30,4799,7414,5543,6281,0,2021-10-08,1
+"CZ0624130","Moravský kras","Suchožlebská zazděná jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-02-20,0
+"CZ0624130","Moravský kras","Šámalíkovy jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2018-03-09,0
+"CZ0624130","Moravský kras","Štajgrova díra","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2022-02-17,0
+"CZ0624130","Moravský kras","štola 1","Rhinolophus hipposideros","1303",1,1,13,4799,7414,5543,6281,1,2021-02-27,2
+"CZ0624130","Moravský kras","štola 2","Rhinolophus hipposideros","1303",1,1,8,4799,7414,5543,6281,1,2021-02-27,2
+"CZ0624130","Moravský kras","štola č. 4","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2019-02-26,0
+"CZ0624130","Moravský kras","štola Nad Švýcárnou (4)","Rhinolophus hipposideros","1303",1,1,20,4799,7414,5543,6281,0,2021-02-27,1
+"CZ0624130","Moravský kras","štola za Švýcárnou","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2016-01-18,0
+"CZ0624130","Moravský kras","Umrlčí jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-03-05,0
+"CZ0624130","Moravský kras","Vavřinec","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,0,2020-01-02,0
+"CZ0624130","Moravský kras","Vilémovice u Macochy","Rhinolophus hipposideros","1303",NA,NA,NA,4799,7414,5543,6281,NA,2016-09-22,0
+"CZ0713720","Bílá Lhota","Bílá Lhota - kostel - půda","Myotis myotis","1324",NA,NA,NA,0,351,521,370,0,2020-07-17,0
+"CZ0713722","Branná - hrad","Branná - hrad Kolštejn","Rhinolophus hipposideros","1303",NA,NA,NA,44,148,131,107,0,2020-07-22,0
+"CZ0713722","Branná - hrad","EVL Branná - hrad","Rhinolophus hipposideros","1303",1,1,44,44,148,131,107,1,2021-06-02,2
+"CZ0713723","Čechy pod Kosířem","Čechy pod Kosířem - zámek","Rhinolophus hipposideros","1303",NA,NA,NA,0,0,0,202,NA,2020-07-08,0
+"CZ0713730","Na Špičáku","Jeskyně Na Špičáku","Rhinolophus hipposideros","1303",NA,NA,NA,0,118,85,67,0,2020-01-24,0
+"CZ0713735","Lipová-lázně - mateřská školka","EVL Lipová-lázně - mateřská školka","Rhinolophus hipposideros","1303",1,1,4,4,0,0,0,0,2021-08-02,1
+"CZ0713739","Ruda nad Moravou","Ruda nad Moravou","Myotis myotis","1324",NA,NA,NA,0,5,6,8,0,2020-07-13,0
+"CZ0713740","Sobotín - domov důchodců","Sobotín - Diakonie, půda budovy II.","Rhinolophus hipposideros","1303",NA,NA,NA,0,132,156,83,0,2020-07-17,0
+"CZ0713741","Soudkova štola","Soudkova štola","Rhinolophus hipposideros","1303",NA,NA,NA,0,29,32,61,0,2020-01-13,0
+"CZ0713742","Štola Marie Pomocná","Důl Weltkriestolle I","Myotis myotis","1324",NA,NA,NA,0,41,33,45,0,2020-02-09,0
+"CZ0713742","Štola Marie Pomocná","Marie Pomocná II - štola","Myotis myotis","1324",NA,NA,NA,0,41,33,45,0,2020-02-29,0
+"CZ0713742","Štola Marie Pomocná","Marie Pomocná III - štola","Myotis myotis","1324",NA,NA,NA,0,41,33,45,0,2020-02-29,0
+"CZ0713743","Štola Mařka","Mařka - štola","Barbastella barbastellus","1308",NA,NA,NA,0,38,37,22,0,2020-01-18,0
+"CZ0713743","Štola Mařka","Mařka - štola","Myotis myotis","1324",NA,NA,NA,0,99,84,80,0,2020-01-18,0
+"CZ0713746","Veselíčko","Veselíčko - zámek, půda","Myotis myotis","1324",NA,NA,NA,0,438,560,669,0,2020-06-11,0
+"CZ0714073","Litovelské Pomoraví","Chomoutov","Barbastella barbastellus","1308",NA,NA,NA,0,4,14,5,NA,2020-08-20,0
+"CZ0714073","Litovelské Pomoraví","Mladeč, NPR Vrapač","Barbastella barbastellus","1308",1,1,NA,0,4,14,5,NA,2021-08-03,1
+"CZ0714073","Litovelské Pomoraví","Mladeč, NPR Vrapač, řeka Morava","Barbastella barbastellus","1308",1,1,NA,0,4,14,5,NA,2021-10-05,1
+"CZ0714073","Litovelské Pomoraví","Mladeč, NPR Vrapač, V okraj","Barbastella barbastellus","1308",1,1,NA,0,4,14,5,NA,2021-09-07,1
+"CZ0714073","Litovelské Pomoraví","Podkova - jeskyně","Barbastella barbastellus","1308",NA,NA,NA,0,4,14,5,0,2020-02-04,0
+"CZ0714073","Litovelské Pomoraví","PP Častava","Barbastella barbastellus","1308",NA,NA,NA,0,4,14,5,NA,2020-08-20,0
+"CZ0714073","Litovelské Pomoraví","PP Kurfürstovo rameno","Barbastella barbastellus","1308",1,1,NA,0,4,14,5,NA,2021-05-25,1
+"CZ0714073","Litovelské Pomoraví","PP Za mlýnem, Bílá Lhota, S - Židova tůň","Barbastella barbastellus","1308",NA,NA,NA,0,4,14,5,NA,2020-09-08,0
+"CZ0714073","Litovelské Pomoraví","PP Za mlýnem, Bílá Lhota, střed","Barbastella barbastellus","1308",NA,NA,NA,0,4,14,5,NA,2020-07-14,0
+"CZ0714073","Litovelské Pomoraví","PR Kačení louka, Moravičany, JV","Barbastella barbastellus","1308",NA,NA,NA,0,4,14,5,NA,2020-08-12,0
+"CZ0714073","Litovelské Pomoraví","PR Kačení louka, Moravičany, JZ","Barbastella barbastellus","1308",NA,NA,NA,0,4,14,5,NA,2020-06-09,0
+"CZ0714073","Litovelské Pomoraví","PR Panenský les","Barbastella barbastellus","1308",1,1,NA,0,4,14,5,NA,2021-08-23,1
+"CZ0714073","Litovelské Pomoraví","PR U Spálené, Králová, JZ okraj","Barbastella barbastellus","1308",NA,NA,NA,0,4,14,5,NA,2020-09-22,0
+"CZ0714080","Špraněk","Javoříčko - jeskyně Zkamenělý zámek","Myotis emarginatus","1321",NA,NA,NA,0,194,268,161,NA,2020-01-16,0
+"CZ0714080","Špraněk","Javoříčské jeskyně - Hlinité jeskyně","Myotis emarginatus","1321",NA,NA,NA,0,194,268,161,NA,2019-01-19,0
+"CZ0714080","Špraněk","Javoříčské jeskyně - K Černé propasti","Myotis emarginatus","1321",NA,NA,NA,0,194,268,161,NA,2020-01-18,0
+"CZ0714080","Špraněk","Javoříčské jeskyně - Lví jáma","Myotis emarginatus","1321",NA,NA,NA,0,194,268,161,NA,2018-01-20,0
+"CZ0714080","Špraněk","Javoříčské jeskyně - přístupná část","Myotis emarginatus","1321",NA,NA,NA,0,194,268,161,NA,2020-01-18,0
+"CZ0714080","Špraněk","Javoříčské jeskyně - Švecovy jeskyně","Myotis emarginatus","1321",NA,NA,NA,0,194,268,161,NA,2020-01-18,0
+"CZ0714080","Špraněk","NPR Špraněk, Paničtí díra","Myotis emarginatus","1321",NA,NA,NA,0,194,268,161,NA,2019-08-23,0
+"CZ0714080","Špraněk","NPR Špraněk, Pizdulka","Myotis emarginatus","1321",NA,NA,NA,0,194,268,161,NA,2019-08-06,0
+"CZ0714080","Špraněk","NPR Špraněk, Zátvořice","Myotis emarginatus","1321",NA,NA,NA,0,194,268,161,NA,2019-07-24,0
+"CZ0714080","Špraněk","Švecova díra","Myotis emarginatus","1321",NA,NA,NA,0,194,268,161,NA,2019-10-15,0
+"CZ0714080","Špraněk","V Habří","Myotis emarginatus","1321",NA,NA,NA,0,194,268,161,NA,2019-08-22,0
+"CZ0714080","Špraněk","Velké propadání Špraňku","Myotis emarginatus","1321",NA,NA,NA,0,194,268,161,NA,2020-01-11,0
+"CZ0714080","Špraněk","Javoříčko - jeskyně Pizdulka","Barbastella barbastellus","1308",NA,NA,NA,0,3,2,1,0,2020-01-14,0
+"CZ0714080","Špraněk","Javoříčko - jeskyně Ve stráni","Barbastella barbastellus","1308",NA,NA,NA,0,3,2,1,NA,2016-01-26,0
+"CZ0714080","Špraněk","Javoříčko - jeskyně Zkamenělý zámek","Barbastella barbastellus","1308",NA,NA,NA,0,3,2,1,NA,2018-01-14,0
+"CZ0714080","Špraněk","Kadeřínská jeskyně","Barbastella barbastellus","1308",NA,NA,NA,0,3,2,1,0,2020-02-18,0
+"CZ0714080","Špraněk","NPR Špraněk, Paničtí díra","Barbastella barbastellus","1308",NA,NA,NA,0,3,2,1,NA,2017-08-15,0
+"CZ0714080","Špraněk","NPR Špraněk, Pizdulka","Barbastella barbastellus","1308",NA,NA,NA,0,3,2,1,NA,2019-08-06,0
+"CZ0714080","Špraněk","V Habří","Barbastella barbastellus","1308",NA,NA,NA,0,3,2,1,NA,2019-08-22,0
+"CZ0714080","Špraněk","NPR Špraněk, Paničtí díra","Myotis bechsteinii","1323",NA,NA,NA,0,0,38,0,NA,2019-10-19,0
+"CZ0714080","Špraněk","NPR Špraněk, Pizdulka","Myotis bechsteinii","1323",NA,NA,NA,0,0,38,0,NA,2019-08-06,0
+"CZ0714080","Špraněk","Švecova díra","Myotis bechsteinii","1323",NA,NA,NA,0,0,38,0,NA,2019-10-15,0
+"CZ0714080","Špraněk","V Habří","Myotis bechsteinii","1323",NA,NA,NA,0,0,38,0,NA,2019-08-22,0
+"CZ0714080","Špraněk","Javoříčko - jeskyně Ve stráni","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,NA,2019-01-19,0
+"CZ0714080","Špraněk","Javoříčko - jeskyně Velká Jezevčí","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,0,2020-01-14,0
+"CZ0714080","Špraněk","Javoříčko - jeskyně Zkamenělý zámek","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,0,2020-01-16,0
+"CZ0714080","Špraněk","Javoříčské jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,NA,2017-05-04,0
+"CZ0714080","Špraněk","Javoříčské jeskyně - Hlinité jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,0,2020-01-23,0
+"CZ0714080","Špraněk","Javoříčské jeskyně - K Černé propasti","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,0,2020-01-18,0
+"CZ0714080","Špraněk","Javoříčské jeskyně - komín k Objevné","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,0,2020-01-18,0
+"CZ0714080","Špraněk","Javoříčské jeskyně - Lví jáma","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,NA,2018-01-20,0
+"CZ0714080","Špraněk","Javoříčské jeskyně - Medvědí jáma","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,0,2020-01-18,0
+"CZ0714080","Špraněk","Javoříčské jeskyně - přístupná část","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,0,2020-01-18,0
+"CZ0714080","Špraněk","Javoříčské jeskyně - Švecova díra","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,0,2020-01-18,0
+"CZ0714080","Špraněk","Javoříčské jeskyně - Švecovy jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,0,2020-01-18,0
+"CZ0714080","Špraněk","Kadeřínská jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,0,2020-02-18,0
+"CZ0714080","Špraněk","Komáří jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,0,2020-01-11,0
+"CZ0714080","Špraněk","NPR Špraněk, Paničtí díra","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,NA,2019-08-23,0
+"CZ0714080","Špraněk","NPR Špraněk, Pizdulka","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,NA,2019-08-06,0
+"CZ0714080","Špraněk","NPR Špraněk, Zátvořice","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,NA,2019-07-24,0
+"CZ0714080","Špraněk","Švecova díra","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,NA,2019-10-15,0
+"CZ0714080","Špraněk","V Habří","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,NA,2019-08-22,0
+"CZ0714080","Špraněk","Velké propadání Špraňku","Rhinolophus hipposideros","1303",NA,NA,NA,0,5291,5345,5109,0,2020-01-11,0
+"CZ0714086","Rychlebské hory - Sokolský hřbet","Jeskyně Na Pomezí","Myotis myotis","1324",NA,NA,NA,0,407,588,487,NA,2018-10-06,0
+"CZ0714086","Rychlebské hory - Sokolský hřbet","Jeskyně Na Pomezí - komplex","Myotis myotis","1324",NA,NA,NA,0,407,588,487,0,2020-01-24,0
+"CZ0714086","Rychlebské hory - Sokolský hřbet","Jeskyně Na Pomezí - Liščí díra - Rumový dóm","Myotis myotis","1324",NA,NA,NA,0,407,588,487,0,2020-01-25,0
+"CZ0714086","Rychlebské hory - Sokolský hřbet","Jeskyně Na Pomezí - Májové jeskyně","Myotis myotis","1324",NA,NA,NA,0,407,588,487,0,2020-01-24,0
+"CZ0714086","Rychlebské hory - Sokolský hřbet","Jeskyně Na Pomezí - původní","Myotis myotis","1324",NA,NA,NA,0,407,588,487,0,2020-01-24,0
+"CZ0714086","Rychlebské hory - Sokolský hřbet","Lipová Lázně - jeskyně Rasovna","Myotis myotis","1324",NA,NA,NA,0,407,588,487,0,2020-01-25,0
+"CZ0714086","Rychlebské hory - Sokolský hřbet","Vápenná - Roušarova jeskyně","Myotis myotis","1324",NA,NA,NA,0,407,588,487,0,2020-02-01,0
+"CZ0714086","Rychlebské hory - Sokolský hřbet","Jeskyně Na Pomezí","Rhinolophus hipposideros","1303",NA,NA,NA,0,3770,3957,3851,NA,2018-10-06,0
+"CZ0714086","Rychlebské hory - Sokolský hřbet","Jeskyně Na Pomezí - komplex","Rhinolophus hipposideros","1303",NA,NA,NA,0,3770,3957,3851,0,2020-01-24,0
+"CZ0714086","Rychlebské hory - Sokolský hřbet","Jeskyně Na Pomezí - Liščí díra - Rumový dóm","Rhinolophus hipposideros","1303",NA,NA,NA,0,3770,3957,3851,0,2020-01-25,0
+"CZ0714086","Rychlebské hory - Sokolský hřbet","Jeskyně Na Pomezí - Májové jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,0,3770,3957,3851,0,2020-01-24,0
+"CZ0714086","Rychlebské hory - Sokolský hřbet","Jeskyně Na Pomezí - původní","Rhinolophus hipposideros","1303",NA,NA,NA,0,3770,3957,3851,0,2020-01-24,0
+"CZ0714086","Rychlebské hory - Sokolský hřbet","Lipová Lázně - jeskyně Rasovna","Rhinolophus hipposideros","1303",NA,NA,NA,0,3770,3957,3851,0,2020-01-25,0
+"CZ0714086","Rychlebské hory - Sokolský hřbet","Vápenná - Roušarova jeskyně","Rhinolophus hipposideros","1303",NA,NA,NA,0,3770,3957,3851,0,2020-02-01,0
+"CZ0714771","Hůrka u Hranic","Hranická propast","Myotis myotis","1324",NA,NA,NA,0,297,0,0,0,2020-08-25,0
+"CZ0714771","Hůrka u Hranic","NPR Hůrka u Hranic","Myotis myotis","1324",NA,NA,NA,0,297,0,0,NA,2016-10-30,0
+"CZ0723751","Komňa - kostel","Komňa - kat. kostel","Myotis myotis","1324",NA,NA,NA,0,0,0,0,NA,2017-07-12,0
+"CZ0723755","Rusava - kostel","Katolický kostel Rusava","Myotis myotis","1324",1,1,389,389,306,289,425,1,2021-07-15,2
+"CZ0723757","Slavičín - zámek","Slavičín - zámek","Myotis emarginatus","1321",NA,NA,NA,0,0,0,0,NA,2017-08-11,0
+"CZ0724089","Beskydy","Čeladná, Kněhyňská jeskyně","Myotis myotis","1324",NA,NA,NA,0,150,79,280,0,2020-12-05,0
+"CZ0724089","Beskydy","Dolní Lomná","Myotis myotis","1324",NA,NA,NA,0,150,79,280,NA,2020-05-17,0
+"CZ0724089","Beskydy","Jeskyně Cyrilka","Myotis myotis","1324",NA,NA,NA,0,150,79,280,0,2020-03-15,0
+"CZ0724089","Beskydy","Jeskyně Čertova díra","Myotis myotis","1324",NA,NA,NA,0,150,79,280,NA,2018-03-17,0
+"CZ0724089","Beskydy","Jeskyně Kyklop","Myotis myotis","1324",NA,NA,NA,0,150,79,280,0,2020-02-01,0
+"CZ0724089","Beskydy","Jeskyně Vasco","Myotis myotis","1324",NA,NA,NA,0,150,79,280,NA,2018-03-17,0
+"CZ0724089","Beskydy","jeskyně Velryba","Myotis myotis","1324",NA,NA,NA,0,150,79,280,0,2020-01-26,0
+"CZ0724089","Beskydy","Kněhyňská jeskyně","Myotis myotis","1324",NA,NA,NA,0,150,79,280,0,2020-03-22,0
+"CZ0724089","Beskydy","Malenovice, Unnamed Road","Myotis myotis","1324",NA,NA,NA,0,150,79,280,NA,2020-10-09,0
+"CZ0724089","Beskydy","Morávka","Myotis myotis","1324",NA,NA,NA,0,150,79,280,NA,2018-08-07,0
+"CZ0724089","Beskydy","Ondrášovy díry","Myotis myotis","1324",NA,NA,NA,0,150,79,280,0,2020-02-22,0
+"CZ0724089","Beskydy","PR Velký Polom 2060","Myotis myotis","1324",NA,NA,NA,0,150,79,280,NA,2018-05-04,0
+"CZ0724089","Beskydy","Prostřední Bečva","Myotis myotis","1324",NA,NA,NA,0,150,79,280,0,2020-04-27,0
+"CZ0810018","Sovinec","Ruda I ( Jáma Za hřbitovem)","Barbastella barbastellus","1308",NA,NA,NA,0,0,21,9,NA,2019-01-03,0
+"CZ0813760","Černý důl","Černý důl","Barbastella barbastellus","1308",NA,NA,NA,0,6,0,8,0,2020-01-12,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.1","Barbastella barbastellus","1308",NA,NA,NA,0,44,46,50,NA,2019-02-16,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.10","Barbastella barbastellus","1308",NA,NA,NA,0,44,46,50,NA,2017-02-06,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.11","Barbastella barbastellus","1308",NA,NA,NA,0,44,46,50,0,2020-02-08,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.2","Barbastella barbastellus","1308",NA,NA,NA,0,44,46,50,NA,2017-02-06,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.3","Barbastella barbastellus","1308",NA,NA,NA,0,44,46,50,0,2020-02-08,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.4","Barbastella barbastellus","1308",NA,NA,NA,0,44,46,50,0,2020-02-08,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.4a","Barbastella barbastellus","1308",NA,NA,NA,0,44,46,50,NA,2016-02-06,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.6","Barbastella barbastellus","1308",NA,NA,NA,0,44,46,50,NA,2017-02-06,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.9","Barbastella barbastellus","1308",NA,NA,NA,0,44,46,50,0,2020-02-08,0
+"CZ0813763","Javorový vrch","Štoly pod Jelení cestou","Barbastella barbastellus","1308",NA,NA,NA,0,44,46,50,NA,2019-08-16,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.10","Myotis myotis","1324",NA,NA,NA,0,29,29,24,NA,2019-02-16,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.2","Myotis myotis","1324",NA,NA,NA,0,29,29,24,0,2020-02-08,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.3","Myotis myotis","1324",NA,NA,NA,0,29,29,24,0,2020-02-08,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.5","Myotis myotis","1324",NA,NA,NA,0,29,29,24,0,2020-02-08,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.9","Myotis myotis","1324",NA,NA,NA,0,29,29,24,0,2020-02-08,0
+"CZ0813763","Javorový vrch","Štoly pod Jelení cestou","Myotis myotis","1324",NA,NA,NA,0,29,29,24,NA,2019-08-16,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.10","Rhinolophus hipposideros","1303",NA,NA,NA,0,58,110,69,0,2020-02-08,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.2","Rhinolophus hipposideros","1303",NA,NA,NA,0,58,110,69,0,2020-02-08,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.5","Rhinolophus hipposideros","1303",NA,NA,NA,0,58,110,69,0,2020-02-08,0
+"CZ0813763","Javorový vrch","Malá Morávka, Nad Jelení cestou - štola č.9","Rhinolophus hipposideros","1303",NA,NA,NA,0,58,110,69,0,2020-02-08,0
+"CZ0813763","Javorový vrch","Štoly pod Jelení cestou","Rhinolophus hipposideros","1303",NA,NA,NA,0,58,110,69,NA,2019-08-16,0
+"CZ0813765","Štola Franz - Franz","Franz Franz","Myotis emarginatus","1321",NA,NA,NA,0,252,355,261,NA,2020-02-08,0
+"CZ0813765","Štola Franz - Franz","Franz Franz","Myotis myotis","1324",NA,NA,NA,0,27,72,59,0,2020-02-08,0
+"CZ0813765","Štola Franz - Franz","Franz Franz","Rhinolophus hipposideros","1303",NA,NA,NA,0,3520,3373,2540,0,2020-02-08,0
+"CZ0813766","Štola Jakartovice","Jakartovice I (Bohuš)","Myotis myotis","1324",NA,NA,NA,0,3,3,2,0,2020-02-28,0
+"CZ0813770","Čermná - důl Potlachový","Čermná- Potlachový","Barbastella barbastellus","1308",NA,NA,NA,0,125,155,82,0,2020-01-04,0

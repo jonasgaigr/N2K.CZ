@@ -220,8 +220,7 @@ amp_bombom_site_eval <- function(species_name) {
                                           POP_POCETSAMECREL == "řádově vyšší desítky" |
                                           POP_POCETSAMECREL == "řádově nižší desítky" ~ 2,
                                         (POP_POCETSAMEC > 0 & POP_POCETSAMEC <= 10) ~ 1,
-                                        POP_POCETSAMECREL == "do 10" ~ 1,
-                                        TRUE ~ 0
+                                        POP_POCETSAMECREL == "do 10" ~ 1
                                         ),
       HABLOS_find = dplyr::case_when(STA_STAVVODAPERIODTUN < 10 ~ 0,
                                      STA_STAVVODALITORAL < 10 ~ 0,
@@ -294,13 +293,13 @@ amp_bombom_site_eval <- function(species_name) {
               POP_B = sum(POP_0, POP_2),
               POP_C = sum(POP_1, POP_2),
               POP = dplyr::case_when(PRESENCE_0 == 0 ~ 0,
+                                     length(unique(ROK)) < 2 ~ NA_real_,
                                      POP_0 >= POP_1 ~ 1,
                                      POP_0 < POP_1 ~ 0,
                                      POP_0 >= POP_2 ~ 1,
                                      POP_0 < POP_2 ~ 0,
                                      POP_1 >= POP_2 ~ 1,
-                                     POP_1 < POP_2 ~ 0,
-                                     length(unique(ROK)) < 2 ~ NA_real_),
+                                     POP_1 < POP_2 ~ 0),
               ABUNDANCE = case_when(POP_0 != -Inf ~ as.numeric(POP_0),
                                     POP_1 != -Inf ~ as.numeric(POP_1),
                                     POP_2 != -Inf ~ as.numeric(POP_2)),
@@ -511,8 +510,7 @@ amp_bomvar_site_eval <- function(species_name) {
                                           POP_POCETSAMICEREL == "do 10" |
                                           POP_POCETSAMECREL == "do 10" |
                                           POP_CELKPOCETVSEADULTREL == "do 10" |
-                                          POP_CELKPOCETVSEEXEMPLARREL == "do 10" ~ 1,
-                                        TRUE ~ 1
+                                          POP_CELKPOCETVSEEXEMPLARREL == "do 10" ~ 1
       ),
       HABLOS_find = dplyr::case_when(STA_STAVVODAPERIODTUN < 10 ~ 0,
                                      STA_STAVVODALITORAL < 10 ~ 0,
@@ -582,13 +580,13 @@ amp_bomvar_site_eval <- function(species_name) {
               POP_B = sum(POP_0, POP_2),
               POP_C = sum(POP_1, POP_2),
               POP = dplyr::case_when(PRESENCE_0 == 0 ~ 0,
+                                     length(unique(ROK)) < 2 ~ NA_real_,
                                      POP_0 >= POP_1 ~ 1,
                                      POP_0 < POP_1 ~ 0,
                                      POP_0 >= POP_2 ~ 1,
                                      POP_0 < POP_2 ~ 0,
                                      POP_1 >= POP_2 ~ 1,
-                                     POP_1 < POP_2 ~ 0,
-                                     length(unique(ROK)) < 2 ~ NA_real_),
+                                     POP_1 < POP_2 ~ 0),
               ABUNDANCE = case_when(POP_0 != -Inf ~ as.numeric(POP_0),
                                     POP_1 != -Inf ~ as.numeric(POP_1),
                                     POP_2 != -Inf ~ as.numeric(POP_2)),
@@ -751,18 +749,15 @@ amp_lismon_site_eval <- function(species_name) {
                                         (POP_POCETPOHLNEURCENYADULT >= 150) |
                                           (POP_POCETSAMICE >= 150) |
                                           (POP_POCETSAMEC >= 150) |
-                                          (POP_CELKPOCETVSEADULT >= 150) | 
-                                          (POP_CELKPOCETVSEEXEMPLAR >= 150) ~ 3,
+                                          (POP_CELKPOCETVSEADULT >= 150) ~ 3,
                                         POP_POCETPOHLNEURCENYADULTREL == "řádově stovky" |
                                           POP_POCETSAMICEREL == "řádově stovky" |
                                           POP_POCETSAMECREL == "řádově stovky" |
-                                          POP_CELKPOCETVSEADULTREL == "řádově stovky" |
-                                          POP_CELKPOCETVSEEXEMPLARREL == "řádově stovky" ~ 3,
+                                          POP_CELKPOCETVSEADULTREL == "řádově stovky" ~ 3,
                                         (POP_POCETPOHLNEURCENYADULT > 10 & POP_POCETPOHLNEURCENYADULT < 150) |
                                           (POP_POCETSAMICE > 10 & POP_POCETSAMICE < 150) |
                                           (POP_POCETSAMEC > 10 & POP_POCETSAMEC < 150) |
-                                          (POP_CELKPOCETVSEADULT > 10 & POP_CELKPOCETVSEADULT < 150) |
-                                          (POP_CELKPOCETVSEEXEMPLAR > 10 & POP_CELKPOCETVSEEXEMPLAR < 150) ~ 2,
+                                          (POP_CELKPOCETVSEADULT > 10 & POP_CELKPOCETVSEADULT < 150) ~ 2,
                                         POP_POCETPOHLNEURCENYADULTREL == "cca 100" |
                                           POP_POCETSAMICEREL == "cca 100" |
                                           POP_POCETSAMECREL == "cca 100" |
@@ -776,19 +771,15 @@ amp_lismon_site_eval <- function(species_name) {
                                           POP_POCETPOHLNEURCENYADULTREL == "řádově nižší desítky" |
                                           POP_POCETSAMICEREL == "řádově nižší desítky" |
                                           POP_POCETSAMECREL == "řádově nižší desítky" |
-                                          POP_CELKPOCETVSEADULTREL == "řádově nižší desítky" |
-                                          POP_CELKPOCETVSEEXEMPLARREL == "řádově nižší desítky" ~ 2,
+                                          POP_CELKPOCETVSEADULTREL == "řádově nižší desítky" ~ 2,
                                         (POP_POCETPOHLNEURCENYADULT > 0 & POP_POCETPOHLNEURCENYADULT <= 10) |
                                           (POP_POCETSAMICE > 0 & POP_POCETSAMICE <= 10) |
                                           (POP_POCETSAMEC > 0 & POP_POCETSAMEC <= 10) |
-                                          (POP_CELKPOCETVSEADULT > 0 & POP_CELKPOCETVSEADULT <= 10) |
-                                          (POP_CELKPOCETVSEEXEMPLAR > 0 & POP_CELKPOCETVSEEXEMPLAR <= 10) ~ 1,
+                                          (POP_CELKPOCETVSEADULT > 0 & POP_CELKPOCETVSEADULT <= 10) ~ 1,
                                         POP_POCETPOHLNEURCENYADULTREL == "do 10" |
                                           POP_POCETSAMICEREL == "do 10" |
                                           POP_POCETSAMECREL == "do 10" |
-                                          POP_CELKPOCETVSEADULTREL == "do 10" |
-                                          POP_CELKPOCETVSEEXEMPLARREL == "do 10" ~ 1,
-                                        TRUE ~ 1
+                                          POP_CELKPOCETVSEADULTREL == "do 10" ~ 1
       ),
       HABLOS_find = dplyr::case_when(STA_STAVVODAPERIODTUN < 10 ~ 0,
                                      STA_STAVVODALITORAL < 10 ~ 0,
@@ -861,13 +852,13 @@ amp_lismon_site_eval <- function(species_name) {
               POP_B = sum(POP_0, POP_2),
               POP_C = sum(POP_1, POP_2),
               POP = dplyr::case_when(PRESENCE_0 == 0 ~ 0,
+                                     length(unique(ROK)) < 2 ~ NA_real_,
                                      POP_0 >= POP_1 ~ 1,
                                      POP_0 < POP_1 ~ 0,
                                      POP_0 >= POP_2 ~ 1,
                                      POP_0 < POP_2 ~ 0,
                                      POP_1 >= POP_2 ~ 1,
-                                     POP_1 < POP_2 ~ 0,
-                                     length(unique(ROK)) < 2 ~ NA_real_),
+                                     POP_1 < POP_2 ~ 0),
               ABUNDANCE = case_when(POP_0 != -Inf ~ as.numeric(POP_0),
                                     POP_1 != -Inf ~ as.numeric(POP_1),
                                     POP_2 != -Inf ~ as.numeric(POP_2)),
@@ -1026,44 +1017,35 @@ amp_tri_site_eval <- function(species_name) {
                                         (POP_POCETPOHLNEURCENYADULT >= 150) |
                                           (POP_POCETSAMICE >= 150) |
                                           (POP_POCETSAMEC >= 150) |
-                                          (POP_CELKPOCETVSEADULT >= 150) | 
-                                          (POP_CELKPOCETVSEEXEMPLAR >= 150) ~ 3,
+                                          (POP_CELKPOCETVSEADULT >= 150) ~ 3,
                                         POP_POCETPOHLNEURCENYADULTREL == "řádově stovky" |
                                           POP_POCETSAMICEREL == "řádově stovky" |
                                           POP_POCETSAMECREL == "řádově stovky" |
-                                          POP_CELKPOCETVSEADULTREL == "řádově stovky" |
-                                          POP_CELKPOCETVSEEXEMPLARREL == "řádově stovky" ~ 3,
+                                          POP_CELKPOCETVSEADULTREL == "řádově stovky" ~ 3,
                                         (POP_POCETPOHLNEURCENYADULT > 10 & POP_POCETPOHLNEURCENYADULT < 150) |
                                           (POP_POCETSAMICE > 10 & POP_POCETSAMICE < 150) |
                                           (POP_POCETSAMEC > 10 & POP_POCETSAMEC < 150) |
-                                          (POP_CELKPOCETVSEADULT > 10 & POP_CELKPOCETVSEADULT < 150) |
-                                          (POP_CELKPOCETVSEEXEMPLAR > 10 & POP_CELKPOCETVSEEXEMPLAR < 150) ~ 2,
+                                          (POP_CELKPOCETVSEADULT > 10 & POP_CELKPOCETVSEADULT < 150) ~ 2,
                                         POP_POCETPOHLNEURCENYADULTREL == "cca 100" |
                                           POP_POCETSAMICEREL == "cca 100" |
                                           POP_POCETSAMECREL == "cca 100" |
                                           POP_CELKPOCETVSEADULTREL == "cca 100" |
-                                          POP_CELKPOCETVSEEXEMPLARREL == "cca 100" |
                                           POP_POCETPOHLNEURCENYADULTREL == "řádově vyšší desítky" |
                                           POP_POCETSAMICEREL == "řádově vyšší desítky" |
                                           POP_POCETSAMECREL == "řádově vyšší desítky" |
                                           POP_CELKPOCETVSEADULTREL == "řádově vyšší desítky" |
-                                          POP_CELKPOCETVSEEXEMPLARREL == "řádově vyšší desítky" |
                                           POP_POCETPOHLNEURCENYADULTREL == "řádově nižší desítky" |
                                           POP_POCETSAMICEREL == "řádově nižší desítky" |
                                           POP_POCETSAMECREL == "řádově nižší desítky" |
-                                          POP_CELKPOCETVSEADULTREL == "řádově nižší desítky" |
-                                          POP_CELKPOCETVSEEXEMPLARREL == "řádově nižší desítky" ~ 2,
+                                          POP_CELKPOCETVSEADULTREL == "řádově nižší desítky" ~ 2,
                                         (POP_POCETPOHLNEURCENYADULT > 0 & POP_POCETPOHLNEURCENYADULT <= 10) |
                                           (POP_POCETSAMICE > 0 & POP_POCETSAMICE <= 10) |
                                           (POP_POCETSAMEC > 0 & POP_POCETSAMEC <= 10) |
-                                          (POP_CELKPOCETVSEADULT > 0 & POP_CELKPOCETVSEADULT <= 10) |
-                                          (POP_CELKPOCETVSEEXEMPLAR > 0 & POP_CELKPOCETVSEEXEMPLAR <= 10) ~ 1,
+                                          (POP_CELKPOCETVSEADULT > 0 & POP_CELKPOCETVSEADULT <= 10) ~ 1,
                                         POP_POCETPOHLNEURCENYADULTREL == "do 10" |
                                           POP_POCETSAMICEREL == "do 10" |
                                           POP_POCETSAMECREL == "do 10" |
-                                          POP_CELKPOCETVSEADULTREL == "do 10" |
-                                          POP_CELKPOCETVSEEXEMPLARREL == "do 10" ~ 1,
-                                        TRUE ~ 1
+                                          POP_CELKPOCETVSEADULTREL == "do 10" ~ 1
       ),
       HABLOS_find = dplyr::case_when(STA_STAVVODAPERIODTUN < 10 ~ 0,
                                      STA_STAVVODALITORAL < 10 ~ 0,
@@ -1135,13 +1117,13 @@ amp_tri_site_eval <- function(species_name) {
               POP_B = sum(POP_0, POP_2),
               POP_C = sum(POP_1, POP_2),
               POP = dplyr::case_when(PRESENCE_0 == 0 ~ 0,
+                                     length(unique(ROK)) < 2 ~ NA_real_,
                                      POP_0 >= POP_1 ~ 1,
                                      POP_0 < POP_1 ~ 0,
                                      POP_0 >= POP_2 ~ 1,
                                      POP_0 < POP_2 ~ 0,
                                      POP_1 >= POP_2 ~ 1,
-                                     POP_1 < POP_2 ~ 0,
-                                     length(unique(ROK)) < 2 ~ NA_real_),
+                                     POP_1 < POP_2 ~ 0),
               ABUNDANCE = case_when(POP_0 != -Inf ~ as.numeric(POP_0),
                                     POP_1 != -Inf ~ as.numeric(POP_1),
                                     POP_2 != -Inf ~ as.numeric(POP_2)),
@@ -2040,7 +2022,7 @@ amp_lismon_sci_dt <- DT::datatable(lismon_sci_eval %>%
                                        "$('body').css({'font-family': 'Calibri'});",
                                        "}"
                                      ),
-                                     columnDefs = list(list(targets = c(17:26), visible = FALSE))),
+                                     columnDefs = list(list(targets = c(16:24), visible = FALSE))),
                                    rownames = FALSE,
                                    filter = "top") %>%
   DT::formatStyle('EVL_SITECODE', 'ROW_COL', 
@@ -2088,6 +2070,7 @@ amp_lismon_sci_dt <- DT::datatable(lismon_sci_eval %>%
 
 amp_lismon_site_dt
 amp_lismon_sci_dt
+
 # |-Triturus cristatus ----
 amp_tricri_site_dt <- DT::datatable(tricri_site_eval %>%
                                       dplyr::mutate(EVAL = dplyr::case_when(is.na(sum(PRESENCE_P1a,
@@ -2577,5 +2560,16 @@ amp_tricar_sci_dt <- DT::datatable(tricar_sci_eval %>%
                   backgroundColor = styleInterval(0.5, 
                                                   c("red", "green")))
 
+amp_tricar_site_dt
+amp_tricar_sci_dt
+
+amp_bombom_site_dt
+amp_bombom_sci_dt
+amp_bomvar_site_dt
+amp_bomvar_sci_dt
+amp_lismon_site_dt
+amp_lismon_sci_dt
+amp_tricri_site_dt
+amp_tricri_sci_dt
 amp_tricar_site_dt
 amp_tricar_sci_dt

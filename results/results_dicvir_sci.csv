@@ -1,9 +1,9 @@
-"SITECODE","NAZEV","DRUH","PRESENCE","MICROSITE","ABUNDANCE","TREND","STRUCTURE","MANAGEMENT","TRHEATS","TARGET_MON","OVERALL","SUFFICIENT","LAST_TARGET_MON","LAST_FIND"
-"CZ0214011","Týřov - Oupořský potok","Dicranum viride",NA,NA,NA,NA,NA,NA,NA,NA,NA,0,NA,2015-10-14
-"CZ0310163","Žofínský prales - Pivonické skály","Dicranum viride",NA,NA,NA,NA,NA,NA,NA,NA,NA,0,NA,2015-08-06
-"CZ0314126","Hlubocké obory","Dicranum viride",1,NA,NA,NA,NA,NA,1,1,2,0,2009-10-28,2013-09-06
-"CZ0325003","Netřeb","Dicranum viride",NA,NA,NA,NA,NA,NA,NA,NA,NA,0,NA,2016-11-24
-"CZ0610159","Velký Špičák","Dicranum viride",NA,NA,NA,NA,NA,NA,NA,NA,NA,0,NA,2018-11-05
-"CZ0610401","Žákova hora","Dicranum viride",1,0.2,1,1,1,1,1,1,2.2,1,2020-11-06,2020-11-06
-"CZ0614131","Údolí Oslavy a Chvojnice","Dicranum viride",1,0,NA,NA,NA,NA,NA,1,1,0,2011-10-14,2017-11-03
-"CZ0615001","Zaječí skok","Dicranum viride",1,0,NA,NA,NA,NA,NA,1,1,0,2011-10-18,2018-10-29
+"SITECODE","NAZEV","DRUH","PRESENCE","MICROSITE","ABUNDANCE","TREND","STRUKT_VEK","STRUKT_DRU","MANAGEMENT","TARGET_MON","OVERALL","SUFFICIENT","TOTAL_SITES","SUFFICIENT_PERC","ID_ND_NALEZ","LAST_TARGET_MON","LAST_FIND"
+"CZ0214011","Týřov - Oupořský potok","Dicranum viride",1,NA,1,NA,NA,NA,NA,0,1.5,0,0,NA,"",NA,2015-10-14
+"CZ0310163","Žofínský prales - Pivonické skály","Dicranum viride",1,NA,NA,NA,NA,NA,NA,0,1,0,0,NA,"",NA,2015-08-06
+"CZ0314126","Hlubocké obory","Dicranum viride",NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,NA,"",NA,NA
+"CZ0325003","Netřeb","Dicranum viride",1,NA,NA,NA,NA,NA,NA,0,1,0,0,NA,"",NA,2016-11-24
+"CZ0610159","Velký Špičák","Dicranum viride",1,0,1,NA,NA,NA,NA,0,1.66666666666667,0,0,NA,"",NA,2018-11-05
+"CZ0610401","Žákova hora","Dicranum viride",1,1,1,1,1,1,1,1,3.33333333333333,1,1,1,"52512519",2020-11-06,2020-11-06
+"CZ0614131","Údolí Oslavy a Chvojnice","Dicranum viride",1,NA,1,NA,NA,NA,NA,0,2,0,0,NA,"",NA,2017-11-03
+"CZ0615001","Zaječí skok","Dicranum viride",1,NA,1,NA,NA,NA,NA,0,2,0,0,NA,"",NA,2018-10-29

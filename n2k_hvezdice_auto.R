@@ -211,7 +211,7 @@ find_evl_NAME_TO_CODE <- function(species) {
 find_evl_CODE_TO_NAME <- function(species) {
   return(sites_subjects %>%
            dplyr::filter(Typ.lokality == "EVL") %>%
-           dplyr::filter(Kód.lokalit == species) %>%
+           dplyr::filter(Kód.lokality == species) %>%
            dplyr::pull(Název.lokality) %>%
            unique()
   )

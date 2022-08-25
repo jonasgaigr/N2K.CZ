@@ -1,0 +1,76 @@
+"EVL_SITECODE","NAZEV","DRUH","PRESENCE_P1a","POP_P1b","REPRO_P2","HABLOS_P3","PRED_P4","WATER_P5","DRY_P6","VEG_P7","TRANSP_P8","CHYTRI_P9","ZASTIN_P10","OVERALL","SUFFICIENT_SITES","TOTAL_SITES","SUFFICIENT_PERC"
+"CZ0213001","Nový rybník u Kačiny","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,1,0
+"CZ0213004","Rybník Starý u Líchov","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,1,0
+"CZ0213005","Šáchovec","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,1,0
+"CZ0213013","Březnice - Oblouček","Bombina bombina",0.5,0,1,1,1,1,1,NA,1,1,1,0.25,0,2,0
+"CZ0213017","Dražská Koupě","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,2,0
+"CZ0213028","Kalivody","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,3,0
+"CZ0213061","Týnecké mokřiny","Bombina bombina",0.833333333333333,0,1,1,1,1,1,1,1,1,1,0.416666666666667,0,6,0
+"CZ0213081","Vápenické jezero","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,1,0
+"CZ0213082","Velký Raputovský rybník","Bombina bombina",0.5,0,1,1,1,1,1,NA,1,1,1,0.25,0,2,0
+"CZ0213784","Horní a Dolní obděnický rybník","Bombina bombina",1,NA,1,1,1,0.6,1,NA,1,1,1,0.5,0,5,0
+"CZ0213785","Horní solopyský rybník","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,2,0
+"CZ0213791","Jezera","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,2,0
+"CZ0214009","Libické luhy","Bombina bombina",1,NA,1,1,1,1,1,0.333333333333333,1,1,0.333333333333333,0.5,0,3,0
+"CZ0313115","Boukal","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,2,0
+"CZ0313116","Radomilická mokřina","Bombina bombina",1,NA,1,1,1,1,1,0,1,1,1,0.5,0,1,0
+"CZ0313125","Tábor - Zahrádka","Bombina bombina",0.75,0,1,1,1,1,1,NA,1,1,1,0.375,0,4,0
+"CZ0313134","Újezdec","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,1,0
+"CZ0314023","Třeboňsko - střed","Bombina bombina",0.05,0,1,1,0.7,1,1,0.461538461538462,1,1,1,0.025,0,20,0
+"CZ0323158","Osek - rybník Labutinka","Bombina bombina",1,0,1,1,1,1,1,NA,1,1,1,0.5,0,1,0
+"CZ0413190","Ostrovské rybníky","Bombina bombina",0,0,1,1,0.777777777777778,1,1,0.222222222222222,1,1,1,0,0,9,0
+"CZ0413196","Týniště","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,1,0
+"CZ0414127","Hradiště","Bombina bombina",0.160377358490566,0,1,0.962264150943396,0.89622641509434,0.943396226415094,0.962264150943396,0.546511627906977,1,1,1,0.080188679245283,0,106,0
+"CZ0423211","Háj u Oseka","Bombina bombina",1,NA,1,1,1,1,1,1,1,1,1,0.5,0,2,0
+"CZ0423215","Kateřina - mokřad","Bombina bombina",0,0,1,0,0,1,0,0,1,1,1,0,0,2,0
+"CZ0423216","Kopistská výsypka","Bombina bombina",1,0.888888888888889,1,1,1,1,1,1,1,1,1,0.525,1,20,0.05
+"CZ0423228","Strádovský rybník","Bombina bombina",1,NA,1,1,1,1,1,0,1,1,0,0.5,0,1,0
+"CZ0423660","Pražská pole","Bombina bombina",0.333333333333333,0,1,1,1,1,1,0,1,1,1,0.166666666666667,0,9,0
+"CZ0424125","Doupovské hory","Bombina bombina",0.157894736842105,0,1,1,0.894736842105263,0.964912280701754,1,0.348837209302326,1,1,1,0.0789473684210526,0,57,0
+"CZ0513237","Česká Lípa - mokřad v nivě Šporky","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,1,0
+"CZ0513238","Cihelenské rybníky","Bombina bombina",0.8,0,1,1,1,1,1,0.5,1,1,1,0.4,0,5,0
+"CZ0513244","Manušické rybníky","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,2,0
+"CZ0513257","Stružnické rybníky","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,1,0
+"CZ0513505","Dolní Ploučnice","Bombina bombina",0.5,0,1,1,1,1,1,0.5,1,1,1,0.25,0,6,0
+"CZ0523002","Hluboký Kovač","Bombina bombina",1,NA,1,1,0,1,1,0,1,1,1,0.5,0,1,0
+"CZ0523003","Rybník Strašidlo","Bombina bombina",1,NA,1,1,1,1,1,1,1,1,1,0.5,0,1,0
+"CZ0523005","Tuří rybník","Bombina bombina",1,NA,1,1,1,1,1,0,1,1,1,0.5,0,1,0
+"CZ0523265","Červená Třemešná - rybník","Bombina bombina",1,NA,1,1,1,1,1,1,1,1,1,0.5,0,1,0
+"CZ0523268","Dubno - Česká Skalice","Bombina bombina",1,NA,1,1,1,1,1,1,1,1,1,0.5,0,1,0
+"CZ0523282","Nadslav","Bombina bombina",1,NA,1,1,1,1,1,0,1,1,1,0.5,0,1,0
+"CZ0523286","Rybník Smrkovák","Bombina bombina",1,NA,1,1,1,1,1,0,1,1,1,0.5,0,1,0
+"CZ0524045","Zbytka","Bombina bombina",1,NA,1,1,1,1,1,1,1,1,1,0.5,0,1,0
+"CZ0524048","Byšičky","Bombina bombina",1,NA,1,1,1,1,1,1,1,1,1,0.5,0,2,0
+"CZ0524050","Halín","Bombina bombina",1,NA,1,1,1,1,1,0,1,1,1,0.5,0,1,0
+"CZ0533302","Choltická obora","Bombina bombina",0.666666666666667,0,1,1,1,1,1,0,1,1,1,0.333333333333333,0,3,0
+"CZ0533308","Bohdanečský rybník","Bombina bombina",0.434782608695652,0,1,1,1,1,1,NA,1,1,1,0.217391304347826,0,23,0
+"CZ0533312","Rybník Moře","Bombina bombina",1,NA,1,1,1,1,1,0,1,1,1,0.5,0,1,0
+"CZ0533696","Kochánovické rybníky a tůně","Bombina bombina",1,NA,1,1,1,1,1,0,1,1,1,0.5,0,1,0
+"CZ0533697","Rybník Strach","Bombina bombina",1,NA,1,1,1,1,1,0,1,1,1,0.5,0,1,0
+"CZ0613003","Maršovec a Čepička","Bombina bombina",1,NA,1,1,1,1,1,0.333333333333333,1,1,1,0.5,0,3,0
+"CZ0613013","Šilhánky","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,1,0
+"CZ0613336","V kopaninách","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,1,0
+"CZ0613338","Vetelské rybníky","Bombina bombina",0.5,0,1,1,0.875,1,1,0,1,1,1,0.25,0,8,0
+"CZ0613809","Dívka","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,4,0
+"CZ0614057","Znětínské rybníky","Bombina bombina",0,0,1,1,1,1,1,NA,1,1,1,0,0,3,0
+"CZ0623010","Hevlínské jezero","Bombina bombina",1,NA,1,1,1,1,1,0,1,1,1,0.5,0,1,0
+"CZ0623027","Šumické rybníky","Bombina bombina",0,0,1,0.8,0.4,0.4,0.8,0.4,1,1,1,0,0,5,0
+"CZ0623030","Vrbovecký rybník","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,1,0
+"CZ0623348","Jankovec","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,1,0
+"CZ0623365","Rakšické louky","Bombina bombina",0.8,0,1,1,0.9,1,1,0.3,1,1,1,0.4,0,10,0
+"CZ0623772","Božický mokřad","Bombina bombina",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"CZ0623793","Úvalský rybník","Bombina bombina",1,NA,1,1,1,1,1,1,1,1,1,0.5,0,1,0
+"CZ0623799","Drnholecký luh","Bombina bombina",0.615384615384615,0,1,1,0.923076923076923,1,1,0.692307692307692,1,1,1,0.307692307692308,0,13,0
+"CZ0624070","Hodonínská doubrava","Bombina bombina",0.211538461538462,0,1,1,0.634615384615385,0.980769230769231,1,0.307692307692308,1,1,1,0.105769230769231,0,52,0
+"CZ0624099","Niva Dyje","Bombina bombina",1,NA,1,1,0.916666666666667,1,1,0,1,1,1,0.5,0,12,0
+"CZ0624119","Soutok - Podluží","Bombina bombina",1,NA,1,1,1,1,1,0.7,1,1,1,0.5,0,10,0
+"CZ0713008","Deylův ostrůvek","Bombina bombina",1,NA,1,1,1,1,1,NA,1,1,1,0.5,0,1,0
+"CZ0713394","Dolní a Prostřední Svrčov","Bombina bombina",0.4,NA,1,1,0.6,0.4,1,NA,1,1,1,0.2,0,5,0
+"CZ0714082","Bečva - Žebračka","Bombina bombina",0,0,1,1,1,1,1,NA,1,1,1,0,0,5,0
+"CZ0723413","Ovčírka","Bombina bombina",1,NA,1,1,1,1,1,0,1,1,1,0.5,0,1,0
+"CZ0723423","Skalky","Bombina bombina",0.333333333333333,0,1,1,0.777777777777778,1,1,0.111111111111111,1,1,1,0.166666666666667,0,9,0
+"CZ0723424","Stonáč","Bombina bombina",1,NA,1,1,1,0,1,0.333333333333333,1,1,1,0.5,0,3,0
+"CZ0723426","Střížovice","Bombina bombina",1,NA,1,1,1,1,1,1,1,1,1,0.5,0,1,0
+"CZ0813439","Děhylovský potok - Štěpán","Bombina bombina",0.333333333333333,NA,1,1,1,1,1,NA,1,1,1,0.166666666666667,0,3,0
+"CZ0813460","Osoblažský výběžek","Bombina bombina",0,0,1,1,1,1,1,0.333333333333333,1,1,1,0,0,4,0
+"CZ0814092","Poodří","Bombina bombina",0.777777777777778,0,1,1,0.888888888888889,1,1,0,1,1,1,0.388888888888889,0,9,0
