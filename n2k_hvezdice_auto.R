@@ -295,7 +295,7 @@ hvezdice_eval <- function(hab_code, evl_site) {
                             KVALITA == 2 ~ 1,
                             KVALITA == 3 ~ 2,
                             KVALITA == 4 ~ 2),
-           KVALITA_SEG = case_when(KVALITA == 1 ~ 10
+           KVALITA_SEG = case_when(KVALITA == 1 ~ 10,
                                    KVALITA == 2 ~ 6.6666666666666666666666,
                                    KVALITA == 3 ~ 3.3333333333333333333333,
                                    KVALITA == 4 ~ 0),
@@ -431,8 +431,7 @@ hvezdice_eval <- function(hab_code, evl_site) {
   fill_TD <- sum(filter(vmb_target_sjtsk, is.na(TD) == FALSE)$PLO_BIO_M2_EVL)/sum(vmb_target_sjtsk$PLO_BIO_M2_EVL)
   fill_QUAL <- sum(filter(vmb_target_sjtsk, is.na(KVALITA) == FALSE)$PLO_BIO_M2_EVL)/sum(vmb_target_sjtsk$PLO_BIO_M2_EVL)
   fill_MD <- sum(filter(vmb_target_sjtsk, is.na(MD) == FALSE)$PLO_BIO_M2_EVL)/sum(vmb_target_sjtsk$PLO_BIO_M2_EVL)
-  fill_KP <- sum(filter(vmb_target_sjtsk, is.na(KP) == FALSE)$PLO_BIO_M2_EVL)/sum(vmb_target_sjtsk$PLO_BIO_M2_EVL)
-  
+
   # RED LIST SPECIES
   redlist_list <- red_list_species %>%
     sf::st_filter(., vmb_target_sjtsk) %>%
@@ -512,19 +511,19 @@ hvezdice_eval <- function(hab_code, evl_site) {
   } 
   
   perc_seg_0 <- vmb_target_sjtsk %>%
-    dplyr::filter(ROK_AKT == 0) %>%
+    dplyr::filter(ROK_AKT.y == 0) %>%
     dplyr::pull(PLO_BIO_M2_EVL) %>%
-    sum()/target_area_ha
+    sum()/target_area_ha/10000
   
   perc_seg_1 <- vmb_target_sjtsk %>%
-    dplyr::filter(ROK_AKT > 0 & ROK_AKT <= 2012) %>%
+    dplyr::filter(ROK_AKT.y > 0 & ROK_AKT.y <= 2012) %>%
     dplyr::pull(PLO_BIO_M2_EVL) %>%
-    sum()/target_area_ha
+    sum()/target_area_ha/10000
   
   perc_seg_2 <- vmb_target_sjtsk %>%
-    dplyr::filter(ROK_AKT > 2012 & ROK_AKT <= 2024) %>%
+    dplyr::filter(ROK_AKT.y > 2012 & ROK_AKT.y <= 2024) %>%
     dplyr::pull(PLO_BIO_M2_EVL) %>%
-    sum()/target_area_ha
+    sum()/target_area_ha/10000
   
   
   # VÝSLEDKY
@@ -552,7 +551,6 @@ hvezdice_eval <- function(hab_code, evl_site) {
                        VYPLNENOST_TD = fill_TD,
                        VYPLNENOST_KVALITA = fill_QUAL,
                        VYPLNENOST_MD = fill_MD,
-                       VYPLNENOST_KP = fill_KP,
                        PERC_0 = perc_seg_0,
                        PERC_1 = perc_seg_1,
                        PERC_2 = perc_seg_2
@@ -581,7 +579,9 @@ hvezdice_eval <- function(hab_code, evl_site) {
                      VYPLNENOST_TD = NA,
                      VYPLNENOST_KVALITA = NA,
                      VYPLNENOST_MD = NA,
-                     VYPLNENOST_KP = NA,)
+                     PERC_0 = NA,
+                     PERC_1 = NA,
+                     PERC_2 = NA)
   }
   
   result
