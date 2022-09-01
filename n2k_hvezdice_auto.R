@@ -295,7 +295,7 @@ hvezdice_eval <- function(hab_code, evl_site) {
                             KVALITA == 2 ~ 1,
                             KVALITA == 3 ~ 2,
                             KVALITA == 4 ~ 2),
-           KVALITA_SEG = case_when(KVALITA == 1 ~ 10
+           KVALITA_SEG = case_when(KVALITA == 1 ~ 10,
                                    KVALITA == 2 ~ 6.6666666666666666666666,
                                    KVALITA == 3 ~ 3.3333333333333333333333,
                                    KVALITA == 4 ~ 0),
