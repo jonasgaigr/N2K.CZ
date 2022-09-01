@@ -294,18 +294,26 @@ hvezdice_eval <- function(hab_code, evl_site) {
            QUAL = case_when(KVALITA == 1 ~ 1,
                             KVALITA == 2 ~ 1,
                             KVALITA == 3 ~ 2,
-                            KVALITA == 4 ~ 2)) %>%
-    # TYPICKÉ DRUHY
-    mutate(TD_FIN = sum(na.omit(.$TD_SEG))) %>%
-    # KVALITA
-    mutate(QUALITY = sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/sum(filter(., QUAL == 1 | QUAL == 2)$PLO_BIO_M2_EVL)*10,
+                            KVALITA == 4 ~ 2),
+           KVALITA_SEG = case_when(KVALITA == 1 ~ 10
+                                   KVALITA == 2 ~ 6.6666666666666666666666,
+                                   KVALITA == 3 ~ 3.3333333333333333333333,
+                                   KVALITA == 4 ~ 0),
+           QUAL_SEG = KVALITA_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL)) %>%
+    
+    mutate(
+      # TYPICKÉ DRUHY
+      TD_FIN = sum(na.omit(.$TD_SEG)),
+      # KVALITA
+      QUALITY = sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/sum(filter(., QUAL == 1 | QUAL == 2)$PLO_BIO_M2_EVL)*10,
+      QUALITY = sum(na.omit(QUAL_SEG)),
     # MINIMIAREÁL
-           MINIMIAREAL = case_when(find_evl_PRIORITY(hab_code) == 0 ~ sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/find_habitat_MINIMISIZE(hab_code),
-                                   find_evl_PRIORITY(hab_code) == 1 ~ (sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/find_habitat_MINIMISIZE(hab_code)) + (sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/find_habitat_MINIMISIZE(hab_code)*0.2)),
-           MINIMIAREAL = case_when(MINIMIAREAL > 10 ~ 10, 
-                                   MINIMIAREAL <= 10 ~ MINIMIAREAL),
-           MINIMISIZE = case_when(HABITAT == hab_code & PLO_BIO_M2_EVL > find_habitat_MINIMISIZE(hab_code) ~ 1,
-                                  HABITAT == hab_code & PLO_BIO_M2_EVL <= find_habitat_MINIMISIZE(hab_code) ~ 0))
+      MINIMIAREAL = case_when(find_evl_PRIORITY(hab_code) == 0 ~ sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/find_habitat_MINIMISIZE(hab_code),
+                              find_evl_PRIORITY(hab_code) == 1 ~ (sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/find_habitat_MINIMISIZE(hab_code)) + (sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/find_habitat_MINIMISIZE(hab_code)*0.2)),
+      MINIMIAREAL = case_when(MINIMIAREAL > 10 ~ 10, 
+                              MINIMIAREAL <= 10 ~ MINIMIAREAL),
+      MINIMISIZE = case_when(HABITAT == hab_code & PLO_BIO_M2_EVL > find_habitat_MINIMISIZE(hab_code) ~ 1,
+                             HABITAT == hab_code & PLO_BIO_M2_EVL <= find_habitat_MINIMISIZE(hab_code) ~ 0))
   
   # PŘÍPRAVA SLOUČENÝH SEGmENTŮ PRO CELISTVOST
   if(find_evl_PRIORITY(hab_code) == 1) {
@@ -409,8 +417,8 @@ hvezdice_eval <- function(hab_code, evl_site) {
   
   # RED LIST SPECIES
   redlist_list <- red_list_species %>%
-    st_filter(., vmb_target_sjtsk) %>%
-    pull(DRUH) %>%
+    sf::st_filter(., vmb_target_sjtsk) %>%
+    dplyr::pull(DRUH) %>%
     unique() 
   
   redlist <- redlist_list %>%
@@ -425,13 +433,24 @@ hvezdice_eval <- function(hab_code, evl_site) {
   } 
   
   # INVASIVE SPECIES
-  invaders_all <- invasive_species %>%
-    sf::st_intersection(., vmb_target_sjtsk) %>%
-    dplyr::group_by(OBJECTID.y, DRUH) %>%
-    dplyr::filter(DATUM_OD >= DATUM.y) %>%
-    dplyr::slice(which.max(DATUM_OD)) %>%
-    dplyr::filter(NEGATIVNI == 0) %>%
-    dplyr::ungroup()
+  if(hab_code == 6510) {
+    invaders_all <- invasive_species %>%
+      dplyr::filter(DRUH != "Arrhenatherum elatius") %>%
+      sf::st_intersection(., vmb_target_sjtsk) %>%
+      dplyr::group_by(OBJECTID.y, DRUH) %>%
+      dplyr::filter(DATUM_OD >= DATUM.y) %>%
+      dplyr::slice(which.max(DATUM_OD)) %>%
+      dplyr::filter(NEGATIVNI == 0) %>%
+      dplyr::ungroup()
+  } else {
+    invaders_all <- invasive_species %>%
+      sf::st_intersection(., vmb_target_sjtsk) %>%
+      dplyr::group_by(OBJECTID.y, DRUH) %>%
+      dplyr::filter(DATUM_OD >= DATUM.y) %>%
+      dplyr::slice(which.max(DATUM_OD)) %>%
+      dplyr::filter(NEGATIVNI == 0) %>%
+      dplyr::ungroup()
+  }
   
   invaders_calc <- invaders_all %>%
     dplyr::group_by(OBJECTID.y) %>%
@@ -439,7 +458,7 @@ hvezdice_eval <- function(hab_code, evl_site) {
     dplyr::ungroup()
   
   invaders_list <- invaders_all %>%
-    pull(DRUH) %>%
+    dplyr::pull(DRUH) %>%
     unique() 
 
   invaders <- sum(invaders_calc$PLO_BIO_M2_EVL)/sum(vmb_target_sjtsk$PLO_BIO_M2_EVL)*10
@@ -464,7 +483,7 @@ hvezdice_eval <- function(hab_code, evl_site) {
     dplyr::ungroup()
   
   expanders_list <- expanders_all %>%
-    pull(DRUH) %>%
+    dplyr::pull(DRUH) %>%
     unique() 
   
   expanders <- sum(expanders_calc$PLO_BIO_M2_EVL)/sum(vmb_target_sjtsk$PLO_BIO_M2_EVL)*10
@@ -474,27 +493,46 @@ hvezdice_eval <- function(hab_code, evl_site) {
     expanders_list <- NA
   } 
   
+  perc_seg_0 <- vmb_target_sjtsk %>%
+    dplyr::filter(ROK_AKT == 0) %>%
+    dplyr::pull(PLO_BIO_M2_EVL) %>%
+    sum()
+  
+  perc_seg_1 <- vmb_target_sjtsk %>%
+    dplyr::filter(ROK_AKT > 0 & ROK_AKT <= 2012) %>%
+    dplyr::pull(PLO_BIO_M2_EVL) %>%
+    sum()
+  
+  perc_seg_2 <- vmb_target_sjtsk %>%
+    dplyr::filter(ROK_AKT > 2012 & ROK_AKT <= 2024) %>%
+    dplyr::pull(PLO_BIO_M2_EVL) %>%
+    sum()
+  
+  
   # VÝSLEDKY
   if(nrow(vmb_qual) > 0) {
     result <- vmb_qual %>%
-      summarise(SITECODE = unique(SITECODE),
-                NAZEV = unique(NAZEV),
-                HABITAT_CODE = unique(HABITAT),
-                ROZLOHA = target_area_ha,
-                TYPICKE_DRUHY = unique(TD_FIN),
-                KVALITA = unique(QUALITY),
-                MINIMIAREAL = unique(MINIMIAREAL),
-                MOZAIKA = mozaika,
-                CELISTVOST = celistvost,
-                KONEKTIVITA = connectivity,
-                RED_LIST = redlist,
-                INVASIVE = (10 - invaders),
-                EXPANSIVE = (10 - expanders),
-                RED_LIST_SPECIES = paste(redlist_list, collapse = ", "),
-                INVASIVE_LIST = paste(invaders_list, collapse = ", "),
-                EXPANSIVE_LIST = paste(expanders_list, collapse = ", "),
-                VYPLNENOST_TD = fill_TD,
-                VYPLNENOST_KVALITA = fill_QUAL
+      dplyr::summarise(SITECODE = unique(SITECODE),
+                       NAZEV = unique(NAZEV),
+                       HABITAT_CODE = unique(HABITAT),
+                       ROZLOHA = target_area_ha,
+                       TYPICKE_DRUHY = unique(TD_FIN),
+                       KVALITA = unique(QUALITY),
+                       MINIMIAREAL = unique(MINIMIAREAL),
+                       MOZAIKA = mozaika,
+                       CELISTVOST = celistvost,
+                       KONEKTIVITA = connectivity,
+                       RED_LIST = redlist,
+                       INVASIVE = (10 - invaders),
+                       EXPANSIVE = (10 - expanders),
+                       RED_LIST_SPECIES = paste(redlist_list, collapse = ", "),
+                       INVASIVE_LIST = paste(invaders_list, collapse = ", "),
+                       EXPANSIVE_LIST = paste(expanders_list, collapse = ", "),
+                       VYPLNENOST_TD = fill_TD,
+                       VYPLNENOST_KVALITA = fill_QUAL,
+                       PERC_0 = perc_seg_0,
+                       PERC_1 = perc_seg_1,
+                       PERC_2 = perc_seg_2
                 ) %>%
       st_drop_geometry()
   } else {
@@ -723,6 +761,7 @@ habitats_datatable_sum <- DT::datatable(results_habitats_values %>%
                             as.data.frame(),
                          extensions = 'Buttons',
                          options = list(
+                           autowidth = TRUE,
                            dom = 'Bfrtip',
                            columnDefs = list(list(targets = 18:28, visible = FALSE)),
             buttons = c('csv', 'excel'),
