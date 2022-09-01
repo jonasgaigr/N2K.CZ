@@ -299,13 +299,29 @@ hvezdice_eval <- function(hab_code, evl_site) {
                                    KVALITA == 2 ~ 6.6666666666666666666666,
                                    KVALITA == 3 ~ 3.3333333333333333333333,
                                    KVALITA == 4 ~ 0),
-           QUAL_SEG = KVALITA_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL)) %>%
+           QUAL_SEG = KVALITA_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL),
+           MRTVE_DREVO_SEG = dplyr::case_when(MD == 0 ~ 0,
+                                              MD == 1 ~ 5,
+                                              MD == 2 ~ 10,
+                                              MD == 3 ~ 0,
+                                              MD == 4 ~ 0),
+           MD_SEG = MRTVE_DREVO_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL),
+           KALAMITA_SEG = dplyr::case_when(MD == 0 ~ 0,
+                                           MD == 1 ~ 0,
+                                           MD == 2 ~ 0,
+                                           MD == 3 ~ 5,
+                                           MD == 4 ~ 10),
+           KAL_SEG = KALAMITA_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL)) %>%
     
     mutate(
       # TYPICKÉ DRUHY
-      TD_FIN = sum(na.omit(.$TD_SEG)),
+      TD_FIN = sum(na.omit(TD_SEG)),
+      # MRTVÉ DŘEVO
+      MD_FIN = sum(na.omit(MD_SEG)),
+      # KALAMITA A POLOM
+      KP_FIN = sum(na.omit(KAL_SEG)),
       # KVALITA
-      QUALITY = sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/sum(filter(., QUAL == 1 | QUAL == 2)$PLO_BIO_M2_EVL)*10,
+      QUALITY_ORIG = sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/sum(filter(., QUAL == 1 | QUAL == 2)$PLO_BIO_M2_EVL)*10,
       QUALITY = sum(na.omit(QUAL_SEG)),
     # MINIMIAREÁL
       MINIMIAREAL = case_when(find_evl_PRIORITY(hab_code) == 0 ~ sum(filter(., QUAL == 1)$PLO_BIO_M2_EVL)/find_habitat_MINIMISIZE(hab_code),
@@ -414,6 +430,8 @@ hvezdice_eval <- function(hab_code, evl_site) {
   # VYPLNĚNOST PARAMETRŮ
   fill_TD <- sum(filter(vmb_target_sjtsk, is.na(TD) == FALSE)$PLO_BIO_M2_EVL)/sum(vmb_target_sjtsk$PLO_BIO_M2_EVL)
   fill_QUAL <- sum(filter(vmb_target_sjtsk, is.na(KVALITA) == FALSE)$PLO_BIO_M2_EVL)/sum(vmb_target_sjtsk$PLO_BIO_M2_EVL)
+  fill_MD <- sum(filter(vmb_target_sjtsk, is.na(MD) == FALSE)$PLO_BIO_M2_EVL)/sum(vmb_target_sjtsk$PLO_BIO_M2_EVL)
+  fill_KP <- sum(filter(vmb_target_sjtsk, is.na(KP) == FALSE)$PLO_BIO_M2_EVL)/sum(vmb_target_sjtsk$PLO_BIO_M2_EVL)
   
   # RED LIST SPECIES
   redlist_list <- red_list_species %>%
@@ -496,17 +514,17 @@ hvezdice_eval <- function(hab_code, evl_site) {
   perc_seg_0 <- vmb_target_sjtsk %>%
     dplyr::filter(ROK_AKT == 0) %>%
     dplyr::pull(PLO_BIO_M2_EVL) %>%
-    sum()
+    sum()/target_area_ha
   
   perc_seg_1 <- vmb_target_sjtsk %>%
     dplyr::filter(ROK_AKT > 0 & ROK_AKT <= 2012) %>%
     dplyr::pull(PLO_BIO_M2_EVL) %>%
-    sum()
+    sum()/target_area_ha
   
   perc_seg_2 <- vmb_target_sjtsk %>%
     dplyr::filter(ROK_AKT > 2012 & ROK_AKT <= 2024) %>%
     dplyr::pull(PLO_BIO_M2_EVL) %>%
-    sum()
+    sum()/target_area_ha
   
   
   # VÝSLEDKY
@@ -517,6 +535,7 @@ hvezdice_eval <- function(hab_code, evl_site) {
                        HABITAT_CODE = unique(HABITAT),
                        ROZLOHA = target_area_ha,
                        TYPICKE_DRUHY = unique(TD_FIN),
+                       KVALITA_ORIG = unique(QUALITY_ORIG),
                        KVALITA = unique(QUALITY),
                        MINIMIAREAL = unique(MINIMIAREAL),
                        MOZAIKA = mozaika,
@@ -525,11 +544,15 @@ hvezdice_eval <- function(hab_code, evl_site) {
                        RED_LIST = redlist,
                        INVASIVE = (10 - invaders),
                        EXPANSIVE = (10 - expanders),
+                       MRTVE_DREVO = unique(MD_FIN),
+                       KALAMITA_POLOM = unique(KP_FIN),
                        RED_LIST_SPECIES = paste(redlist_list, collapse = ", "),
                        INVASIVE_LIST = paste(invaders_list, collapse = ", "),
                        EXPANSIVE_LIST = paste(expanders_list, collapse = ", "),
                        VYPLNENOST_TD = fill_TD,
                        VYPLNENOST_KVALITA = fill_QUAL,
+                       VYPLNENOST_MD = fill_MD,
+                       VYPLNENOST_KP = fill_KP,
                        PERC_0 = perc_seg_0,
                        PERC_1 = perc_seg_1,
                        PERC_2 = perc_seg_2
@@ -541,6 +564,7 @@ hvezdice_eval <- function(hab_code, evl_site) {
                      HABITAT_CODE = hab_code,
                      ROZLOHA = NA,
                      TYPICKE_DRUHY = NA,
+                     KVALITA_ORIG = NA,
                      KVALITA = NA,
                      MINIMIAREAL = NA,
                      MOZAIKA = NA,
@@ -549,11 +573,15 @@ hvezdice_eval <- function(hab_code, evl_site) {
                      RED_LIST = NA,
                      INVASIVE = NA,
                      EXPANSIVE = NA,
+                     MRTVE_DREVO = NA,
+                     KALAMITA_POLOM = NA,
                      RED_LIST_SPECIES = NA,
                      INVASIVE_LIST = NA,
                      EXPANSIVE_LIST = NA,
                      VYPLNENOST_TD = NA,
-                     VYPLNENOST_KVALITA = NA)
+                     VYPLNENOST_KVALITA = NA,
+                     VYPLNENOST_MD = NA,
+                     VYPLNENOST_KP = NA,)
   }
   
   result
