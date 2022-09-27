@@ -18,7 +18,7 @@ převzato z Gilson et al. (2019)</p>
 
 <p align="center" class="caption">Implementace principů adaptivního managementového cyklu do hodnocení a plánování péče o předměty ochrany v soustavě Natura 2000:</p>
 
-<p align="center"><a href="#"><img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/amc_matice.png" alt="Implementace principů adaptivního managementového cyklu do hodnocení a plánování péče o předměty ochrany v soustavě Natura 2OOO" width="50%" height="50%" /></a></p>
+<p align="center"><a href="#"><img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/amc_cz.png" alt="Implementace principů adaptivního managementového cyklu do hodnocení a plánování péče o předměty ochrany v soustavě Natura 2OOO" width="70%" height="70%" /></a></p>
 
 
 ## Metodika sběru a vyhodnocení dat
