@@ -31,7 +31,7 @@ if(!isTRUE(require(openxlsx, quietly = TRUE))) {
   require(openxlsx)}
 
 # LOAD DATA ----
-sites_subjects <- openxlsx::read.xlsx("http://webgis.nature.cz/publicdocs/opendata/natura2000/seznam_predmetolokalit_Natura2000.xlsx")
+sites_subjects <- openxlsx::read.xlsx("http://webgis.nature.cz/publicdocs/opendata/natura2000/seznam_predmetolokalit_Natura2000_440_2021.xlsx")
 sites_subjects <- sites_subjects %>%
   dplyr::rename(Nazev.latinsky = "Název.latinsky.(druh)",
                 Nazev.lokality = "Název.lokality",
@@ -69,6 +69,20 @@ czechia <- st_read("HraniceCR.shp")
 czechia <- st_transform(czechia, CRS("+init=epsg:4326"))
 bioregs <- st_read("BiogeoRegions_CR.shp")
 bioregs <- st_transform(bioregs, CRS("+init=epsg:4326"))
+
+# SDO II sites
+sdo_II_sites <- read.csv2("SDO_II_predmetolokality.csv",
+                          header = TRUE)
+sdo_II_sites <- sdo_II_sites %>%
+  dplyr::mutate(species_code = dplyr::case_when(grepl("buxbau", 
+                                                      nazev_pro, 
+                                                      ignore.case = TRUE) ~ 1386,
+                                                grepl("dicranum", 
+                                                      nazev_pro, 
+                                                      ignore.case = TRUE) ~ 1381,
+                                                grepl("hamato", 
+                                                      nazev_pro, 
+                                                      ignore.case = TRUE) ~ 6216))
 
 # FUNKCE N2K ----
 # SITECODE EVL PODLE PŘEDMĚTU OCHRANY
@@ -190,6 +204,7 @@ bry_buxvir_site_eval <- function(sci_code) {
     dplyr::summarise(
       SITECODE = sci_code,
       DRUH = "Buxbaumia viridis",
+      FEATURE_CODE = 1386,
       PRESENCE_site = unique(PRESENCE_find),
       ABUNDANCE_site = unique(ABUNDANCE_find),
       ABUNDANCE_val = paste(unique(ABUNDANCE_num), unique(ABUNDANCE_uni), sep = " "),
@@ -314,6 +329,7 @@ bry_buxvir_sci_eval <- function(sci_code) {
       SITECODE = sci_code,
       NAZEV = find_evl_CODE_TO_NAME(sci_code),
       DRUH = "Buxbaumia viridis",
+      FEATURE_CODE = 1386,
       PRESENCE = mean(na.omit(PRESENCE_site)),
       ABUNDANCE = mean(na.omit(ABUNDANCE_site)),
       MRTVE_DREVO = mean(na.omit(MRTVE_DREVO_site)),
@@ -348,7 +364,7 @@ bry_dicvir_site_eval <- function(sci_code) {
                                        POCET > 0 ~ 1,
                                        POCET == 0 ~ 0),
       MICROSITE_num = readr::parse_number(gsub(".*<pocet_ml>|</pocet_ml>.*", "", STRUKT_POZN)),
-      ABUNDANE_num = POCET,
+      ABUNDANCE_num = POCET,
       ABUNDANCE_uni = POCITANO,
       ABUNDANCE_find = dplyr::case_when(POCET >= 10 & POCITANO == "cm2" ~ 1,
                                         POCET < 10 & POCITANO == "cm2" ~ 0),
@@ -391,6 +407,7 @@ bry_dicvir_site_eval <- function(sci_code) {
     dplyr::slice(1) %>%
     dplyr::summarise(
       SITECODE = unique(SITECODE),
+      FEATURE_CODE = 1381,
       PRESENCE_site = unique(PRESENCE_find), 
       MICROSITE_site = unique(MICROSITE_find),
       ABUNDANCE_site = unique(ABUNDANCE_find),
@@ -480,6 +497,7 @@ bry_dicvir_sci_eval <- function(sci_code) {
       SITECODE = sci_code,
       NAZEV = find_evl_CODE_TO_NAME(sci_code),
       DRUH = "Dicranum viride",
+      FEATURE_CODE = 1381,
       PRESENCE = mean(na.omit(PRESENCE_site)),
       MICROSITE = mean(na.omit(MICROSITE_site)),
       ABUNDANCE = mean(na.omit(ABUNDANCE_site)),
@@ -590,6 +608,7 @@ bry_hamver_site_eval <- function(sci_code) {
     dplyr::slice(1) %>%
     dplyr::summarise(
       SITECODE = unique(SITECODE),
+      FEATURE_CODE = 6216,
       PRESENCE_site = unique(PRESENCE_find), 
       ABUNDANCE_val = paste(unique(ABUNDANCE_num), unique(ABUNDANCE_uni), sep = " "),
       ABUNDANCE_site = unique(ABUNDANCE_find),
@@ -687,6 +706,7 @@ bry_hamver_sci_eval <- function(sci_code) {
       SITECODE = sci_code,
       NAZEV = find_evl_CODE_TO_NAME(sci_code),
       DRUH = "Hamatocaulis vernicosus",
+      FEATURE_CODE = 6216,
       PRESENCE = mean(na.omit(PRESENCE_site)),
       ABUNDANCE = mean(na.omit(ABUNDANCE_site)),
       MICROSITE = mean(na.omit(MICROSITE_site)),
@@ -739,6 +759,9 @@ write.csv2(results_sites_buxvir,
            row.names = FALSE,
            fileEncoding = "Windows-1250")
 
+results_sites_buxvir_SDO_II <- results_sites_buxvir %>%
+  dplyr::filter(SITECODE %in% sdo_II_sites$sitecode & FEATURE_CODE %in% sdo_II_sites$species_code)
+
 # |-Buxbaumia viridis SCI ----
 sites_buxvir <- sites_subjects %>%
   filter(feature_code == 1386)
@@ -760,6 +783,9 @@ write.csv2(results_sci_buxvir[c(2:nrow(results_sci_buxvir)),],
            "C:/Users/jonas.gaigr/Desktop/results_sci_buxvir.csv",
            row.names = FALSE,
            fileEncoding = "Windows-1250")
+
+results_sci_buxvir_SDO_II <- results_sci_buxvir %>%
+  dplyr::filter(SITECODE %in% sdo_II_sites$sitecode & FEATURE_CODE %in% sdo_II_sites$species_code)
 
 # |-Dicranum viridae SITES ----
 sites_dicvir <- sites_subjects %>%
@@ -783,6 +809,9 @@ write.csv2(results_sites_dicvir,
            row.names = FALSE,
            fileEncoding = "Windows-1250")
 
+results_sites_dicvir_SDO_II <- results_sites_dicvir %>%
+  dplyr::filter(SITECODE %in% sdo_II_sites$sitecode & FEATURE_CODE %in% sdo_II_sites$species_code)
+
 # |-Dicranum viridae SCI ----
 sites_dicvir <- sites_subjects %>%
   filter(feature_code == 1381)
@@ -804,6 +833,9 @@ write.csv2(results_sci_dicvir,
            "C:/Users/jonas.gaigr/Desktop/results_sci_dicvir.csv",
            row.names = FALSE,
            fileEncoding = "Windows-1250")
+
+results_sci_dicvir_SDO_II <- results_sci_dicvir %>%
+  dplyr::filter(SITECODE %in% sdo_II_sites$sitecode & FEATURE_CODE %in% sdo_II_sites$species_code)
 
 # |-Hamatocaulis vernicosus SCI ----
 sites_hamver <- sites_subjects %>%
@@ -828,6 +860,9 @@ write.csv2(results_sites_hamver,
            row.names = FALSE,
            fileEncoding = "Windows-1250")
 
+results_sites_hamver_SDO_II <- results_sites_hamver %>%
+  dplyr::filter(SITECODE %in% sdo_II_sites$sitecode & FEATURE_CODE %in% sdo_II_sites$species_code)
+
 # |-Hamatocaulis vernicosus SCI ----
 sites_hamver <- sites_subjects %>%
   filter(feature_code == 6216)
@@ -850,6 +885,9 @@ write.csv2(results_sci_hamver,
            "C:/Users/jonas.gaigr/Desktop/results_sci_hamver.csv",
            row.names = FALSE,
            fileEncoding = "Windows-1250")
+
+results_sci_hamver_SDO_II <- results_sci_hamver %>%
+  dplyr::filter(SITECODE %in% sdo_II_sites$sitecode & FEATURE_CODE %in% sdo_II_sites$species_code)
 
 # DATATABLE ----
 library(DT)
@@ -1308,10 +1346,30 @@ bry_hamver_sci_dt <- DT::datatable(results_sci_hamver %>%
 
 bry_hamver_sci_dt
 
-testtest <- species %>%
-  filter(DRUH == "Hamatocaulis vernicosus") %>%
-  filter(grepl("VELPOP",STRUKT_POZN)) %>%
-  mutate(cozas = case_when(grepl("velikost_pl", STRUKT_POZN) ~ readr::parse_number(gsub(".*<velikost_pl>|</velikost_pl>.*", "", STRUKT_POZN)),
-                           TRUE ~ NA_real_)) %>%
-  select(cozas, STRUKT_POZN)
-testtest
+# SDO II sites ----
+write.csv2(results_sites_buxvir_SDO_II, 
+           "C:/Users/jonas.gaigr/Desktop/SDO_II_sites/results_sites_buxvir_SDO_II.csv",
+           row.names = FALSE,
+           fileEncoding = "Windows-1250")
+write.csv2(results_sci_buxvir_SDO_II, 
+           "C:/Users/jonas.gaigr/Desktop/SDO_II_sites/results_sci_buxvir_SDO_II.csv",
+           row.names = FALSE,
+           fileEncoding = "Windows-1250")
+
+write.csv2(results_sites_dicvir_SDO_II, 
+           "C:/Users/jonas.gaigr/Desktop/SDO_II_sites/results_sites_dicvir_SDO_II.csv",
+           row.names = FALSE,
+           fileEncoding = "Windows-1250")
+write.csv2(results_sci_dicvir_SDO_II, 
+           "C:/Users/jonas.gaigr/Desktop/SDO_II_sites/results_sci_dicvir_SDO_II.csv",
+           row.names = FALSE,
+           fileEncoding = "Windows-1250")
+
+write.csv2(results_sites_hamver_SDO_II, 
+           "C:/Users/jonas.gaigr/Desktop/SDO_II_sites/results_sites_hamver_SDO_II.csv",
+           row.names = FALSE,
+           fileEncoding = "Windows-1250")
+write.csv2(results_sci_hamver_SDO_II, 
+           "C:/Users/jonas.gaigr/Desktop/SDO_II_sites/results_sci_hamver_SDO_II.csv",
+           row.names = FALSE,
+           fileEncoding = "Windows-1250")
