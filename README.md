@@ -3,7 +3,7 @@ Hodnocení stavu předmětů ochrany v české soustavě Natura 2000 (HOST.N2K)
 
 ## Jedna příroda
 
-<p align="justify">Webová aplikace na hodnocení stavu předmětů ochrany <a href="https://jonasgaigr.shinyapps.io/HOST_N2K/"<strong>HOST.N2K</strong></a> je vyvíjena v rámci projektu <a href="https://www.jednapriroda.cz/">Jedna příroda</a> (LIFE-IP:N2K: Revisited, LIFE17/IPE/CZ/000005). Projekt Jedna příroda přispívá k zachování biodiverzity a podpoře ekosystémových služeb v chráněných územích soustavy Natura 2000. Jedním ze způsobů, kterými bude tohoto cíle dosaženo je zlepšení péče o předměty ochrany (druhy a stanoviště) na území evropsky významných lokalit a ptačích oblastí.</p> 
+<p align="justify">Soubor funkcí na hodnocení stavu předmětů ochrany v soustavě <a href="https://natura2000.cz/Lokalita/Lokality">Natura 2000</a> je vyvíjen Agenturou ochrany přírody a a krajiny ČR v rámci projektu <a href="https://www.jednapriroda.cz/">Jedna příroda</a> (LIFE-IP:N2K: Revisited, LIFE17/IPE/CZ/000005). Projekt Jedna příroda přispívá k zachování biodiverzity a podpoře ekosystémových služeb v chráněných územích soustavy Natura 2000. Jedním ze způsobů, kterými bude tohoto cíle dosaženo je zlepšení péče o předměty ochrany (druhy a stanoviště) na území evropsky významných lokalit a ptačích oblastí.</p> 
 
 <p align="center"><a href="#"><img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/LOGO.jpg" alt="Integrace přístupu adaptivního managementu a dostupných poznatků - převzato z Gilson et al. (2019)" width="50%" height="50%" /></a></p>
 
