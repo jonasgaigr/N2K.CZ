@@ -154,25 +154,27 @@ bry_buxvir_site_eval <- function(sci_code) {
   
   # FIND LEVEL
   species_target_find <- species %>%
-    filter(SITECODE == sci_code) %>%
-    filter(DRUH == "Buxbaumia viridis") %>%
-    mutate(
+    dplyr::filter(SITECODE == sci_code) %>%
+    dplyr::filter(DRUH == "Buxbaumia viridis") %>%
+    dplyr::group_by(ID_ND_NALEZ) %>%
+    dplyr::mutate(
       PRESENCE_find = dplyr::case_when(NEGATIVNI == 0 ~ 1,
                                        NEGATIVNI == 1 ~ 0,
                                        POCET > 0 ~ 1,
                                        POCET == 0 ~ 0),
+      ABUNDANCE_num = POCET,
+      ABUNDANCE_uni = POCITANO,
       ABUNDANCE_find = dplyr::case_when(POCET >= 3 ~ 1,
                                         POCET < 3 ~ 0), 
-      DEADWOOD_find = dplyr::case_when(grepl("<SUB>nedostačující</SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 0,
+      MRTVE_DREVO_find = dplyr::case_when(grepl("<SUB>nedostačující</SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 0,
                                        grepl("<SUB>dostačující</SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 1),
       TARGET_MON_find = dplyr::case_when(grepl("<SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 1,
                                          TRUE ~ 0),
     ) %>%
-    dplyr::group_by(ID_ND_NALEZ) %>%
     dplyr::mutate(
       OVERALL_find = sum(PRESENCE_find, 
                          ABUNDANCE_find,
-                         DEADWOOD_find,
+                         MRTVE_DREVO_find,
                          na.rm = TRUE)
     ) %>%
     dplyr::ungroup()
@@ -182,14 +184,19 @@ bry_buxvir_site_eval <- function(sci_code) {
     dplyr::filter(TARGET_MON_find == 1) %>%
     dplyr::filter(DATE >= 2021 - 6) %>%
     dplyr::group_by(LOKALITA) %>%
+    dplyr::arrange(desc(TARGET_MON_find),
+                   desc(YEAR)) %>%
+    dplyr::slice(1) %>%
     dplyr::summarise(
       SITECODE = sci_code,
-      NAZEV = find_evl_CODE_TO_NAME(sci_code),
       DRUH = "Buxbaumia viridis",
       PRESENCE_site = unique(PRESENCE_find),
       ABUNDANCE_site = unique(ABUNDANCE_find),
-      DEADWOOD_site = unique(DEADWOOD_find),
+      ABUNDANCE_val = paste(unique(ABUNDANCE_num), unique(ABUNDANCE_uni), sep = " "),
+      MRTVE_DREVO_site = unique(MRTVE_DREVO_find),
       OVERALL_site = unique(OVERALL_find),
+      SUFFICIENT_site = dplyr::case_when(OVERALL_site == 3 ~ 1,
+                                         OVERALL_site < 3 ~ 0),
       TARGET_MON_site = unique(TARGET_MON_find)
     ) %>%
     dplyr::ungroup()
@@ -210,10 +217,20 @@ bry_buxvir_site_eval <- function(sci_code) {
     dplyr::ungroup() %>%
     dplyr::select(LOKALITA, LAST_FIND)
   
+  species_target_site_ID <- species_target_find %>%
+    dplyr::group_by(LOKALITA) %>%
+    dplyr::arrange(desc(TARGET_MON_find),
+                   desc(YEAR)) %>%
+    dplyr::slice(1) %>%
+    dplyr::summarise(LOKALITA = unique(LOKALITA),
+                     ID_ND_NALEZ = unique(ID_ND_NALEZ)) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(LOKALITA, ID_ND_NALEZ)
   
   result <- species_target_site %>%
-    dplyr::mutate(SUFFICIENT_site = dplyr::case_when(OVERALL_site == 3 ~ 1,
-                                                     OVERALL_site < 3 ~ 0)) %>%
+    dplyr::full_join(.,
+                     species_target_site_ID, 
+                     by = "LOKALITA") %>%
     dplyr::full_join(.,
                      last_targeted_mon_site, 
                      by = "LOKALITA") %>%
@@ -239,7 +256,7 @@ bry_buxvir_sci_eval <- function(sci_code) {
                                        POCET == 0 ~ 0),
       ABUNDANCE_find = dplyr::case_when(POCET >= 3 ~ 1,
                                         POCET < 3 ~ 0),
-      DEADWOOD_find = dplyr::case_when(grepl("<SUB>nedostačující</SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 0,
+      MRTVE_DREVO_find = dplyr::case_when(grepl("<SUB>nedostačující</SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 0,
                                        grepl("<SUB>dostačující</SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 1),
       TARGET_MON_find = dplyr::case_when(grepl("<SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 1,
                                         TRUE ~ 0),
@@ -248,7 +265,7 @@ bry_buxvir_sci_eval <- function(sci_code) {
     dplyr::mutate(
       OVERALL_find = sum(PRESENCE_find, 
                          ABUNDANCE_find,
-                         DEADWOOD_find,
+                         MRTVE_DREVO_find,
                          na.rm = TRUE)
     ) %>%
     dplyr::ungroup()
@@ -264,7 +281,7 @@ bry_buxvir_sci_eval <- function(sci_code) {
     dplyr::summarise(
       PRESENCE_site = unique(PRESENCE_find),
       ABUNDANCE_site = unique(ABUNDANCE_find),
-      DEADWOOD_site = unique(DEADWOOD_find),
+      MRTVE_DREVO_site = unique(MRTVE_DREVO_find),
       OVERALL_site = unique(OVERALL_find),
       TARGET_MON_site = unique(TARGET_MON_find)
     ) %>%
@@ -299,7 +316,7 @@ bry_buxvir_sci_eval <- function(sci_code) {
       DRUH = "Buxbaumia viridis",
       PRESENCE = mean(na.omit(PRESENCE_site)),
       ABUNDANCE = mean(na.omit(ABUNDANCE_site)),
-      DEADWOOD = mean(na.omit(DEADWOOD_site)),
+      MRTVE_DREVO = mean(na.omit(MRTVE_DREVO_site)),
       TARGET_MON = dplyr::case_when(max(TARGET_MON_site) == 1 ~ 1,
                                     max(TARGET_MON_site) == 0 ~ 0),
       OVERALL = mean(na.omit(OVERALL_site)),
@@ -339,9 +356,9 @@ bry_dicvir_site_eval <- function(sci_code) {
       TREND_find = dplyr::case_when(grepl("<trend_vyvoj>zvyšujícící</trend_vyvoj>", STRUKT_POZN, ignore.case = TRUE) ~ 1,
                                     grepl("<trend_vyvoj>kolísající</trend_vyvoj>", STRUKT_POZN, ignore.case = TRUE) ~ 1,
                                     grepl("<trend_vyvoj>snižující</trend_vyvoj>", STRUKT_POZN, ignore.case = TRUE) ~ 0),
-      STRUCTAGE_find = dplyr::case_when(grepl("<str_strom>nevyhovující</str_strom>", STRUKT_POZN, ignore.case = TRUE) ~ 0,
+      STRUKTVEK_find = dplyr::case_when(grepl("<str_strom>nevyhovující</str_strom>", STRUKT_POZN, ignore.case = TRUE) ~ 0,
                                         grepl("<str_strom>vyhovující</str_strom>", STRUKT_POZN, ignore.case = TRUE) ~ 1),
-      STRUCTSPE_find = dplyr::case_when(grepl("<druh_strom>nevyhovující</druh_strom>", STRUKT_POZN, ignore.case = TRUE) ~ 0,
+      STRUKTDRU_find = dplyr::case_when(grepl("<druh_strom>nevyhovující</druh_strom>", STRUKT_POZN, ignore.case = TRUE) ~ 0,
                                         grepl("<druh_strom>vyhovující</druh_strom>", STRUKT_POZN, ignore.case = TRUE) ~ 1),
       MANAGEMENT_find = dplyr::case_when(grepl("<MAN>bezzásahovost</MAN>", STRUKT_POZN, ignore.case = TRUE) ~ 1,
                                          grepl("<MAN>výběrová těžba</MAN>", STRUKT_POZN, ignore.case = TRUE) ~ 1),
@@ -358,8 +375,8 @@ bry_dicvir_site_eval <- function(sci_code) {
                          MICROSITE_find,
                          ABUNDANCE_find,
                          TREND_find,
-                         STRUCTAGE_find,
-                         STRUCTSPE_find,
+                         STRUKTVEK_find,
+                         STRUKTDRU_find,
                          MANAGEMENT_find,
                          na.rm = TRUE)
     ) %>%
@@ -377,9 +394,10 @@ bry_dicvir_site_eval <- function(sci_code) {
       PRESENCE_site = unique(PRESENCE_find), 
       MICROSITE_site = unique(MICROSITE_find),
       ABUNDANCE_site = unique(ABUNDANCE_find),
+      ABUNDANCE_val = paste(unique(ABUNDANCE_num), unique(ABUNDANCE_uni), sep = " "),
       TREND_site = unique(TREND_find),
-      STRUCTAGE_site = unique(STRUCTAGE_find),
-      STRUCTSPE_site = unique(STRUCTSPE_find),
+      STRUKTVEK_site = unique(STRUKTVEK_find),
+      STRUKTDRU_site = unique(STRUKTDRU_find),
       MANAGEMENT_site = unique(MANAGEMENT_find),
       OVERALL_site = unique(OVERALL_find),
       TARGET_MON_site = unique(TARGET_MON_find)
@@ -429,7 +447,7 @@ bry_dicvir_sci_eval <- function(sci_code) {
  
   # SITE LEVEL
   species_target_sites <- results_sites_dicvir %>%
-    dplyr::filter(SITECODE == sci_code)
+    dplyr::filter(SITECODE == sci_code) 
   
   sufficient_sites <- species_target_sites %>%
     dplyr::filter(OVERALL_site == 7) %>%
@@ -466,12 +484,12 @@ bry_dicvir_sci_eval <- function(sci_code) {
       MICROSITE = mean(na.omit(MICROSITE_site)),
       ABUNDANCE = mean(na.omit(ABUNDANCE_site)),
       TREND = mean(na.omit(TREND_site)),
-      STRUKT_VEK = mean(na.omit(STRUCTAGE_site)),
-      STRUKT_DRU = mean(na.omit(STRUCTSPE_site)),
+      STRUKT_VEK = mean(na.omit(STRUKTVEK_site)),
+      STRUKT_DRU = mean(na.omit(STRUKTDRU_site)),
       MANAGEMENT = mean(na.omit(MANAGEMENT_site)),
       TARGET_MON = dplyr::case_when(max(TARGET_MON_site) == 1 ~ 1,
                                     max(TARGET_MON_site) == 0 ~ 0),
-      OVERALL = mean(na.omit(OVERALL_site)),
+      OVERALL = mean(na.omit(filter(., TARGET_MON_site == 1)$OVERALL_site)),
       SUFFICIENT = sufficient_sites_length,
       TOTAL_SITES = total_sites_length,
       SUFFICIENT_PERC = sufficient_sites_length/total_sites_length,
@@ -511,16 +529,19 @@ bry_hamver_site_eval <- function(sci_code) {
       TREND_find = dplyr::case_when(grepl("<trend_vyvoj>zvyšujícící</trend_vyvoj>", STRUKT_POZN, ignore.case = TRUE) ~ 1,
                                     grepl("<trend_vyvoj>kolísající</trend_vyvoj>", STRUKT_POZN, ignore.case = TRUE) ~ 1,
                                     grepl("<trend_vyvoj>snižující</trend_vyvoj>", STRUKT_POZN, ignore.case = TRUE) ~ 0),
-      CHANGE1_num = readr::parse_number(gsub(".*<vel_pop>|</vel_pop>.*", "", STRUKT_POZN)),
-      CHANGE2_num = readr::parse_number(gsub(".*<vel_pop2>|</vel_pop2>.*", "", STRUKT_POZN)),
+      ZMENA1_num = readr::parse_number(gsub(".*<vel_pop>|</vel_pop>.*", "", STRUKT_POZN)),
+      ZMENA2_num = readr::parse_number(gsub(".*<vel_pop2>|</vel_pop2>.*", "", STRUKT_POZN)),
       STRUCTURE_find = dplyr::case_when(grepl("<str_strom>nevyhovující</str_strom>", STRUKT_POZN, ignore.case = TRUE) |
                                           grepl("<druh_strom>nevyhovující</druh_strom>", STRUKT_POZN, ignore.case = TRUE) ~ 0,
                                         grepl("<str_strom>vyhovující</str_strom>", STRUKT_POZN, ignore.case = TRUE) &
                                           grepl("<druh_strom>vyhovující</druh_strom>", STRUKT_POZN, ignore.case = TRUE)~ 1),
-      POTENTIAL_num = readr::parse_number(gsub(".*<velikost_pl>|</velikost_pl>.*", "", STRUKT_POZN)),
-      PLANTCOV_num = readr::parse_number(gsub(".*<pokr_bylin>|</pokr_bylin>.*", "", STRUKT_POZN)),
+      POTENCIAL_num = dplyr::case_when(grepl("<velikost_pl>", STRUKT_POZN) ~ readr::parse_number(gsub(".*<velikost_pl>|</velikost_pl>.*", "", STRUKT_POZN)),
+                                       TRUE ~ NA_real_),
+      POTENCIAL_uni = dplyr::case_when(grepl("<velikost_pl>", STRUKT_POZN) ~ readr::parse_character(gsub(".*<velikost_pl>|</velikost_pl>.*", "", STRUKT_POZN)),
+                                       TRUE ~ NA_character_),
+      POKRROST_num = readr::parse_number(gsub(".*<pokr_bylin>|</pokr_bylin>.*", "", STRUKT_POZN)),
       EXPCOV_num = readr::parse_number(gsub(".*<pokr_exp_dr>|</pokr_exp_dr>.*", "", STRUKT_POZN)),
-      SHADECOV_num = readr::parse_number(gsub(".*<zast_sta>|</zast_sta>.*", "", STRUKT_POZN)),
+      POKRSTIN_num = readr::parse_number(gsub(".*<zast_sta>|</zast_sta>.*", "", STRUKT_POZN)),
       MANAGEMENT_find = dplyr::case_when(grepl("<MAN>nedostačující</MAN>", STRUKT_POZN, ignore.case = TRUE) ~ 0,
                                          grepl("<MAN>dostačující</MAN>", STRUKT_POZN, ignore.case = TRUE) ~ 1),
       THREATS_find = dplyr::case_when(grepl("<NEG>nepozorovány</NEG>", STRUKT_POZN, ignore.case = TRUE) ~ 1,
@@ -533,28 +554,28 @@ bry_hamver_site_eval <- function(sci_code) {
     ) %>%
     dplyr::mutate(MICROSITE_find = dplyr::case_when(MICROSITE_num >= 10 ~ 1,
                                                     MICROSITE_num < 10 ~ 0),
-                  CHANGE1_find = dplyr::case_when(CHANGE1_num > -10 ~ 1,
-                                                  CHANGE1_num <= -10 ~ 0),
-                  CHANGE2_find = dplyr::case_when(CHANGE2_num > -30 ~ 1,
-                                                  CHANGE2_num <= -30 ~ 0),
-                  POTENTIAL_find = dplyr::case_when(POTENTIAL_num >= 500 ~ 1,
-                                                    POTENTIAL_num < 500 ~ 0),
-                  PLANTCOV_find = dplyr::case_when(PLANTCOV_num <= 90 ~ 1,
-                                                   PLANTCOV_num > 90 ~ 0),
+                  ZMENA1_find = dplyr::case_when(ZMENA1_num > -10 ~ 1,
+                                                  ZMENA1_num <= -10 ~ 0),
+                  ZMENA2_find = dplyr::case_when(ZMENA2_num > -30 ~ 1,
+                                                  ZMENA2_num <= -30 ~ 0),
+                  POTENCIAL_find = dplyr::case_when(POTENCIAL_num >= 500 ~ 1,
+                                                    POTENCIAL_num < 500 ~ 0),
+                  POKRROST_find = dplyr::case_when(POKRROST_num <= 90 ~ 1,
+                                                   POKRROST_num > 90 ~ 0),
                   EXPCOV_find = dplyr::case_when(EXPCOV_num <= 10 ~ 1,
                                                  EXPCOV_num > 10 ~ 0),
-                  SHADECOV_find = dplyr::case_when(SHADECOV_num < 5 ~ 1,
-                                                   SHADECOV_num >= 5 ~ 0)) %>%
+                  POKRSTIN_find = dplyr::case_when(POKRSTIN_num < 5 ~ 1,
+                                                   POKRSTIN_num >= 5 ~ 0)) %>%
     dplyr::group_by(ID_ND_NALEZ) %>%
     dplyr::mutate(
       OVERALL_find = sum(ABUNDANCE_find,
                          MICROSITE_find,
-                         CHANGE1_find,
-                         CHANGE2_find,
-                         POTENTIAL_find,
-                         PLANTCOV_find,
+                         ZMENA1_find,
+                         ZMENA2_find,
+                         POTENCIAL_find,
+                         POKRROST_find,
                          EXPCOV_find,
-                         SHADECOV_find,
+                         POKRSTIN_find,
                          MANAGEMENT_find,
                          na.rm = TRUE)
     ) %>%
@@ -574,15 +595,16 @@ bry_hamver_site_eval <- function(sci_code) {
       ABUNDANCE_site = unique(ABUNDANCE_find),
       MICROSITE_val = paste(unique(MICROSITE_num), "m2", sep = " "),
       MICROSITE_site = unique(MICROSITE_find),
-      CHANGE1_site = unique(CHANGE1_find),
-      CHANGE2_site = unique(CHANGE2_find),
-      POTENTIAL_site = unique(POTENTIAL_find),
-      PLANTCOV_val = paste(unique(PLANTCOV_num), "%", sep = " "),
-      PLANTCOV_site = unique(PLANTCOV_find),
+      ZMENA1_site = unique(ZMENA1_find),
+      ZMENA2_site = unique(ZMENA2_find),
+      POTENCIAL_site = unique(POTENCIAL_find),
+      POTENCIAL_val = unique(POTENCIAL_uni),
+      POKRROST_val = paste(unique(POKRROST_num), "%", sep = " "),
+      POKRROST_site = unique(POKRROST_find),
       EXPCOV_val = paste(unique(EXPCOV_num), "%", sep = " "),
       EXPCOV_site = unique(EXPCOV_find),
-      SHADECOV_val = paste(unique(SHADECOV_num), "%", sep = " "),
-      SHADECOV_site = unique(SHADECOV_find),
+      POKRSTIN_val = paste(unique(POKRSTIN_num), "%", sep = " "),
+      POKRSTIN_site = unique(POKRSTIN_find),
       MANAGEMENT_site = unique(MANAGEMENT_find),
       OVERALL_site = unique(OVERALL_find),
       TARGET_MON_site = unique(TARGET_MON_find)
@@ -668,12 +690,12 @@ bry_hamver_sci_eval <- function(sci_code) {
       PRESENCE = mean(na.omit(PRESENCE_site)),
       ABUNDANCE = mean(na.omit(ABUNDANCE_site)),
       MICROSITE = mean(na.omit(MICROSITE_site)),
-      CHANGE1 = mean(na.omit(CHANGE1_site)),
-      CHANGE2 = mean(na.omit(CHANGE2_site)),
-      POTENTIAL = mean(na.omit(POTENTIAL_site)),
-      PLANTCOV = mean(na.omit(PLANTCOV_site)),
+      ZMENA1 = mean(na.omit(ZMENA1_site)),
+      ZMENA2 = mean(na.omit(ZMENA2_site)),
+      POTENCIAL = mean(na.omit(POTENCIAL_site)),
+      POKRROST = mean(na.omit(POKRROST_site)),
       EXPCOV = mean(na.omit(EXPCOV_site)),
-      SHADECOV = mean(na.omit(SHADECOV_site)),
+      POKRSTIN = mean(na.omit(POKRSTIN_site)),
       MANAGEMENT = mean(na.omit(MANAGEMENT_site)),
       TARGET_MON = dplyr::case_when(max(TARGET_MON_site) == 1 ~ 1,
                                     max(TARGET_MON_site) == 0 ~ 0),
@@ -712,8 +734,8 @@ write.csv(results_sites_buxvir,
           "C:/Users/jonas.gaigr/N2K.CZ/results/results_buxvir_sites.csv",
           row.names = FALSE,
           fileEncoding = "UTF-8")
-write.csv2(results_sci_buxvir[c(2:nrow(results_sci_buxvir)),], 
-           "C:/Users/jonas.gaigr/Desktop/results_sci_buxvir.csv",
+write.csv2(results_sites_buxvir, 
+           "C:/Users/jonas.gaigr/Desktop/state_results/results_sites_buxvir.csv",
            row.names = FALSE,
            fileEncoding = "Windows-1250")
 
@@ -836,7 +858,7 @@ bry_buxvir_sci_dt <- DT::datatable(results_sci_buxvir %>%
                                  dplyr::group_by(SITECODE) %>%
                                  dplyr::mutate(EVAL = dplyr::case_when(is.na(sum(PRESENCE,
                                                                                  ABUNDANCE,
-                                                                                 DEADWOOD)) == TRUE ~ 0,
+                                                                                 MRTVE_DREVO)) == TRUE ~ 0,
                                                                        TRUE ~ 1)) %>%
                                  dplyr::ungroup() %>%
                                  dplyr::mutate(ROW_COL = dplyr::case_when(PRESENCE == 0 ~ 0,
@@ -852,12 +874,12 @@ bry_buxvir_sci_dt <- DT::datatable(results_sci_buxvir %>%
                                                ABUNDANCE_COL = dplyr::case_when(ABUNDANCE >= 0.5 ~ 1,
                                                                                 ABUNDANCE < 0.5~ 0,
                                                                                is.na(ABUNDANCE) == TRUE ~ -1),
-                                               DEADWOOD_COL = dplyr::case_when(DEADWOOD >= 0.5 ~ 1,
-                                                                                DEADWOOD < 0.5  ~ 0,
-                                                                               is.na(DEADWOOD) == TRUE ~ -1)) %>%
+                                               MRTVE_DREVO_COL = dplyr::case_when(MRTVE_DREVO >= 0.5 ~ 1,
+                                                                                MRTVE_DREVO < 0.5  ~ 0,
+                                                                               is.na(MRTVE_DREVO) == TRUE ~ -1)) %>%
                                  dplyr::mutate(across(c(PRESENCE,
                                                         ABUNDANCE,
-                                                        DEADWOOD,
+                                                        MRTVE_DREVO,
                                                         OVERALL),
                                                       round, 3)) %>%
                                  as.data.frame(),
@@ -888,7 +910,7 @@ bry_buxvir_sci_dt <- DT::datatable(results_sci_buxvir %>%
   DT::formatStyle('ABUNDANCE', 'ABUNDANCE_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
-  DT::formatStyle('DEADWOOD', 'DEADWOOD_COL',
+  DT::formatStyle('MRTVE_DREVO', 'MRTVE_DREVO_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
   DT::formatStyle('OVERALL', 'ROW_COL',
@@ -1020,12 +1042,12 @@ bry_hamver_sites_dt <- DT::datatable(results_sites_hamver %>%
                                      dplyr::mutate(EVAL = dplyr::case_when(is.na(sum(PRESENCE_site,
                                                                                      ABUNDANCE_site,
                                                                                      MICROSITE_site,
-                                                                                     CHANGE1_site,
-                                                                                     CHANGE2_site,
-                                                                                     POTENTIAL_site,
-                                                                                     PLANTCOV_site,
+                                                                                     ZMENA1_site,
+                                                                                     ZMENA2_site,
+                                                                                     POTENCIAL_site,
+                                                                                     POKRROST_site,
                                                                                      EXPCOV_site,
-                                                                                     SHADECOV_site,
+                                                                                     POKRSTIN_site,
                                                                                      MANAGEMENT_site)) == TRUE ~ 0,
                                                                            TRUE ~ 1)) %>%
                                      dplyr::ungroup() %>%
@@ -1045,36 +1067,36 @@ bry_hamver_sites_dt <- DT::datatable(results_sites_hamver %>%
                                                    MICROSITE_COL = dplyr::case_when(MICROSITE_site >= 0.5 ~ 1,
                                                                                     MICROSITE_site < 0.5~ 0,
                                                                                     is.na(MICROSITE_site) == TRUE ~ -1),
-                                                   CHANGE1_COL = dplyr::case_when(CHANGE1_site >= 0.5 ~ 1,
-                                                                                  CHANGE1_site < 0.5~ 0,
-                                                                                  is.na(CHANGE1_site) == TRUE ~ -1),
-                                                   CHANGE2_COL = dplyr::case_when(CHANGE2_site >= 0.5 ~ 1,
-                                                                                  CHANGE2_site < 0.5~ 0,
-                                                                                  is.na(CHANGE2_site) == TRUE ~ -1),
-                                                   POTENTIAL_COL = dplyr::case_when(POTENTIAL_site >= 0.5 ~ 1,
-                                                                                    POTENTIAL_site < 0.5~ 0,
-                                                                                    is.na(POTENTIAL_site) == TRUE ~ -1),
-                                                   PLANTCOV_COL = dplyr::case_when(PLANTCOV_site >= 0.5 ~ 1,
-                                                                                   PLANTCOV_site < 0.5~ 0,
-                                                                                   is.na(PLANTCOV_site) == TRUE ~ -1),
+                                                   ZMENA1_COL = dplyr::case_when(ZMENA1_site >= 0.5 ~ 1,
+                                                                                  ZMENA1_site < 0.5~ 0,
+                                                                                  is.na(ZMENA1_site) == TRUE ~ -1),
+                                                   ZMENA2_COL = dplyr::case_when(ZMENA2_site >= 0.5 ~ 1,
+                                                                                  ZMENA2_site < 0.5~ 0,
+                                                                                  is.na(ZMENA2_site) == TRUE ~ -1),
+                                                   POTENCIAL_COL = dplyr::case_when(POTENCIAL_site >= 0.5 ~ 1,
+                                                                                    POTENCIAL_site < 0.5~ 0,
+                                                                                    is.na(POTENCIAL_site) == TRUE ~ -1),
+                                                   POKRROST_COL = dplyr::case_when(POKRROST_site >= 0.5 ~ 1,
+                                                                                   POKRROST_site < 0.5~ 0,
+                                                                                   is.na(POKRROST_site) == TRUE ~ -1),
                                                    EXPCOV_COL = dplyr::case_when(EXPCOV_site >= 0.5 ~ 1,
                                                                                  EXPCOV_site < 0.5~ 0,
                                                                                  is.na(EXPCOV_site) == TRUE ~ -1),
-                                                   SHADECOV_COL = dplyr::case_when(SHADECOV_site >= 0.5 ~ 1,
-                                                                                   SHADECOV_site < 0.5 ~ 0,
-                                                                                   is.na(SHADECOV_site) == TRUE ~ -1),
+                                                   POKRSTIN_COL = dplyr::case_when(POKRSTIN_site >= 0.5 ~ 1,
+                                                                                   POKRSTIN_site < 0.5 ~ 0,
+                                                                                   is.na(POKRSTIN_site) == TRUE ~ -1),
                                                    MANAGEMENT_COL = dplyr::case_when(MANAGEMENT_site >= 0.5 ~ 1,
                                                                                      MANAGEMENT_site < 0.5~ 0,
                                                                                      is.na(MANAGEMENT_site) == TRUE ~ -1)) %>%
                                      dplyr::mutate(across(c(PRESENCE_site,
                                                             ABUNDANCE_site,
                                                             MICROSITE_site,
-                                                            CHANGE1_site,
-                                                            CHANGE2_site,
-                                                            POTENTIAL_site,
-                                                            PLANTCOV_site,
+                                                            ZMENA1_site,
+                                                            ZMENA2_site,
+                                                            POTENCIAL_site,
+                                                            POKRROST_site,
                                                             EXPCOV_site,
-                                                            SHADECOV_site,
+                                                            POKRSTIN_site,
                                                             MANAGEMENT_site,
                                                             OVERALL_site),
                                                           round, 3)) %>%
@@ -1115,19 +1137,19 @@ bry_hamver_sites_dt <- DT::datatable(results_sites_hamver %>%
   DT::formatStyle('MICROSITE_site', 'MICROSITE_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
-  DT::formatStyle('CHANGE1_site', 'CHANGE1_COL',
+  DT::formatStyle('ZMENA1_site', 'ZMENA1_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
-  DT::formatStyle('CHANGE2_site', 'CHANGE2_COL',
+  DT::formatStyle('ZMENA2_site', 'ZMENA2_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
-  DT::formatStyle('POTENTIAL_site', 'POTENTIAL_COL',
+  DT::formatStyle('POTENCIAL_site', 'POTENCIAL_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
-  DT::formatStyle('PLANTCOV_val', 'MICROSITE_COL',
+  DT::formatStyle('POKRROST_val', 'MICROSITE_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
-  DT::formatStyle('PLANTCOV_site', 'PLANTCOV_COL',
+  DT::formatStyle('POKRROST_site', 'POKRROST_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
   DT::formatStyle('EXPCOV_val', 'EXPCOV_COL',
@@ -1136,10 +1158,10 @@ bry_hamver_sites_dt <- DT::datatable(results_sites_hamver %>%
   DT::formatStyle('EXPCOV_site', 'EXPCOV_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
-  DT::formatStyle('SHADECOV_val', 'SHADECOV_COL',
+  DT::formatStyle('POKRSTIN_val', 'POKRSTIN_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
-  DT::formatStyle('SHADECOV_site', 'EXPCOV_COL',
+  DT::formatStyle('POKRSTIN_site', 'EXPCOV_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
   DT::formatStyle('MANAGEMENT_site', 'MICROSITE_COL',
@@ -1161,12 +1183,12 @@ bry_hamver_sci_dt <- DT::datatable(results_sci_hamver %>%
                                      dplyr::mutate(EVAL = dplyr::case_when(is.na(sum(PRESENCE,
                                                                                      ABUNDANCE,
                                                                                      MICROSITE,
-                                                                                     CHANGE1,
-                                                                                     CHANGE2,
-                                                                                     POTENTIAL,
-                                                                                     PLANTCOV,
+                                                                                     ZMENA1,
+                                                                                     ZMENA2,
+                                                                                     POTENCIAL,
+                                                                                     POKRROST,
                                                                                      EXPCOV,
-                                                                                     SHADECOV,
+                                                                                     POKRSTIN,
                                                                                      MANAGEMENT)) == TRUE ~ 0,
                                                                            TRUE ~ 1)) %>%
                                      dplyr::ungroup() %>%
@@ -1186,36 +1208,36 @@ bry_hamver_sci_dt <- DT::datatable(results_sci_hamver %>%
                                                    MICROSITE_COL = dplyr::case_when(MICROSITE >= 0.5 ~ 1,
                                                                                     MICROSITE < 0.5~ 0,
                                                                                     is.na(MICROSITE) == TRUE ~ -1),
-                                                   CHANGE1_COL = dplyr::case_when(CHANGE1 >= 0.5 ~ 1,
-                                                                                  CHANGE1 < 0.5~ 0,
-                                                                                  is.na(CHANGE1) == TRUE ~ -1),
-                                                   CHANGE2_COL = dplyr::case_when(CHANGE2 >= 0.5 ~ 1,
-                                                                                  CHANGE2 < 0.5~ 0,
-                                                                                  is.na(CHANGE2) == TRUE ~ -1),
-                                                   POTENTIAL_COL = dplyr::case_when(POTENTIAL >= 0.5 ~ 1,
-                                                                                    POTENTIAL < 0.5~ 0,
-                                                                                    is.na(POTENTIAL) == TRUE ~ -1),
-                                                   PLANTCOV_COL = dplyr::case_when(PLANTCOV >= 0.5 ~ 1,
-                                                                                   PLANTCOV < 0.5~ 0,
-                                                                                   is.na(PLANTCOV) == TRUE ~ -1),
+                                                   ZMENA1_COL = dplyr::case_when(ZMENA1 >= 0.5 ~ 1,
+                                                                                  ZMENA1 < 0.5~ 0,
+                                                                                  is.na(ZMENA1) == TRUE ~ -1),
+                                                   ZMENA2_COL = dplyr::case_when(ZMENA2 >= 0.5 ~ 1,
+                                                                                  ZMENA2 < 0.5~ 0,
+                                                                                  is.na(ZMENA2) == TRUE ~ -1),
+                                                   POTENCIAL_COL = dplyr::case_when(POTENCIAL >= 0.5 ~ 1,
+                                                                                    POTENCIAL < 0.5~ 0,
+                                                                                    is.na(POTENCIAL) == TRUE ~ -1),
+                                                   POKRROST_COL = dplyr::case_when(POKRROST >= 0.5 ~ 1,
+                                                                                   POKRROST < 0.5~ 0,
+                                                                                   is.na(POKRROST) == TRUE ~ -1),
                                                    EXPCOV_COL = dplyr::case_when(EXPCOV >= 0.5 ~ 1,
                                                                                  EXPCOV < 0.5~ 0,
                                                                                  is.na(EXPCOV) == TRUE ~ -1),
-                                                   SHADECOV_COL = dplyr::case_when(SHADECOV >= 0.5 ~ 1,
-                                                                                   SHADECOV < 0.5~ 0,
-                                                                                   is.na(SHADECOV) == TRUE ~ -1),
+                                                   POKRSTIN_COL = dplyr::case_when(POKRSTIN >= 0.5 ~ 1,
+                                                                                   POKRSTIN < 0.5~ 0,
+                                                                                   is.na(POKRSTIN) == TRUE ~ -1),
                                                    MANAGEMENT_COL = dplyr::case_when(MANAGEMENT >= 0.5 ~ 1,
                                                                                      MANAGEMENT < 0.5~ 0,
                                                                                      is.na(MANAGEMENT) == TRUE ~ -1)) %>%
                                      dplyr::mutate(across(c(PRESENCE,
                                                             ABUNDANCE,
                                                             MICROSITE,
-                                                            CHANGE1,
-                                                            CHANGE2,
-                                                            POTENTIAL,
-                                                            PLANTCOV,
+                                                            ZMENA1,
+                                                            ZMENA2,
+                                                            POTENCIAL,
+                                                            POKRROST,
                                                             EXPCOV,
-                                                            SHADECOV,
+                                                            POKRSTIN,
                                                             MANAGEMENT,
                                                             OVERALL),
                                                           round, 3)) %>%
@@ -1250,22 +1272,22 @@ bry_hamver_sci_dt <- DT::datatable(results_sci_hamver %>%
   DT::formatStyle('MICROSITE', 'MICROSITE_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
-  DT::formatStyle('CHANGE1', 'CHANGE1_COL',
+  DT::formatStyle('ZMENA1', 'ZMENA1_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
-  DT::formatStyle('CHANGE2', 'CHANGE2_COL',
+  DT::formatStyle('ZMENA2', 'ZMENA2_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
-  DT::formatStyle('POTENTIAL', 'POTENTIAL_COL',
+  DT::formatStyle('POTENCIAL', 'POTENCIAL_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
-  DT::formatStyle('PLANTCOV', 'PLANTCOV_COL',
+  DT::formatStyle('POKRROST', 'POKRROST_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
   DT::formatStyle('EXPCOV', 'EXPCOV_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
-  DT::formatStyle('SHADECOV', 'SHADECOV_COL',
+  DT::formatStyle('POKRSTIN', 'POKRSTIN_COL',
                   backgroundColor = styleEqual(c(-1, 0, 0.5, 1), 
                                                c("grey", "red", "orange", "green"))) %>%
   DT::formatStyle('MANAGEMENT', 'MICROSITE_COL',
@@ -1285,3 +1307,11 @@ bry_hamver_sci_dt <- DT::datatable(results_sci_hamver %>%
                                                c("grey", "red", "orange", "green")))
 
 bry_hamver_sci_dt
+
+testtest <- species %>%
+  filter(DRUH == "Hamatocaulis vernicosus") %>%
+  filter(grepl("VELPOP",STRUKT_POZN)) %>%
+  mutate(cozas = case_when(grepl("velikost_pl", STRUKT_POZN) ~ readr::parse_number(gsub(".*<velikost_pl>|</velikost_pl>.*", "", STRUKT_POZN)),
+                           TRUE ~ NA_real_)) %>%
+  select(cozas, STRUKT_POZN)
+testtest
