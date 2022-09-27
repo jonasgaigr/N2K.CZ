@@ -42,7 +42,7 @@ sites_subjects$Nazev.latinsky <- gsub("Stenobothrus eurasius bohemicus", "Stenob
 # Druhové seznamy Přílohy II
 taxa <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/taxa.csv", encoding = "UTF-8")
 
-species_read <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/evl_data_export_2022_03_encoded.csv",
+species_read <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/evl_data_export_20220927.csv",
                          sep = ",",
                          stringsAsFactors = FALSE,
                          encoding = "UTF-8")
@@ -181,7 +181,7 @@ bry_buxvir_site_eval <- function(sci_code) {
       ABUNDANCE_find = dplyr::case_when(POCET >= 3 ~ 1,
                                         POCET < 3 ~ 0), 
       MRTVE_DREVO_find = dplyr::case_when(grepl("<SUB>nedostačující</SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 0,
-                                       grepl("<SUB>dostačující</SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 1),
+                                          grepl("<SUB>dostačující</SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 1),
       TARGET_MON_find = dplyr::case_when(grepl("<SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 1,
                                          TRUE ~ 0),
     ) %>%
@@ -290,8 +290,8 @@ bry_buxvir_sci_eval <- function(sci_code) {
     dplyr::filter(TARGET_MON_find == 1) %>%
     dplyr::filter(YEAR >= 2021 - 6) %>%
     dplyr::group_by(LOKALITA) %>%
-    dplyr::arrange(desc(YEAR)) %>%
-    dplyr::arrange(desc(PRESENCE_find)) %>%
+    dplyr::arrange(desc(YEAR),
+                   desc(PRESENCE_find)) %>%
     dplyr::slice(1) %>%
     dplyr::summarise(
       PRESENCE_site = unique(PRESENCE_find),
@@ -1373,3 +1373,9 @@ write.csv2(results_sci_hamver_SDO_II,
            "C:/Users/jonas.gaigr/Desktop/SDO_II_sites/results_sci_hamver_SDO_II.csv",
            row.names = FALSE,
            fileEncoding = "Windows-1250")
+
+species %>%
+  filter(DRUH == "Buxbaumia viridis") %>%
+  filter(grepl("Beskydy", NAZEV)) %>%
+  filter(YEAR > 2020) %>%
+  dplyr::select(LOKALITA, STRUKT_POZN)
