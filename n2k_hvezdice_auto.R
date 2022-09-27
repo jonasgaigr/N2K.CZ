@@ -128,23 +128,10 @@ vmb_shp_sjtsk_21 <- vmb_shp_sjtsk_21 %>%
   dplyr::mutate(FSB_EVAL = dplyr::case_when(STEJ_PR < 50 ~ "X",
                                             STEJ_PR >= 50 & STEJ_PR < 100 ~ "moz.",
                                             TRUE ~ FSB),
-                HABITAT = dplyr::case_when(BIOTOP == "T3.3C" | 
-                                             BIOTOP == "3.4A" |
-                                             BIOTOP == "T3.4C" | 
-                                             BIOTOP == "T3.5A" ~ "6210p",
+                HABITAT = dplyr::case_when(BIOTOP %in% c("T3.3C", "3.4A", "T3.4C", "T3.5A") ~ "6210p",
                                            TRUE ~ HABITAT))
-# VMB - ZÁKLADNÍ MAPOVÁNÍ
-vmb_shp_sjtsk_orig <- sf::st_read("//bali.nature.cz/du/Mapovani/Biotopy/CR_20060501/20060501_Segment.shp")
-vmb_hab_dbf_orig <- sf::st_read("//bali.nature.cz/du/Mapovani/Biotopy/CR_20060501/Biotop/HAB20060501_BIOTOP.dbf")
-vmb_shp_sjtsk_orig <- vmb_shp_sjtsk_orig %>%
-  dplyr::left_join(vmb_hab_dbf_orig, by = "SEGMENT_ID") %>%
-  dplyr::mutate(FSB_EVAL = dplyr::case_when(STEJ_PR < 50 ~ "X",
-                                            STEJ_PR >= 50 & STEJ_PR < 100 ~ "moz.",
-                                            TRUE ~ FSB),
-                HABITAT = dplyr::case_when(BIOTOP == "T3.3C" |BIOTOP == "3.4A" |
-                                             BIOTOP == "T3.4C" | 
-                                             BIOTOP == "T3.5A" ~ "6210p",
-                                           TRUE ~ HABITAT))
+
+
 
 # SEZNAM EVL A PŘEDMĚTŮ OCHRANY
 sites_subjects <- openxlsx::read.xlsx("https://webgis.nature.cz/publicdocs/opendata/natura2000/seznam_predmetolokalit_Natura2000_440_2021.xlsx")
@@ -561,7 +548,7 @@ hvezdice_eval <- function(hab_code, evl_site) {
     sum()/10000
   
   area_w_perc <- area_w_ha/target_area_ha
-  
+
   area_evl_perc <- target_area_ha/(unique(vmb_target_sjtsk$SHAPEAREA)/10000)*100
   
   area_relative_perc <- target_area_ha/(find_habitat_AREA2022(hab_code)/10000)*100
