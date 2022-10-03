@@ -506,21 +506,32 @@ hvezdice_eval <- function(hab_code, evl_site) {
   
   # DÉLKA HRANICE STANOVIŠTĚ S JINÝMI PŘÍRODNÍMI STANOVIŠTI
   if(nrow(filter(vmb_spat, QUAL == 1)) > 0) {
-    border_nat <- sf::st_intersection(vmb_spat, vmb_buff) %>% 
+    border_nat <- vmb_spat %>%
+      sf::st_intersection(., vmb_buff) %>% 
+      dplyr::group_by(SEGMENT_ID) %>=%
+      dplyr::slice(1) %>%
+      dplyr::ungroup() %>%
       sf::st_length() %>% 
       units::drop_units() %>%
       sum()
     
     # CELKOVÁ DÁLKA HRANIC STANOVIŠTĚ
     border_all <- vmb_spat %>% 
-      st_transform(., CRS("+init=epsg:4326")) %>% 
-      st_length() %>% 
+      dplyr::group_by(SEGMENT_ID) %>=%
+      dplyr::slice(1) %>%
+      dplyr::ungroup() %>%
+      sf::st_transform(., CRS("+init=epsg:4326")) %>% 
+      sf::st_length() %>% 
       units::drop_units() %>%
       sum()
     
     # DÉLKA HRANICE STANOVIŠTĚ S HRANICÍ ČR 
-    border_hsl <- st_intersection(vmb_target_sjtsk, czechia_line) %>% 
-      st_length() %>% 
+    border_hsl <- vmb_spat %>%
+      sf::st_intersection(., czechia_line) %>%
+      dplyr::group_by(SEGMENT_ID) %>=%
+      dplyr::slice(1) %>%
+      dplyr::ungroup() %>%
+      sf::st_length() %>% 
       units::drop_units() %>%
       sum()
     
@@ -547,7 +558,7 @@ hvezdice_eval <- function(hab_code, evl_site) {
     pull(PLO_BIO_M2_EVL) %>%
     sum()/10000
   
-  area_w_perc <- area_w_ha/target_area_ha
+  area_w_perc <- area_w_ha/target_area_ha*100
 
   area_evl_perc <- target_area_ha/(unique(vmb_target_sjtsk$SHAPEAREA)/10000)*100
   
@@ -892,8 +903,26 @@ results_habitats <- bind_rows(habresults_1_500[c(2:nrow(habresults_1_500)),],
 write.csv2(results_habitats, 
            "S:/Gaigr/hodnoceni_stanovist_grafy/results_habitats_20220926.csv", 
            row.names = FALSE)
-results_habitats_read <-  read.csv2("S:/Gaigr/hodnoceni_stanovist_grafy/results_habitats_20220907.csv")
+results_habitats_read <-  read.csv2("C:/Users/jonas.gaigr/N2K.CZ/results/results_habitats_20220927.csv")
 results_habitats_read[is.na(results_habitats_read)] <- 0
+
+# NAPOJENÍ NA PASEKY ----
+results_habitats_read <-  read.xlsx("C:/Users/jonas.gaigr/N2K.CZ/results/results_habitats_20220927.xlsx") %>%
+  dplyr::select(-DATE_MIN, -DATE_MAX, -DATE_MEDIAN, -DATE_MEAN) %>%
+  dplyr::mutate(W_AREA_PERC = W_AREA_PERC*100)
+results_habitats_dates <- read.csv2("C:/Users/jonas.gaigr/N2K.CZ/results/results_habitats_20220927.csv") %>%
+  dplyr::select(SITECODE, HABITAT_CODE, DATE_MIN, DATE_MAX, DATE_MEDIAN, DATE_MEAN)
+results_habitats_read <- results_habitats_read %>%
+  dplyr::left_join(., results_habitats_dates, by = c("SITECODE", "HABITAT_CODE"))
+paseky_read <- read.csv2("C:/Users/jonas.gaigr/N2K.CZ/results/paseky_results_20220927.csv")
+results_habitats_read <- results_habitats_read %>%
+  dplyr::left_join(.,
+                   paseky_read,
+                   by = c("SITECODE", "HABITAT_CODE")) %>%
+  dplyr::mutate(ROZLOHA_KOMPLET = dplyr::case_when(is.na(ROZLOHA_PASEKY) == FALSE ~ ROZLOHA + ROZLOHA_PASEKY,
+                                                   TRUE ~ ROZLOHA))
+
+
 # NASTAVENÍ LIMITNÍCH HODNOT ----
 limits <- matrix(as.integer(NA), nrow(sites_habitats), ncol(hablimits)+2) %>% 
   dplyr::as_tibble() 
@@ -960,8 +989,7 @@ results_habitats_values <- results_habitats_limits %>%
                                            is.na(EXPANSIVE_DIF) ~ 0,
                                            EXPANSIVE_DIF >= 0 ~ 1)) %>%
   dplyr::group_by(NAZEV, HABITAT_CODE) %>%
-  dplyr::mutate(SITECODE = as.character(NAZEV),
-                OVERALL_SUM = sum(TD_DIF, QUAL_DIF, MINIMIAREAL_DIF, 
+  dplyr::mutate(OVERALL_SUM = sum(TD_DIF, QUAL_DIF, MINIMIAREAL_DIF, 
                                   MOZAIKA_DIF, CELISTVOST_DIF, KONEKTIVITA_DIF, 
                                   INVASIVE_DIF, EXPANSIVE_DIF),
                 PAR_KLIC = sum(QUAL_ABSL, MINIMIAREAL_ABSL),
@@ -991,15 +1019,25 @@ results_habitats_values <- results_habitats_limits %>%
                                                INVASIVE_DIF < 0 | 
                                                EXPANSIVE_DIF < 0 ~ "Other",
                                              TRUE ~ NA_character_),
-                OBJ_LIST = dplyr::case_when(is.na(OBJ_AREA) == TRUE ~ toString(na.omit(c(OBJ_AREA,
+                OBJ_LIST = dplyr::case_when(is.na(OBJ_PRESENCE) == TRUE ~ toString(na.omit(c(OBJ_AREA,
                                                                                          OBJ_IMPROVE,
                                                                                          OBJ_PRESENCE,
-                                                                                         OBJ_OTHER))))) %>%
-  ungroup()
+                                                                                         OBJ_OTHER))),
+                                            TRUE ~ toString(OBJ_PRESENCE))) %>%
+  ungroup() %>%
+  dplyr::rename(REPRE_RB = REPRE,
+                PERC_0_VLNA = PERC_0,
+                PERC_1_VLNA = PERC_1,
+                PERC_2_VLNA = PERC_2)
 
+write.csv(results_habitats_values,
+          "C:/Users/jonas.gaigr/N2K.CZ/results/habitaty_vyhodnoceni_20220930_UTF-8.csv", 
+          row.names = FALSE,
+          fileEncoding = "UTF-8")
 write.csv2(results_habitats_values, 
-           "S:/Gaigr/hodnoceni_stanovist_grafy/habitaty_vyhodnoceni_20220902.csv", 
-           row.names = FALSE)
+           "C:/Users/jonas.gaigr/N2K.CZ/results/habitaty_vyhodnoceni_20220930_windows1250.csv", 
+           row.names = FALSE,
+           fileEncoding = "Windows-1250")
 
 # DATATABLE ----
 # VÝSLEDKY HODNOCENÍ S BAREVNĚ VYZNAČENÝMI HODNOTAMI PRARAMETRŮ VE VZTAHU K LIMITNÍM HODNOTÁM
@@ -1193,14 +1231,18 @@ results_habitats_values_plot %>%
 results_habitats$SITECODE %in% SDO_sites$Kód.lokality 
 
 # SDO II LINK ----
-SDO_sites <- read.csv2("SDO_II_predmetolokality.csv")
+SDO_sites <- read.csv2("C:/Users/jonas.gaigr/N2K.CZ/SDO_II_predmetolokality.csv")
 results_habitats_values_SDO <- results_habitats_values %>%
-  mutate(SDO_II = case_when(SITECODE %in% SDO_sites$Kód.lokality &
-                              HABITAT_CODE %in% SDO_sites$Předmět.ochrany...kód ~ 1,
+  dplyr::mutate(SDO_II = case_when(SITECODE %in% SDO_sites$sitecode ~ 1,
                             TRUE ~ 0))
-results_habitats_values_SDO <- results_habitats_read %>%
-  filter(SITECODE %in% SDO_sites$Kód.lokality) %>%
-  filter(HABITAT_CODE %in% SDO_sites$Předmět.ochrany...kód)
+results_habitats_values_SDO <- results_habitats_values_SDO %>%
+  dplyr::filter(SDO_II == 1)
+
+write.csv(results_habitats_values_SDO, 
+           "C:/Users/jonas.gaigr/N2K.CZ/results/habitaty_vyhodnoceni_202209029_SDOII_encoded.csv", 
+           row.names = FALSE,
+           fileEncoding = "UTF-8")
 write.csv2(results_habitats_values_SDO, 
-           "S:/Gaigr/hodnoceni_stanovist_grafy/habitaty_vyhodnoceni_20220902_SDOII.csv", 
-           row.names = FALSE)
+           "C:/Users/jonas.gaigr/N2K.CZ/results/habitaty_vyhodnoceni_202209029_SDOII_windows.csv", 
+           row.names = FALSE,
+           fileEncoding = "Windows-1250")
