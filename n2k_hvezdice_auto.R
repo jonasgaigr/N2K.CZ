@@ -508,7 +508,7 @@ hvezdice_eval <- function(hab_code, evl_site) {
   if(nrow(filter(vmb_spat, QUAL == 1)) > 0) {
     border_nat <- vmb_spat %>%
       sf::st_intersection(., vmb_buff) %>% 
-      dplyr::group_by(SEGMENT_ID) %>=%
+      dplyr::group_by(SEGMENT_ID) %>%
       dplyr::slice(1) %>%
       dplyr::ungroup() %>%
       sf::st_length() %>% 
@@ -517,7 +517,7 @@ hvezdice_eval <- function(hab_code, evl_site) {
     
     # CELKOVÁ DÁLKA HRANIC STANOVIŠTĚ
     border_all <- vmb_spat %>% 
-      dplyr::group_by(SEGMENT_ID) %>=%
+      dplyr::group_by(SEGMENT_ID) %>%
       dplyr::slice(1) %>%
       dplyr::ungroup() %>%
       sf::st_transform(., CRS("+init=epsg:4326")) %>% 
@@ -528,7 +528,7 @@ hvezdice_eval <- function(hab_code, evl_site) {
     # DÉLKA HRANICE STANOVIŠTĚ S HRANICÍ ČR 
     border_hsl <- vmb_spat %>%
       sf::st_intersection(., czechia_line) %>%
-      dplyr::group_by(SEGMENT_ID) %>=%
+      dplyr::group_by(SEGMENT_ID) %>%
       dplyr::slice(1) %>%
       dplyr::ungroup() %>%
       sf::st_length() %>% 
