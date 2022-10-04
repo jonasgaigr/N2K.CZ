@@ -303,8 +303,9 @@ hvezdice_eval <- function(hab_code, evl_site) {
     sf::st_filter(., evl_sjtsk %>%
                     filter(., SITECODE == evl_site) %>%
                     st_buffer(., 500)) %>%
-    dplyr::filter(FSB != "X" | 
-                    FSB != "-" |
+    dplyr::filter(FSB != "X" & 
+                    FSB != "-" &
+                    FSB != "-1" &
                     HABITAT != hab_code) %>% 
     dplyr::group_by(SEGMENT_ID) %>% 
     dplyr::slice(1) %>%
@@ -505,10 +506,10 @@ hvezdice_eval <- function(hab_code, evl_site) {
   }
   
   # DÉLKA HRANICE STANOVIŠTĚ S JINÝMI PŘÍRODNÍMI STANOVIŠTI
-  if(nrow(filter(vmb_spat, QUAL == 1)) > 0) {
-    border_nat <- vmb_spat %>%
+  if(nrow(vmb_spat) > 0) {
+    border_nat <- spat_union %>%
       sf::st_intersection(., vmb_buff) %>% 
-      dplyr::group_by(SEGMENT_ID) %>%
+      dplyr::group_by(SEGMENT_ID_buff) %>%
       dplyr::slice(1) %>%
       dplyr::ungroup() %>%
       sf::st_length() %>% 
@@ -516,21 +517,14 @@ hvezdice_eval <- function(hab_code, evl_site) {
       sum()
     
     # CELKOVÁ DÁLKA HRANIC STANOVIŠTĚ
-    border_all <- vmb_spat %>% 
-      dplyr::group_by(SEGMENT_ID) %>%
-      dplyr::slice(1) %>%
-      dplyr::ungroup() %>%
-      sf::st_transform(., CRS("+init=epsg:4326")) %>% 
+    border_all <- spat_union %>%
       sf::st_length() %>% 
       units::drop_units() %>%
       sum()
     
     # DÉLKA HRANICE STANOVIŠTĚ S HRANICÍ ČR 
-    border_hsl <- vmb_spat %>%
+    border_hsl <- spat_union %>%
       sf::st_intersection(., czechia_line) %>%
-      dplyr::group_by(SEGMENT_ID) %>%
-      dplyr::slice(1) %>%
-      dplyr::ungroup() %>%
       sf::st_length() %>% 
       units::drop_units() %>%
       sum()
@@ -538,16 +532,15 @@ hvezdice_eval <- function(hab_code, evl_site) {
     # VÝPOČET PARAMETRU MOZAIKA
     mozaika <- border_nat/(border_all-border_hsl)*10
     
-    if(nrow(filter(vmb_spat, QUAL == 1)) == 0 |
-       nrow(vmb_spat) == 0) {
-      mozaika <- NA
-    }
+    mozaika_bord <- border_hsl/border_all
+
     if(mozaika > 10 & is.na(mozaika) == FALSE) {
       mozaika <- 10
     }
     
   } else {
     mozaika <- NA
+    mozaika_bord <- NA
   }
   
   # CELKOVÁ ROZLOHA STANOVIŠTĚ V EVL EVL
