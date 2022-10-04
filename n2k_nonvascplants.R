@@ -42,7 +42,7 @@ sites_subjects$Nazev.latinsky <- gsub("Stenobothrus eurasius bohemicus", "Stenob
 # Druhové seznamy Přílohy II
 taxa <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/taxa.csv", encoding = "UTF-8")
 
-species_read <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/evl_data_export_20220927.csv",
+species_read <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/evl_data_export_20221004.csv",
                          sep = ",",
                          stringsAsFactors = FALSE,
                          encoding = "UTF-8")
@@ -182,8 +182,9 @@ bry_buxvir_site_eval <- function(sci_code) {
                                         POCET < 3 ~ 0), 
       MRTVE_DREVO_find = dplyr::case_when(grepl("<SUB>nedostačující</SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 0,
                                           grepl("<SUB>dostačující</SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 1),
-      TARGET_MON_find = dplyr::case_when(grepl("<SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 1,
-                                         TRUE ~ 0),
+      TARGET_MON_find = dplyr::case_when(is.na(MRTVE_DREVO_find) == FALSE &
+                                           is.na(ABUNDANCE_find) == FALSE ~ 1,
+                                         TRUE ~ 0)
     ) %>%
     dplyr::mutate(
       OVERALL_find = sum(PRESENCE_find, 
@@ -195,7 +196,6 @@ bry_buxvir_site_eval <- function(sci_code) {
   
   # SITE LEVEL
   species_target_site <- species_target_find %>%
-    dplyr::filter(TARGET_MON_find == 1) %>%
     dplyr::filter(DATE >= 2021 - 6) %>%
     dplyr::group_by(LOKALITA) %>%
     dplyr::arrange(desc(TARGET_MON_find),
@@ -273,8 +273,9 @@ bry_buxvir_sci_eval <- function(sci_code) {
                                         POCET < 3 ~ 0),
       MRTVE_DREVO_find = dplyr::case_when(grepl("<SUB>nedostačující</SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 0,
                                        grepl("<SUB>dostačující</SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 1),
-      TARGET_MON_find = dplyr::case_when(grepl("<SUB>", STRUKT_POZN, ignore.case = TRUE) ~ 1,
-                                        TRUE ~ 0),
+      TARGET_MON_find = dplyr::case_when(is.na(MRTVE_DREVO_find) == FALSE &
+                                           is.na(ABUNDANCE_find) == FALSE ~ 1,
+                                         TRUE ~ 0)
     ) %>%
     dplyr::group_by(ID_ND_NALEZ) %>%
     dplyr::mutate(
@@ -287,7 +288,6 @@ bry_buxvir_sci_eval <- function(sci_code) {
   
   # SITE LEVEL
   species_target_sites <- species_target_find %>%
-    dplyr::filter(TARGET_MON_find == 1) %>%
     dplyr::filter(YEAR >= 2021 - 6) %>%
     dplyr::group_by(LOKALITA) %>%
     dplyr::arrange(desc(YEAR),
@@ -536,8 +536,12 @@ bry_hamver_site_eval <- function(sci_code) {
                                        POCET == 0 ~ 0),
       MICROSITE_num = readr::parse_number(gsub(".*<plocha_populace>|</plocha_populace>.*", "", STRUKT_POZN)),
       MICROSITE_uni = readr::parse_character(gsub(".*<plocha_populace>|</plocha_populace>.*", "", STRUKT_POZN)),
-      ABUNDANCE_num = POCET,
-      ABUNDANCE_uni = POCITANO,
+      ABUNDANCE_uni = "cm2",
+      ABUNDANCE_coef = dplyr::case_when(POCITANO == "mm2" ~ 0.01,
+                                        POCITANO == "cm2" ~ 1,
+                                        POCITANO == "dm2" ~ 100,
+                                        POCITANO == "m2" ~ 10000),
+      ABUNDANCE_num = POCET*ABUNDANCE_coef,
       ABUNDANCE_find = dplyr::case_when(POCET >= 500 & POCITANO == "cm2" ~ 1,
                                         POCET >= 5 & POCITANO == "dm2" ~ 1,
                                         POCET >= 0.05 & POCITANO == "m2" ~ 1,
@@ -558,7 +562,7 @@ bry_hamver_site_eval <- function(sci_code) {
       POTENCIAL_uni = dplyr::case_when(grepl("<velikost_pl>", STRUKT_POZN) ~ readr::parse_character(gsub(".*<velikost_pl>|</velikost_pl>.*", "", STRUKT_POZN)),
                                        TRUE ~ NA_character_),
       POKRROST_num = readr::parse_number(gsub(".*<pokr_bylin>|</pokr_bylin>.*", "", STRUKT_POZN)),
-      EXPCOV_num = readr::parse_number(gsub(".*<pokr_exp_dr>|</pokr_exp_dr>.*", "", STRUKT_POZN)),
+      POKREXPA_num = readr::parse_number(gsub(".*<pokr_exp_dr>|</pokr_exp_dr>.*", "", STRUKT_POZN)),
       POKRSTIN_num = readr::parse_number(gsub(".*<zast_sta>|</zast_sta>.*", "", STRUKT_POZN)),
       MANAGEMENT_find = dplyr::case_when(grepl("<MAN>nedostačující</MAN>", STRUKT_POZN, ignore.case = TRUE) ~ 0,
                                          grepl("<MAN>dostačující</MAN>", STRUKT_POZN, ignore.case = TRUE) ~ 1),
@@ -573,15 +577,15 @@ bry_hamver_site_eval <- function(sci_code) {
     dplyr::mutate(MICROSITE_find = dplyr::case_when(MICROSITE_num >= 10 ~ 1,
                                                     MICROSITE_num < 10 ~ 0),
                   ZMENA1_find = dplyr::case_when(ZMENA1_num > -10 ~ 1,
-                                                  ZMENA1_num <= -10 ~ 0),
+                                                 ZMENA1_num <= -10 ~ 0),
                   ZMENA2_find = dplyr::case_when(ZMENA2_num > -30 ~ 1,
-                                                  ZMENA2_num <= -30 ~ 0),
+                                                 ZMENA2_num <= -30 ~ 0),
                   POTENCIAL_find = dplyr::case_when(POTENCIAL_num >= 500 ~ 1,
                                                     POTENCIAL_num < 500 ~ 0),
                   POKRROST_find = dplyr::case_when(POKRROST_num <= 90 ~ 1,
                                                    POKRROST_num > 90 ~ 0),
-                  EXPCOV_find = dplyr::case_when(EXPCOV_num <= 10 ~ 1,
-                                                 EXPCOV_num > 10 ~ 0),
+                  POKREXPA_find = dplyr::case_when(POKREXPA_num <= 10 ~ 1,
+                                                   POKREXPA_num > 10 ~ 0),
                   POKRSTIN_find = dplyr::case_when(POKRSTIN_num < 5 ~ 1,
                                                    POKRSTIN_num >= 5 ~ 0)) %>%
     dplyr::group_by(ID_ND_NALEZ) %>%
@@ -592,7 +596,7 @@ bry_hamver_site_eval <- function(sci_code) {
                          ZMENA2_find,
                          POTENCIAL_find,
                          POKRROST_find,
-                         EXPCOV_find,
+                         POKREXPA_find,
                          POKRSTIN_find,
                          MANAGEMENT_find,
                          na.rm = TRUE)
@@ -620,8 +624,8 @@ bry_hamver_site_eval <- function(sci_code) {
       POTENCIAL_val = unique(POTENCIAL_uni),
       POKRROST_val = paste(unique(POKRROST_num), "%", sep = " "),
       POKRROST_site = unique(POKRROST_find),
-      EXPCOV_val = paste(unique(EXPCOV_num), "%", sep = " "),
-      EXPCOV_site = unique(EXPCOV_find),
+      POKREXPA_val = paste(unique(POKREXPA_num), "%", sep = " "),
+      POKREXPA_site = unique(POKREXPA_find),
       POKRSTIN_val = paste(unique(POKRSTIN_num), "%", sep = " "),
       POKRSTIN_site = unique(POKRSTIN_find),
       MANAGEMENT_site = unique(MANAGEMENT_find),
@@ -714,7 +718,7 @@ bry_hamver_sci_eval <- function(sci_code) {
       ZMENA2 = mean(na.omit(ZMENA2_site)),
       POTENCIAL = mean(na.omit(POTENCIAL_site)),
       POKRROST = mean(na.omit(POKRROST_site)),
-      EXPCOV = mean(na.omit(EXPCOV_site)),
+      POKREXPA = mean(na.omit(POKREXPA_site)),
       POKRSTIN = mean(na.omit(POKRSTIN_site)),
       MANAGEMENT = mean(na.omit(MANAGEMENT_site)),
       TARGET_MON = dplyr::case_when(max(TARGET_MON_site) == 1 ~ 1,
@@ -1373,9 +1377,3 @@ write.csv2(results_sci_hamver_SDO_II,
            "C:/Users/jonas.gaigr/Desktop/SDO_II_sites/results_sci_hamver_SDO_II.csv",
            row.names = FALSE,
            fileEncoding = "Windows-1250")
-
-species %>%
-  filter(DRUH == "Buxbaumia viridis") %>%
-  filter(grepl("Beskydy", NAZEV)) %>%
-  filter(YEAR > 2020) %>%
-  dplyr::select(LOKALITA, STRUKT_POZN)
