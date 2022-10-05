@@ -312,77 +312,98 @@ hvezdice_eval <- function(hab_code, evl_site) {
     dplyr::ungroup()
   
   vmb_qual <- vmb_target_sjtsk %>%
-    dplyr::mutate(TYP_DRUHY_SEG = dplyr::case_when(DG == "W" ~ NA_real_,
-                                                   TD == "N" ~ 0,
-                                                   TD == "MP" ~ 5,
-                                                   TD == "P" ~ 10),
-                  REPREZENTAVITA_SEG = dplyr::case_when(RB == "F" ~ 0,
-                                                        RB == "W" ~ 0,
-                                                        DG == "W" ~ 0,
-                                                        RB == "P" ~ 5,
-                                                        RB == "V" ~ 10),
-                  REPRESENTAVITY_SEG = dplyr::case_when(RB == "V" & TD == "P" ~ "A",
-                                                        RB == "V" & TD == "MP" ~ "B",
-                                                        RB == "V" & TD == "N" ~ "C",
-                                                        RB == "V" & is.na(TD) == TRUE ~ "A",
-                                                        RB == "P" & TD == "P" ~ "B",
-                                                        RB == "P" & TD == "MP" ~ "C",
-                                                        RB == "P" & TD == "N" ~ "C",
-                                                        RB == "P" & is.na(TD) ~ "B",
-                                                        RB == "F" & TD == "P" ~ "C",
-                                                        RB == "F" & TD == "MP" ~ "C",
-                                                        RB == "F" & TD == "N" ~ "C",
-                                                        RB == "F" & is.na(TD) ~ "C",
-                                                        RB == "W" & TD == "P" ~ "D",
-                                                        RB == "W" & TD == "MP" ~ "D",
-                                                        RB == "W" & TD == "N" ~ "D",
-                                                        RB == "W" & is.na(TD) ~ "D",
-                                                        is.na(RB) == TRUE & TD == "P" ~ "B",
-                                                        is.na(RB) == TRUE & TD == "MP" ~ "C",
-                                                        is.na(RB) == TRUE & TD == "N" ~ "C",
-                                                        is.na(RB) == TRUE & is.na(TD) ~ "C"),
-                  REPRE_SDF_SEG = dplyr::case_when(REPRESENTAVITY_SEG == "D" ~ 0,
-                                                   REPRESENTAVITY_SEG == "C" ~ 3.3333333333333333333333,
-                                                   REPRESENTAVITY_SEG == "B" ~ 6.6666666666666666666666,
-                                                   REPRESENTAVITY_SEG == "A" ~ 10),
-                  DEGRA_SEG = dplyr::case_when(RB == "F" ~ 0,
-                                               RB == "W" ~ 0,
-                                               DG == "W" ~ 0,
-                                               RB == "P" ~ 5,
-                                               RB == "V" ~ 10),
-                  TD_SEG = TYP_DRUHY_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL),
-                  RB_SEG = REPREZENTAVITA_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL),
-                  RB_SDF_SEG = REPRE_SDF_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL),
-                  DG_SEG = DEGRA_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL),
-                  QUAL = dplyr::case_when(DG == "W" ~ NA_real_,
-                                          KVALITA == 1 ~ 1,
-                                          KVALITA == 2 ~ 1,
-                                          KVALITA == 3 ~ 2,
-                                          KVALITA == 4 ~ 2),
-                  KVALITA_SEG = dplyr::case_when(KVALITA == 1 ~ 10,
-                                                 KVALITA == 2 ~ 6.6666666666666666666666,
-                                                 KVALITA == 3 ~ 3.3333333333333333333333,
-                                                 KVALITA == 4 ~ 0),
-                  QUAL_SEG = KVALITA_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL),
-                  MRTVE_DREVO_SEG = dplyr::case_when(substr(hab_code, 1, 1) != 9 ~ NA_real_,
-                                                     DG == "W" ~ NA_real_,
-                                                     MD == 0 ~ 0,
-                                                     MD == 1 ~ 5,
-                                                     MD == 2 ~ 10,
-                                                     MD == 3 ~ 0,
-                                                     MD == 4 ~ 0),
-                  MD_SEG = dplyr::case_when(substr(hab_code, 1, 1) != 9 ~ NA_real_,
-                                            TRUE ~ MRTVE_DREVO_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL)),
-                  KALAMITA_SEG = dplyr::case_when(substr(hab_code, 1, 1) != 9 ~ NA_real_,
-                                                  DG == "W" ~ NA_real_,
-                                                  MD == 0 ~ 0,
-                                                  MD == 1 ~ 0,
-                                                  MD == 2 ~ 0,
-                                                  MD == 3 ~ 10,
-                                                  MD == 4 ~ 10),
-                  KAL_SEG = dplyr::case_when(substr(hab_code, 1, 1) != 9 ~ NA_real_,
-                                             TRUE ~ KALAMITA_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL))) %>%
-    
+    dplyr::mutate(
+      TYP_DRUHY_SEG = dplyr::case_when(DG == "W" ~ NA_real_,
+                                       TD == "N" ~ 0,
+                                       TD == "MP" ~ 5,
+                                       TD == "P" ~ 10),
+      REPREZENTAVITA_SEG = dplyr::case_when(DG == "W" ~ 0,
+                                            RB == "F" ~ 0,
+                                            RB == "W" ~ 0,
+                                            RB == "P" ~ 5,
+                                            RB == "V" ~ 10),
+      REPRESENTAVITY_SEG = dplyr::case_when(RB == "V" & TD == "P" ~ "A",
+                                            RB == "V" & TD == "MP" ~ "B",
+                                            RB == "V" & TD == "N" ~ "C",
+                                            RB == "V" & is.na(TD) == TRUE ~ "A",
+                                            RB == "P" & TD == "P" ~ "B",
+                                            RB == "P" & TD == "MP" ~ "C",
+                                            RB == "P" & TD == "N" ~ "C",
+                                            RB == "P" & is.na(TD) ~ "B",
+                                            RB == "F" & TD == "P" ~ "C",
+                                            RB == "F" & TD == "MP" ~ "C",
+                                            RB == "F" & TD == "N" ~ "C",
+                                            RB == "F" & is.na(TD) ~ "C",
+                                            RB == "W" & TD == "P" ~ "D",
+                                            RB == "W" & TD == "MP" ~ "D",
+                                            RB == "W" & TD == "N" ~ "D",
+                                            RB == "W" & is.na(TD) ~ "D",
+                                            is.na(RB) == TRUE & TD == "P" ~ "B",
+                                            is.na(RB) == TRUE & TD == "MP" ~ "C",
+                                            is.na(RB) == TRUE & TD == "N" ~ "C",
+                                            is.na(RB) == TRUE & is.na(TD) ~ "C"),
+      CONSERVATION_SEG = dplyr::case_when(SF == "P" ~ "A",
+                                          SF == "MP" ~ "B",
+                                          SF == "N" ~ "C",
+                                          RB == "W" ~ "C",
+                                          is.na(SF) == TRUE & DG == 0 ~ "A",
+                                          is.na(SF) == TRUE & DG == 1 ~ "A",
+                                          is.na(SF) == TRUE & DG == 2 ~ "B",
+                                          is.na(SF) == TRUE & DG == 3 ~ "C",
+                                          is.na(SF) == TRUE & is.na(DG) == TRUE ~ "B"),
+      REPRE_SDF_SEG = dplyr::case_when(REPRESENTAVITY_SEG == "D" ~ 0,
+                                       REPRESENTAVITY_SEG == "C" ~ 3.3333333333333333333333,
+                                       REPRESENTAVITY_SEG == "B" ~ 6.6666666666666666666666,
+                                       REPRESENTAVITY_SEG == "A" ~ 10),
+      CON_SEG = dplyr::case_when(CONSERVATION_SEG == "D" ~ 0,
+                                 CONSERVATION_SEG == "C" ~ 3.3333333333333333333333,
+                                 CONSERVATION_SEG == "B" ~ 6.6666666666666666666666,
+                                 CONSERVATION_SEG == "A" ~ 10),
+      DEGRA_SEG = dplyr::case_when(DG == "W" ~ 0,
+                                   RB == "F" ~ 0,
+                                   RB == "W" ~ 0,
+                                   RB == "P" ~ 5,
+                                   RB == "V" ~ 10),
+      DEGREEOFCONS_SEG = dplyr::case_when(RB == "W" ~ NA_real_,
+                                          SF == "N" ~ 0,
+                                          SF == "MP" ~ 10,
+                                          SF == "P" ~ 10),
+      QUAL = dplyr::case_when(DG == "W" ~ NA_real_,
+                              KVALITA == 1 ~ 1,
+                              KVALITA == 2 ~ 1,
+                              KVALITA == 3 ~ 2,
+                              KVALITA == 4 ~ 2),
+      KVALITA_SEG = dplyr::case_when(KVALITA == 1 ~ 10,
+                                     KVALITA == 2 ~ 6.6666666666666666666666,
+                                     KVALITA == 3 ~ 3.3333333333333333333333,
+                                     KVALITA == 4 ~ 0),
+      MRTVE_DREVO_SEG = dplyr::case_when(substr(hab_code, 1, 1) != 9 ~ NA_real_,
+                                         DG == "W" ~ NA_real_,
+                                         MD == 0 ~ 0,
+                                         MD == 1 ~ 5,
+                                         MD == 2 ~ 10,
+                                         MD == 3 ~ 0,
+                                         MD == 4 ~ 0),
+      KALAMITA_SEG = dplyr::case_when(substr(hab_code, 1, 1) != 9 ~ NA_real_,
+                                      DG == "W" ~ NA_real_,
+                                      MD == 0 ~ 0,
+                                      MD == 1 ~ 0,
+                                      MD == 2 ~ 0,
+                                      MD == 3 ~ 10,
+                                      MD == 4 ~ 10),
+      TD_SEG = TYP_DRUHY_SEG*PLO_BIO_M2_EVL/sum(dplyr::filter(., DG != "W")$PLO_BIO_M2_EVL),
+      RB_SEG = REPREZENTAVITA_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL),
+      RB_SDF_SEG = REPRE_SDF_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL),
+      CS_SEG = CON_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL),
+      DG_SEG = DEGRA_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL),
+      DC_SEG = DEGREEOFCONS_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL),
+      CN_SEG = CON_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL),
+      QUAL_SEG = KVALITA_SEG*PLO_BIO_M2_EVL/sum(dplyr::filter(., DG != "W")$PLO_BIO_M2_EVL),
+      MD_SEG = dplyr::case_when(substr(hab_code, 1, 1) != 9 ~ NA_real_,
+                                TRUE ~ MRTVE_DREVO_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL)),
+      KAL_SEG = dplyr::case_when(substr(hab_code, 1, 1) != 9 ~ NA_real_,
+                                 TRUE ~ KALAMITA_SEG*PLO_BIO_M2_EVL/sum(PLO_BIO_M2_EVL))
+                  ) %>%
     dplyr::mutate(
       # TYPICKÉ DRUHY
       TD_FIN = sum(na.omit(TD_SEG)),
@@ -392,6 +413,10 @@ hvezdice_eval <- function(hab_code, evl_site) {
       RB_SDF_FIN = sum(na.omit(RB_SDF_SEG)),
       # DEGRADACE
       DG_FIN = sum(na.omit(DG_SEG)),
+      # DEGREE OF CONSERVATION
+      DC_FIN = sum(na.omit(DC_SEG)),
+      # CONSERVATION
+      CN_FIN = sum(na.omit(CN_SEG)),
       # MRTVÉ DŘEVO
       MD_FIN = dplyr::case_when(substr(hab_code, 1, 1) != 9 ~ NA_real_,
                                 TRUE ~ sum(na.omit(MD_SEG))),
@@ -432,29 +457,30 @@ hvezdice_eval <- function(hab_code, evl_site) {
       MINIMIAREAL = dplyr::case_when(MINIMIAREAL > 10 ~ 10,
                                      MINIMIAREAL <= 10 ~ MINIMIAREAL))
   
-  vmb_spat <- vmb_qual %>%
-    dplyr::filter(FSB_EVAL != "X")
+  vmb_spat <- vmb_target_sjtsk %>%
+    dplyr::filter(FSB_EVAL != "X" & RB != "W")
   
   # PŘÍPRAVA SLOUČENÝH SEGmENTŮ PRO CELISTVOST
-  if(find_evl_PRIORITY(hab_code) == 1) {
-    spat_multi <- vmb_spat %>%
-      filter(QUAL == 1 | QUAL == 2) %>%
-      filter(lengths(st_touches(geometry)) > 0)
-    spat_single <- vmb_spat %>%
-      filter(QUAL == 1 | QUAL == 2) %>%
-      filter(lengths(st_touches(geometry)) == 0)
-  } else {
-    spat_multi <- vmb_spat %>%
-      filter(QUAL == 1) %>%
-      filter(lengths(st_touches(geometry)) > 0)
-    spat_single <- vmb_spat %>%
-      filter(QUAL == 1) %>%
-      filter(lengths(st_touches(geometry)) == 0)
-  }
+  #if(find_evl_PRIORITY(hab_code) == 1) {
+  #  spat_multi <- vmb_spat %>%
+  #    filter(QUAL == 1 | QUAL == 2) %>%
+  #    filter(lengths(st_touches(geometry)) > 0)
+  #  spat_single <- vmb_spat %>%
+  #    filter(QUAL == 1 | QUAL == 2) %>%
+  #    filter(lengths(st_touches(geometry)) == 0)
+  #} else {
+  #  spat_multi <- vmb_spat %>%
+  #    filter(QUAL == 1) %>%
+  #    filter(lengths(st_touches(geometry)) > 0)
+  #  spat_single <- vmb_spat %>%
+  #    filter(QUAL == 1) %>%
+  #    filter(lengths(st_touches(geometry)) == 0)
+  #}
   
   # SLOUČENÁ VRSTVA POLYGONŮ
-  spat_union <- spat_single %>%
-    bind_rows(spat_multi) %>%
+  #spat_union <- spat_single %>%
+  #  bind_rows(spat_multi) %>%
+  spat_union <- vmb_spat %>%
     st_union() %>%
     st_cast(., "POLYGON") %>%
     as.data.frame() %>%
@@ -483,18 +509,19 @@ hvezdice_eval <- function(hab_code, evl_site) {
                                    COMB_SIZE > find_habitat_MINIMISIZE(hab_code)[1] ~ 1,
                                    COMB_SIZE <= find_habitat_MINIMISIZE(hab_code)[1] ~ 0))
   
-  if(nrow(filter(vmb_spat, QUAL == 1)) > 0) {
-    celistvost <- sum(filter(spat_celistvost, MINIMI_SIZE == 1)$PLO_BIO_M2_EVL)/sum(spat_celistvost$PLO_BIO_M2_EVL)*10
+  if(nrow(vmb_spat) > 0) {
+    celistvost <- sum(dplyr::filter(spat_celistvost, MINIMI_SIZE == 1)$PLO_BIO_M2_EVL)/sum(spat_celistvost$PLO_BIO_M2_EVL)*10
   } else {
     celistvost <- NA
   }
   
   # MAXIMÁLNÍ VZDÁLENOST MEZI 2 BODY V EVL 
-  evl_length <- filter(evl_lengths, SITECODE == evl_site) %>% 
-    pull(MAX_DIST)
+  evl_length <- evl_lengths %>%
+    dplyr::filter(SITECODE == evl_site) %>% 
+    dplyr::pull(MAX_DIST)
   
   # VÝPOČET PARAMETRU KONEKTIVITA
-  if(nrow(filter(vmb_spat, QUAL == 1)) > 0) {
+  if(nrow(vmb_spat) > 0) {
     dist_matrix <- sf::st_distance(spat_union)
     diag(dist_matrix) <- 1000000000
     dist_matrix <- units::drop_units(dist_matrix)
@@ -505,10 +532,12 @@ hvezdice_eval <- function(hab_code, evl_site) {
     connectivity <- NA
   }
   
+  # PARAMETR MOZAIKA
   # DÉLKA HRANICE STANOVIŠTĚ S JINÝMI PŘÍRODNÍMI STANOVIŠTI
   if(nrow(vmb_spat) > 0) {
     border_nat <- spat_union %>%
-      sf::st_intersection(., vmb_buff) %>% 
+      sf::st_intersection(., vmb_buff) %>%
+      dplyr::filter(!SEGMENT_ID_buff %in% vmb_spat$SEGMENT_ID) %>%
       dplyr::group_by(SEGMENT_ID_buff) %>%
       dplyr::slice(1) %>%
       dplyr::ungroup() %>%
@@ -518,6 +547,7 @@ hvezdice_eval <- function(hab_code, evl_site) {
     
     # CELKOVÁ DÁLKA HRANIC STANOVIŠTĚ
     border_all <- spat_union %>%
+      sf::st_cast(., "LINESTRING") %>%
       sf::st_length() %>% 
       units::drop_units() %>%
       sum()
@@ -530,11 +560,11 @@ hvezdice_eval <- function(hab_code, evl_site) {
       sum()
     
     # VÝPOČET PARAMETRU MOZAIKA
-    mozaika <- border_nat/(border_all-border_hsl)*10
+    mozaika_bord <- 1 - border_hsl/border_all
     
-    mozaika_bord <- border_hsl/border_all
+    mozaika <- border_nat/(border_all-border_hsl)*mozaika_bord*10
 
-    if(mozaika > 10 & is.na(mozaika) == FALSE) {
+    if(mozaika > 10) {
       mozaika <- 10
     }
     
@@ -543,7 +573,7 @@ hvezdice_eval <- function(hab_code, evl_site) {
     mozaika_bord <- NA
   }
   
-  # CELKOVÁ ROZLOHA STANOVIŠTĚ V EVL EVL
+# CELKOVÁ ROZLOHA STANOVIŠTĚ V EVL EVL
   target_area_ha <- sum(vmb_target_sjtsk$PLO_BIO_M2_EVL)/10000
   
   area_w_ha <- vmb_target_sjtsk %>%
@@ -552,16 +582,22 @@ hvezdice_eval <- function(hab_code, evl_site) {
     sum()/10000
   
   area_w_perc <- area_w_ha/target_area_ha*100
-
+  
   area_evl_perc <- target_area_ha/(unique(vmb_target_sjtsk$SHAPEAREA)/10000)*100
   
   area_relative_perc <- target_area_ha/(find_habitat_AREA2022(hab_code)/10000)*100
+  
+  area_good_ha <- vmb_target_sjtsk %>%
+    dplyr::filter(SF == "P" | SF == "MP") %>%
+    pull(PLO_BIO_M2_EVL) %>%
+    sum()/10000
   
   if(nrow(vmb_target_sjtsk) == 0) {
     target_area_ha <- 0
     area_w_ha <- 0
     area_w_perc <- 0
     area_evl_perc <- 0
+    area_good_ha <- 0
   }
   
   # VYPLNĚNOST PARAMETRŮ
@@ -707,6 +743,8 @@ hvezdice_eval <- function(hab_code, evl_site) {
                        TYPICKE_DRUHY = unique(TD_FIN),
                        REPRE = unique(RB_FIN),
                        REPRE_SDF = unique(RB_SDF_FIN),
+                       CONSERVATION = unique(CN_FIN),
+                       DEGREE_OF_CONSERVATION = unique(DC_FIN),
                        KVALITA_ORIG = unique(QUALITY_ORIG),
                        KVALITA = unique(QUALITY),
                        MINIMIAREAL = unique(MINIMIAREAL),
@@ -723,11 +761,13 @@ hvezdice_eval <- function(hab_code, evl_site) {
                        EXPANSIVE_LIST = paste(expanders_list, collapse = ", "),
                        RELATIVE_AREA_PERC = area_relative_perc,
                        EVL_AREA_PERC = area_evl_perc,
+                       GOOD_DOC_AREA_HA = area_good_ha,
                        W_AREA_HA = area_w_ha,
                        W_AREA_PERC = area_w_perc,
                        VYPLNENOST_TD = fill_TD,
                        VYPLNENOST_KVALITA = fill_QUAL,
                        VYPLNENOST_MD = fill_MD,
+                       VYPLNENOST_MOZAIKA = mozaika_bord,
                        PERC_SPAT = perc_spat,
                        PERC_0 = perc_seg_0,
                        PERC_1 = perc_seg_1,
@@ -746,6 +786,8 @@ hvezdice_eval <- function(hab_code, evl_site) {
                      TYPICKE_DRUHY = NA,
                      REPRE = NA,
                      REPRE_SDF = NA,
+                     CONSERVATION = NA,
+                     DEGREE_OF_CONSERVATION = NA,
                      KVALITA_ORIG = NA,
                      KVALITA = NA,
                      MINIMIAREAL = NA,
@@ -762,15 +804,17 @@ hvezdice_eval <- function(hab_code, evl_site) {
                      EXPANSIVE_LIST = NA,
                      RELATIVE_AREA_PERC = NA,
                      EVL_AREA_PERC = NA,
+                     GOOD_DOC_AREA_HA = NA,
                      W_AREA_HA = NA,
                      W_AREA_PERC = NA,
                      VYPLNENOST_TD = NA,
                      VYPLNENOST_KVALITA = NA,
                      VYPLNENOST_MD = NA,
+                     VYPLNENOST_MOZAIKA = NA,
                      PERC_SPAT = NA,
-                     PERC_0 = perc_seg_0,
-                     PERC_1 = perc_seg_1,
-                     PERC_2 = perc_seg_2,
+                     PERC_0 = NA,
+                     PERC_1 = NA,
+                     PERC_2 = NA,
                      DATE_MIN = NA,
                      DATE_MAX = NA,
                      DATE_MEAN = NA,
@@ -1013,9 +1057,8 @@ results_habitats_values <- results_habitats_limits %>%
                                                EXPANSIVE_DIF < 0 ~ "Other",
                                              TRUE ~ NA_character_),
                 OBJ_LIST = dplyr::case_when(is.na(OBJ_PRESENCE) == TRUE ~ toString(na.omit(c(OBJ_AREA,
-                                                                                         OBJ_IMPROVE,
-                                                                                         OBJ_PRESENCE,
-                                                                                         OBJ_OTHER))),
+                                                                                             OBJ_IMPROVE,
+                                                                                             OBJ_OTHER))),
                                             TRUE ~ toString(OBJ_PRESENCE))) %>%
   ungroup() %>%
   dplyr::rename(REPRE_RB = REPRE,
@@ -1024,11 +1067,11 @@ results_habitats_values <- results_habitats_limits %>%
                 PERC_2_VLNA = PERC_2)
 
 write.csv(results_habitats_values,
-          "C:/Users/jonas.gaigr/N2K.CZ/results/habitaty_vyhodnoceni_20220930_UTF-8.csv", 
+          "C:/Users/jonas.gaigr/N2K.CZ/results/habitaty_vyhodnoceni_20221005_UTF-8.csv", 
           row.names = FALSE,
           fileEncoding = "UTF-8")
 write.csv2(results_habitats_values, 
-           "C:/Users/jonas.gaigr/N2K.CZ/results/habitaty_vyhodnoceni_20220930_windows1250.csv", 
+           "C:/Users/jonas.gaigr/N2K.CZ/results/habitaty_vyhodnoceni_20221005_windows1250.csv", 
            row.names = FALSE,
            fileEncoding = "Windows-1250")
 
