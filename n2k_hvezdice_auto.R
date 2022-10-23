@@ -407,6 +407,8 @@ hvezdice_eval <- function(hab_code, evl_site) {
     dplyr::mutate(
       # TYPICKÉ DRUHY
       TD_FIN = sum(na.omit(TD_SEG)),
+      TD_FIN = dplyr::case_when(TD_FIN > 10 ~ 10,
+                                TRUE ~ TD_FIN),
       # REPREZENTATIVITA
       RB_FIN = sum(na.omit(RB_SEG)),
       # REPREZENTATIVITA SDF
@@ -940,11 +942,12 @@ results_habitats <- bind_rows(habresults_1_500[c(2:nrow(habresults_1_500)),],
 write.csv2(results_habitats, 
            "S:/Gaigr/hodnoceni_stanovist_grafy/results_habitats_20220926.csv", 
            row.names = FALSE)
-results_habitats_read <-  read.csv2("C:/Users/jonas.gaigr/N2K.CZ/results/results_habitats_20220927.csv")
+results_habitats_read <-  read.csv2("C:/Users/jonas.gaigr/N2K.CZ/results/results_habitats_20221004.csv",
+                                    fileEncoding = "Windows-1250")
 results_habitats_read[is.na(results_habitats_read)] <- 0
 
 # NAPOJENÍ NA PASEKY ----
-results_habitats_read <-  read.xlsx("C:/Users/jonas.gaigr/N2K.CZ/results/results_habitats_20220927.xlsx") %>%
+results_habitats_read <- read.xlsx("C:/Users/jonas.gaigr/N2K.CZ/results/results_habitats_20220927.xlsx") %>%
   dplyr::select(-DATE_MIN, -DATE_MAX, -DATE_MEDIAN, -DATE_MEAN) %>%
   dplyr::mutate(W_AREA_PERC = W_AREA_PERC*100)
 results_habitats_dates <- read.csv2("C:/Users/jonas.gaigr/N2K.CZ/results/results_habitats_20220927.csv") %>%
@@ -957,7 +960,8 @@ results_habitats_read <- results_habitats_read %>%
                    paseky_read,
                    by = c("SITECODE", "HABITAT_CODE")) %>%
   dplyr::mutate(ROZLOHA_KOMPLET = dplyr::case_when(is.na(ROZLOHA_PASEKY) == FALSE ~ ROZLOHA + ROZLOHA_PASEKY,
-                                                   TRUE ~ ROZLOHA))
+                                                   TRUE ~ ROZLOHA)) %>%
+  dplyr::relocate(ROZLOHA_KOMPLET, .after = ROZLOHA)
 
 
 # NASTAVENÍ LIMITNÍCH HODNOT ----
@@ -1067,11 +1071,11 @@ results_habitats_values <- results_habitats_limits %>%
                 PERC_2_VLNA = PERC_2)
 
 write.csv(results_habitats_values,
-          "C:/Users/jonas.gaigr/N2K.CZ/results/habitaty_vyhodnoceni_20221005_UTF-8.csv", 
+          "C:/Users/jonas.gaigr/N2K.CZ/results/habitaty_vyhodnoceni_20221021_UTF-8.csv", 
           row.names = FALSE,
           fileEncoding = "UTF-8")
 write.csv2(results_habitats_values, 
-           "C:/Users/jonas.gaigr/N2K.CZ/results/habitaty_vyhodnoceni_20221005_windows1250.csv", 
+           "C:/Users/jonas.gaigr/N2K.CZ/results/habitaty_vyhodnoceni_20221021_windows1250.csv", 
            row.names = FALSE,
            fileEncoding = "Windows-1250")
 
@@ -1275,9 +1279,9 @@ results_habitats_values_SDO <- results_habitats_values_SDO %>%
   dplyr::filter(SDO_II == 1)
 
 write.csv(results_habitats_values_SDO, 
-           "C:/Users/jonas.gaigr/N2K.CZ/results/habitaty_vyhodnoceni_202209029_SDOII_encoded.csv", 
-           row.names = FALSE,
-           fileEncoding = "UTF-8")
+          "C:/Users/jonas.gaigr/N2K.CZ/results/habitaty_vyhodnoceni_202209029_SDOII_encoded.csv", 
+          row.names = FALSE,
+          fileEncoding = "UTF-8")
 write.csv2(results_habitats_values_SDO, 
            "C:/Users/jonas.gaigr/N2K.CZ/results/habitaty_vyhodnoceni_202209029_SDOII_windows.csv", 
            row.names = FALSE,
