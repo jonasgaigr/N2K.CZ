@@ -19,53 +19,78 @@ library(fmsb)
 options(shiny.sanitize.errors = FALSE)
 
 # LOAD DATA ----
-
-evl <- st_read("Evropsky_v%C3%BDznamn%C3%A9_lokality.shp")
+# VRSTVA EVL 
+evl <- st_read("//bali.nature.cz/du/OchranaPrirody/Natura 2000/EvVyzLok_440_2021.shp")
 evl_sjtsk <- st_transform(evl, CRS("+init=epsg:5514"))
-czechia <- st_read("HraniceCR.shp")
+# VRSTVA HRANIC CZ 
+czechia <- st_read("//bali.nature.cz/du/SpravniCleneni/CR/HraniceCR.shp")
 czechia <- st_transform(czechia, CRS("+init=epsg:4326"))
-#bioregs <- st_read("BiogeoRegions_CR.shp")
-#bioregs <- st_transform(bioregs, CRS("+init=epsg:4326"))
-vmb_shp_sjtsk <- st_read("20200608_Segment.shp")
-vmb_hab_dbf <- st_read("HAB_BIOTOP.dbf")
-vmb_shp_sjtsk <- vmb_shp_sjtsk %>%
-  left_join(vmb_hab_dbf, by = "SEGMENT_ID") %>%
-  mutate(FSB = case_when(STEJ_PR < 75 ~ "X",
-                         STEJ_PR >= 75 | STEJ_PR < 100 ~ "moz."))
+# VMB
+vmb_shp_sjtsk_22_read <- sf::st_read("//bali.nature.cz/du/Mapovani/Biotopy/CR_2022/20220531_Segment.shp")
+vmb_hab_dbf_22 <- sf::st_read("//bali.nature.cz/du/Mapovani/Biotopy/CR_2022/Biotop/HAB_BIOTOP.dbf")
+vmb_pb_dbf_22 <- sf::st_read("//bali.nature.cz/du/Mapovani/Biotopy/CR_2022/Biotop/PB_BIOTOP.dbf") %>%
+  dplyr::filter(!OBJECTID %in% vmb_hab_dbf_22$OBJECTID)
+vmb_hab_pb_dbf_22 <- dplyr::bind_rows(vmb_hab_dbf_22, vmb_pb_dbf_22) %>%
+  dplyr::group_by(SEGMENT_ID) %>%
+  dplyr::mutate(moz_num = n(),
+                FSB_EVAL_prep = dplyr::case_when(sum(STEJ_PR, na.rm = TRUE) < 50 ~ "X",
+                                                 sum(STEJ_PR, na.rm = TRUE) >= 50 &
+                                                   sum(STEJ_PR, na.rm = TRUE) < 200 ~ "moz.",
+                                                 sum(STEJ_PR, na.rm = TRUE) == 200 ~ NA_character_)) %>%
+  dplyr::ungroup() %>% 
+  dplyr::select(SEGMENT_ID,
+                FSB_EVAL_prep) %>%
+  distinct()
 
-sites_subjects <- read.xlsx("http://webgis.nature.cz/publicdocs/opendata/natura2000/seznam_predmetolokalit_Natura2000.xlsx")
+vmb_shp_sjtsk_22 <- vmb_shp_sjtsk_22_read %>%
+  dplyr::left_join(vmb_hab_dbf_22, by = "SEGMENT_ID") %>%
+  dplyr::left_join(vmb_hab_pb_dbf_22, by = "SEGMENT_ID") %>%
+  dplyr::mutate(FSB_EVAL = dplyr::case_when(FSB_EVAL_prep == "moz." ~ "moz.",
+                                            FSB_EVAL_prep == "X" ~ "X",
+                                            TRUE ~ FSB),
+                HABITAT = dplyr::case_when(BIOTOP %in% c("T3.3C", "3.4A", "T3.4C", "T3.5A") ~ "6210p",
+                                           TRUE ~ HABITAT))
+# SEZNAM PŘEDMĚTOLOKALIT
+sites_subjects <- openxlsx::read.xlsx("https://webgis.nature.cz/publicdocs/opendata/natura2000/seznam_predmetolokalit_Natura2000_440_2021.xlsx")
 sites_subjects <- sites_subjects %>%
   rename(Název.latinsky = "Název.latinsky.(druh)")
+sites_habitats <- sites_subjects %>%
+  filter(Typ.předmětu.ochrany == "stanoviště")
 
+# ČÍSELNÍK HABITATŮ
 habitats <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/habitats.csv", encoding = "UTF-8")
 minimisize <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/minimisize.csv", encoding = "UTF-8")
-evl_lengths <- read.csv("https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/evl_max_dist.csv", encoding = "UTF-8")
-#evl_species <- read.csv("https://media.githubusercontent.com/media/jonasgaigr/N2K.CZ/main/cevnate_evl.csv", encoding = "UTF-8")
-evl_species <- openxlsx::read.xlsx("https://github.com/jonasgaigr/N2K.CZ/blob/main/cevnate_evl.xlsx?raw=true")
-evl_expansive_species <- openxlsx::read.xlsx("export_nalezy_expanzivky_EVL.xlsx")
+# REDLISTOVÉ, INVAZNÍ A EXPANZNÍ DRUHY
+evl_species <- openxlsx::read.xlsx("S:/Vojík/export_nalezy_cev_rostliny_EVL_09122022.xlsx")
+# STAŽENÍ PŘES GDRIVE "https://docs.google.com/spreadsheets/d/12n1eCbkw8ufsFoUnKvEMMg123bfMFOzI/edit?usp=sharing&ouid=102654749342263703541&rtpof=true&sd=true"
+evl_expansive_species <- openxlsx::read.xlsx("S:/Vojík/export_nalezy_expanzivky_EVL_09122022.xlsx")
+
+# EXPANZNÍ DRUHY
 expansive_species <- evl_expansive_species %>%
-  filter(CXLOKAL_PRESNOST <= 50) %>%
-  filter(DRUH != "Arrhenatherum elatius") %>%
-  mutate(DATUM_OD = as.Date(DATUM_OD, format = '%d.%m.%Y'),
-         DATUM_DO = as.Date(DATUM_DO, format = '%d.%m.%Y')) %>%
-  #filter(DATUM_DO >= "2013-01-01") %>%
-  st_as_sf(., coords = c("CXLOKAL_X", "CXLOKAL_Y"), crs = "+init=epsg:5514")
+  dplyr::filter(DRUH != "Arrhenatherum elatius") %>%
+  dplyr::mutate(DATUM_OD = as.Date(DATUM_OD, format = '%d.%m.%Y'),
+                DATUM_DO = as.Date(DATUM_DO, format = '%d.%m.%Y'),
+                NEGATIVNI = dplyr::case_when(NEGATIVNI == "ne" ~ 0,
+                                             NEGATIVNI == "ano" ~ 1))%>%
+  sf::st_as_sf(., coords = c("CXLOKAL_X", "CXLOKAL_Y"), crs = "+init=epsg:5514")
 
+# DRUHY ČERVENÉHO SEZNAMU S ODFILTROVANÝMI C4 DRUHY
 red_list_species <- evl_species %>%
-  filter(is.na(Nepůvodní.druhy) == TRUE) %>%
-  filter(CXLOKAL_PRESNOST <= 50) %>%
-  mutate(DATUM_OD = as.Date(DATUM_OD, format = '%d.%m.%Y'),
-         DATUM_DO = as.Date(DATUM_DO, format = '%d.%m.%Y')) %>%
-  #filter(DATUM_DO >= "2013-01-01") %>%
-  st_as_sf(., coords = c("CXLOKAL_X", "CXLOKAL_Y"), crs = "+init=epsg:5514")
+  dplyr::filter(is.na(Nepůvodní.druhy) == TRUE) %>%
+  dplyr::filter(is.na(Druhy.červeného.seznamu) == FALSE) %>%
+  dplyr::mutate(DATUM_OD = as.Date(DATUM_OD, format = '%d.%m.%Y'),
+                DATUM_DO = as.Date(DATUM_DO, format = '%d.%m.%Y')) %>%
+  sf::st_as_sf(., coords = c("CXLOKAL_X", "CXLOKAL_Y"), crs = "+init=epsg:5514")
 
+# INVAZNÍ DRUHY
 invasive_species <- evl_species %>%
-  filter(is.na(Nepůvodní.druhy) == FALSE) %>%
-  filter(CXLOKAL_PRESNOST <= 50) %>%
-  mutate(DATUM_OD = as.Date(DATUM_OD, format = '%d.%m.%Y'),
-         DATUM_DO = as.Date(DATUM_DO, format = '%d.%m.%Y')) %>%
-  #filter(DATUM_DO >= "2013-01-01") %>%
-  st_as_sf(., coords = c("CXLOKAL_X", "CXLOKAL_Y"), crs = "+init=epsg:5514")
+  dplyr::filter(is.na(Nepůvodní.druhy) == FALSE) %>%
+  dplyr::filter(Nepůvodní.druhy != "GL - šedý seznam: výskyt tolerován") %>%
+  dplyr::mutate(DATUM_OD = as.Date(DATUM_OD, format = '%d.%m.%Y'),
+                DATUM_DO = as.Date(DATUM_DO, format = '%d.%m.%Y'),
+                NEGATIVNI = dplyr::case_when(NEGATIVNI == "ne" ~ 0,
+                                             NEGATIVNI == "ano" ~ 1)) %>%
+  sf::st_as_sf(., coords = c("CXLOKAL_X", "CXLOKAL_Y"), crs = "+init=epsg:5514")
 
 
 
@@ -89,6 +114,14 @@ find.evl.MINIMISIZE <- function(species) {
 }
 find.habitat.INVADERS <- function(species) {
   return(mean(subset(minimisize, minimisize$HABITAT == species)$MINIMISIZE))
+}
+find_evl_NAME_TO_CODE <- function(species) {
+  return(sites_subjects %>%
+           dplyr::filter(Typ.lokality == "EVL") %>%
+           dplyr::filter(Název.lokality == species) %>%
+           dplyr::pull(Kód.lokality) %>%
+           unique()
+  )
 }
 
 # UI ----
@@ -130,14 +163,7 @@ ui <- fluidPage(
     ),
 
   ),
-  
-  fluidRow(
-    column(6,
-           htmlOutput(outputId = "invaders_list")),
-    column(6,
-           htmlOutput(outputId = "expanders_list"))
-  ),
-  
+
   br(),
   br(),
   
@@ -151,7 +177,7 @@ ui <- fluidPage(
   
   br(),
   
-  fluidRow(HTML('<center><b>© 2021-2022 <a href="http://www.nature.cz" target="_blank">AOPK ČR</a></b></center>')),
+  fluidRow(HTML('<center><b>© 2021-2023 <a href="http://www.nature.cz" target="_blank">AOPK ČR</a></b></center>')),
   br()
 )
 
@@ -169,85 +195,82 @@ server <- function(input, output, session) {
     input_habitat_cz <- input$habitat_cz
     input_evl_site <- input$evl_site
     
-    hvezdice.spat <- function(hab_code, evl_site) {
-      vmb_qual <- vmb_shp_sjtsk %>%
-        st_intersection(filter(evl_sjtsk, NAZEV == evl_site)) %>%
-        filter(HABITAT == hab_code) %>%
-        mutate(TYP_DRUHY_SEG = case_when(TD == "N" ~ 0,
-                                         TD == "MP" ~ 5,
-                                         TD == "P" ~ 10),
-               TD_SEG = TYP_DRUHY_SEG*PLO_BIO_M2/sum(PLO_BIO_M2),
-               QUAL = case_when(KVALITA == 1 ~ 1,
-                                KVALITA == 2 ~ 1,
-                                KVALITA == 3 ~ 2,
-                                KVALITA == 4 ~ 2)) %>%
-        # TYPICKÉ DRUHY
-        mutate(TD_FIN = sum(na.omit(.$TD_SEG))) %>%
-        # KVALITA
-        mutate(QUALITY = sum(filter(., QUAL == 1)$PLO_BIO_M2)/sum(filter(., QUAL == 1 | QUAL == 2)$PLO_BIO_M2)*10,
-               # MINIMIAREÁL
-               MINIMIAREAL = sum(filter(., QUAL == 1)$PLO_BIO_M2)/find.evl.MINIMISIZE(hab_code),
-               MINIMIAREAL = case_when(MINIMIAREAL > 10 ~ 10, 
-                                       MINIMIAREAL <= 10 ~ MINIMIAREAL),
-               MINIMISIZE = case_when(HABITAT == hab_code & PLO_BIO_M2 > find.evl.MINIMISIZE(hab_code) ~ 1,
-                                      HABITAT == hab_code & PLO_BIO_M2 <= find.evl.MINIMISIZE(hab_code) ~ 0))
+    hvezdice_spat <- function(hab_code, evl_site) {
       
-      spat_multi <- vmb_qual %>%
-        filter(lengths(st_touches(geometry)) > 0)
-      spat_single <- vmb_qual %>%
-        filter(lengths(st_touches(geometry)) == 0)
-      spat_union <- spat_single %>%
-        bind_rows(spat_multi) %>%
-        st_union() %>%
-        st_cast(., "POLYGON") %>%
-        as.data.frame() %>%
-        st_as_sf() %>%
-        mutate(SHAPE_AREA = as.numeric(st_area(geometry)),
-               MINIMI_SIZE = case_when(SHAPE_AREA > find.evl.MINIMISIZE(hab_code) ~ 1,
-                                       SHAPE_AREA <= find.evl.MINIMISIZE(hab_code) ~ 0)) %>%
-        mutate(CELISTVOST = sum(filter(., MINIMI_SIZE == 1)$SHAPE_AREA)/sum(SHAPE_AREA)*10) %>%
-        arrange(-MINIMI_SIZE)
+      # VÝBĚR KOMBINACE EVL A PŘEDMĚTU OCHRANY, PŘEPOČÍTÁNÍ PLOCHY BIOTOPU
+      vmb_target_sjtsk <- vmb_shp_sjtsk_22 %>%
+        sf::st_intersection(dplyr::filter(evl_sjtsk, SITECODE == evl_site)) %>%
+        dplyr::filter(HABITAT == hab_code) %>%
+        dplyr::mutate(AREA_real = units::drop_units(st_area(geometry))) %>%
+        dplyr::mutate(PLO_BIO_M2_EVL = PLO_BIO_M2*AREA_real/SHAPE_AREA)
       
-      
-      result <- spat_union %>%
-        summarise(SITECODE = unique(vmb_qual$SITECODE),
-                  NAZEV = unique(vmb_qual$NAZEV),
-                  HABITAT_CODE = unique(vmb_qual$HABITAT))
+      result <- vmb_target_sjtsk
       
       result
     }
     
-    target_evl <- filter(evl, NAZEV == input_evl_site)
+    target_evl <- filter(evl_sjtsk, SITECODE == find_evl_NAME_TO_CODE(input_evl_site))
     
-    map_habitat <- hvezdice.spat(find.habitat.CODE(input_habitat_cz), input_evl_site)
+    map_habitat <- hvezdice_spat(find.habitat.CODE(input_habitat_cz), 
+                                 find_evl_NAME_TO_CODE(input_evl_site))
     
-    map_invaders <- invasive_species %>%
+    if(find.habitat.CODE(input_habitat_cz) == 6510) {
+      map_invaders_point <- invasive_species %>%
+        dplyr::filter(DRUH != "Arrhenatherum elatius") %>%
+        sf::st_intersection(., map_habitat) %>%
+        dplyr::filter(is.na(HABITAT) == FALSE) %>%
+        dplyr::group_by(OBJECTID.y, DRUH) %>%
+        dplyr::filter(DATUM_OD >= DATUM.x) %>%
+        dplyr::slice(which.max(DATUM_OD)) %>%
+        dplyr::filter(NEGATIVNI == 0) %>%
+        dplyr::ungroup()
+    } else {
+      map_invaders_point <- invasive_species %>%
+        sf::st_intersection(., map_habitat) %>%
+        dplyr::filter(is.na(HABITAT) == FALSE) %>%
+        dplyr::group_by(OBJECTID.y, DRUH) %>%
+        dplyr::filter(DATUM_OD >= DATUM.x) %>%
+        dplyr::slice(which.max(DATUM_OD)) %>%
+        dplyr::filter(NEGATIVNI == 0) %>%
+        dplyr::ungroup()
+    }
+    
+    map_invaders_segment <- map_habitat %>%
+      dplyr::filter(SEGMENT_ID %in% map_invaders_point$SEGMENT_ID)
+    
+    map_expanders <- expansive_species %>%
+      dplyr::filter(POKRYVNOST %in% c("3", "4", "5")) %>%
       sf::st_intersection(., map_habitat) %>%
+      dplyr::filter(is.na(HABITAT) == FALSE) %>%
       dplyr::group_by(OBJECTID.y, DRUH) %>%
-      dplyr::filter(DATUM_OD >= DATUM.y) %>%
-      dplyr::slice(which.max(DATUM.y)) %>%
+      dplyr::filter(DATUM_OD >= DATUM.x) %>%
+      dplyr::slice(which.max(DATUM_OD)) %>%
       dplyr::filter(NEGATIVNI == 0) %>%
       dplyr::ungroup()
     
-    map_expanders <- expansive_species %>%
-      st_filter(., map_habitat)
-    
-   if (nrow(map_habitat) != 0 & nrow(map_invaders) != 0 & nrow(map_expanders) != 0) {
+   if(nrow(map_habitat) != 0 & nrow(map_invaders_point) != 0 & nrow(map_expanders) != 0) {
      leaflet() %>%
        addProviderTiles(providers$Esri.WorldTopoMap, group = "Esri WorldTopoMap") %>%
        addProviderTiles(providers$Esri.WorldImagery, group = "Esri WorldImagery") %>%
-       addPolygons(data = target_evl,
+       addPolygons(data = st_transform(target_evl, CRS("+init=epsg:4326")),
                    color = "#65c3d5",
                    fill = "#65c3d5",
                    weight = 3,
                    opacity = .97,
-                   label = target_evl$NAZEV.y) %>%
+                   label = target_evl$NAZEV.y,
+                   group = "EVL") %>%
        addPolygons(data = st_transform(map_habitat, CRS("+init=epsg:4326")),
                    color = "#a3c935",
                    fill = "#a3c935",
                    weight = 3,
                    opacity = 1) %>%
-       addCircles(data = st_transform(map_invaders, CRS("+init=epsg:4326")),
+       addPolygons(data = st_transform(map_invaders_segment, CRS("+init=epsg:4326")),
+                   color = "red",
+                   fill = "red",
+                   weight = 3,
+                   opacity = 1,
+                   group = "Invadované polygony") %>%
+       addCircles(data = st_transform(map_invaders_point, CRS("+init=epsg:4326")),
                   color = "red",
                   fill = "red",
                   weight = 5,
@@ -262,18 +285,22 @@ server <- function(input, output, session) {
                   label = ~DRUH,
                   group = "Expanzní druhy") %>%
        addLayersControl(baseGroups = c("Esri WorldTopoMap", "Esri WorldImagery"),
-                        overlayGroups = c("Invazní druhy", "Expanzní druhy"),
+                        overlayGroups = c("EVL", 
+                                          "Invazní druhy", 
+                                          "Expanzní druhy", 
+                                          "Invadované polygony"),
                         options = layersControlOptions(collapsed = FALSE))
-   } else if (nrow(map_habitat) != 0 & nrow(map_invaders) == 0 & nrow(map_expanders) != 0) {
+   } else if (nrow(map_habitat) != 0 & nrow(map_invaders_point) == 0 & nrow(map_expanders) != 0) {
      leaflet() %>%
        addProviderTiles(providers$Esri.WorldTopoMap, group = "Esri WorldTopoMap") %>%
        addProviderTiles(providers$Esri.WorldImagery, group = "Esri WorldImagery") %>%
-       addPolygons(data = target_evl,
+       addPolygons(data = st_transform(target_evl, CRS("+init=epsg:4326")),
                    color = "#65c3d5",
                    fill = "#65c3d5",
                    weight = 3,
                    opacity = .97,
-                   label = target_evl$NAZEV.y) %>%
+                   label = target_evl$NAZEV.y,
+                   group = "EVL") %>%
        addPolygons(data = st_transform(map_habitat, CRS("+init=epsg:4326")),
                    color = "#a3c935",
                    fill = "#a3c935",
@@ -287,24 +314,32 @@ server <- function(input, output, session) {
                   label = ~DRUH,
                   group = "Expanzní druhy") %>%
        addLayersControl(baseGroups = c("Esri WorldTopoMap", "Esri WorldImagery"),
-                        overlayGroups = c("Expanzní druhy"),
+                        overlayGroups = c("EVL", 
+                                          "Expanzní druhy"),
                         options = layersControlOptions(collapsed = FALSE))
-   } else if (nrow(map_habitat) != 0 & nrow(map_invaders) != 0 & nrow(map_expanders) == 0) {
+   } else if (nrow(map_habitat) != 0 & nrow(map_invaders_point) != 0 & nrow(map_expanders) == 0) {
      leaflet() %>%
        addProviderTiles(providers$Esri.WorldTopoMap, group = "Esri WorldTopoMap") %>%
        addProviderTiles(providers$Esri.WorldImagery, group = "Esri WorldImagery") %>%
-       addPolygons(data = target_evl,
+       addPolygons(data = st_transform(target_evl, CRS("+init=epsg:4326")),
                    color = "#65c3d5",
                    fill = "#65c3d5",
                    weight = 3,
                    opacity = .97,
-                   label = target_evl$NAZEV.y) %>%
+                   label = target_evl$NAZEV.y,
+                   group = "EVL") %>%
        addPolygons(data = st_transform(map_habitat, CRS("+init=epsg:4326")),
                    color = "#a3c935",
                    fill = "#a3c935",
                    weight = 3,
                    opacity = 1) %>%
-       addCircles(data = st_transform(map_invaders, CRS("+init=epsg:4326")),
+       addPolygons(data = st_transform(map_invaders_segment, CRS("+init=epsg:4326")),
+                   color = "red",
+                   fill = "red",
+                   weight = 3,
+                   opacity = 1,
+                   group = "Invadované polygony") %>%
+       addCircles(data = st_transform(map_invaders_point, CRS("+init=epsg:4326")),
                   color = "red",
                   fill = "red",
                   weight = 5,
@@ -312,89 +347,34 @@ server <- function(input, output, session) {
                   label = ~DRUH,
                   group = "Invazní druhy") %>%
        addLayersControl(baseGroups = c("Esri WorldTopoMap", "Esri WorldImagery"),
-                        overlayGroups = c("Invazní druhy"),
+                        overlayGroups = c("EVL", 
+                                          "Invadované polygony",
+                                          "Invazní druhy"),
                         options = layersControlOptions(collapsed = FALSE))
-   } else if (nrow(map_habitat) != 0 & nrow(map_invaders) == 0 & nrow(map_expanders) == 0) {
+   } else if (nrow(map_habitat) != 0 & nrow(map_invaders_point) == 0 & nrow(map_expanders) == 0) {
      leaflet() %>%
        addProviderTiles(providers$Esri.WorldTopoMap, group = "Esri WorldTopoMap") %>%
        addProviderTiles(providers$Esri.WorldImagery, group = "Esri WorldImagery") %>%
-       addPolygons(data = target_evl,
+       addPolygons(data = st_transform(target_evl, CRS("+init=epsg:4326")),
                    color = "#65c3d5",
                    fill = "#65c3d5",
                    weight = 3,
                    opacity = .97,
-                   label = target_evl$NAZEV.y) %>%
+                   label = target_evl$NAZEV.y,
+                   group = "EVL") %>%
        addPolygons(data = st_transform(map_habitat, CRS("+init=epsg:4326")),
                    color = "#a3c935",
                    fill = "#a3c935",
                    weight = 3,
                    opacity = 1) %>%
        addLayersControl(baseGroups = c("Esri WorldTopoMap", "Esri WorldImagery"),
+                        overlayGroups = c("EVL"),
                         options = layersControlOptions(collapsed = FALSE))
    }
     
   })
   
-  # SEZNAM INVAZNÍCH A EXPANZIVNÍCH TAXONŮ ----
-  output$taxalist <- renderDataTable({
-    
-    req(input$evl_site, input$habitat_cz)
-    input_habitat_cz <- input$habitat_cz
-    input_evl_site <- input$evl_site
-    current_year <- input$curryear
-    
-    hvezdice.list <- function(hab_code, evl_site) {
-      
-      vmb_target_sjtsk <- vmb_shp_sjtsk %>%
-        st_intersection(filter(evl_sjtsk, NAZEV == evl_site)) %>%
-        filter(HABITAT == hab_code)
-      
-      invaders_list <- invasive_species %>%
-        st_filter(., vmb_target_sjtsk) %>%
-        select(DRUH) %>%
-        mutate(SKUPINA == "INVAZIVNÍ")
-      
-      expanders_list <- expansive_species %>%
-        st_filter(., vmb_target_sjtsk) %>%
-        select(DRUH) %>%
-        mutate(SKUPINA == "EXPANZIVNÍ")
-      
-      result_list <- bind_rows(expansive_species, invasive_species) %>%
-        arrange(DRUH)
-      
-      result_list
-    }
-    
-    hvezdice.list(find.habitat.CODE(input_habitat_cz), input_evl_site)
-    
-  })
-  
-  # SEZNAM RED LIST TAXONŮ ----
-  output$taxalist <- renderDataTable({
-    
-    req(input$evl_site, input$habitat_cz)
-    input_habitat_cz <- input$habitat_cz
-    input_evl_site <- input$evl_site
-    current_year <- input$curryear
-    
-    hvezdice.list <- function(hab_code, evl_site) {
-      
-      vmb_target_sjtsk <- vmb_shp_sjtsk %>%
-        st_intersection(filter(evl_sjtsk, NAZEV == evl_site)) %>%
-        filter(HABITAT == hab_code)
-      
-      red_list <- red_list_species %>%
-        st_filter(., vmb_target_sjtsk) %>%
-        select(DRUH, )
-      
-      result_list
-    }
-    
-    hvezdice.list(find.habitat.CODE(input_habitat_cz), input_evl_site)
-    
-  })
-  
-  
+
   # Výběr habitatu a EVL ----
   output$group_selector = renderUI({
     selectInput(inputId = "Group",
