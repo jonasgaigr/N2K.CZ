@@ -83,15 +83,15 @@ Aktuální verze aplikace [HOST.N2K](https://jonasgaigr.shinyapps.io/HOST_N2K/) 
 
 ##### Mozaika
 
-##### Celistvost
-
-##### Konektivita
-
 ##### Ohrožené druhy z červeného seznamu
 
 ##### Invazní druhy
 
 ##### Expanzní druhy
+
+##### Mapové zobrazení výsledků
+
+<p align="center"><a href="#"><img src="https://raw.githubusercontent.com/jonasgaigr/N2K.CZ/main/WWW/habtool.gif" width="100%" height="100%" style="display: block; margin: auto;" /></a></p>
 
 ### Rostliny
 
