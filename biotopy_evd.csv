@@ -1,117 +1,205 @@
 "SITECODE","NAZEV","DRUH","FEATURE_CODE","BIOTOP_PLOCHA","BIOTOP_PROCENTO"
-"CZ0213063","Rakovník - za koupalištěm","Phengaris nausithous",6179,3.54590064817657,0.354675718048956
-"CZ0213777","Bohostice","Phengaris nausithous",6179,1.43944679693305,0.260808734265817
-"CZ0214004","Černý Orel","Phengaris nausithous",6179,48.8445493059057,0.215446437022742
-"CZ0214040","Louky u Drahlína","Phengaris nausithous",6179,1.06884908960347,0.0846940140938814
-"CZ0313096","Čábuze","Phengaris nausithous",6179,5.70445351356751,0.147991045518572
-"CZ0313114","Onšovice - Mlýny","Phengaris nausithous",6179,6.07431486053495,0.254338236974658
-"CZ0313141","Žofina Huť","Phengaris nausithous",6179,3.7415727250263,0.0830387365258095
-"CZ0314123","Boletice","Phengaris nausithous",6179,1150.69457172983,0.0565487101718445
-"CZ0314124","Blanský les","Phengaris nausithous",6179,611.519193908783,0.0275310993332152
-"CZ0323150","Kamenec","Phengaris nausithous",6179,5.05848902069727,0.50685153865183
-"CZ0414127","Hradiště","Phengaris nausithous",6179,10012.1923105136,0.301944317274038
-"CZ0424030","Bezručovo údolí","Phengaris nausithous",6179,16.6282428372007,0.013913960885631
-"CZ0424127","Východní Krušnohoří","Phengaris nausithous",6179,496.634402814212,0.0339343967061725
-"CZ0513506","Horní Ploučnice","Phengaris nausithous",6179,115.328939562756,0.132025181863722
-"CZ0514113","Podtrosecká údolí","Phengaris nausithous",6179,20.2031335393785,0.0389348786559982
-"CZ0514670","Ronov - Vlhošť","Phengaris nausithous",6179,272.734822852335,0.364929889828566
-"CZ0523014","Vladivostok","Phengaris nausithous",6179,16.452731260116,0.743520021993512
-"CZ0523273","Javorka a Cidlina - Sběř","Phengaris nausithous",6179,100.002970304691,0.325433141618834
-"CZ0523275","Kačerov","Phengaris nausithous",6179,1.44841999339331,0.651312777965748
-"CZ0523291","Uhřínov - Benátky","Phengaris nausithous",6179,3.32155319984775,0.57507361016271
-"CZ0533308","Bohdanečský rybník","Phengaris nausithous",6179,9.92897170669364,0.0400737256933337
-"CZ0534051","Anenské údolí","Phengaris nausithous",6179,7.78438086324652,0.19758578217719
-"CZ0534055","Ratajské rybníky","Phengaris nausithous",6179,11.8670734501301,0.581328599212129
-"CZ0537011","Louky u Přelouče","Phengaris nausithous",6179,56.9561721284316,0.426670893004394
-"CZ0613009","Niva Fryšávky","Phengaris nausithous",6179,19.9245800911289,0.563963094297064
-"CZ0613010","Údolí Svratky u Krásného","Phengaris nausithous",6179,53.7003745847746,0.556290565662096
-"CZ0613012","Na Ostrážné","Phengaris nausithous",6179,1.26587464891967,0.756220928042459
-"CZ0713388","Protivanov","Phengaris nausithous",6179,1.90761177364201,0.672786109376787
-"CZ0713395","Vidnava","Phengaris nausithous",6179,2.60771054803556,0.0662878367333945
-"CZ0714073","Litovelské Pomoraví","Phengaris nausithous",6179,338.946165136595,0.0358348413757918
-"CZ0714085","Morava - Chropyňský luh","Phengaris nausithous",6179,142.351777017223,0.0444109045090286
-"CZ0723403","Uhliska","Phengaris nausithous",6179,10.9927944544498,0.216933573809784
-"CZ0724090","Bílé Karpaty","Phengaris nausithous",6179,2776.62743505919,0.138531395817612
-"CZ0813448","Jakartovice","Phengaris nausithous",6179,0,0
-"CZ0813449","Jilešovice - Děhylov","Phengaris nausithous",6179,0,0
-"CZ0814092","Poodří","Phengaris nausithous",6179,1372.92324745959,0.262257034029912
-"CZ0214005","Andělské schody","Phengaris teleius",6177,21.149458539152,0.113199005555654
-"CZ0214040","Louky u Drahlína","Phengaris teleius",6177,1.06884908960347,0.0846940140938814
-"CZ0313004","Terčino údolí","Phengaris teleius",6177,3.19557595784324,0.539806174954304
-"CZ0313123","Stropnice","Phengaris teleius",6177,92.4653248303493,0.0743269716545674
-"CZ0314123","Boletice","Phengaris teleius",6177,1150.69457172983,0.0565487101718445
-"CZ0314124","Blanský les","Phengaris teleius",6177,611.519193908783,0.0275310993332152
-"CZ0323150","Kamenec","Phengaris teleius",6177,5.05848902069727,0.50685153865183
-"CZ0424030","Bezručovo údolí","Phengaris teleius",6177,16.6282428372007,0.013913960885631
-"CZ0424127","Východní Krušnohoří","Phengaris teleius",6177,496.634402814212,0.0339343967061725
-"CZ0513506","Horní Ploučnice","Phengaris teleius",6177,115.328939562756,0.132025181863722
-"CZ0514670","Ronov - Vlhošť","Phengaris teleius",6177,272.734822852335,0.364929889828566
-"CZ0523010","Na Plachtě","Phengaris teleius",6177,8.11853744720678,0.145507743429593
-"CZ0523014","Vladivostok","Phengaris teleius",6177,16.452731260116,0.743520021993512
-"CZ0523275","Kačerov","Phengaris teleius",6177,1.44841999339331,0.651312777965748
-"CZ0534055","Ratajské rybníky","Phengaris teleius",6177,11.8670734501301,0.581328599212129
-"CZ0537011","Louky u Přelouče","Phengaris teleius",6177,56.9561721284316,0.426670893004394
-"CZ0723403","Uhliska","Phengaris teleius",6177,10.9927944544498,0.216933573809784
-"CZ0724090","Bílé Karpaty","Phengaris teleius",6177,2776.62743505919,0.138531395817612
-"CZ0214005","Andělské schody","Lycaena dispar",1060,26.2022285870965,0.140243127922658
-"CZ0214040","Louky u Drahlína","Lycaena dispar",1060,1.44936280345695,0.114845355529722
-"CZ0313004","Terčino údolí","Lycaena dispar",1060,3.19557595784324,0.539806174954304
-"CZ0313123","Stropnice","Lycaena dispar",1060,108.427875538431,0.0871582471212467
-"CZ0314123","Boletice","Lycaena dispar",1060,1674.36495358048,0.0822835014677957
-"CZ0314124","Blanský les","Lycaena dispar",1060,649.458538079511,0.0292391599524166
-"CZ0323150","Kamenec","Lycaena dispar",1060,7.90662069474923,0.792229230561352
-"CZ0424030","Bezručovo údolí","Lycaena dispar",1060,20.9307942891069,0.0175141929243589
-"CZ0424127","Východní Krušnohoří","Lycaena dispar",1060,927.034277383777,0.063343072390274
-"CZ0513506","Horní Ploučnice","Lycaena dispar",1060,152.321700861271,0.174373408220386
-"CZ0514670","Ronov - Vlhošť","Lycaena dispar",1060,277.385490989939,0.371152666199165
-"CZ0523010","Na Plachtě","Lycaena dispar",1060,11.7542725273894,0.210670663557183
-"CZ0523014","Vladivostok","Lycaena dispar",1060,17.0899301495786,0.77231585685018
-"CZ0523275","Kačerov","Lycaena dispar",1060,1.44841999339331,0.651312777965748
-"CZ0534055","Ratajské rybníky","Lycaena dispar",1060,12.2723969151785,0.601184052467273
-"CZ0537011","Louky u Přelouče","Lycaena dispar",1060,57.0130216484404,0.427096764943512
-"CZ0723403","Uhliska","Lycaena dispar",1060,37.6509787746777,0.743010470801711
-"CZ0623797","Strážnicko","Lycaena dispar",1060,0,0
-"CZ0724090","Bílé Karpaty","Lycaena dispar",1060,3967.60446250408,0.197951578704026
-"CZ0113005","Lochkovský profil","Euplagia quadripunctaria",6199,14.1687057637764,0.41299249737003
-"CZ0114001","Radotínské údolí","Euplagia quadripunctaria",6199,88.2119757923756,0.805998056552227
-"CZ0213023","Hrdlička - Žďánská hora","Euplagia quadripunctaria",6199,27.849827157311,0.409113280374709
-"CZ0213043","Třeštibok","Euplagia quadripunctaria",6199,27.7772919918509,0.956720872735224
-"CZ0213065","Na Babě","Euplagia quadripunctaria",6199,21.4663819650579,0.734914637318281
-"CZ0213779","Břežanské údolí","Euplagia quadripunctaria",6199,386.601624811128,0.778613593026901
-"CZ0213802","V hladomoří","Euplagia quadripunctaria",6199,114.413335248901,0.780239249051205
-"CZ0214017","Karlštejn - Koda","Euplagia quadripunctaria",6199,2172.74340329461,0.817427851320546
-"CZ0214037","Kotýz","Euplagia quadripunctaria",6199,19.2942912293102,0.663883482078281
-"CZ0314124","Blanský les","Euplagia quadripunctaria",6199,4311.30267578759,0.194098408365527
-"CZ0324025","Kaňon Střely","Euplagia quadripunctaria",6199,266.929563654031,0.744723851483544
-"CZ0423201","Blšanský chlum","Euplagia quadripunctaria",6199,25.8882408273278,0.904220639582168
-"CZ0423212","Hořenec - Číčov","Euplagia quadripunctaria",6199,10.120950705345,0.485860122258158
-"CZ0423225","Radobýl","Euplagia quadripunctaria",6199,29.2256345099507,0.996476471871251
-"CZ0423227","Sinutec - Dlouhý kopec","Euplagia quadripunctaria",6199,17.0508392888168,0.539949895020535
-"CZ0423232","Vrch Hazmburk","Euplagia quadripunctaria",6199,19.6528525098721,0.62608435112836
-"CZ0423236","Všechlapy - Kamýk","Euplagia quadripunctaria",6199,8.69421287735235,0.719416891655833
-"CZ0424037","Lovoš","Euplagia quadripunctaria",6199,235.244638013305,0.803034382350401
-"CZ0424039","Oblík - Srdov - Brník","Euplagia quadripunctaria",6199,230.567732137548,0.68792116702055
-"CZ0424129","Bílé stráně u Litoměřic","Euplagia quadripunctaria",6199,55.2094602863333,0.863733051583847
-"CZ0513506","Horní Ploučnice","Euplagia quadripunctaria",6199,591.339748057486,0.676948371124615
-"CZ0614131","Údolí Oslavy a Chvojnice","Euplagia quadripunctaria",6199,1209.48545113384,0.517071846742886
-"CZ0614134","Údolí Jihlavy","Euplagia quadripunctaria",6199,693.256487115927,0.804308970640722
-"CZ0623035","Bílý kopec u Čejče","Euplagia quadripunctaria",6199,22.3292352300499,0.306052255858206
-"CZ0623354","Crhov - Rozsíčka","Euplagia quadripunctaria",6199,8.08715151662414,0.294201325629344
-"CZ0623355","Lovčický potok a Jordánek","Euplagia quadripunctaria",6199,31.4372423858298,0.868586962780308
-"CZ0624043","Stolová hora","Euplagia quadripunctaria",6199,51.6859688058108,0.670216537452405
-"CZ0624060","Pouzdřanská step - Kolby","Euplagia quadripunctaria",6199,119.301933517956,0.672422682275856
-"CZ0624070","Hodonínská doubrava","Euplagia quadripunctaria",6199,1534.49257109156,0.506586420341642
-"CZ0624072","Čertoryje","Euplagia quadripunctaria",6199,3664.65917383419,0.75481282956286
-"CZ0624096","Podyjí","Euplagia quadripunctaria",6199,4719.60222114934,0.752351482598114
-"CZ0624100","Milovický les","Euplagia quadripunctaria",6199,1737.25984306914,0.711056729039562
-"CZ0624101","Kuntínov","Euplagia quadripunctaria",6199,561.506281030865,0.848891780500613
-"CZ0624104","Děvín","Euplagia quadripunctaria",6199,342.108167869127,0.841968329934874
-"CZ0624114","Přední kout","Euplagia quadripunctaria",6199,536.591419477976,0.774489136959153
-"CZ0624130","Moravský kras","Euplagia quadripunctaria",6199,4458.546890042,0.687477597865714
-"CZ0624234","Svatý kopeček u Mikulova","Euplagia quadripunctaria",6199,40.8800133133763,0.871785575303747
-"CZ0714076","Kosíř - Lomy","Euplagia quadripunctaria",6199,30.3760057587329,0.726599132236647
-"CZ0714083","Malý Kosíř","Euplagia quadripunctaria",6199,10.5453333574389,0.788012867402771
-"CZ0714772","Údolí Bystřice","Euplagia quadripunctaria",6199,504.027105889717,0.671031296572665
-"CZ0724090","Bílé Karpaty","Euplagia quadripunctaria",6199,13145.8814924466,0.655873845157308
-"CZ0724430","Vlárský průsmyk","Euplagia quadripunctaria",6199,2383.67730561802,0.751324731216914
-"CZ0813474","Údolí Moravice","Euplagia quadripunctaria",6199,176.634784559622,0.791153690446484
+"CZ0213063","Rakovník - za koupalištěm","Phengaris nausithous",6179,3.55,35.47
+"CZ0213777","Bohostice","Phengaris nausithous",6179,1.44,26.08
+"CZ0214004","Černý Orel","Phengaris nausithous",6179,48.84,21.54
+"CZ0214040","Louky u Drahlína","Phengaris nausithous",6179,1.07,8.47
+"CZ0313096","Čábuze","Phengaris nausithous",6179,5.7,14.8
+"CZ0313114","Onšovice - Mlýny","Phengaris nausithous",6179,6.07,25.43
+"CZ0313141","Žofina Huť","Phengaris nausithous",6179,3.74,8.3
+"CZ0314123","Boletice","Phengaris nausithous",6179,1142.63,5.62
+"CZ0314124","Blanský les","Phengaris nausithous",6179,583.68,2.63
+"CZ0323150","Kamenec","Phengaris nausithous",6179,5.06,50.69
+"CZ0414127","Hradiště","Phengaris nausithous",6179,8404.06,25.34
+"CZ0424030","Bezručovo údolí","Phengaris nausithous",6179,16.63,1.39
+"CZ0424127","Východní Krušnohoří","Phengaris nausithous",6179,496.63,3.39
+"CZ0513506","Horní Ploučnice","Phengaris nausithous",6179,114.35,13.09
+"CZ0514113","Podtrosecká údolí","Phengaris nausithous",6179,20.2,3.89
+"CZ0514670","Ronov - Vlhošť","Phengaris nausithous",6179,272.61,36.48
+"CZ0523014","Vladivostok","Phengaris nausithous",6179,16.45,74.35
+"CZ0523273","Javorka a Cidlina - Sběř","Phengaris nausithous",6179,100,32.54
+"CZ0523275","Kačerov","Phengaris nausithous",6179,1.45,65.13
+"CZ0523291","Uhřínov - Benátky","Phengaris nausithous",6179,3.32,57.51
+"CZ0533308","Bohdanečský rybník","Phengaris nausithous",6179,9.93,4.01
+"CZ0534051","Anenské údolí","Phengaris nausithous",6179,4.61,11.7
+"CZ0534055","Ratajské rybníky","Phengaris nausithous",6179,11.87,58.13
+"CZ0537011","Louky u Přelouče","Phengaris nausithous",6179,56.96,42.67
+"CZ0613009","Niva Fryšávky","Phengaris nausithous",6179,19.92,56.4
+"CZ0613010","Údolí Svratky u Krásného","Phengaris nausithous",6179,53.7,55.63
+"CZ0613012","Na Ostrážné","Phengaris nausithous",6179,1.27,75.62
+"CZ0713388","Protivanov","Phengaris nausithous",6179,1.91,67.28
+"CZ0713395","Vidnava","Phengaris nausithous",6179,2.61,6.63
+"CZ0714073","Litovelské Pomoraví","Phengaris nausithous",6179,338.95,3.58
+"CZ0714085","Morava - Chropyňský luh","Phengaris nausithous",6179,142.35,4.44
+"CZ0723403","Uhliska","Phengaris nausithous",6179,10.99,21.69
+"CZ0724090","Bílé Karpaty","Phengaris nausithous",6179,1774.46,8.85
+"CZ0814092","Poodří","Phengaris nausithous",6179,1372.92,26.23
+"CZ0214005","Andělské schody","Phengaris teleius",6177,21.15,11.32
+"CZ0214040","Louky u Drahlína","Phengaris teleius",6177,1.07,8.47
+"CZ0313004","Terčino údolí","Phengaris teleius",6177,3.2,53.98
+"CZ0313123","Stropnice","Phengaris teleius",6177,92.47,7.43
+"CZ0314123","Boletice","Phengaris teleius",6177,1142.63,5.62
+"CZ0314124","Blanský les","Phengaris teleius",6177,583.68,2.63
+"CZ0323150","Kamenec","Phengaris teleius",6177,5.06,50.69
+"CZ0424030","Bezručovo údolí","Phengaris teleius",6177,16.63,1.39
+"CZ0424127","Východní Krušnohoří","Phengaris teleius",6177,496.63,3.39
+"CZ0513506","Horní Ploučnice","Phengaris teleius",6177,114.35,13.09
+"CZ0514670","Ronov - Vlhošť","Phengaris teleius",6177,272.61,36.48
+"CZ0523010","Na Plachtě","Phengaris teleius",6177,8.12,14.55
+"CZ0523014","Vladivostok","Phengaris teleius",6177,16.45,74.35
+"CZ0523275","Kačerov","Phengaris teleius",6177,1.45,65.13
+"CZ0534055","Ratajské rybníky","Phengaris teleius",6177,11.87,58.13
+"CZ0537011","Louky u Přelouče","Phengaris teleius",6177,56.96,42.67
+"CZ0723403","Uhliska","Phengaris teleius",6177,10.99,21.69
+"CZ0724090","Bílé Karpaty","Phengaris teleius",6177,1774.46,8.85
+"CZ0214005","Andělské schody","Lycaena dispar",1060,140.16,75.02
+"CZ0214040","Louky u Drahlína","Lycaena dispar",1060,12.62,100
+"CZ0313004","Terčino údolí","Lycaena dispar",1060,5.07,85.72
+"CZ0313123","Stropnice","Lycaena dispar",1060,853.35,68.6
+"CZ0314123","Boletice","Lycaena dispar",1060,7141.71,35.1
+"CZ0314124","Blanský les","Lycaena dispar",1060,20083.3,90.42
+"CZ0323150","Kamenec","Lycaena dispar",1060,9.73,97.48
+"CZ0424030","Bezručovo údolí","Lycaena dispar",1060,861.06,72.05
+"CZ0424127","Východní Krušnohoří","Lycaena dispar",1060,10443.91,71.36
+"CZ0513506","Horní Ploučnice","Lycaena dispar",1060,607.17,69.51
+"CZ0514670","Ronov - Vlhošť","Lycaena dispar",1060,527.98,70.65
+"CZ0523010","Na Plachtě","Lycaena dispar",1060,27.67,49.59
+"CZ0523014","Vladivostok","Lycaena dispar",1060,18.77,84.82
+"CZ0523275","Kačerov","Lycaena dispar",1060,1.49,66.89
+"CZ0534055","Ratajské rybníky","Lycaena dispar",1060,13.92,68.2
+"CZ0537011","Louky u Přelouče","Lycaena dispar",1060,126.75,94.95
+"CZ0723403","Uhliska","Lycaena dispar",1060,49.27,97.23
+"CZ0724090","Bílé Karpaty","Lycaena dispar",1060,15482.11,77.24
+"CZ0113005","Lochkovský profil","Euplagia quadripunctaria",6199,15.62,45.53
+"CZ0114001","Radotínské údolí","Euplagia quadripunctaria",6199,89.93,82.17
+"CZ0213023","Hrdlička - Žďánská hora","Euplagia quadripunctaria",6199,55.37,81.33
+"CZ0213043","Třeštibok","Euplagia quadripunctaria",6199,27.94,96.23
+"CZ0213065","Na Babě","Euplagia quadripunctaria",6199,21.47,73.49
+"CZ0213779","Břežanské údolí","Euplagia quadripunctaria",6199,391.28,78.8
+"CZ0213802","V hladomoří","Euplagia quadripunctaria",6199,127.63,87.04
+"CZ0214017","Karlštejn - Koda","Euplagia quadripunctaria",6199,2209.29,83.12
+"CZ0214037","Kotýz","Euplagia quadripunctaria",6199,19.33,66.52
+"CZ0314124","Blanský les","Euplagia quadripunctaria",6199,20083.3,90.42
+"CZ0324025","Kaňon Střely","Euplagia quadripunctaria",6199,273.81,76.39
+"CZ0423201","Blšanský chlum","Euplagia quadripunctaria",6199,25.9,90.47
+"CZ0423212","Hořenec - Číčov","Euplagia quadripunctaria",6199,20.16,96.8
+"CZ0423225","Radobýl","Euplagia quadripunctaria",6199,29.29,99.85
+"CZ0423227","Sinutec - Dlouhý kopec","Euplagia quadripunctaria",6199,19.69,62.37
+"CZ0423232","Vrch Hazmburk","Euplagia quadripunctaria",6199,19.65,62.61
+"CZ0423236","Všechlapy - Kamýk","Euplagia quadripunctaria",6199,12.05,99.73
+"CZ0424037","Lovoš","Euplagia quadripunctaria",6199,235.24,80.3
+"CZ0424039","Oblík - Srdov - Brník","Euplagia quadripunctaria",6199,255.91,76.35
+"CZ0424129","Bílé stráně u Litoměřic","Euplagia quadripunctaria",6199,56.69,88.69
+"CZ0513506","Horní Ploučnice","Euplagia quadripunctaria",6199,607.17,69.51
+"CZ0614131","Údolí Oslavy a Chvojnice","Euplagia quadripunctaria",6199,1218.15,52.08
+"CZ0614134","Údolí Jihlavy","Euplagia quadripunctaria",6199,721.89,83.75
+"CZ0623035","Bílý kopec u Čejče","Euplagia quadripunctaria",6199,42.01,57.58
+"CZ0623354","Crhov - Rozsíčka","Euplagia quadripunctaria",6199,26.1,94.94
+"CZ0623355","Lovčický potok a Jordánek","Euplagia quadripunctaria",6199,33.7,93.1
+"CZ0624043","Stolová hora","Euplagia quadripunctaria",6199,53.24,69.04
+"CZ0624060","Pouzdřanská step - Kolby","Euplagia quadripunctaria",6199,125.65,70.82
+"CZ0624070","Hodonínská doubrava","Euplagia quadripunctaria",6199,2124.2,70.13
+"CZ0624072","Čertoryje","Euplagia quadripunctaria",6199,3883.1,79.98
+"CZ0624096","Podyjí","Euplagia quadripunctaria",6199,4869.07,77.62
+"CZ0624100","Milovický les","Euplagia quadripunctaria",6199,1945.52,79.63
+"CZ0624101","Kuntínov","Euplagia quadripunctaria",6199,567.76,85.83
+"CZ0624104","Děvín","Euplagia quadripunctaria",6199,343.81,84.62
+"CZ0624114","Přední kout","Euplagia quadripunctaria",6199,542.15,78.25
+"CZ0624130","Moravský kras","Euplagia quadripunctaria",6199,4933.88,76.08
+"CZ0624234","Svatý kopeček u Mikulova","Euplagia quadripunctaria",6199,41.73,89
+"CZ0714076","Kosíř - Lomy","Euplagia quadripunctaria",6199,34.5,82.52
+"CZ0714083","Malý Kosíř","Euplagia quadripunctaria",6199,10.7,79.96
+"CZ0714772","Údolí Bystřice","Euplagia quadripunctaria",6199,513.36,68.35
+"CZ0724090","Bílé Karpaty","Euplagia quadripunctaria",6199,15482.11,77.24
+"CZ0724430","Vlárský průsmyk","Euplagia quadripunctaria",6199,2398.37,75.6
+"CZ0813474","Údolí Moravice","Euplagia quadripunctaria",6199,179.09,80.21
+"CZ0410150","Soos","Euphydryas aurinia",1065,20.23,4.41
+"CZ0413007","Prachomety","Euphydryas aurinia",1065,3.3,15.98
+"CZ0413008","Prameny Teplé","Euphydryas aurinia",1065,18.71,12.09
+"CZ0413009","Rankovický triangl","Euphydryas aurinia",1065,3.8,31.87
+"CZ0413013","Mokřady u Těšetic","Euphydryas aurinia",1065,8.56,58.28
+"CZ0413014","Hřivínovské pastviny","Euphydryas aurinia",1065,5.72,41.57
+"CZ0413015","Louky u Dlouhé Lomnice","Euphydryas aurinia",1065,2.62,9.95
+"CZ0413017","U Jedlové","Euphydryas aurinia",1065,8.87,29.54
+"CZ0413018","U hájenky","Euphydryas aurinia",1065,1.39,22.02
+"CZ0413173","Za Údrčí","Euphydryas aurinia",1065,3.38,10.63
+"CZ0413177","Bystřina - Lužní potok","Euphydryas aurinia",1065,17.17,1.52
+"CZ0413179","Podhorní louky","Euphydryas aurinia",1065,8.97,21.69
+"CZ0413180","Horní Kramolín - Ovesné","Euphydryas aurinia",1065,1.71,9.43
+"CZ0413181","Mokřady u Javorné","Euphydryas aurinia",1065,8.2,15.78
+"CZ0413182","U bunkru","Euphydryas aurinia",1065,8.38,14.8
+"CZ0413187","Mezi rybníky","Euphydryas aurinia",1065,1.8,17.65
+"CZ0413191","Na Pilské šachtě","Euphydryas aurinia",1065,7.06,40.92
+"CZ0414026","Úpolínová louka - Křížky","Euphydryas aurinia",1065,45.28,6.59
+"CZ0414027","Lomnický rybník","Euphydryas aurinia",1065,2.62,2.39
+"CZ0414127","Hradiště","Euphydryas aurinia",1065,3957.7,11.94
+"CZ0424125","Doupovské hory","Euphydryas aurinia",1065,409.9,3.26
+"CZ0623026","Studánkový vrch","Eriogaster catax",1074,4.92,39.96
+"CZ0624072","Čertoryje","Eriogaster catax",1074,70.13,1.44
+"CZ0624100","Milovický les","Eriogaster catax",1074,46.4,1.9
+"CZ0723020","Údolí Okluky","Eriogaster catax",1074,3.01,17.5
+"CZ0723024","Rochus","Eriogaster catax",1074,53.39,92.15
+"CZ0723415","Polichno","Eriogaster catax",1074,7.71,11.48
+"CZ0723421","Remízy u Bánova","Eriogaster catax",1074,0.52,0.77
+"CZ0723425","Stráně u Popovic","Eriogaster catax",1074,10.5,8.02
+"CZ0723430","Údolí Bánovského potoka","Eriogaster catax",1074,2.68,12.39
+"CZ0724087","Újezdecký les","Eriogaster catax",1074,30.95,3.32
+"CZ0724090","Bílé Karpaty","Eriogaster catax",1074,473.9,2.36
+"CZ0623035","Bílý kopec u Čejče","Bolbelasmus unicornis",4011,6.74,9.24
+"CZ0624060","Pouzdřanská step - Kolby","Carabus hungaricus",4013,35.04,19.75
+"CZ0624104","Děvín","Carabus hungaricus",4013,77.19,19
+"CZ0624116","Špidláky","Carabus hungaricus",4013,10.06,65.49
+"CZ0714075","Keprník","Carabus variolosus",4014,435.67,17.13
+"CZ0714077","Praděd","Carabus variolosus",4014,1068.35,17.6
+"CZ0714081","Rejvíz","Carabus variolosus",4014,144.41,24.42
+"CZ0714133","Libavá","Carabus variolosus",4014,1106.47,10.27
+"CZ0724089","Beskydy","Carabus variolosus",4014,9336.58,7.76
+"CZ0724090","Bílé Karpaty","Carabus variolosus",4014,2700.01,13.47
+"CZ0724429","Hostýnské vrchy","Carabus variolosus",4014,691.69,28.86
+"CZ0724430","Vlárský průsmyk","Carabus variolosus",4014,654.79,20.64
+"CZ0813468","Sokolí potok","Carabus variolosus",4014,1.83,3.66
+"CZ0813474","Údolí Moravice","Carabus variolosus",4014,62.72,28.09
+"CZ0313513","Rašeliniště Kapličky","Carabus menetriesi pacholei",1914,32.51,25.58
+"CZ0314024","Šumava","Carabus menetriesi pacholei",1914,3202.83,1.86
+"CZ0314123","Boletice","Carabus menetriesi pacholei",1914,350.23,1.72
+"CZ0414110","Krušnohorské plató","Carabus menetriesi pacholei",1914,1014.49,8.61
+"CZ0113773","Praha - Petřín","Lucanus cervus",1083,9.05,17.21
+"CZ0213051","Oškobrh","Lucanus cervus",1083,70.72,75.1
+"CZ0213083","Veltrusy","Lucanus cervus",1083,110.88,37.28
+"CZ0214007","Káraný - Hrbáčkovy tůně","Lucanus cervus",1083,217.52,62.49
+"CZ0214009","Libické luhy","Lucanus cervus",1083,805.5,54.47
+"CZ0214010","Dománovický les","Lucanus cervus",1083,237.48,66.92
+"CZ0214015","Vůznice","Lucanus cervus",1083,347.39,87.45
+"CZ0214017","Karlštejn - Koda","Lucanus cervus",1083,1892.17,71.19
+"CZ0214050","Žehuňsko","Lucanus cervus",1083,99.5,27.78
+"CZ0313099","Hlubocké hráze","Lucanus cervus",1083,0.3,0.44
+"CZ0314126","Hlubocké obory","Lucanus cervus",1083,1695.27,51.99
+"CZ0423203","Černovice","Lucanus cervus",1083,9.22,67.35
+"CZ0423213","Chomutov - zoopark","Lucanus cervus",1083,11.76,26.49
+"CZ0423229","Údlické Doubí","Lucanus cervus",1083,40.72,92.94
+"CZ0424036","Běšický chochol","Lucanus cervus",1083,7.82,25.5
+"CZ0523283","Olešnice","Lucanus cervus",1083,302.27,77.84
+"CZ0523284","Opočno","Lucanus cervus",1083,19.02,27.83
+"CZ0523293","Víno","Lucanus cervus",1083,66.04,91.16
+"CZ0623040","Hovoranský hájek","Lucanus cervus",1083,68.03,82.41
+"CZ0623045","Rendezvous","Lucanus cervus",1083,52.37,85.11
+"CZ0623344","Podkomorské lesy","Lucanus cervus",1083,416.08,73.38
+"CZ0623807","Hobrtenky","Lucanus cervus",1083,115.48,88.05
+"CZ0623808","Pisárky","Lucanus cervus",1083,66.59,94.19
+"CZ0624043","Stolová hora","Lucanus cervus",1083,9.86,12.79
+"CZ0624060","Pouzdřanská step - Kolby","Lucanus cervus",1083,70.98,40.01
+"CZ0624070","Hodonínská doubrava","Lucanus cervus",1083,1384.02,45.69
+"CZ0624072","Čertoryje","Lucanus cervus",1083,2350.71,48.42
+"CZ0624095","Údolí Dyje","Lucanus cervus",1083,1143.17,62.78
+"CZ0624096","Podyjí","Lucanus cervus",1083,4341.57,69.21
+"CZ0624099","Niva Dyje","Lucanus cervus",1083,1346.44,41.44
+"CZ0624100","Milovický les","Lucanus cervus",1083,1676.97,68.64
+"CZ0624101","Kuntínov","Lucanus cervus",1083,550.41,83.21
+"CZ0624103","Mušovský luh","Lucanus cervus",1083,352.03,63.15
+"CZ0624104","Děvín","Lucanus cervus",1083,238.61,58.72
+"CZ0624106","Tvořihrázský les","Lucanus cervus",1083,925.34,63.02
+"CZ0624234","Svatý kopeček u Mikulova","Lucanus cervus",1083,30.72,65.51
+"CZ0513255","Slatinné vrchy","Rosalia alpina",1087,11.84,8.55
+"CZ0514042","Jestřebsko - Dokesko","Rosalia alpina",1087,996.3,14.38
+"CZ0514243","Velký a Malý Bezděz","Rosalia alpina",1087,49.21,69.96
+"CZ0724091","Chřiby","Rosalia alpina",1087,12356.83,64.27
+"CZ0724430","Vlárský průsmyk","Rosalia alpina",1087,2013.99,63.48
